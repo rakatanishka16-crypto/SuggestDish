@@ -1,0 +1,833 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFF4DF" />
+  <meta name="description" content="SuggestDish: premium Mumbai-first dish discovery with AI recommendations, horeca submissions, maps, and transparent review intelligence." />
+  <title>SuggestDish — Mumbai-first dish discovery</title>
+  <style>
+    :root{
+      --bg:#FFF4DF;
+      --bg2:#F3E2C5;
+      --card:#fffaf1;
+      --text:#38251C;
+      --muted:#6d5447;
+      --orange:#F36A21;
+      --gold:#F3C44F;
+      --green:#687A4E;
+      --burgundy:#7C3040;
+      --line:rgba(56,37,28,.12);
+      --shadow:0 18px 40px rgba(56,37,28,.12);
+      --shadow2:0 10px 24px rgba(243,106,33,.15);
+      --radius:24px;
+      --radius2:18px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(243,196,79,.2), transparent 24%),
+        radial-gradient(circle at 90% 8%, rgba(243,106,33,.12), transparent 20%),
+        linear-gradient(180deg, #fff8ea 0%, var(--bg) 28%, #fff9ef 100%);
+      min-height:100vh;
+    }
+    h1,h2,h3,h4{font-family:Poppins,Inter,system-ui,sans-serif; line-height:1.05; margin:0}
+    p{line-height:1.65; margin:0}
+    a{color:inherit; text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+    .skip{
+      position:absolute; left:-999px; top:8px; background:#000; color:#fff; padding:8px 12px; border-radius:10px; z-index:1000
+    }
+    .skip:focus{left:8px}
+    .topbar{
+      position:sticky; top:0; z-index:70;
+      backdrop-filter:saturate(140%) blur(14px);
+      background:rgba(255,244,223,.78);
+      border-bottom:1px solid rgba(56,37,28,.08);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-family:Poppins,Inter,sans-serif; font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:44px; height:44px; border-radius:16px;
+      background:linear-gradient(145deg, #FF8A3D, #F36A21 55%, #C84C11);
+      box-shadow:var(--shadow2);
+      display:grid; place-items:center; color:#fff; font-size:24px;
+      position:relative; overflow:hidden;
+    }
+    .logo::after{
+      content:""; position:absolute; inset:8px 9px 12px 11px; border-radius:14px 14px 18px 18px;
+      border:2px solid rgba(255,255,255,.55); transform:rotate(-8deg);
+    }
+    .navlinks{display:flex; gap:18px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
+    .navlinks a{color:var(--muted); font-weight:600; font-size:.95rem}
+    .navlinks a:hover,.navlinks a:focus{color:var(--text)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px; padding:9px 14px;
+      border-radius:999px; background:rgba(255,255,255,.7); border:1px solid rgba(56,37,28,.08);
+      box-shadow:0 6px 18px rgba(56,37,28,.05);
+    }
+    .hero{
+      position:relative;
+      padding:34px 0 22px;
+      overflow:hidden;
+    }
+    .hero-grid{
+      display:grid; grid-template-columns:1.08fr .92fr; gap:28px; align-items:center;
+    }
+    .hero-copy{
+      padding:16px 0;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      background:rgba(243,196,79,.24); color:#5e4510; border:1px solid rgba(243,196,79,.55);
+      padding:10px 14px; border-radius:999px; font-weight:700; letter-spacing:.2px;
+    }
+    .hero h1{
+      margin-top:18px;
+      font-size:clamp(2.4rem, 5vw, 5rem);
+      max-width:12ch;
+    }
+    .hero p.lead{
+      margin-top:18px; font-size:1.08rem; max-width:62ch; color:var(--muted)
+    }
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:24px}
+    .btn{
+      appearance:none; border:0; border-radius:999px; padding:14px 18px; font-weight:800;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px; cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:linear-gradient(135deg,var(--orange),#ff7f2c); color:#fff; box-shadow:var(--shadow2)}
+    .btn-secondary{background:#fff; color:var(--text); border:1px solid rgba(56,37,28,.12); box-shadow:0 8px 20px rgba(56,37,28,.06)}
+    .btn-tertiary{background:rgba(243,196,79,.17); color:#5a460f; border:1px solid rgba(243,196,79,.44)}
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,250,241,.92));
+      border:1px solid rgba(56,37,28,.09);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .mumbai-scene{
+      min-height:520px;
+      position:relative;
+      background:
+        linear-gradient(180deg, rgba(255,244,223,.1), rgba(255,244,223,.9)),
+        radial-gradient(circle at 50% 24%, rgba(243,106,33,.12), transparent 20%),
+        linear-gradient(160deg, #f3e2c5 0%, #fff9ef 54%, #f8ead4 100%);
+    }
+    .city-arc{
+      position:absolute; inset:auto 0 0 0; height:44%;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(56,37,28,.06) 100%),
+        radial-gradient(circle at 20% 40%, rgba(104,122,78,.26), transparent 28%),
+        radial-gradient(circle at 78% 35%, rgba(124,48,64,.16), transparent 24%);
+    }
+    .sea{
+      position:absolute; left:0; right:0; bottom:0; height:30%;
+      background:linear-gradient(180deg, rgba(76,137,171,.05), rgba(76,137,171,.16));
+    }
+    .dish-frame{
+      position:absolute; top:20px; left:20px; right:20px;
+      border-radius:26px; overflow:hidden; min-height:310px;
+      background:
+        linear-gradient(135deg, rgba(243,106,33,.12), rgba(243,196,79,.1)),
+        url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1200&q=80') center/cover;
+      box-shadow:inset 0 -70px 90px rgba(56,37,28,.45);
+    }
+    .hero-overlay{
+      position:absolute; left:20px; right:20px; bottom:20px;
+      display:grid; gap:10px;
+      color:#fff;
+    }
+    .overlay-title{font-family:Poppins,sans-serif; font-size:1.35rem; font-weight:800}
+    .overlay-sub{font-size:.96rem; max-width:42ch; color:rgba(255,255,255,.9)}
+    .glass-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px}
+    .glass{
+      padding:8px 12px; background:rgba(255,255,255,.14); color:#fff;
+      border:1px solid rgba(255,255,255,.2); border-radius:999px; backdrop-filter:blur(10px); font-weight:700; font-size:.84rem
+    }
+    .trust-badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+      background:#fff; border:1px solid rgba(56,37,28,.1); color:var(--muted); font-weight:700; font-size:.86rem
+    }
+    .section{padding:24px 0 10px}
+    .section-head{
+      display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:16px; flex-wrap:wrap
+    }
+    .section h2{font-size:clamp(1.5rem, 2.2vw, 2.4rem)}
+    .section p.sub{color:var(--muted); max-width:68ch}
+    .grid-3{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,250,241,.96));
+      border:1px solid rgba(56,37,28,.09);
+      border-radius:var(--radius);
+      box-shadow:0 10px 24px rgba(56,37,28,.07);
+      overflow:hidden;
+    }
+    .step{padding:20px}
+    .step .num{
+      width:42px; height:42px; border-radius:14px; background:rgba(243,106,33,.12); color:var(--orange); font-weight:900;
+      display:grid; place-items:center; margin-bottom:14px
+    }
+    .step p{margin-top:10px; color:var(--muted)}
+    .feature{
+      padding:18px;
+      display:grid; gap:14px;
+    }
+    .dish-img{
+      border-radius:22px; aspect-ratio: 4/3;
+      background:linear-gradient(180deg, rgba(243,106,33,.14), rgba(243,196,79,.08)),
+                 url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80') center/cover;
+      box-shadow:inset 0 -64px 70px rgba(56,37,28,.28);
+      position:relative; overflow:hidden;
+    }
+    .dish-img.alt1{background-image:linear-gradient(180deg, rgba(243,106,33,.16), rgba(243,196,79,.09)), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80')}
+    .dish-img.alt2{background-image:linear-gradient(180deg, rgba(243,106,33,.16), rgba(243,196,79,.09)), url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80')}
+    .dish-img.alt3{background-image:linear-gradient(180deg, rgba(243,106,33,.16), rgba(243,196,79,.09)), url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1200&q=80')}
+    .overlay-chip{
+      position:absolute; left:14px; top:14px; padding:8px 10px; border-radius:999px; background:rgba(255,255,255,.88);
+      color:var(--text); font-weight:800; font-size:.8rem
+    }
+    .meta-row{display:flex; flex-wrap:wrap; gap:8px}
+    .tag,.mini{
+      display:inline-flex; align-items:center; gap:6px; padding:7px 10px; border-radius:999px; font-size:.82rem; font-weight:700
+    }
+    .tag{background:rgba(243,196,79,.15); color:#5c4713}
+    .tag.green{background:rgba(104,122,78,.12); color:var(--green)}
+    .tag.burg{background:rgba(124,48,64,.12); color:var(--burgundy)}
+    .mini{background:rgba(56,37,28,.05); color:var(--muted)}
+    .rank{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 14px; border-radius:16px; background:rgba(243,106,33,.08)
+    }
+    .conf{font-weight:900; color:var(--orange)}
+    .bullets{display:grid; gap:8px; color:var(--muted); margin:0; padding-left:18px}
+    .bullets li{padding-left:2px}
+    .split{display:grid; grid-template-columns:1.08fr .92fr; gap:16px}
+    .panel{padding:18px}
+    .list{display:grid; gap:12px}
+    .listing{
+      display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:center;
+      padding:14px; border-radius:18px; border:1px solid rgba(56,37,28,.08); background:#fff
+    }
+    .avatar{
+      width:52px; height:52px; border-radius:18px; background:linear-gradient(135deg, rgba(243,106,33,.26), rgba(243,196,79,.2));
+      display:grid; place-items:center; font-size:1.3rem
+    }
+    .price{font-weight:900}
+    .mapbox{
+      min-height:340px; border-radius:22px; background:
+        radial-gradient(circle at 60% 42%, rgba(243,106,33,.28), transparent 8%),
+        radial-gradient(circle at 35% 58%, rgba(104,122,78,.24), transparent 8%),
+        radial-gradient(circle at 75% 64%, rgba(124,48,64,.22), transparent 8%),
+        linear-gradient(135deg, #f7ead2, #fff8ef);
+      border:1px solid rgba(56,37,28,.08);
+      position:relative; overflow:hidden;
+    }
+    .road{
+      position:absolute; background:rgba(56,37,28,.12); border-radius:999px;
+    }
+    .road.r1{height:7px; width:86%; left:8%; top:34%; transform:rotate(-7deg)}
+    .road.r2{height:7px; width:76%; left:12%; top:58%; transform:rotate(6deg)}
+    .road.r3{width:7px; height:78%; left:52%; top:10%}
+    .pin{
+      position:absolute; width:30px; height:30px; border-radius:50% 50% 50% 0;
+      background:var(--orange); transform:rotate(-45deg); box-shadow:0 8px 18px rgba(243,106,33,.35)
+    }
+    .pin::after{content:"🍽️"; position:absolute; transform:rotate(45deg); inset:3px; display:grid; place-items:center; font-size:14px}
+    .pin.p1{left:20%; top:24%}
+    .pin.p2{left:42%; top:48%}
+    .pin.p3{left:68%; top:30%}
+    .pin.p4{left:76%; top:68%}
+    .pin.p5{left:27%; top:70%}
+    .legend{
+      position:absolute; left:16px; bottom:16px; right:16px; display:flex; flex-wrap:wrap; gap:10px
+    }
+    .metric-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .metric{padding:18px}
+    .bar{height:12px; background:rgba(56,37,28,.08); border-radius:999px; overflow:hidden}
+    .bar > span{display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--orange),#ff9151)}
+    .score-item{display:grid; gap:10px}
+    .compare{
+      overflow:auto; border-radius:22px; border:1px solid rgba(56,37,28,.08); background:#fff
+    }
+    table{width:100%; border-collapse:collapse; min-width:760px}
+    th,td{padding:14px 16px; border-bottom:1px solid rgba(56,37,28,.08); text-align:left; vertical-align:top}
+    th{background:rgba(243,226,197,.42); font-family:Poppins,sans-serif}
+    .quote{color:var(--muted); font-size:.96rem}
+    .footer{
+      margin-top:24px;
+      padding:24px 0 36px;
+      color:var(--muted);
+    }
+    .footer-inner{
+      padding:20px; border-radius:26px; background:rgba(255,255,255,.6); border:1px solid rgba(56,37,28,.08)
+    }
+    .input-row{display:flex; gap:10px; flex-wrap:wrap}
+    .field{
+      flex:1 1 220px; padding:14px 16px; border-radius:16px; border:1px solid rgba(56,37,28,.14);
+      background:#fff; color:var(--text)
+    }
+    .two-col{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .small{font-size:.9rem}
+    .mute{color:var(--muted)}
+    .divider{height:1px; background:var(--line); margin:16px 0}
+    .row{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{padding:7px 10px; border-radius:999px; background:#fff; border:1px solid rgba(56,37,28,.08); font-size:.84rem; font-weight:700}
+    .action-buttons{display:flex; gap:12px; flex-wrap:wrap}
+    .sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+    @media (max-width: 980px){
+      .hero-grid,.grid-3,.split,.metric-grid,.two-col{grid-template-columns:1fr}
+      .hero h1{max-width:unset}
+      .mumbai-scene{min-height:460px}
+    }
+    @media (max-width: 640px){
+      .nav{align-items:flex-start; flex-direction:column}
+      .navlinks{justify-content:flex-start}
+      .container{width:min(var(--max), calc(100% - 22px))}
+      .hero{padding-top:18px}
+      .mumbai-scene{min-height:400px}
+      .dish-frame{min-height:270px}
+      .section{padding-top:18px}
+      .btn{width:100%}
+    }
+    :focus-visible{outline:3px solid rgba(243,106,33,.6); outline-offset:3px}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none !important; transition:none !important}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="container nav" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="SuggestDish home">
+        <span class="logo" aria-hidden="true">🍛</span>
+        <span>SuggestDish</span>
+      </a>
+      <nav class="navlinks">
+        <a href="#how">How it works</a>
+        <a href="#picks">Top picks</a>
+        <a href="#listings">Horeca</a>
+        <a href="#transparency">Transparency</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#compare">Compare</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="kicker">✨ Mumbai-first dish discovery, powered by real diner language</div>
+          <h1>Find the best dish, not just the best restaurant.</h1>
+          <p class="lead">Live dish-level insights from Google Reviews, Zomato, and real diner language—personalized to Mumbai. Discover signature plates, confidence scores, pairings, and why each dish is recommended.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary" id="enableLocation">📍 Enable Location</button>
+            <button class="btn btn-secondary" id="enterLocation">⌨️ Enter Location</button>
+          </div>
+          <div class="trust-badges" aria-label="Trust and source badges">
+            <span class="badge">Data from Google Reviews + Zomato</span>
+            <span class="badge">One free AI dish per venue</span>
+            <span class="badge">Manual horeca submissions</span>
+          </div>
+          <div class="divider"></div>
+          <div class="row" aria-label="Mumbai launch areas">
+            <span class="chip">Colaba</span>
+            <span class="chip">Bandra</span>
+            <span class="chip">Worli</span>
+            <span class="chip">Fort</span>
+            <span class="chip">Juhu</span>
+            <span class="chip">Andheri</span>
+            <span class="chip">Sea Link corridors</span>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Mumbai-inspired hero visual">
+          <div class="mumbai-scene">
+            <div class="dish-frame" role="img" aria-label="Plated Mumbai culinary scene">
+              <div class="hero-overlay">
+                <div class="overlay-title">A premium foody lens on Mumbai</div>
+                <div class="overlay-sub">Warm beige canvas, food-orange accents, and reason-based recommendations that feel like a modern food magazine.</div>
+                <div class="glass-row">
+                  <span class="glass">🏆 AI recommendation</span>
+                  <span class="glass">⭐ Confidence: 91%</span>
+                  <span class="glass">⏱️ Updated 8h ago</span>
+                </div>
+              </div>
+            </div>
+            <div class="city-arc"></div>
+            <div class="sea"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>How it works</h2>
+            <p class="sub">A clean 3-step flow that turns live location, trusted review signals, and AI reasoning into dish-level discovery.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card step">
+            <div class="num">1</div>
+            <h3>Allow location</h3>
+            <p>See Mumbai-relevant dishes near you, from neighborhood staples to hidden gems and new horeca entries.</p>
+          </article>
+          <article class="card step">
+            <div class="num">2</div>
+            <h3>Pull live dish mentions</h3>
+            <p>We normalize Google Reviews and Zomato signals, then detect repeated dish mentions, sentiment, and recency.</p>
+          </article>
+          <article class="card step">
+            <div class="num">3</div>
+            <h3>AI-curated signatures</h3>
+            <p>Get why a dish is recommended, plus confidence, pairings, and tasting notes you can trust.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="picks">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Top picks near you</h2>
+            <p class="sub">Dish-centric cards with images, cuisine tags, prices, distance, confidence, and reason-first recommendations.</p>
+          </div>
+          <span class="badge">AI rankings stay independent of sponsorships</span>
+        </div>
+        <div class="grid-3">
+          <article class="card feature">
+            <div class="dish-img">
+              <span class="overlay-chip">Suggested Dish</span>
+            </div>
+            <div class="meta-row">
+              <span class="tag">North Indian</span>
+              <span class="tag green">Bandra</span>
+              <span class="mini">1.2 km</span>
+              <span class="mini">₹₹</span>
+            </div>
+            <h3>Butter Chicken Biryani</h3>
+            <p class="mute">Biryani House, Bandra West</p>
+            <div class="rank"><span>🏆 AI-Recommendation</span><span class="conf">91% confidence</span></div>
+            <ul class="bullets">
+              <li>Repeatedly praised for rich gravy and rice texture</li>
+              <li>Frequent “must-try” mentions in recent reviews</li>
+              <li>Strong repeat-visitor sentiment after dinner hours</li>
+            </ul>
+            <div class="row">
+              <span class="chip">Add-on: extra raita</span>
+              <span class="chip">Pairs with: lassi</span>
+            </div>
+          </article>
+
+          <article class="card feature">
+            <div class="dish-img alt1">
+              <span class="overlay-chip">Suggested Dish</span>
+            </div>
+            <div class="meta-row">
+              <span class="tag burg">Seafood</span>
+              <span class="tag green">Worli</span>
+              <span class="mini">2.4 km</span>
+              <span class="mini">₹₹₹</span>
+            </div>
+            <h3>Bombil Fry with Coastal Chutney</h3>
+            <p class="mute">Bayfront Table, Worli Sea Face</p>
+            <div class="rank"><span>🏆 AI-Recommendation</span><span class="conf">88% confidence</span></div>
+            <ul class="bullets">
+              <li>Highly praised for crunch and freshness</li>
+              <li>Keywords: “crispy,” “perfect masala,” “fresh catch”</li>
+              <li>Best around sunset dining windows</li>
+            </ul>
+            <div class="row">
+              <span class="chip">Add-on: solkadhi</span>
+              <span class="chip">Pairs with: pav</span>
+            </div>
+          </article>
+
+          <article class="card feature">
+            <div class="dish-img alt2">
+              <span class="overlay-chip">Suggested Dish</span>
+            </div>
+            <div class="meta-row">
+              <span class="tag">Modern Indian</span>
+              <span class="tag green">Fort</span>
+              <span class="mini">900 m</span>
+              <span class="mini">₹₹</span>
+            </div>
+            <h3>Smoked Paneer Kulcha Stack</h3>
+            <p class="mute">Cocoa Street Kitchen, Fort</p>
+            <div class="rank"><span>🏆 AI-Recommendation</span><span class="conf">86% confidence</span></div>
+            <ul class="bullets">
+              <li>Balanced spice and texture earn frequent recommendations</li>
+              <li>Strong “good value” signals from lunch crowd reviews</li>
+              <li>Excellent for first-time visitors and office lunches</li>
+            </ul>
+            <div class="row">
+              <span class="chip">Add-on: mint chutney</span>
+              <span class="chip">Pairs with: masala soda</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="listings">
+      <div class="container split">
+        <article class="card panel">
+          <div class="section-head" style="margin-bottom:10px">
+            <div>
+              <h2>Unlisted horeca submissions</h2>
+              <p class="sub">Mumbai-focused manual submissions for venues not yet indexed publicly. Every listed venue receives one free AI-recommended dish.</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="listing">
+              <div class="avatar">🧾</div>
+              <div>
+                <strong>User-listed</strong>
+                <div class="small mute">Pending validation · Source badge: manual submission</div>
+              </div>
+              <span class="badge">Pending</span>
+            </div>
+            <div class="listing">
+              <div class="avatar">🤖</div>
+              <div>
+                <strong>AI-listed dish</strong>
+                <div class="small mute">Auto-added free signature dish per venue</div>
+              </div>
+              <span class="badge">Public</span>
+            </div>
+            <div class="listing">
+              <div class="avatar">🏷️</div>
+              <div>
+                <strong>Sponsored add-on</strong>
+                <div class="small mute">Clearly labeled and never influences AI rankings</div>
+              </div>
+              <span class="badge">Labeled</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card panel">
+          <div class="section-head" style="margin-bottom:10px">
+            <div>
+              <h2>Business profiles: free listing</h2>
+              <p class="sub">Auto-populated basics plus one non-editable AI-recommended dish per venue, with clear source labeling.</p>
+            </div>
+          </div>
+          <div class="mapbox" aria-label="Mumbai district clustering map">
+            <div class="road r1"></div>
+            <div class="road r2"></div>
+            <div class="road r3"></div>
+            <div class="pin p1" title="Colaba"></div>
+            <div class="pin p2" title="Bandra"></div>
+            <div class="pin p3" title="Fort"></div>
+            <div class="pin p4" title="Andheri"></div>
+            <div class="pin p5" title="Juhu"></div>
+            <div class="legend">
+              <span class="badge">District clustering</span>
+              <span class="badge">Dish-icon cues</span>
+              <span class="badge">Live recency markers</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="transparency">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Maps, visuals, and transparency</h2>
+            <p class="sub">Warm, legible charts make it easy to see flavor trends, source freshness, and where each recommendation came from.</p>
+          </div>
+        </div>
+        <div class="metric-grid">
+          <article class="card metric">
+            <div class="section-head" style="margin-bottom:8px">
+              <div>
+                <h3>Flavor Radar</h3>
+                <p class="small mute">Sweet • Spicy • Rich • Tangy</p>
+              </div>
+              <span class="badge">Source: Google + Zomato</span>
+            </div>
+            <div class="score-item">
+              <div>
+                <div class="row" style="justify-content:space-between"><strong>Spice</strong><span>82%</span></div>
+                <div class="bar"><span style="width:82%"></span></div>
+              </div>
+              <div>
+                <div class="row" style="justify-content:space-between"><strong>Richness</strong><span>74%</span></div>
+                <div class="bar"><span style="width:74%; background:linear-gradient(90deg,var(--burgundy),#a44e65)"></span></div>
+              </div>
+              <div>
+                <div class="row" style="justify-content:space-between"><strong>Freshness</strong><span>88%</span></div>
+                <div class="bar"><span style="width:88%; background:linear-gradient(90deg,var(--green),#8ca06b)"></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card metric">
+            <div class="section-head" style="margin-bottom:8px">
+              <div>
+                <h3>Tasting notes timeline</h3>
+                <p class="small mute">A quick view of how dish sentiment evolves over time.</p>
+              </div>
+              <span class="badge">Caching: 6–12 hours</span>
+            </div>
+            <div class="list">
+              <div class="listing">
+                <div class="avatar">🕒</div>
+                <div>
+                  <strong>18:20</strong>
+                  <div class="small mute">“Crust is crisp, masala is balanced.”</div>
+                </div>
+                <span class="mini">New</span>
+              </div>
+              <div class="listing">
+                <div class="avatar">📈</div>
+                <div>
+                  <strong>Yesterday</strong>
+                  <div class="small mute">Repeat mentions up by 14% across reviews.</div>
+                </div>
+                <span class="mini">Trend</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Subscriptions & monetization</h2>
+            <p class="sub">Simple Mumbai MVP pricing with clearly labeled sponsored visibility that does not alter AI rankings.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card step">
+            <div class="num">₹299</div>
+            <h3>Horeca Sponsorships</h3>
+            <p>3 sponsored dishes per month. Great for small venue awareness and seasonal pushes.</p>
+            <div class="divider"></div>
+            <span class="badge">Sponsored add-ons labeled clearly</span>
+          </article>
+          <article class="card step">
+            <div class="num">₹499</div>
+            <h3>Horeca Sponsorships+</h3>
+            <p>5 sponsored dishes per month for venues seeking broader visibility across neighborhoods.</p>
+            <div class="divider"></div>
+            <span class="badge">Non-intrusive to rankings</span>
+          </article>
+          <article class="card step">
+            <div class="num">₹99</div>
+            <h3>Individual Sponsorship</h3>
+            <p>Unlimited recommendations for personal discovery, lists, and deeper dish exploration.</p>
+            <div class="divider"></div>
+            <span class="badge">Unlimited recommendations</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="compare">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Compare dishes & deep-dive reviews</h2>
+            <p class="sub">Side-by-side dish comparisons with keyword chips, top quotes, timestamps, and source labels.</p>
+          </div>
+        </div>
+        <div class="compare">
+          <table>
+            <thead>
+              <tr>
+                <th>Dish</th>
+                <th>Why it stands out</th>
+                <th>Keywords</th>
+                <th>Recent quote</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Butter Chicken Biryani</strong><br><span class="small mute">Bandra · AI-listed</span></td>
+                <td>Highest repeat-visitor praise; strong richness and balance.</td>
+                <td>rich, balanced, must-try</td>
+                <td class="quote">“Every bite feels layered and worth the trip.” <span class="small mute">— 2d ago</span></td>
+              </tr>
+              <tr>
+                <td><strong>Bombil Fry</strong><br><span class="small mute">Worli · User-listed</span></td>
+                <td>Freshness signals and crunch score above neighborhood average.</td>
+                <td>crispy, fresh, coastal</td>
+                <td class="quote">“Perfectly crisp with a bright chutney finish.” <span class="small mute">— 8h ago</span></td>
+              </tr>
+              <tr>
+                <td><strong>Smoked Paneer Kulcha</strong><br><span class="small mute">Fort · AI-listed</span></td>
+                <td>Lunch value and new-user satisfaction are especially strong.</td>
+                <td>value, smoky, soft</td>
+                <td class="quote">“A classy office-lunch dish that still feels indulgent.” <span class="small mute">— 1d ago</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container two-col">
+        <article class="card panel">
+          <div class="section-head" style="margin-bottom:10px">
+            <div>
+              <h2>AI scoring model</h2>
+              <p class="sub">Visible weighting keeps recommendations explainable and easy to audit.</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="score-item"><div class="row" style="justify-content:space-between"><strong>Sentiment</strong><span>35%</span></div><div class="bar"><span style="width:35%"></span></div></div>
+            <div class="score-item"><div class="row" style="justify-content:space-between"><strong>Dish mentions</strong><span>25%</span></div><div class="bar"><span style="width:25%; background:linear-gradient(90deg,var(--gold),#f6d980)"></span></div></div>
+            <div class="score-item"><div class="row" style="justify-content:space-between"><strong>Repeat visitors</strong><span>20%</span></div><div class="bar"><span style="width:20%; background:linear-gradient(90deg,var(--green),#8ba06a)"></span></div></div>
+            <div class="score-item"><div class="row" style="justify-content:space-between"><strong>Overall rating</strong><span>10%</span></div><div class="bar"><span style="width:10%; background:linear-gradient(90deg,var(--burgundy),#a34e64)"></span></div></div>
+            <div class="score-item"><div class="row" style="justify-content:space-between"><strong>Recency</strong><span>10%</span></div><div class="bar"><span style="width:10%; background:linear-gradient(90deg,#8c5b2a,#d58b4b)"></span></div></div>
+          </div>
+        </article>
+
+        <article class="card panel">
+          <div class="section-head" style="margin-bottom:10px">
+            <div>
+              <h2>Privacy, trust, moderation</h2>
+              <p class="sub">Built for opt-outs, correction workflows, and transparent labeling across user-submitted and AI-generated entries.</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="listing">
+              <div class="avatar">🔒</div>
+              <div>
+                <strong>Privacy controls</strong>
+                <div class="small mute">Opt out, location controls, and data minimization.</div>
+              </div>
+              <span class="badge">AA</span>
+            </div>
+            <div class="listing">
+              <div class="avatar">🧾</div>
+              <div>
+                <strong>Moderation logs</strong>
+                <div class="small mute">Review source history and correction workflow.</div>
+              </div>
+              <span class="badge">Logged</span>
+            </div>
+            <div class="listing">
+              <div class="avatar">🛠️</div>
+              <div>
+                <strong>Corrections</strong>
+                <div class="small mute">Lightweight validation for manual horeca submissions.</div>
+              </div>
+              <span class="badge">Workflow</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card panel">
+          <div class="section-head" style="margin-bottom:10px">
+            <div>
+              <h2>Save, share, and profile-ready</h2>
+              <p class="sub">Favorites, curated lists, shareable links, and clear labeling for every entry type.</p>
+            </div>
+          </div>
+          <div class="row">
+            <span class="chip">Favorites</span>
+            <span class="chip">Curated lists</span>
+            <span class="chip">Shareable links</span>
+            <span class="chip">User-submitted</span>
+            <span class="chip">AI-generated</span>
+            <span class="chip">Business profile</span>
+          </div>
+          <div class="divider"></div>
+          <div class="action-buttons">
+            <button class="btn btn-primary">✅ Generate Website</button>
+            <button class="btn btn-secondary">🔄 Make More Changes</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="brand" style="margin-bottom:10px">
+          <span class="logo" aria-hidden="true">🍛</span>
+          <span>SuggestDish</span>
+        </div>
+        <p class="small">Mumbai MVP launch: manual horeca submissions, one free AI dish per venue, transparent sources, and premium dish discovery.</p>
+        <div class="divider"></div>
+        <div class="two-col">
+          <div>
+            <strong>Data model</strong>
+            <p class="small mute">Dish · Restaurant · UserSubmission · AI_Dish · Sponsorship</p>
+          </div>
+          <div>
+            <strong>Pipeline</strong>
+            <p class="small mute">Google Reviews + Zomato adapters · normalization · caching · scoring engine</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const enableLocation = document.getElementById('enableLocation');
+    const enterLocation = document.getElementById('enterLocation');
+
+    function toast(message) {
+      const el = document.createElement('div');
+      el.setAttribute('role', 'status');
+      el.setAttribute('aria-live', 'polite');
+      el.style.cssText = 'position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#38251C;color:#fff;padding:12px 16px;border-radius:999px;box-shadow:0 16px 30px rgba(0,0,0,.2);z-index:9999;font-weight:700;max-width:calc(100% - 24px);text-align:center';
+      el.textContent = message;
+      document.body.appendChild(el);
+      setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .2s ease'; }, 1800);
+      setTimeout(() => el.remove(), 2100);
+    }
+
+    enableLocation.addEventListener('click', async () => {
+      if (!navigator.geolocation) {
+        toast('Location services are not available in this browser.');
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        () => toast('Location enabled. Showing Mumbai near you.'),
+        () => toast('Location permission not granted. You can enter a location instead.'),
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 600000 }
+      );
+    });
+
+    enterLocation.addEventListener('click', () => {
+      const loc = prompt('Enter your Mumbai area or locality:','Bandra West');
+      if (loc && loc.trim()) toast(Searching premium dish picks near ${loc.trim()}.);
+    });
+  </script>
+</body>
+</html>
