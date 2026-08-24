@@ -308,15 +308,29 @@
       html{scroll-behavior:auto}
       *,*::before,*::after{animation:none !important; transition:none !important}
     }
-  </style>
+  .site-logo {
+    width: 160px;
+    height: auto;
+    display: block;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .site-logo {
+        width: 135px;
+    }
+</style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="topbar">
     <div class="container nav" aria-label="Primary">
       <a class="brand" href="#top" aria-label="SuggestDish home">
-        <span class="logo" aria-hidden="true">🍛</span>
-        <span>SuggestDish</span>
+        <img src="SuggestDish-logo.jpeg" alt="SuggestDish"class="site-logo">
       </a>
       <nav class="navlinks">
         <a href="#how">How it works</a>
