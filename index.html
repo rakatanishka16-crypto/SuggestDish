@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="SuggestDish AI recommends the best dish for your taste, budget, mood and dietary preferences."
+  />
+  <title>SuggestDish AI — Find the best dish</title>
+
+  <style>
+    :root {
+      --bg: #FFF4DF;
+      --bg2: #F3E2C5;
+      --card: #fffaf1;
+      --text: #38251C;
+      --muted: #6d5447;
+      --orange: #F36A21;
+      --gold: #F3C44F;
+      --green: #687A4E;
+      --burgundy: #7C3040;
+      --border: rgba(56, 37, 28, 0.12);
+      --shadow: 0 18px 50px rgba(56, 37, 28, 0.10);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    select,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .small {
+      font-size: 14px;
+    }
+
+    .mute {
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(243, 196, 79, 0.25);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 244, 223, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .site-logo {
+      width: 160px;
+      height: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    /* BUTTONS */
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 800;
+      transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(243, 106, 33, 0.22);
+    }
+
+    .btn-secondary {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-light {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 80px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 6vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .hero-image {
+      min-height: 530px;
+      border-radius: 30px;
+      background-image:
+        linear-gradient(rgba(56, 37, 28, 0.08), rgba(56, 37, 28, 0.08)),
+        url("https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+    }
+
+    /* HOW IT WORKS */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      padding: 28px;
+    }
+
+    .step-number {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--gold);
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .step p {
+      color: var(--muted);
+    }
+
+    /* AI SECTION */
+
+    #ai-recommend {
+      background: var(--bg2);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .field {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fffdf8;
+      color: var(--text);
+      outline: none;
+    }
+
+    .field:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(243, 106, 33, 0.12);
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 25px 0;
+    }
+
+    #aiResult {
+      border: 2px solid rgba(104, 122, 78, 0.28);
+    }
+
+    #aiError {
+      border: 2px solid rgba(124, 48, 64, 0.25);
+    }
+
+    .rank {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: rgba(104, 122, 78, 0.10);
+    }
+
+    .conf {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    /* TOP PICKS */
+
+    .picks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .dish-card {
+      overflow: hidden;
+    }
+
+    .dish-image {
+      height: 230px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .dish-content {
+      padding: 22px;
+    }
+
+    .dish-content h3 {
+      margin-bottom: 8px;
+      font-size: 22px;
+    }
+
+    .dish-content p {
+      color: var(--muted);
+    }
+
+    .dish-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--bg2);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* FEATURE CARDS */
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature {
+      padding: 28px;
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: var(--muted);
+    }
+
+    /* PRICING */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .price-card {
+      padding: 30px;
+      position: relative;
+    }
+
+    .price-card.featured {
+      border: 2px solid var(--orange);
+    }
+
+    .price {
+      font-size: 38px;
+      font-weight: 900;
+      margin: 15px 0;
+    }
+
+    .price-list {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .price-list li {
+      margin: 10px 0;
+      color: var(--muted);
+    }
+
+    /* COMPARE */
+
+    .compare {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th,
+    td {
+      padding: 17px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      background: var(--bg2);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 55px 0;
+      background: var(--text);
+      color: #fff;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    footer a:hover {
+      color: var(--gold);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 400px;
+      }
+
+      .steps,
+      .picks-grid,
+      .feature-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero h1 {
+        font-size: 47px;
+      }
+
+      .hero-image {
+        min-height: 330px;
+      }
+
+      .panel {
+        padding: 20px;
+      }
+
+      .site-logo {
+        width: 135px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#home">
+        <img
+          class="site-logo"
+          src="https://raw.githubusercontent.com/rakatanishka16-crypto/SuggestDish/main/logo.jpeg"
+          alt="SuggestDish"
+        />
+      </a>
+
+      <div class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#ai-recommend">AI Recommend</a>
+        <a href="#picks">Top picks</a>
+        <a href="#horeca">Horeca</a>
+        <a href="#transparency">Transparency</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#compare">Compare</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <span class="badge">✨ AI-powered food discovery</span>
+
+          <h1>
+            Find the best
+            <span>dish</span>,
+            not just the best restaurant.
+          </h1>
+
+          <p>
+            SuggestDish uses your taste, dietary preferences, budget,
+            mood and location to help you discover the specific dish
+            you are most likely to love.
+          </p>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" id="enableLocation">
+              📍 Enable Location
+            </button>
+
+            <button class="btn btn-light" id="enterLocation">
+              Enter Location
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-image"></div>
+
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>How SuggestDish works</h2>
+            <p class="sub">
+              Restaurant discovery is only the beginning. SuggestDish
+              focuses on the dish you actually want to eat.
+            </p>
+          </div>
+        </div>
+
+        <div class="steps">
+
+          <div class="card step">
+            <div class="step-number">1</div>
+            <h3>Tell us what you want</h3>
+            <p>
+              Choose your taste, cuisine, occasion, budget and dietary
+              preferences.
+            </p>
+          </div>
+
+          <div class="card step">
+            <div class="step-number">2</div>
+            <h3>AI understands your preferences</h3>
+            <p>
+              SuggestDish analyzes your preferences against available
+              dish and restaurant information.
+            </p>
+          </div>
+
+          <div class="card step">
+            <div class="step-number">3</div>
+            <h3>Get a specific dish</h3>
+            <p>
+              Instead of simply saying where to eat, SuggestDish tells
+              you what dish to try.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- AI RECOMMENDATION -->
+    <section class="section" id="ai-recommend">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>✨ Find your perfect dish</h2>
+
+            <p class="sub">
+              Tell SuggestDish what you are craving and let AI recommend
+              a specific dish for you.
+            </p>
+          </div>
+
+          <span class="badge">
+            Powered by SuggestDish AI
+          </span>
+        </div>
+
+        <div class="card panel">
+
+          <div class="two-col">
+
+            <div>
+              <label for="aiTaste">
+                <strong>What are you craving?</strong>
+              </label>
+
+              <select id="aiTaste" class="field">
+                <option value="any">Anything</option>
+                <option value="spicy">Spicy</option>
+                <option value="sweet">Sweet</option>
+                <option value="rich">Rich</option>
+                <option value="light">Light</option>
+                <option value="tangy">Tangy</option>
+                <option value="crispy">Crispy</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="aiCuisine">
+                <strong>Cuisine</strong>
+              </label>
+
+              <select id="aiCuisine" class="field">
+                <option value="any">Any cuisine</option>
+                <option value="Indian">Indian</option>
+                <option value="North Indian">North Indian</option>
+                <option value="South Indian">South Indian</option>
+                <option value="Maharashtrian">Maharashtrian</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Italian">Italian</option>
+                <option value="Continental">Continental</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="aiMood">
+                <strong>Occasion / mood</strong>
+              </label>
+
+              <select id="aiMood" class="field">
+                <option value="any">Any occasion</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="quick meal">Quick meal</option>
+                <option value="comfort food">Comfort food</option>
+                <option value="date night">Date night</option>
+                <option value="family meal">Family meal</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="aiBudget">
+                <strong>Maximum budget</strong>
+              </label>
+
+              <select id="aiBudget" class="field">
+                <option value="200">₹200</option>
+                <option value="300" selected>₹300</option>
+                <option value="500">₹500</option>
+                <option value="750">₹750</option>
+                <option value="1000">₹1,000</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="divider"></div>
+
+          <label class="row" style="align-items:center; cursor:pointer;">
+            <input type="checkbox" id="aiVegetarian" checked />
+            <strong>Vegetarian</strong>
+          </label>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" id="aiRecommendBtn">
+              ✨ Recommend My Dish
+            </button>
+          </div>
+
+          <!-- LOADING -->
+          <div
+            id="aiLoading"
+            class="card panel"
+            style="display:none; margin-top:16px;"
+          >
+            <strong>🤖 SuggestDish AI is thinking...</strong>
+
+            <p class="small mute">
+              Finding the best dish from our available data.
+            </p>
+          </div>
+
+          <!-- RESULT -->
+          <div
+            id="aiResult"
+            class="card panel"
+            style="display:none; margin-top:16px;"
+          >
+            <span class="badge">
+              ✨ AI Recommendation
+            </span>
+
+            <h3 id="aiDishName" style="margin-top:12px;"></h3>
+
+            <p class="mute" id="aiRestaurant"></p>
+
+            <div class="divider"></div>
+
+            <p id="aiReason"></p>
+
+            <div class="rank" style="margin-top:14px;">
+              <span>💡 Why this dish?</span>
+              <span class="conf">AI matched</span>
+            </div>
+
+            <p
+              class="small mute"
+              id="aiSummary"
+              style="margin-top:12px;"
+            ></p>
+          </div>
+
+          <!-- ERROR -->
+          <div
+            id="aiError"
+            class="card panel"
+            style="display:none; margin-top:16px;"
+          >
+            <strong>⚠️ Something went wrong</strong>
+
+            <p
+              class="small mute"
+              id="aiErrorText"
+            ></p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP PICKS -->
+    <section class="section" id="picks">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>Top picks</h2>
+
+            <p class="sub">
+              Examples of how SuggestDish focuses on dishes rather than
+              generic restaurant recommendations.
+            </p>
+          </div>
+        </div>
+
+        <div class="picks-grid">
+
+          <article class="card dish-card">
+            <img
+              class="dish-image"
+              src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80"
+              alt="Paneer dish"
+            />
+
+            <div class="dish-content">
+              <span class="badge">Vegetarian</span>
+
+              <h3>Paneer Masala</h3>
+
+              <p>
+                Rich, comforting and suitable for a satisfying Indian
+                dinner.
+              </p>
+
+              <div class="dish-meta">
+                <span class="pill">🌶️ Medium</span>
+                <span class="pill">🥗 Veg</span>
+                <span class="pill">₹₹</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card dish-card">
+            <img
+              class="dish-image"
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80"
+              alt="Food dish"
+            />
+
+            <div class="dish-content">
+              <span class="badge">Popular</span>
+
+              <h3>Signature Dish</h3>
+
+              <p>
+                A carefully selected dish based on taste, occasion and
+                overall preference matching.
+              </p>
+
+              <div class="dish-meta">
+                <span class="pill">⭐ Highly rated</span>
+                <span class="pill">🍽️ Dinner</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card dish-card">
+            <img
+              class="dish-image"
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80"
+              alt="Burger"
+            />
+
+            <div class="dish-content">
+              <span class="badge">Quick pick</span>
+
+              <h3>Comfort Food</h3>
+
+              <p>
+                Discover a satisfying option when you want something
+                quick and comforting.
+              </p>
+
+              <div class="dish-meta">
+                <span class="pill">⚡ Quick</span>
+                <span class="pill">🍔 Comfort</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HORECA -->
+    <section class="section" id="horeca">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>Built for food businesses too</h2>
+
+            <p class="sub">
+              SuggestDish can eventually help restaurants understand
+              which dishes customers are most interested in.
+            </p>
+          </div>
+
+          <span class="badge">For HORECA</span>
+        </div>
+
+        <div class="feature-grid">
+
+          <div class="card feature">
+            <div class="feature-icon">🍽️</div>
+
+            <h3>Dish discovery</h3>
+
+            <p>
+              Help customers discover individual dishes instead of
+              simply listing restaurants.
+            </p>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-icon">📊</div>
+
+            <h3>Customer signals</h3>
+
+            <p>
+              Understand what kinds of dishes customers are looking for
+              and what preferences drive decisions.
+            </p>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-icon">✨</div>
+
+            <h3>Specialty visibility</h3>
+
+            <p>
+              Give standout dishes more visibility when they match what
+              a customer is actually craving.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSPARENCY -->
+    <section class="section" id="transparency">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>Transparency matters</h2>
+
+            <p class="sub">
+              SuggestDish is designed around clear recommendation
+              signals rather than pretending that every recommendation
+              is universally perfect.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+
+          <div class="card feature">
+            <div class="feature-icon">🎯</div>
+
+            <h3>Preference matching</h3>
+
+            <p>
+              Recommendations consider the preferences you provide,
+              including taste, budget and dietary choices.
+            </p>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-icon">📍</div>
+
+            <h3>Location aware</h3>
+
+            <p>
+              Location can be used to make recommendations more relevant
+              to where you want to eat.
+            </p>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-icon">🤖</div>
+
+            <h3>AI assisted</h3>
+
+            <p>
+              AI helps interpret your preferences and select suitable
+              options from available data.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>Simple pricing</h2>
+
+            <p class="sub">
+              The product can grow from a consumer discovery platform
+              into a larger food intelligence ecosystem.
+            </p>
+          </div>
+        </div>
+
+        <div class="pricing-grid">
+
+          <div class="card price-card">
+            <span class="badge">Free</span>
+
+            <div class="price">₹0</div>
+
+            <p class="mute">
+              Discover dishes using core SuggestDish features.
+            </p>
+
+            <ul class="price-list">
+              <li>✓ AI dish recommendations</li>
+              <li>✓ Taste preferences</li>
+              <li>✓ Budget matching</li>
+              <li>✓ Vegetarian filtering</li>
+            </ul>
+
+            <button class="btn btn-light">
+              Get started
+            </button>
+          </div>
+
+          <div class="card price-card featured">
+            <span class="badge">Future Premium</span>
+
+            <div class="price">Coming soon</div>
+
+            <p class="mute">
+              Advanced personalization for frequent food explorers.
+            </p>
+
+            <ul class="price-list">
+              <li>✓ Advanced recommendations</li>
+              <li>✓ Saved preferences</li>
+              <li>✓ Personalized discovery</li>
+              <li>✓ More recommendation signals</li>
+            </ul>
+
+            <button class="btn btn-primary">
+              Coming soon
+            </button>
+          </div>
+
+          <div class="card price-card">
+            <span class="badge">HORECA</span>
+
+            <div class="price">Custom</div>
+
+            <p class="mute">
+              Tools and insights for restaurants and food businesses.
+            </p>
+
+            <ul class="price-list">
+              <li>✓ Dish visibility</li>
+              <li>✓ Customer insights</li>
+              <li>✓ Specialty discovery</li>
+              <li>✓ Business analytics</li>
+            </ul>
+
+            <button class="btn btn-secondary">
+              For businesses
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARE -->
+    <section class="section" id="compare">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>Restaurant search vs SuggestDish</h2>
+
+            <p class="sub">
+              SuggestDish focuses on answering a more useful question:
+              "What should I actually eat?"
+            </p>
+          </div>
+        </div>
+
+        <div class="card panel compare">
+
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Traditional restaurant search</th>
+                <th>SuggestDish</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Find restaurants</td>
+                <td>✓</td>
+                <td>✓</td>
+              </tr>
+
+              <tr>
+                <td>Find a specific dish</td>
+                <td>Limited</td>
+                <td>✓</td>
+              </tr>
+
+              <tr>
+                <td>Taste preferences</td>
+                <td>Limited</td>
+                <td>✓</td>
+              </tr>
+
+              <tr>
+                <td>Dietary preferences</td>
+                <td>Sometimes</td>
+                <td>✓</td>
+              </tr>
+
+              <tr>
+                <td>Budget matching</td>
+                <td>Limited</td>
+                <td>✓</td>
+              </tr>
+
+              <tr>
+                <td>Mood / occasion</td>
+                <td>Limited</td>
+                <td>✓</td>
+              </tr>
+
+              <tr>
+                <td>AI dish recommendation</td>
+                <td>Usually not the focus</td>
+                <td>✓</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- AI SCORING -->
+    <section class="section">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>AI scoring model</h2>
+
+            <p class="sub">
+              SuggestDish can combine multiple signals to determine
+              which available dish is the strongest match.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+
+          <div class="card feature">
+            <div class="feature-icon">🌶️</div>
+
+            <h3>Taste match</h3>
+
+            <p>
+              Does the dish fit the taste profile the user selected?
+            </p>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-icon">💰</div>
+
+            <h3>Budget match</h3>
+
+            <p>
+              Does the dish fit within the user's selected spending
+              limit?
+            </p>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-icon">🥗</div>
+
+            <h3>Dietary match</h3>
+
+            <p>
+              Does the dish satisfy the user's dietary preference?
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACY -->
+    <section class="section">
+      <div class="container">
+
+        <div class="card panel">
+
+          <div class="section-head">
+            <div>
+              <h2>Privacy & trust</h2>
+
+              <p class="sub">
+                Your preferences should be used to improve your food
+                discovery experience, not to make the experience
+                complicated.
+              </p>
+            </div>
+
+            <span class="badge">
+              🔒 Privacy focused
+            </span>
+          </div>
+
+          <div class="feature-grid">
+
+            <div>
+              <h3>Location permission</h3>
+
+              <p class="mute">
+                Your browser asks for permission before sharing precise
+                location with the website.
+              </p>
+            </div>
+
+            <div>
+              <h3>Preference control</h3>
+
+              <p class="mute">
+                You decide the taste, budget, mood and dietary choices
+                used for your recommendation.
+              </p>
+            </div>
+
+            <div>
+              <h3>Clear recommendations</h3>
+
+              <p class="mute">
+                Suggestions are presented as recommendations rather than
+                guarantees.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SAVE / SHARE -->
+    <section class="section">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <h2>Built for your next food decision</h2>
+
+            <p class="sub">
+              Save your preferences, discover new dishes and make your
+              next meal easier to choose.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+
+          <div class="card feature">
+            <div class="feature-icon">💾</div>
+
+            <h3>Save</h3>
+
+            <p>
+              Keep track of dishes you want to try in future versions of
+              SuggestDish.
+            </p>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-icon">📤</div>
+
+            <h3>Share</h3>
+
+            <p>
+              Share interesting dish discoveries with friends and family.
+            </p>
+          </div>
+
+          <div class="card feature">
+            <div class="feature-icon">👤</div>
+
+            <h3>Profile-ready</h3>
+
+            <p>
+              Build a personalized food profile around your taste and
+              preferences.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+
+      <div>
+        <img
+          class="site-logo"
+          src="https://raw.githubusercontent.com/rakatanishka16-crypto/SuggestDish/main/logo.jpeg"
+          alt="SuggestDish"
+        />
+
+        <p style="margin-top:18px;">
+          Find the best dish, not just the best restaurant.
+        </p>
+
+        <p class="small" style="margin-top:18px;">
+          © 2026 SuggestDish. All rights reserved.
+        </p>
+      </div>
+
+      <div>
+        <strong>Product</strong>
+
+        <div class="footer-links" style="margin-top:15px;">
+          <a href="#how-it-works">How it works</a>
+          <a href="#ai-recommend">AI Recommend</a>
+          <a href="#picks">Top picks</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+      </div>
+
+      <div>
+        <strong>Business</strong>
+
+        <div class="footer-links" style="margin-top:15px;">
+          <a href="#horeca">HORECA</a>
+          <a href="#transparency">Transparency</a>
+          <a href="#compare">Compare</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    /* =========================
+       LOCATION
+    ========================= */
+
+    const enableLocation = document.getElementById("enableLocation");
+    const enterLocation = document.getElementById("enterLocation");
+
+    function toast(message) {
+      const el = document.createElement("div");
+
+      el.setAttribute("role", "status");
+      el.setAttribute("aria-live", "polite");
+
+      el.style.cssText =
+        "position:fixed;" +
+        "left:50%;" +
+        "bottom:22px;" +
+        "transform:translateX(-50%);" +
+        "background:#38251C;" +
+        "color:#fff;" +
+        "padding:12px 16px;" +
+        "border-radius:999px;" +
+        "box-shadow:0 16px 30px rgba(0,0,0,.2);" +
+        "z-index:9999;" +
+        "font-weight:700;" +
+        "max-width:calc(100% - 24px);" +
+        "text-align:center;";
+
+      el.textContent = message;
+
+      document.body.appendChild(el);
+
+      setTimeout(() => {
+        el.style.opacity = "0";
+        el.style.transition = "opacity .2s ease";
+      }, 1800);
+
+      setTimeout(() => {
+        el.remove();
+      }, 2100);
+    }
+
+    enableLocation.addEventListener("click", () => {
+      if (!navigator.geolocation) {
+        toast("Location services are not available in this browser.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          console.log("User location:", latitude, longitude);
+
+          toast("📍 Location enabled successfully.");
+        },
+        () => {
+          toast(
+            "Location permission not granted. You can enter a location instead."
+          );
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 8000,
+          maximumAge: 600000
+        }
+      );
+    });
+
+    enterLocation.addEventListener("click", () => {
+      const loc = prompt(
+        "Enter your area or locality:",
+        "Bandra West"
+      );
+
+      if (loc && loc.trim()) {
+        toast(
+          `Searching premium dish picks near ${loc.trim()}.`
+        );
+      }
+    });
+
+
+    /* =========================
+       AI RECOMMENDATION
+    ========================= */
+
+    const aiRecommendBtn =
+      document.getElementById("aiRecommendBtn");
+
+    const aiLoading =
+      document.getElementById("aiLoading");
+
+    const aiResult =
+      document.getElementById("aiResult");
+
+    const aiError =
+      document.getElementById("aiError");
+
+    const aiDishName =
+      document.getElementById("aiDishName");
+
+    const aiRestaurant =
+      document.getElementById("aiRestaurant");
+
+    const aiReason =
+      document.getElementById("aiReason");
+
+    const aiSummary =
+      document.getElementById("aiSummary");
+
+    const aiErrorText =
+      document.getElementById("aiErrorText");
+
+
+    aiRecommendBtn.addEventListener("click", async () => {
+
+      const taste =
+        document.getElementById("aiTaste").value;
+
+      const cuisine =
+        document.getElementById("aiCuisine").value;
+
+      const mood =
+        document.getElementById("aiMood").value;
+
+      const budget =
+        document.getElementById("aiBudget").value;
+
+      const vegetarian =
+        document.getElementById("aiVegetarian").checked;
+
+
+      aiLoading.style.display = "block";
+      aiResult.style.display = "none";
+      aiError.style.display = "none";
+
+      aiRecommendBtn.disabled = true;
+
+      aiRecommendBtn.textContent =
+        "🤖 Finding your dish...";
+
+
+      try {
+
+        const url =
+          "http://localhost:3000/api/ai-recommend" +
+          `?taste=${encodeURIComponent(taste)}` +
+          `&cuisine=${encodeURIComponent(cuisine)}` +
+          `&mood=${encodeURIComponent(mood)}` +
+          `&budget=${encodeURIComponent(budget)}` +
+          `&vegetarian=${encodeURIComponent(vegetarian)}`;
+
+
+        const response = await fetch(url);
+
+        const data = await response.json();
+
+
+        if (!response.ok || !data.success) {
+          throw new Error(
+            data.error ||
+            "Unable to get recommendation."
+          );
+        }
+
+
+        if (
+          !data.recommendations ||
+          data.recommendations.length === 0
+        ) {
+          throw new Error(
+            "No suitable dishes are currently available."
+          );
+        }
+
+
+        const recommendation =
+          data.recommendations[0];
+
+
+        aiDishName.textContent =
+          recommendation.dishName ||
+          "Recommended dish";
+
+
+        aiRestaurant.textContent =
+          recommendation.restaurant
+            ? `📍 ${recommendation.restaurant}`
+            : "";
+
+
+        aiReason.textContent =
+          recommendation.reason ||
+          "This dish matches your preferences.";
+
+
+        aiSummary.textContent =
+          data.summary || "";
+
+
+        aiLoading.style.display = "none";
+
+        aiResult.style.display = "block";
+
+
+        aiResult.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+
+      } catch (error) {
+
+        console.error(
+          "AI recommendation error:",
+          error
+        );
+
+
+        aiLoading.style.display = "none";
+
+
+        aiErrorText.textContent =
+          error.message ||
+          "Unable to connect to SuggestDish AI.";
+
+
+        aiError.style.display = "block";
+
+      } finally {
+
+        aiRecommendBtn.disabled = false;
+
+        aiRecommendBtn.textContent =
+          "✨ Recommend My Dish";
+      }
+
+    });
+  </script>
+
+</body>
+</html>
