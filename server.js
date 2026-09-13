@@ -41,14 +41,9 @@ app.get("/", (req, res) => {
 ========================================================= */
 
 app.get("/api/db-test", async (req, res) => {
-
   try {
-
-    const restaurantCount =
-      await prisma.restaurant.count();
-
-    const dishCount =
-      await prisma.dish.count();
+    const restaurantCount = await prisma.restaurant.count();
+    const dishCount = await prisma.dish.count();
 
     res.json({
       success: true,
@@ -56,18 +51,14 @@ app.get("/api/db-test", async (req, res) => {
       restaurants: restaurantCount,
       dishes: dishCount
     });
-
   } catch (error) {
-
     console.error("Database test error:", error);
 
     res.status(500).json({
       success: false,
       error: error.message
     });
-
   }
-
 });
 
 
@@ -76,16 +67,12 @@ app.get("/api/db-test", async (req, res) => {
 ========================================================= */
 
 app.get("/api/location", async (req, res) => {
-
   try {
-
     if (!process.env.GEOAPIFY_API_KEY) {
-
       return res.status(500).json({
         success: false,
-        error: "GEOAPIFY_API_KEY is missing from .env"
+        error: "GEOAPIFY_API_KEY is missing."
       });
-
     }
 
     const response = await fetch(
@@ -95,30 +82,24 @@ app.get("/api/location", async (req, res) => {
     const data = await response.json();
 
     if (!response.ok) {
-
       return res.status(response.status).json({
         success: false,
         error: data
       });
-
     }
 
     res.json({
       success: true,
       location: data
     });
-
   } catch (error) {
-
     console.error("Geoapify location error:", error);
 
     res.status(500).json({
       success: false,
       error: error.message
     });
-
   }
-
 });
 
 
@@ -127,40 +108,33 @@ app.get("/api/location", async (req, res) => {
 ========================================================= */
 
 app.get("/api/restaurants", async (req, res) => {
-
   try {
-
-    const restaurants =
-      await prisma.restaurant.findMany({
-        include: {
-          dishes: {
-            include: {
-              signals: true
-            }
+    const restaurants = await prisma.restaurant.findMany({
+      include: {
+        dishes: {
+          include: {
+            signals: true
           }
-        },
-        orderBy: {
-          id: "asc"
         }
-      });
+      },
+      orderBy: {
+        id: "asc"
+      }
+    });
 
     res.json({
       success: true,
       count: restaurants.length,
       restaurants
     });
-
   } catch (error) {
-
     console.error("Restaurants error:", error);
 
     res.status(500).json({
       success: false,
       error: error.message
     });
-
   }
-
 });
 
 
@@ -169,49 +143,32 @@ app.get("/api/restaurants", async (req, res) => {
 ========================================================= */
 
 app.get("/api/restaurants/nearby", async (req, res) => {
-
   try {
-
-    const latitude =
-      Number(req.query.latitude);
-
-    const longitude =
-      Number(req.query.longitude);
-
-    const radiusKm =
-      Number(req.query.radiusKm || 10);
-
+    const latitude = Number(req.query.latitude);
+    const longitude = Number(req.query.longitude);
+    const radiusKm = Number(req.query.radiusKm || 10);
 
     if (
       !Number.isFinite(latitude) ||
       !Number.isFinite(longitude)
     ) {
-
       return res.status(400).json({
         success: false,
         error: "Valid latitude and longitude are required."
       });
-
     }
-
 
     if (!process.env.GEOAPIFY_API_KEY) {
-
       return res.status(500).json({
         success: false,
-        error: "GEOAPIFY_API_KEY is missing from .env"
+        error: "GEOAPIFY_API_KEY is missing."
       });
-
     }
 
-
-    const radiusMeters =
-      radiusKm * 1000;
-
+    const radiusMeters = radiusKm * 1000;
 
     const categories =
       "catering.restaurant,catering.cafe";
-
 
     const url =
       `https://api.geoapify.com/v2/places` +
@@ -220,57 +177,36 @@ app.get("/api/restaurants/nearby", async (req, res) => {
       `&limit=50` +
       `&apiKey=${process.env.GEOAPIFY_API_KEY}`;
 
-
-    const response =
-      await fetch(url);
-
-
-    const data =
-      await response.json();
-
+    const response = await fetch(url);
+    const data = await response.json();
 
     if (!response.ok) {
-
       return res.status(response.status).json({
         success: false,
         error: data
       });
-
     }
 
-
-    const features =
-      data.features || [];
-
-
+    const features = data.features || [];
     const savedRestaurants = [];
 
-
     for (const feature of features) {
-
-      const properties =
-        feature.properties || {};
-
-      const name =
-        properties.name;
-
+      const properties = feature.properties || {};
+      const name = properties.name;
 
       if (!name) {
         continue;
       }
-
 
       const address =
         properties.formatted ||
         properties.address_line1 ||
         null;
 
-
       const city =
         properties.city ||
         properties.county ||
         null;
-
 
       const coordinates =
         feature.geometry &&
@@ -278,14 +214,11 @@ app.get("/api/restaurants/nearby", async (req, res) => {
           ? feature.geometry.coordinates
           : [];
 
-
       const restaurantLongitude =
         coordinates[0] ?? null;
 
-
       const restaurantLatitude =
         coordinates[1] ?? null;
-
 
       const existing =
         await prisma.restaurant.findFirst({
@@ -295,12 +228,9 @@ app.get("/api/restaurants/nearby", async (req, res) => {
           }
         });
 
-
       let restaurant;
 
-
       if (existing) {
-
         restaurant =
           await prisma.restaurant.update({
             where: {
@@ -312,9 +242,7 @@ app.get("/api/restaurants/nearby", async (req, res) => {
               longitude: restaurantLongitude
             }
           });
-
       } else {
-
         restaurant =
           await prisma.restaurant.create({
             data: {
@@ -325,14 +253,10 @@ app.get("/api/restaurants/nearby", async (req, res) => {
               longitude: restaurantLongitude
             }
           });
-
       }
 
-
       savedRestaurants.push(restaurant);
-
     }
-
 
     res.json({
       success: true,
@@ -345,9 +269,7 @@ app.get("/api/restaurants/nearby", async (req, res) => {
       restaurants: savedRestaurants
     });
 
-
   } catch (error) {
-
     console.error(
       "Nearby restaurants error:",
       error
@@ -357,9 +279,7 @@ app.get("/api/restaurants/nearby", async (req, res) => {
       success: false,
       error: error.message
     });
-
   }
-
 });
 
 
@@ -368,9 +288,7 @@ app.get("/api/restaurants/nearby", async (req, res) => {
 ========================================================= */
 
 app.get("/api/recommend", async (req, res) => {
-
   try {
-
     const budget =
       Number(req.query.budget || 500);
 
@@ -381,18 +299,15 @@ app.get("/api/recommend", async (req, res) => {
     const maxDistanceKm =
       Number(req.query.distanceKm || 10);
 
-
     const latitude =
       req.query.latitude
         ? Number(req.query.latitude)
         : null;
 
-
     const longitude =
       req.query.longitude
         ? Number(req.query.longitude)
         : null;
-
 
     const dishes =
       await prisma.dish.findMany({
@@ -401,7 +316,6 @@ app.get("/api/recommend", async (req, res) => {
           signals: true
         }
       });
-
 
     const filtered =
       dishes.filter((dish) => {
@@ -413,7 +327,6 @@ app.get("/api/recommend", async (req, res) => {
           return false;
         }
 
-
         if (
           dish.price !== null &&
           dish.price > budget
@@ -421,14 +334,12 @@ app.get("/api/recommend", async (req, res) => {
           return false;
         }
 
-
         if (
           latitude !== null &&
           longitude !== null &&
           dish.restaurant.latitude !== null &&
           dish.restaurant.longitude !== null
         ) {
-
           const distance =
             calculateDistanceKm(
               latitude,
@@ -437,18 +348,13 @@ app.get("/api/recommend", async (req, res) => {
               dish.restaurant.longitude
             );
 
-
           if (distance > maxDistanceKm) {
             return false;
           }
-
         }
 
-
         return true;
-
       });
-
 
     const scored =
       filtered.map((dish) => {
@@ -459,9 +365,7 @@ app.get("/api/recommend", async (req, res) => {
             ? dish.signals[0]
             : null;
 
-
         let score = 0;
-
 
         if (
           dish.price !== null &&
@@ -470,14 +374,11 @@ app.get("/api/recommend", async (req, res) => {
           score += 20;
         }
 
-
         if (dish.isVeg === vegetarian) {
           score += 20;
         }
 
-
         if (signal) {
-
           if (signal.rating) {
             score += signal.rating * 10;
           }
@@ -489,22 +390,17 @@ app.get("/api/recommend", async (req, res) => {
           if (signal.confidence) {
             score += signal.confidence * 10;
           }
-
         }
-
 
         return {
           ...dish,
           score
         };
-
       });
-
 
     scored.sort(
       (a, b) => b.score - a.score
     );
-
 
     res.json({
       success: true,
@@ -515,12 +411,11 @@ app.get("/api/recommend", async (req, res) => {
         latitude,
         longitude
       },
-      recommendations: scored.slice(0, 10)
+      recommendations:
+        scored.slice(0, 10)
     });
 
-
   } catch (error) {
-
     console.error(
       "Recommendation error:",
       error
@@ -530,9 +425,7 @@ app.get("/api/recommend", async (req, res) => {
       success: false,
       error: error.message
     });
-
   }
-
 });
 
 
@@ -541,11 +434,8 @@ app.get("/api/recommend", async (req, res) => {
 ========================================================= */
 
 app.get("/api/preferences-test", async (req, res) => {
-
   try {
-
     const preferences = {
-
       taste:
         req.query.taste || "not specified",
 
@@ -565,19 +455,16 @@ app.get("/api/preferences-test", async (req, res) => {
           ? null
           : String(req.query.vegetarian)
               .toLowerCase() === "true"
-
     };
-
 
     res.json({
       success: true,
-      message: "Preferences received successfully.",
+      message:
+        "Preferences received successfully.",
       preferences
     });
 
-
   } catch (error) {
-
     console.error(
       "Preferences test error:",
       error
@@ -587,9 +474,7 @@ app.get("/api/preferences-test", async (req, res) => {
       success: false,
       error: error.message
     });
-
   }
-
 });
 
 
@@ -598,16 +483,13 @@ app.get("/api/preferences-test", async (req, res) => {
 ========================================================= */
 
 app.get("/api/ai-test", async (req, res) => {
-
   try {
-
     const response =
       await ai.models.generateContent({
         model: "gemini-3.6-flash",
         contents:
           "Reply with exactly: SuggestDish AI is connected."
       });
-
 
     res.json({
       success: true,
@@ -617,9 +499,7 @@ app.get("/api/ai-test", async (req, res) => {
         response.text
     });
 
-
   } catch (error) {
-
     console.error(
       "Gemini test error:",
       error
@@ -629,9 +509,7 @@ app.get("/api/ai-test", async (req, res) => {
       success: false,
       error: error.message
     });
-
   }
-
 });
 
 
@@ -640,33 +518,24 @@ app.get("/api/ai-test", async (req, res) => {
 ========================================================= */
 
 app.get("/api/ai-recommend", async (req, res) => {
-
   try {
 
     const taste =
-      req.query.taste ||
-      "any";
-
+      req.query.taste || "any";
 
     const cuisine =
-      req.query.cuisine ||
-      "any";
-
+      req.query.cuisine || "any";
 
     const mood =
-      req.query.mood ||
-      "any";
-
+      req.query.mood || "any";
 
     const budget =
       Number(req.query.budget || 500);
-
 
     const vegetarian =
       String(
         req.query.vegetarian || "false"
       ).toLowerCase() === "true";
-
 
     const dishes =
       await prisma.dish.findMany({
@@ -676,9 +545,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         }
       });
 
-
     if (dishes.length === 0) {
-
       return res.json({
         success: true,
         preferences: {
@@ -692,9 +559,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         summary:
           "There are currently no dishes available in the database."
       });
-
     }
-
 
     const availableDishes =
       dishes.map((dish) => {
@@ -705,43 +570,22 @@ app.get("/api/ai-recommend", async (req, res) => {
             ? dish.signals[0]
             : null;
 
-
         return {
-
-          dishName:
-            dish.name,
-
-          price:
-            dish.price,
-
-          vegetarian:
-            dish.isVeg,
-
-          restaurant:
-            dish.restaurant.name,
-
-          address:
-            dish.restaurant.address,
-
-          city:
-            dish.restaurant.city,
-
-          rating:
-            signal?.rating ?? null,
-
+          dishName: dish.name,
+          price: dish.price,
+          vegetarian: dish.isVeg,
+          restaurant: dish.restaurant.name,
+          address: dish.restaurant.address,
+          city: dish.restaurant.city,
+          rating: signal?.rating ?? null,
           reviewCount:
             signal?.reviewCount ?? null,
-
           popularity:
             signal?.popularity ?? null,
-
           confidence:
             signal?.confidence ?? null
-
         };
-
       });
-
 
     const prompt = `
 You are the AI recommendation engine for SuggestDish.
@@ -791,29 +635,23 @@ Use exactly this JSON structure:
 }
 `;
 
-
     const response =
       await ai.models.generateContent({
         model: "gemini-3.6-flash",
         contents: prompt
       });
 
-
     const text =
       response.text || "";
 
-
     let parsed;
 
-
     try {
-
       const cleaned =
         text
           .replace(/```json/gi, "")
           .replace(/```/g, "")
           .trim();
-
 
       parsed =
         JSON.parse(cleaned);
@@ -830,19 +668,15 @@ Use exactly this JSON structure:
         text
       );
 
-
       return res.status(500).json({
         success: false,
         error:
           "Gemini returned an invalid recommendation format.",
         rawResponse: text
       });
-
     }
 
-
     res.json({
-
       success: true,
 
       preferences: {
@@ -858,9 +692,7 @@ Use exactly this JSON structure:
 
       summary:
         parsed.summary || ""
-
     });
-
 
   } catch (error) {
 
@@ -873,9 +705,7 @@ Use exactly this JSON structure:
       success: false,
       error: error.message
     });
-
   }
-
 });
 
 
@@ -898,7 +728,6 @@ function calculateDistanceKm(
   const dLon =
     toRadians(lon2 - lon1);
 
-
   const a =
     Math.sin(dLat / 2) *
       Math.sin(dLat / 2) +
@@ -908,7 +737,6 @@ function calculateDistanceKm(
       Math.sin(dLon / 2) *
       Math.sin(dLon / 2);
 
-
   const c =
     2 *
     Math.atan2(
@@ -916,31 +744,14 @@ function calculateDistanceKm(
       Math.sqrt(1 - a)
     );
 
-
   return earthRadiusKm * c;
-
 }
 
 
 function toRadians(degrees) {
-
   return degrees *
     (Math.PI / 180);
-
 }
-
-
-/* =========================================================
-   START SERVER
-========================================================= */
-
-app.listen(PORT, () => {
-
-  console.log(
-    `SuggestDish backend running at http://localhost:${PORT}`
-  );
-
-});
 
 
 /* =========================================================
@@ -968,3 +779,19 @@ process.on(
 
   }
 );
+
+
+/* =========================================================
+   VERCEL EXPORT
+========================================================= */
+
+/* =========================================================
+   START LOCAL SERVER / VERCEL EXPORT
+========================================================= */
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`SuggestDish backend running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
