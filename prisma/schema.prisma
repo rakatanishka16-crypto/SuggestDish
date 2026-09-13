@@ -1,0 +1,40 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Restaurant {
+  id        Int     @id @default(autoincrement())
+  name      String
+  address   String?
+  city      String?
+  latitude  Float?
+  longitude Float?
+  dishes    Dish[]
+}
+
+model Dish {
+  id           Int          @id @default(autoincrement())
+  name         String
+  price        Float?
+  isVeg        Boolean      @default(true)
+  restaurantId Int
+
+  restaurant   Restaurant   @relation(fields: [restaurantId], references: [id])
+  signals      DishSignal[]
+}
+
+model DishSignal {
+  id          Int      @id @default(autoincrement())
+  dishId      Int
+  source      String?
+  rating      Float?
+  reviewCount Int?
+  signalType  String?
+  signalValue String?
+
+  dish        Dish     @relation(fields: [dishId], references: [id])
+}
