@@ -1,19 +1,19 @@
-const { PrismaPg } = require("@prisma/adapter-pg");
-const { PrismaClient } = require("@prisma/client");
+require("dotenv").config();
 
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL,
-});
+const { neon } = require("@neondatabase/serverless");
 
-const prisma = new PrismaClient({ adapter });
+const sql = neon(process.env.DATABASE_URL);
 
 module.exports = async (req, res) => {
   try {
-    const count = await prisma.restaurant.count();
+    const result = await sql`
+      SELECT COUNT(*)::int AS count
+      FROM "Restaurant"
+    `;
 
     res.status(200).json({
       success: true,
-      restaurantCount: count,
+      restaurantCount: result[0].count,
     });
   } catch (error) {
     console.error(error);
@@ -22,7 +22,5 @@ module.exports = async (req, res) => {
       success: false,
       error: error.message,
     });
-  } finally {
-    await prisma.$disconnect();
   }
 };
