@@ -2,10 +2,11 @@
   "name": "suggestdish-main",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "api/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node api/server.js",
+    "postinstall": "prisma generate"
   },
   "repository": {
     "type": "git",
