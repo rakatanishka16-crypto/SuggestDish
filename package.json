@@ -22,10 +22,12 @@
   "homepage": "https://github.com/rakatanishka16-crypto/SuggestDish#readme",
   "dependencies": {
     "@google/genai": "^2.22.0",
+    "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.23.0"
   },
   "devDependencies": {
     "prisma": "^7.10.0"
