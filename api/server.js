@@ -21,19 +21,6 @@ const ai = new GoogleGenAI({
 const PORT = process.env.PORT || 3000;
 
 
-app.use(cors());
-app.use(express.json());
-
-
-
-
-/* =========================================================
-   GEMINI
-========================================================= */
-
-
-
-
 /* =========================================================
    HEALTH CHECK
 ========================================================= */
@@ -47,10 +34,22 @@ app.get("/", (req, res) => {
 
 
 /* =========================================================
-   DATABASE TEST
+   AI TEST
 ========================================================= */
 
 app.get("/api/ai-test", async (req, res) => {
+  console.log(
+    "GEMINI_API_KEY exists:",
+    Boolean(process.env.GEMINI_API_KEY)
+  );
+
+  if (!process.env.GEMINI_API_KEY) {
+    return res.status(500).json({
+      success: false,
+      error: "GEMINI_API_KEY is missing in Vercel."
+    });
+  }
+
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3.6-flash",
@@ -74,92 +73,15 @@ app.get("/api/ai-test", async (req, res) => {
 
 
 /* =========================================================
-   DISTANCE CALCULATOR
+   AI RECOMMENDATION
 ========================================================= */
 
-function calculateDistanceKm(
-  lat1,
-  lon1,
-  lat2,
-  lon2
-) {
-
-  const earthRadiusKm = 6371;
-
-  const dLat =
-    toRadians(lat2 - lat1);
-
-  const dLon =
-    toRadians(lon2 - lon1);
-
-  const a =
-    Math.sin(dLat / 2) *
-      Math.sin(dLat / 2) +
-
-    Math.cos(toRadians(lat1)) *
-      Math.cos(toRadians(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-
-  const c =
-    2 *
-    Math.atan2(
-      Math.sqrt(a),
-      Math.sqrt(1 - a)
-    );
-
-  return earthRadiusKm * c;
-}
-
-
-function toRadians(degrees) {
-  return degrees *
-    (Math.PI / 180);
-}
-
-
-/* =========================================================
-   PRISMA SHUTDOWN
-========================================================= */
-
-process.on(
-  "SIGINT",
-  async () => {
-
-    await prisma.$disconnect();
-
-    process.exit(0);
-
-  }
-);
-
-process.on(
-  "SIGTERM",
-  async () => {
-
-    await prisma.$disconnect();
-
-    process.exit(0);
-
-  }
-);
-
-
-/* =========================================================
-   VERCEL EXPORT
-========================================================= */
-
-/* =========================================================
-   START LOCAL SERVER / VERCEL EXPORT
-========================================================= */
-if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`SuggestDish backend running at http://localhost:${PORT}`);
-  });
-}
 app.get("/api/ai-recommend", async (req, res) => {
-  console.log("GEMINI_API_KEY exists:", Boolean(process.env.GEMINI_API_KEY));
-  
+  console.log(
+    "GEMINI_API_KEY exists:",
+    Boolean(process.env.GEMINI_API_KEY)
+  );
+
   try {
     const taste = req.query.taste || "any";
     const cuisine = req.query.cuisine || "any";
@@ -261,6 +183,7 @@ Do not invent dishes or restaurants.
         .trim();
 
       parsed = JSON.parse(cleaned);
+
     } catch (parseError) {
       console.error("Gemini JSON parse error:", parseError);
       console.error("Gemini raw response:", text);
@@ -294,4 +217,18 @@ Do not invent dishes or restaurants.
     });
   }
 });
+
+
+/* =========================================================
+   START LOCAL SERVER / VERCEL EXPORT
+========================================================= */
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(
+      `SuggestDish backend running at http://localhost:${PORT}`
+    );
+  });
+}
+
 module.exports = app;
