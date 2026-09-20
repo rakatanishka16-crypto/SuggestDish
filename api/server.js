@@ -12,8 +12,10 @@ app.use(express.json());
 
 const sql = neon(process.env.DATABASE_URL);
 
+const geminiApiKey = process.env.GEMINI_API_KEY;
+
 const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
+  apiKey: geminiApiKey,
 });
 
 const PORT = process.env.PORT || 3000;
