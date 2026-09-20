@@ -156,6 +156,8 @@ if (require.main === module) {
   });
 }
 app.get("/api/ai-recommend", async (req, res) => {
+  console.log("GEMINI_API_KEY exists:", Boolean(process.env.GEMINI_API_KEY));
+  
   try {
     const taste = req.query.taste || "any";
     const cuisine = req.query.cuisine || "any";
