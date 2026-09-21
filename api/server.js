@@ -12,18 +12,54 @@ app.use(express.json());
 
 const sql = neon(process.env.DATABASE_URL);
 
-const geminiApiKey = process.env.GEMINI_API_KEY;
-
 const ai = new GoogleGenAI({
-  apiKey: geminiApiKey,
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
 const PORT = process.env.PORT || 3000;
 
+function calculateDistanceKm(
+  userLat,
+  userLon,
+  restaurantLat,
+  restaurantLon
+) {
+  if (
+    userLat === null ||
+    userLon === null ||
+    restaurantLat === null ||
+    restaurantLon === null ||
+    !Number.isFinite(userLat) ||
+    !Number.isFinite(userLon) ||
+    !Number.isFinite(Number(restaurantLat)) ||
+    !Number.isFinite(Number(restaurantLon))
+  ) {
+    return null;
+  }
 
-/* =========================================================
-   HEALTH CHECK
-========================================================= */
+  const lat1 = (Number(userLat) * Math.PI) / 180;
+  const lat2 = (Number(restaurantLat) * Math.PI) / 180;
+
+  const deltaLat =
+    ((Number(restaurantLat) - Number(userLat)) * Math.PI) / 180;
+
+  const deltaLon =
+    ((Number(restaurantLon) - Number(userLon)) * Math.PI) / 180;
+
+  const a =
+    Math.sin(deltaLat / 2) ** 2 +
+    Math.cos(lat1) *
+      Math.cos(lat2) *
+      Math.sin(deltaLon / 2) ** 2;
+
+  const c =
+    2 * Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1 - a)
+    );
+
+  return 6371 * c;
+}
 
 app.get("/", (req, res) => {
   res.json({
@@ -31,11 +67,6 @@ app.get("/", (req, res) => {
     message: "SuggestDish backend is running."
   });
 });
-
-
-/* =========================================================
-   AI TEST
-========================================================= */
 
 app.get("/api/ai-test", async (req, res) => {
   console.log(
@@ -46,7 +77,7 @@ app.get("/api/ai-test", async (req, res) => {
   if (!process.env.GEMINI_API_KEY) {
     return res.status(500).json({
       success: false,
-      error: "GEMINI_API_KEY is missing in Vercel."
+      error: "GEMINI_API_KEY is missing."
     });
   }
 
@@ -71,11 +102,6 @@ app.get("/api/ai-test", async (req, res) => {
   }
 });
 
-
-/* =========================================================
-   AI RECOMMENDATION
-========================================================= */
-
 app.get("/api/ai-recommend", async (req, res) => {
   console.log(
     "GEMINI_API_KEY exists:",
@@ -92,6 +118,16 @@ app.get("/api/ai-recommend", async (req, res) => {
     const vegetarian =
       String(req.query.vegetarian || "false").toLowerCase() === "true";
 
+    const lat =
+      req.query.lat !== undefined && req.query.lat !== ""
+        ? Number(req.query.lat)
+        : null;
+
+    const lon =
+      req.query.lon !== undefined && req.query.lon !== ""
+        ? Number(req.query.lon)
+        : null;
+
     const dishes = await sql`
       SELECT
         d.id,
@@ -100,7 +136,9 @@ app.get("/api/ai-recommend", async (req, res) => {
         d."isVeg",
         r.name AS "restaurantName",
         r.address AS "restaurantAddress",
-        r.city AS "restaurantCity"
+        r.city AS "restaurantCity",
+        r.latitude,
+        r.longitude
       FROM "Dish" d
       JOIN "Restaurant" r
         ON r.id = d."restaurantId"
@@ -116,16 +154,67 @@ app.get("/api/ai-recommend", async (req, res) => {
           cuisine,
           mood,
           budget,
-          vegetarian
+          vegetarian,
+          latitude: lat,
+          longitude: lon
         },
         recommendations: [],
         summary: "No dishes currently match your budget."
       });
     }
 
+    const maxDistanceKm = 25;
+
+    let nearbyDishes = dishes;
+
+    if (lat !== null && lon !== null) {
+      nearbyDishes = dishes
+        .map((dish) => ({
+          ...dish,
+          distanceKm: calculateDistanceKm(
+            lat,
+            lon,
+            dish.latitude,
+            dish.longitude
+          )
+        }))
+        .filter(
+          (dish) =>
+            dish.distanceKm !== null &&
+            dish.distanceKm <= maxDistanceKm
+        )
+        .sort(
+          (a, b) =>
+            a.distanceKm - b.distanceKm
+        );
+    }
+
     const filteredDishes = vegetarian
-      ? dishes.filter((dish) => dish.isVeg === true)
-      : dishes;
+      ? nearbyDishes.filter(
+          (dish) => dish.isVeg === true
+        )
+      : nearbyDishes;
+
+    if (filteredDishes.length === 0) {
+      return res.json({
+        success: true,
+        preferences: {
+          taste,
+          cuisine,
+          mood,
+          budget,
+          vegetarian,
+          latitude: lat,
+          longitude: lon,
+          radiusKm: maxDistanceKm
+        },
+        recommendations: [],
+        summary:
+          lat !== null && lon !== null
+            ? `No vegetarian dishes within ${maxDistanceKm} km match your budget.`
+            : "No dishes match your current preferences."
+      });
+    }
 
     const dishData = filteredDishes.map((dish) => ({
       dishName: dish.name,
@@ -133,25 +222,49 @@ app.get("/api/ai-recommend", async (req, res) => {
       vegetarian: dish.isVeg,
       restaurant: dish.restaurantName,
       address: dish.restaurantAddress,
-      city: dish.restaurantCity
+      city: dish.restaurantCity,
+      distanceKm:
+        dish.distanceKm !== null &&
+        dish.distanceKm !== undefined
+          ? Number(dish.distanceKm.toFixed(2))
+          : null
     }));
 
     const prompt = `
 You are the AI recommendation engine for SuggestDish.
 
 User preferences:
+
 Taste: ${taste}
 Cuisine: ${cuisine}
 Mood: ${mood}
 Budget: ₹${budget}
 Vegetarian: ${vegetarian}
 
-Available dishes from the database:
+The user location is:
+Latitude: ${lat ?? "not provided"}
+Longitude: ${lon ?? "not provided"}
+
+The following dishes are available from the SuggestDish database:
+
 ${JSON.stringify(dishData, null, 2)}
 
-Recommend up to 3 dishes ONLY from the available database dishes.
+IMPORTANT RULES:
 
-Return ONLY valid JSON in this exact format:
+1. Recommend ONLY dishes that appear in the provided database.
+2. Do NOT invent restaurants.
+3. Do NOT invent dishes.
+4. Do NOT change dish names.
+5. Do NOT change restaurant names.
+6. Respect the user's vegetarian preference.
+7. Respect the user's budget.
+8. If distanceKm is available, prefer dishes from closer restaurants.
+9. Consider taste, cuisine and mood when choosing.
+10. Recommend up to 3 dishes.
+11. Keep the reason short and useful.
+12. Return ONLY valid JSON.
+
+Return exactly this structure:
 
 {
   "recommendations": [
@@ -163,8 +276,6 @@ Return ONLY valid JSON in this exact format:
   ],
   "summary": "short overall explanation"
 }
-
-Do not invent dishes or restaurants.
 `;
 
     const response = await ai.models.generateContent({
@@ -185,12 +296,20 @@ Do not invent dishes or restaurants.
       parsed = JSON.parse(cleaned);
 
     } catch (parseError) {
-      console.error("Gemini JSON parse error:", parseError);
-      console.error("Gemini raw response:", text);
+      console.error(
+        "Gemini JSON parse error:",
+        parseError
+      );
+
+      console.error(
+        "Gemini raw response:",
+        text
+      );
 
       return res.status(500).json({
         success: false,
-        error: "Gemini returned an invalid recommendation format.",
+        error:
+          "Gemini returned an invalid recommendation format.",
         rawResponse: text
       });
     }
@@ -202,14 +321,27 @@ Do not invent dishes or restaurants.
         cuisine,
         mood,
         budget,
-        vegetarian
+        vegetarian,
+        latitude: lat,
+        longitude: lon,
+        radiusKm:
+          lat !== null && lon !== null
+            ? maxDistanceKm
+            : null
       },
-      recommendations: parsed.recommendations || [],
-      summary: parsed.summary || ""
+      recommendations:
+        Array.isArray(parsed.recommendations)
+          ? parsed.recommendations
+          : [],
+      summary:
+        parsed.summary || ""
     });
 
   } catch (error) {
-    console.error("AI recommendation error:", error);
+    console.error(
+      "AI recommendation error:",
+      error
+    );
 
     res.status(500).json({
       success: false,
@@ -217,11 +349,6 @@ Do not invent dishes or restaurants.
     });
   }
 });
-
-
-/* =========================================================
-   START LOCAL SERVER / VERCEL EXPORT
-========================================================= */
 
 if (require.main === module) {
   app.listen(PORT, () => {
