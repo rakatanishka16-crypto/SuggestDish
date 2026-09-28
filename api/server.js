@@ -716,7 +716,7 @@ USER PREFERENCES
 Taste: ${taste}
 Cuisine: ${cuisine}
 Mood: ${mood}
-Budget: ₹${budget}
+Budget: â‚¹${budget}
 Vegetarian: ${vegetarian}
 
 User location:
@@ -734,7 +734,7 @@ STRICT RULES:
 3. Never invent a restaurant.
 4. Never modify a dish name.
 5. Never modify a restaurant name.
-6. Never recommend a dish above ₹${budget}.
+6. Never recommend a dish above â‚¹${budget}.
 7. If vegetarian is true, recommend ONLY vegetarian=true dishes.
 8. Use taste, cuisine and mood to choose relevant dishes.
 9. Prefer closer restaurants when distanceKm is available.
@@ -760,16 +760,44 @@ Return exactly:
 `;
 
 
-    // --------------------------------------------------
-    // 11. ASK GEMINI
-    // --------------------------------------------------
+    // A real, filtered dish remains available when Gemini is overloaded.
+    const fallbackRecommendations = candidateDishes.slice(0, 3).map((dish) => ({
+      dishName: dish.name,
+      restaurant: dish.restaurantName,
+      price: Number(dish.price),
+      vegetarian: dish.isVeg === true,
+      address: dish.restaurantAddress,
+      city: dish.restaurantCity,
+      distanceKm: dish.distanceKm === null ? null : Number(dish.distanceKm.toFixed(2)),
+      reason: "Selected from available dishes using your budget, preferences, and location."
+    }));
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.6-flash",
-      contents: prompt
+    const fallbackResponse = () => res.json({
+      success: true,
+      source: "database",
+      preferences: {
+        taste, cuisine, mood, budget, vegetarian,
+        latitude: lat, longitude: lon,
+        radiusKm: hasLocation ? maxDistanceKm : null
+      },
+      recommendations: fallbackRecommendations,
+      summary: "These available dishes match your preferences."
     });
 
-    const text = response.text || "";
+    if (!process.env.GEMINI_API_KEY) return fallbackResponse();
+
+    let text;
+    try {
+      const response = await ai.models.generateContent({
+        model: process.env.GEMINI_MODEL || "gemini-3.6-flash",
+        contents: prompt,
+        config: { responseMimeType: "application/json", httpOptions: { timeout: 12000 } }
+      });
+      text = response.text || "";
+    } catch (error) {
+      console.error("Gemini recommendation unavailable:", error.status || error.code || error.name);
+      return fallbackResponse();
+    }
 
 
     // --------------------------------------------------
@@ -787,21 +815,8 @@ Return exactly:
       parsed = JSON.parse(cleaned);
 
     } catch (parseError) {
-      console.error(
-        "Gemini JSON parse error:",
-        parseError
-      );
-
-      console.error(
-        "Gemini raw response:",
-        text
-      );
-
-      return res.status(500).json({
-        success: false,
-        error:
-          "Gemini returned an invalid recommendation format."
-      });
+      console.error("Gemini returned invalid recommendation JSON:", parseError.message);
+      return fallbackResponse();
     }
 
 
@@ -883,41 +898,7 @@ Return exactly:
     // --------------------------------------------------
 
     if (recommendations.length === 0) {
-      const fallback = candidateDishes
-        .slice(0, 3)
-        .map((dish) => ({
-          dishName: dish.name,
-          restaurant: dish.restaurantName,
-          price: Number(dish.price),
-          vegetarian: dish.isVeg === true,
-          address: dish.restaurantAddress,
-          city: dish.restaurantCity,
-          distanceKm:
-            dish.distanceKm !== null
-              ? Number(dish.distanceKm.toFixed(2))
-              : null,
-          reason:
-            "A strong match based on your budget, preferences, and available location data."
-        }));
-
-      return res.json({
-        success: true,
-        preferences: {
-          taste,
-          cuisine,
-          mood,
-          budget,
-          vegetarian,
-          latitude: lat,
-          longitude: lon,
-          radiusKm: hasLocation
-            ? maxDistanceKm
-            : null
-        },
-        recommendations: fallback,
-        summary:
-          "These dishes were selected from available SuggestDish database data."
-      });
+      return fallbackResponse();
     }
 
 
@@ -927,6 +908,7 @@ Return exactly:
 
     res.json({
       success: true,
+      source: "gemini",
 
       preferences: {
         taste,
