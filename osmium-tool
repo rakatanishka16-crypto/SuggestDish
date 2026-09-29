@@ -1,0 +1,9 @@
+osmium tags-filter india-latest.osm.pbf \
+  'nwr/amenity=restaurant,cafe,fast_food,food_court,bar,pub,biergarten,ice_cream' \
+  'nwr/tourism=hotel,motel,guest_house,hostel' \
+  'nwr/shop=bakery,pastry,confectionery,deli,caterer' \
+  'nwr/craft=caterer' \
+  -o india-horeca.osm.pbf
+osmium export india-horeca.osm.pbf -f geojsonseq -a type,id \
+  -u type_id -o india-horeca.geojsonseq
+node scripts/import-india-horeca.js --input india-horeca.geojsonseq
