@@ -810,7 +810,7 @@
         class="card panel"
         style="display:none; margin-top:16px;"
       >
-        <span class="badge">
+        <span class="badge" id="aiSourceBadge">
           ✨ AI Recommendation
         </span>
 
@@ -824,7 +824,7 @@
 
         <div class="rank" style="margin-top:14px;">
           <span>💡 Why this dish?</span>
-          <span class="conf">AI matched</span>
+          <span class="conf" id="aiSourceLabel">AI matched</span>
         </div>
 
         <p
@@ -840,7 +840,7 @@
         class="card panel"
         style="display:none; margin-top:16px;"
       >
-        <strong>⚠️ Something went wrong</strong>
+        <strong id="aiStatusTitle">⚠️ Something went wrong</strong>
 
         <p
           class="small mute"
@@ -1652,6 +1652,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const aiErrorText =
     document.getElementById("aiErrorText");
 
+  const aiStatusTitle =
+    document.getElementById("aiStatusTitle");
+
+  const aiSourceBadge =
+    document.getElementById("aiSourceBadge");
+
+  const aiSourceLabel =
+    document.getElementById("aiSourceLabel");
+
 
   if (aiRecommendBtn) {
 
@@ -1836,11 +1845,11 @@ document.addEventListener("DOMContentLoaded", () => {
           if (
             recommendations.length === 0
           ) {
-
-            throw new Error(
-              data.summary ||
-              "No matching dishes were found."
-            );
+            if (aiStatusTitle) aiStatusTitle.textContent = "No matching dishes yet";
+            if (aiErrorText) aiErrorText.textContent =
+              data.summary || "No matching dishes were found.";
+            if (aiError) aiError.style.display = "block";
+            return;
           }
 
 
@@ -1885,6 +1894,11 @@ document.addEventListener("DOMContentLoaded", () => {
               "Here is your AI-powered recommendation.";
           }
 
+          if (aiSourceBadge) aiSourceBadge.textContent =
+            data.source === "gemini" ? "✨ AI Recommendation" : "🍽️ Database recommendation";
+          if (aiSourceLabel) aiSourceLabel.textContent =
+            data.source === "gemini" ? "AI matched" : "Matched from available dishes";
+
 
           /* Show result */
 
@@ -1904,6 +1918,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
           /* Show error */
+
+          if (aiStatusTitle) aiStatusTitle.textContent = "⚠️ Something went wrong";
 
           if (aiErrorText) {
 

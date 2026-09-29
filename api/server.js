@@ -206,7 +206,16 @@ app.get("/api/ai-recommend", async (req, res) => {
       lat !== null &&
       lon !== null &&
       Number.isFinite(lat) &&
-      Number.isFinite(lon);
+      Number.isFinite(lon) &&
+      Math.abs(lat) <= 90 &&
+      Math.abs(lon) <= 180;
+
+    if ((req.query.lat !== undefined || req.query.lon !== undefined) && !hasLocation) {
+      return res.status(400).json({
+        success: false,
+        error: "Provide a valid latitude and longitude together."
+      });
+    }
 
     const maxDistanceKm = 25;
 
@@ -314,21 +323,11 @@ app.get("/api/ai-recommend", async (req, res) => {
           distanceKm
         };
       })
-      .filter((dish) => {
-        // If location is available and the restaurant
-        // has coordinates, enforce the 25 km radius.
-        if (
-          hasLocation &&
-          dish.distanceKm !== null
-        ) {
-          return dish.distanceKm <= maxDistanceKm;
-        }
-
-        // Keep restaurants without coordinates so that
-        // the system can still recommend them when
-        // location data is incomplete.
-        return true;
-      });
+      .filter((dish) =>
+        // An unknown location cannot be presented as a nearby result.
+        !hasLocation ||
+        (dish.distanceKm !== null && dish.distanceKm <= maxDistanceKm)
+      );
 
 
     if (filteredDishes.length === 0) {
@@ -346,7 +345,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         },
         recommendations: [],
         summary:
-          "No dishes were found within the current location radius and budget."
+          "No dishes with a confirmed location were found within 25 km and your budget. Try searching without location or check back as we add verified local dishes."
       });
     }
 
@@ -628,13 +627,16 @@ app.get("/api/ai-recommend", async (req, res) => {
       if (dish.price !== null) {
         const budgetRatio = Number(dish.price) / budget;
 
-        if (budgetRatio <= 0.5) {
-          score += 3;
-        } else if (budgetRatio <= 0.75) {
+        if (budgetRatio >= 0.15 && budgetRatio <= 0.75) {
           score += 2;
-        } else {
+        } else if (budgetRatio > 0.75) {
           score += 1;
         }
+      }
+
+      // Generic discovery should favor a dish over bottled water or an add-on.
+      if (/\b(water bottle|mineral water|packaged water|extra butter|extra pav|extra cheese|add[- ]?on)\b/i.test(dish.name)) {
+        score -= 10;
       }
 
       // Distance preference
@@ -769,7 +771,9 @@ Return exactly:
       address: dish.restaurantAddress,
       city: dish.restaurantCity,
       distanceKm: dish.distanceKm === null ? null : Number(dish.distanceKm.toFixed(2)),
-      reason: "Selected from available dishes using your budget, preferences, and location."
+      reason: dish.distanceKm === null
+        ? `Listed at ₹${Number(dish.price)} within your budget.`
+        : `Listed at ₹${Number(dish.price)}, ${dish.distanceKm.toFixed(1)} km away.`
     }));
 
     const fallbackResponse = () => res.json({
