@@ -1448,6 +1448,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let userLatitude = null;
   let userLongitude = null;
+  let selectedCity = "";
+  let locationPending = false;
 
 
   /* =========================
@@ -1529,6 +1531,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           (position) => {
 
+            selectedCity = "";
+
             userLatitude =
               position.coords.latitude;
 
@@ -1602,7 +1606,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     enterLocation.addEventListener(
       "click",
-      () => {
+      async () => {
 
         const loc =
           prompt(
@@ -1610,11 +1614,27 @@ document.addEventListener("DOMContentLoaded", () => {
             "Bandra West"
           );
 
-        if (loc && loc.trim()) {
-
-          toast(
-            `Searching premium dish picks near ${loc.trim()}.`
-          );
+        if (!loc || !loc.trim() || locationPending) return;
+        locationPending = true;
+        enterLocation.disabled = true;
+        toast("Finding your chosen location...");
+        try {
+          const apiBase = window.location.hostname === "localhost" ? "http://localhost:3000" : "";
+          const response = await fetch(`${apiBase}/api/location-search?q=${encodeURIComponent(loc.trim())}`);
+          const data = await response.json();
+          if (!response.ok || !data.success) throw new Error(data.error || "Unable to find that location.");
+          const city = typeof data.city === "string" ? data.city : "";
+          const hasCoordinates = Number.isFinite(data.latitude) && Number.isFinite(data.longitude);
+          if (!city && !hasCoordinates) throw new Error("Location not found. Try entering Mumbai or Jalna.");
+          selectedCity = city;
+          userLatitude = hasCoordinates ? data.latitude : null;
+          userLongitude = hasCoordinates ? data.longitude : null;
+          toast(`Location set to ${data.label}. Choose your preferences and tap Recommend My Dish.`);
+        } catch (error) {
+          toast(error.message);
+        } finally {
+          locationPending = false;
+          enterLocation.disabled = false;
         }
       }
     );
@@ -1667,6 +1687,11 @@ document.addEventListener("DOMContentLoaded", () => {
     aiRecommendBtn.addEventListener(
       "click",
       async () => {
+
+        if (locationPending) {
+          toast("Please wait while your chosen location is found.");
+          return;
+        }
 
         console.log(
           "AI Recommend button clicked."
@@ -1762,6 +1787,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "vegetarian",
           String(vegetarian)
         );
+        if (selectedCity) params.set("city", selectedCity);
 
 
         /* Add location only if available */
