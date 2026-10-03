@@ -494,6 +494,9 @@ app.get("/api/ai-recommend", async (req, res) => {
 
 
     const cuisineKeywords = {
+      "south indian": ["dosa", "idli", "paniyaram", "uttapam", "vada", "pongal", "podi"],
+      "north indian": ["paneer", "dal", "naan", "roti", "paratha", "chole", "rajma", "kulcha"],
+      maharashtrian: ["misal", "vada pav", "puran poli", "modak", "poha", "sabudana", "thalipeeth"],
       indian: [
         "paneer",
         "masala",
@@ -699,6 +702,9 @@ app.get("/api/ai-recommend", async (req, res) => {
       if (/\b(water bottle|mineral water|packaged water|extra butter|extra pav|extra cheese|add[- ]?on)\b/i.test(dish.name)) {
         score -= 10;
       }
+
+      // A small evidence preference cannot outweigh a direct cuisine/taste match.
+      if (dish.starConfirmed === true) score += 3;
 
       // Distance preference
       if (dish.distanceKm !== null) {
