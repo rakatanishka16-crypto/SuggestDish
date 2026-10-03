@@ -93,7 +93,7 @@ function frontendHarness() {
   const elements = new Map();
   const calls = [];
   const element = id => {
-    if (!elements.has(id)) elements.set(id, { style: {}, value: 'any', checked: true, addEventListener(event, fn) { this[event] = fn; } });
+    if (!elements.has(id)) elements.set(id, { style: {}, children: [], replaceChildren() { this.children = []; }, append(child) { this.children.push(child); }, value: 'any', checked: true, addEventListener(event, fn) { this[event] = fn; } });
     return elements.get(id);
   };
   element('aiBudget').value = '500';
@@ -101,7 +101,7 @@ function frontendHarness() {
   let geolocationSuccess;
   const document = {
     addEventListener(event, fn) { fn(); }, getElementById: element, querySelector() { return null; }, querySelectorAll() { return []; },
-    createElement() { return { style: {}, setAttribute() {}, remove() {} }; }, body: { appendChild() {} }
+    createElement() { return { style: {}, children: [], append(child) { this.children.push(child); }, setAttribute() {}, remove() {} }; }, body: { appendChild() {} }
   };
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
@@ -112,7 +112,7 @@ function frontendHarness() {
       calls.push(url);
       return { ok: true, json: async () => url.includes('location-search')
         ? { success: true, city: 'Mumbai', label: 'Mumbai', latitude: null, longitude: null }
-        : { success: true, recommendations: [{ dishName: 'BBQ Paneer Pizza', restaurant: "Pop Tate's - Time Square" }], source: 'database' } };
+        : { success: true, recommendations: [{ dishName: 'BBQ Paneer Pizza', restaurant: "Pop Tate's - Time Square" }, { dishName: '<script>dish</script>', restaurant: 'Second restaurant', price: 200, vegetarian: true }, { dishName: 'Third dish', restaurant: 'Third restaurant' }], source: 'database' } };
     }
   });
   return { element, calls, setLocation(value) { locationChoice = value; }, enableGPS() { geolocationSuccess({ coords: { latitude: 19.07, longitude: 72.88 } }); } };
@@ -139,4 +139,12 @@ test('GPS selection replaces a previous typed city', async () => {
   assert.equal(params.has('city'), false);
   assert.equal(params.get('lat'), '19.07');
   assert.equal(params.get('lon'), '72.88');
+});
+
+
+test('all three returned recommendations render as text without interpreting markup', async () => {
+  const h = frontendHarness(); await h.element('aiRecommendBtn').click();
+  const extra=h.element('aiMoreRecommendations');
+  assert.equal(extra.style.display,'block'); assert.equal(extra.children.length,2);
+  assert.equal(extra.children[0].children[0].textContent,'<script>dish</script>');
 });

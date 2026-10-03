@@ -285,7 +285,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       JOIN "Restaurant" r
         ON r.id = d."restaurantId"
       LEFT JOIN "RestaurantStarDish" sd ON sd."dishId"=d.id AND sd.slot<=public.restaurant_star_limit(r.id)
-      WHERE (sd."dishId" IS NOT NULL OR NOT EXISTS (SELECT 1 FROM "BusinessClaim" bc WHERE bc."restaurantId"=r.id AND bc.status='approved'))
+      WHERE (sd."dishId" IS NOT NULL OR NOT EXISTS (SELECT 1 FROM "RestaurantStarDish" current_star WHERE current_star."restaurantId"=r.id))
         AND d.price IS NOT NULL
         AND d.price <= ${budget}
         AND (${city} = '' OR LOWER(TRIM(r.city)) = LOWER(${city}))
@@ -1028,3 +1028,4 @@ if (require.main === module) {
 }
 
 module.exports = app;
+

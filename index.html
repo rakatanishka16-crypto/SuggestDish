@@ -821,6 +821,7 @@
         <h3 id="aiDishName" style="margin-top:12px;"></h3>
 
         <p class="mute" id="aiRestaurant"></p>
+        <p class="small mute" id="aiDishMeta"></p>
 
         <div class="divider"></div>
 
@@ -837,6 +838,8 @@
           style="margin-top:12px;"
         ></p>
       </div>
+
+      <div id="aiMoreRecommendations" aria-live="polite" style="display:none; margin-top:16px;"></div>
 
       <!-- ERROR -->
       <div
@@ -1743,6 +1746,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (aiResult) {
           aiResult.style.display = "none";
+          const extra = document.getElementById("aiMoreRecommendations");
+          if (extra) extra.style.display = "none";
         }
 
         if (aiError) {
@@ -1907,7 +1912,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ========================= */
 
           const recommendations =
-            data.recommendations || [];
+            Array.isArray(data.recommendations) ? data.recommendations : [];
 
 
           if (
@@ -1920,6 +1925,20 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
 
+
+          const moreResults = document.getElementById("aiMoreRecommendations");
+          if (moreResults && typeof moreResults.replaceChildren === "function") {
+            moreResults.replaceChildren();
+            for (const item of recommendations.slice(1, 3)) {
+              const card = document.createElement("article");
+              card.className = "card panel"; card.style.marginTop = "16px";
+              for (const [tag, value] of [["h3", item.dishName], ["p", item.restaurant], ["p", item.reason], ["p", [Number.isFinite(Number(item.price)) && item.price != null ? "₹" + Number(item.price) : null, item.vegetarian === true ? "Vegetarian" : "Non-vegetarian", item.address, item.distanceKm != null ? item.distanceKm + " km away" : null].filter(Boolean).join(" · ")]]) {
+                const line = document.createElement(tag); line.textContent = value || ""; card.append(line);
+              }
+              moreResults.append(card);
+            }
+            moreResults.style.display = recommendations.length > 1 ? "block" : "none";
+          }
 
           /* First recommendation */
 
@@ -1968,6 +1987,8 @@ document.addEventListener("DOMContentLoaded", () => {
             data.source === "gemini" ? "AI matched" : "Matched from available dishes";
 
 
+          const primaryMeta = document.getElementById("aiDishMeta");
+          if (primaryMeta) primaryMeta.textContent = [first.price != null ? "₹" + Number(first.price) : null, first.vegetarian === true ? "Vegetarian" : "Non-vegetarian", first.address, first.distanceKm != null ? first.distanceKm + " km away" : null].filter(Boolean).join(" · ");
           /* Show result */
 
           if (aiResult) {
@@ -2162,3 +2183,4 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
 </script>
 </body>
 </html>
+
