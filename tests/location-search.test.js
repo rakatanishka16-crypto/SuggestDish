@@ -149,3 +149,12 @@ test('all three returned recommendations render as text without interpreting mar
   assert.equal(extra.style.display,'block'); assert.equal(extra.children.length,2);
   assert.equal(extra.children[0].children[0].textContent,'<script>dish</script>');
 });
+
+test('South Indian fallback ranks source-backed paniyaram above unrelated cheaper food', async () => {
+  const base={isVeg:true,restaurantCity:'Mumbai',restaurantAddress:'Mumbai',latitude:null,longitude:null};
+  const h=serverHarness({rows:[{...base,id:1,name:'Modak with Ghee',price:49,restaurantId:1,restaurantName:'Maharashtra kitchen'},{...base,id:2,name:'Masala Paniyaram',price:130,restaurantId:2,restaurantName:'A Petal and Paniyaram',starConfirmed:true,starOrigin:'published_menu',popularityBasis:'signature',starSourceUrl:'https://www.petalandpaniyaram.in/menu/'}]});
+  const {body}=await h.request('/api/ai-recommend',{city:'Mumbai',cuisine:'South Indian',budget:'180',vegetarian:'true'});
+  assert.equal(body.recommendations[0].dishName,'Masala Paniyaram');
+  assert.equal(body.recommendations[0].starOrigin,'published_menu');
+  assert.match(body.recommendations[0].reason,/Restaurant-listed signature/);
+});
