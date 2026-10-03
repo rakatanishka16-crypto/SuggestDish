@@ -30,7 +30,7 @@ class Extract(osmium.SimpleHandler):
  def relation(self,o):self.record(o,'relation')
 if __name__=='__main__':
  out=Path(sys.argv[2]);out.mkdir(parents=True,exist_ok=True)
- h=Extract();h.apply_file(sys.argv[1]);rows=sorted(h.rows.values(),key=lambda r:r['sourceKey'])
+ h=Extract();filters=[osmium.filter.TagFilter(*([('amenity',v) for v in AMENITIES]+[('shop',v) for v in SHOPS]+[('tourism',v) for v in HOTELS]+[('craft','caterer')])),osmium.filter.KeyFilter('name','name:en')];h.apply_file(sys.argv[1],filters=filters);rows=sorted(h.rows.values(),key=lambda r:r['sourceKey'])
  (out/'osm-horeca-candidates.json').write_text(json.dumps(rows,ensure_ascii=False,separators=(',',':')))
  stats={'collectedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'Geofabrik India OpenStreetMap extract','sourceUrl':'https://download.geofabrik.de/asia/india.html','totalSourceObjects':len(rows),'withCityTag':sum(bool(r['city']) for r in rows),'withAddress':sum(bool(r['address']) for r in rows),'withNodeCoordinates':sum(r['latitude'] is not None for r in rows),'categories':dict(collections.Counter(r['category'] for r in rows)),'excludedClosedTaggedObjects':h.closed,'completeBusinessCensus':False,'hotelFoodServiceVerified':False}
  (out/'coverage.json').write_text(json.dumps(stats,ensure_ascii=False,indent=2));print(json.dumps(stats,ensure_ascii=False))
