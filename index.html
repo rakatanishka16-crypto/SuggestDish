@@ -572,6 +572,7 @@
         width: 135px;
       }
     }
+    #list-business { scroll-margin-top:200px; }
     .business-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
     .business-fields label { display:flex; flex-direction:column; gap:6px; font-weight:600; }
     .business-fields input,.business-fields select { width:100%; padding:12px; border:1px solid var(--border); border-radius:12px; background:var(--card); color:var(--text); }
@@ -1137,7 +1138,7 @@
           <li>✓ Business analytics</li>
         </ul>
 
-        <button class="btn btn-secondary">
+        <button class="btn btn-secondary" id="businessListingCta">
           For businesses
         </button>
       </div>
@@ -1457,6 +1458,7 @@
 
     <div class="footer-links" style="margin-top:15px;">
       <a href="#horeca">HORECA</a>
+      <a href="#list-business">List your business</a>
       <a href="#transparency">Transparency</a>
       <a href="#compare">Compare</a>
     </div>
@@ -2064,6 +2066,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
+ document.getElementById('businessListingCta')?.addEventListener('click', () => document.getElementById('list-business').scrollIntoView({behavior:'smooth'}));
  document.getElementById('businessListingForm').addEventListener('submit', async function(event) {
    event.preventDefault();
    const form = event.currentTarget;
