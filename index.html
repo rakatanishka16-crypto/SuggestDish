@@ -1097,7 +1097,7 @@
           <li>✓ Per restaurant, per month</li>
           <li>✓ Profile and menu verification before listing</li>
         </ul>
-        <a class="btn btn-primary" href="#business-checkout" data-billing-plan="monthly">Choose monthly plan</a>
+        <a class="btn btn-primary" href="#business-checkout" data-billing-plan="monthly">Monthly plan — coming soon</a>
       </div>
       <div class="card price-card">
         <span class="badge">HORECA · Annual</span>
@@ -1108,10 +1108,10 @@
           <li>✓ Per restaurant, for 12 months</li>
           <li>✓ Profile and menu verification before listing</li>
         </ul>
-        <a class="btn btn-secondary" href="#business-checkout" data-billing-plan="annual">Choose annual plan</a>
+        <a class="btn btn-secondary" href="#business-checkout" data-billing-plan="annual">Annual plan — coming soon</a>
       </div>
     </div>
-    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Paid plans start after business approval and confirmed payment. Each purchase covers one month or one year; there is no automatic renewal.</p>
+    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Paid plans are coming soon. The free plan remains available. Each purchase covers one month or one year; there is no automatic renewal.</p>
   </div>
 </section>
 
@@ -1385,7 +1385,7 @@
 
 <section class="section" id="business-checkout">
  <div class="container">
-  <div class="section-head"><div><h2>Activate your restaurant plan</h2><p class="sub">Already approved? Pay securely through Razorpay. New businesses should <a href="#list-business" style="text-decoration:underline">submit a listing first</a>.</p></div></div>
+  <div class="section-head"><div><h2>Manage your business listing</h2><p class="sub">Check your submission and update your signature dish before review. Paid plans are coming soon. New businesses should <a href="#list-business" style="text-decoration:underline">submit a listing first</a>.</p></div></div>
   <form id="businessPaymentForm" class="card panel">
    <p id="billingAvailability" class="mute" role="status">Checking payment availability…</p>
    <div class="business-fields" style="margin-top:20px">
@@ -1393,6 +1393,19 @@
     <label>Private access code *<input name="accessCode" type="password" required maxlength="64" minlength="64" autocomplete="off" placeholder="Code provided when you submitted"></label>
     <label>Restaurant plan *<select name="plan" required><option value="monthly">₹499 — 3 dishes for one month</option><option value="annual">₹4,999 — 2 dishes for one year</option></select></label>
    </div>
+   <button type="button" id="checkBusinessReview" class="btn btn-secondary" style="margin-top:18px">Check business review status</button>
+   <p id="businessReviewStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
+   <fieldset id="signatureDishEditor" hidden style="border:0;padding:0;margin-top:20px">
+    <legend>Update your signature dish for review</legend>
+    <div class="business-fields">
+     <label>Dish name<input name="updatedDishName" maxlength="160"></label>
+     <label>Price (₹)<input name="updatedDishPrice" type="number" min="0.01" max="100000" step="0.01"></label>
+     <label>Dietary type<select name="updatedDiet"><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
+     <label>Menu source link<input name="updatedMenuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
+    </div>
+    <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these dish and menu details are accurate and I am authorised to submit them.</label>
+    <button type="button" id="saveBusinessDish" class="btn btn-primary">Submit dish details for review</button>
+   </fieldset>
    <p class="small mute" style="margin:18px 0">One payment covers the selected period. No automatic renewal. Payment does not bypass business or menu verification. Save your business reference and private access code; never share the code publicly.</p>
    <button type="submit" id="payBusinessPlan" class="btn btn-primary" disabled>Pay securely with Razorpay</button>
    <button type="button" id="checkBusinessPayment" class="btn btn-light">Check payment status</button>
@@ -2066,7 +2079,7 @@ document.addEventListener("DOMContentLoaded", () => {
      const response = await fetch('/api/business-listings', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
      const result = await response.json();
      if (!response.ok || !result.success) throw new Error(result.error || 'Unable to submit. Please try again.');
-     status.textContent = result.message + ' Save your business reference: ' + result.reference + '. Private access code: ' + result.accessCode + '. Keep this code private; you will need it to pay after approval.';
+     status.textContent = result.message + ' Save your business reference: ' + result.reference + '. Private access code: ' + result.accessCode + '. Keep this code private; use it to check your review status and update dish details.';
      const paymentForm = document.getElementById('businessPaymentForm');
      paymentForm.elements.submissionId.value = result.reference;
      paymentForm.elements.accessCode.value = result.accessCode;
@@ -2101,7 +2114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   else if(data.status==='refunded') status.textContent='This payment has been refunded. Its paid plan is inactive.';
   else status.textContent=data.message || 'Business review: '+data.approval+'. Payment status: '+data.status+'. If you have paid, do not pay again; check status later or contact SuggestDish with your payment ID.';
  }
- fetch('/api/billing/config').then(r=>r.json()).then(data=>{available=data.available===true;pay.disabled=!available;document.getElementById('billingAvailability').textContent=available ? (data.mode==='test'?'Razorpay test mode — no real money will be charged.':'Secure Razorpay checkout is available for approved businesses.') : 'Online payments are being connected. Your free listing remains available.';}).catch(()=>{document.getElementById('billingAvailability').textContent='Payment availability could not be checked. Please reload later.';});
+ fetch('/api/billing/config').then(r=>r.json()).then(data=>{available=data.available===true;pay.disabled=!available;document.getElementById('billingAvailability').textContent=available ? (data.mode==='test'?'Razorpay test mode — no real money will be charged.':'Secure Razorpay checkout is available for approved businesses.') : 'Paid plans are coming soon. Your free listing remains available.';}).catch(()=>{document.getElementById('billingAvailability').textContent='Payment availability could not be checked. Please reload later.';});
  document.querySelectorAll('[data-billing-plan]').forEach(link=>link.addEventListener('click',()=>{form.elements.plan.value=link.dataset.billingPlan;}));
  form.addEventListener('submit',async(event)=>{
   event.preventDefault();if(!available || busy)return;busy=true;pay.disabled=true;status.textContent='Preparing secure checkout…';
@@ -2116,6 +2129,19 @@ document.addEventListener("DOMContentLoaded", () => {
    },modal:{ondismiss:()=>{busy=false;pay.disabled=!available;status.textContent='Checkout closed. If you completed payment, use Check payment status before paying again.';}}});
    checkout.on('payment.failed',()=>{status.textContent='Payment did not complete. Check payment status before retrying if your bank shows a debit.';});checkout.open();
   }catch(error){status.textContent=error.message;busy=false;pay.disabled=!available;}
+ });
+ const reviewStatus=document.getElementById('businessReviewStatus');
+ const editor=document.getElementById('signatureDishEditor');
+ document.getElementById('checkBusinessReview').addEventListener('click',async(event)=>{
+  const button=event.currentTarget;button.disabled=true;editor.hidden=true;reviewStatus.textContent='Checking business review…';
+  try {const data=await api('/api/business-listings/status',credentials());reviewStatus.textContent=data.businessName+': '+data.message;
+   if(data.canEdit){form.elements.updatedDishName.value=data.dishName;form.elements.updatedDishPrice.value=data.dishPrice;form.elements.updatedDiet.value=data.isVeg?'vegetarian':'non-vegetarian';form.elements.updatedMenuUrl.value=data.menuUrl || '';editor.hidden=false;}
+  }catch(error){reviewStatus.textContent=error.message;}finally{button.disabled=false;}
+ });
+ document.getElementById('saveBusinessDish').addEventListener('click',async(event)=>{
+  const button=event.currentTarget;button.disabled=true;
+  try{const data=await api('/api/business-listings/dish',{...credentials(),dishName:form.elements.updatedDishName.value,dishPrice:form.elements.updatedDishPrice.value,diet:form.elements.updatedDiet.value,menuUrl:form.elements.updatedMenuUrl.value,consent:form.elements.dishUpdateConsent.checked});reviewStatus.textContent=data.message;editor.hidden=true;form.elements.dishUpdateConsent.checked=false;}
+  catch(error){reviewStatus.textContent=error.message;}finally{button.disabled=false;}
  });
  document.getElementById('checkBusinessPayment').addEventListener('click',async(event)=>{const button=event.currentTarget;button.disabled=true;status.textContent='Checking payment…';try{showResult(await api('/api/billing/status',credentials()));}catch(error){status.textContent=error.message;}finally{button.disabled=false;}});
 })();
