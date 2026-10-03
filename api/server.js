@@ -18,6 +18,40 @@ const ai = new GoogleGenAI({
 
 const PORT = process.env.PORT || 3000;
 
+// A typed city filters the same production dishes used by recommendations.
+app.get("/api/location-search", async (req, res) => {
+  const query = String(req.query.q || "").trim();
+  if (query.length < 2 || query.length > 120) {
+    return res.status(400).json({ success: false, error: "Enter a city or area between 2 and 120 characters." });
+  }
+  try {
+    const cities = await sql`
+      SELECT DISTINCT city FROM "Restaurant"
+      WHERE LOWER(TRIM(city)) = LOWER(${query})
+      LIMIT 1
+    `;
+    if (cities.length) {
+      return res.json({ success: true, city: cities[0].city, label: cities[0].city, latitude: null, longitude: null });
+    }
+    const apiKey = process.env.GEOAPIFY_KEY || process.env.GEOAPIFY_API_KEY;
+    if (!apiKey) {
+      return res.status(503).json({ success: false, error: "Area search is unavailable. Try a listed city such as Mumbai or Jalna." });
+    }
+    const params = new URLSearchParams({ text: query, filter: "countrycode:in", limit: "1", apiKey });
+    const response = await fetch(`https://api.geoapify.com/v1/geocode/search?${params}`, { signal: AbortSignal.timeout(6000) });
+    if (!response.ok) throw new Error("Location service unavailable");
+    const data = await response.json();
+    const place = data.features?.[0]?.properties;
+    if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)) {
+      return res.status(404).json({ success: false, error: "Area not found. Try including the city, for example Bandra West, Mumbai." });
+    }
+    return res.json({ success: true, city: null, label: place.formatted || query, latitude: place.lat, longitude: place.lon });
+  } catch (error) {
+    console.error("Location search unavailable:", error.name);
+    return res.status(503).json({ success: false, error: "Unable to find that location right now. Please try again." });
+  }
+});
+
 function calculateDistanceKm(
   userLat,
   userLon,
@@ -182,6 +216,10 @@ app.get("/api/ai-recommend", async (req, res) => {
     const taste = String(req.query.taste || "any").trim();
     const cuisine = String(req.query.cuisine || "any").trim();
     const mood = String(req.query.mood || "any").trim();
+    const city = String(req.query.city || "").trim();
+    if (city.length > 120) {
+      return res.status(400).json({ success: false, error: "City name is too long." });
+    }
 
     const budgetRaw = Number(req.query.budget || 500);
     const budget =
@@ -240,6 +278,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         ON r.id = d."restaurantId"
       WHERE d.price IS NOT NULL
         AND d.price <= ${budget}
+        AND (${city} = '' OR LOWER(TRIM(r.city)) = LOWER(${city}))
       ORDER BY d.id ASC
     `;
 
@@ -262,7 +301,9 @@ app.get("/api/ai-recommend", async (req, res) => {
           radiusKm: hasLocation ? maxDistanceKm : null
         },
         recommendations: [],
-        summary: "No dishes currently match your budget."
+        summary: city
+          ? `No priced dishes in ${city} currently match your budget.`
+          : "No dishes currently match your budget."
       });
     }
 
@@ -724,6 +765,7 @@ Vegetarian: ${vegetarian}
 User location:
 Latitude: ${hasLocation ? lat : "not provided"}
 Longitude: ${hasLocation ? lon : "not provided"}
+City: ${city || "not provided"}
 
 DATABASE CANDIDATES
 
@@ -745,6 +787,7 @@ STRICT RULES:
 12. Each recommendation must use the exact database dishName and restaurant.
 13. Keep each reason short and natural.
 14. Return ONLY valid JSON.
+15. Do not claim ratings, popularity, reviews, opening hours, ingredient details or verification that are not present in the supplied data.
 
 Return exactly:
 
