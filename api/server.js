@@ -13,6 +13,7 @@ app.use(express.json({ limit: "100kb", verify(req, res, buf) { req.rawBody = Buf
 const sql = neon(process.env.DATABASE_URL);
 require("../lib/business-listings")(app, sql);
 require("../lib/business-directory")(app, sql);
+require("../lib/business-stars")(app, sql);
 require("../lib/business-review")(app, sql);
 require("../lib/razorpay-payments")(app, sql);
 
@@ -272,6 +273,9 @@ app.get("/api/ai-recommend", async (req, res) => {
         d.name,
         d.price,
         d."isVeg",
+        r.id AS "restaurantId",
+        (sd."dishId" IS NOT NULL) AS "starConfirmed",
+        sd."popularityBasis", sd."popularityVerified",
         r.name AS "restaurantName",
         r.address AS "restaurantAddress",
         r.city AS "restaurantCity",
@@ -280,7 +284,9 @@ app.get("/api/ai-recommend", async (req, res) => {
       FROM "Dish" d
       JOIN "Restaurant" r
         ON r.id = d."restaurantId"
-      WHERE d.price IS NOT NULL
+      LEFT JOIN "RestaurantStarDish" sd ON sd."dishId"=d.id AND sd.slot<=public.restaurant_star_limit(r.id)
+      WHERE (sd."dishId" IS NOT NULL OR NOT EXISTS (SELECT 1 FROM "BusinessClaim" bc WHERE bc."restaurantId"=r.id AND bc.status='approved'))
+        AND d.price IS NOT NULL
         AND d.price <= ${budget}
         AND (${city} = '' OR LOWER(TRIM(r.city)) = LOWER(${city}))
       ORDER BY d.id ASC
@@ -725,7 +731,12 @@ app.get("/api/ai-recommend", async (req, res) => {
 
 
     // Send only a manageable candidate pool to Gemini.
-    const candidateDishes = scoredDishes.slice(0, 60);
+    const seenRestaurants = new Set();
+    const candidateDishes = scoredDishes.filter(dish => {
+      const key = dish.restaurantId ?? dish.restaurantName;
+      if (seenRestaurants.has(key)) return false;
+      seenRestaurants.add(key); return true;
+    }).slice(0, 60);
 
 
     // --------------------------------------------------
@@ -818,9 +829,12 @@ Return exactly:
       address: dish.restaurantAddress,
       city: dish.restaurantCity,
       distanceKm: dish.distanceKm === null ? null : Number(dish.distanceKm.toFixed(2)),
-      reason: dish.distanceKm === null
+      starConfirmed: dish.starConfirmed === true,
+      popularityBasis: dish.popularityBasis || null,
+      popularityVerified: dish.popularityVerified === true,
+      reason: (dish.starConfirmed ? "Approved star dish. " : "Menu suggestion — star dish not yet confirmed. ") + (dish.distanceKm === null
         ? `Listed at ₹${Number(dish.price)} within your budget.`
-        : `Listed at ₹${Number(dish.price)}, ${dish.distanceKm.toFixed(1)} km away.`
+        : `Listed at ₹${Number(dish.price)}, ${dish.distanceKm.toFixed(1)} km away.`)
     }));
 
     const fallbackResponse = () => res.json({
@@ -933,15 +947,22 @@ Return exactly:
                         candidate.distanceKm.toFixed(2)
                       )
                     : null,
+                starConfirmed: candidate.starConfirmed === true,
+                popularityBasis: candidate.popularityBasis || null,
+                popularityVerified: candidate.popularityVerified === true,
                 reason:
-                  String(
+                  (candidate.starConfirmed ? "Approved star dish. " : "Menu suggestion — star dish not yet confirmed. ") + String(
                     recommendation.reason ||
                       "This dish matches your preferences."
                   ).trim()
               };
             })
-            .filter(Boolean)
+            .filter(Boolean).filter((r,i,all)=>all.findIndex(x=>x.restaurant===r.restaurant && x.address===r.address)===i)
         : [];
+    for (const item of fallbackRecommendations) {
+      if (recommendations.length >= 3) break;
+      if (!recommendations.some(r=>r.restaurant===item.restaurant && r.address===item.address)) recommendations.push(item);
+    }
 
 
     // --------------------------------------------------
