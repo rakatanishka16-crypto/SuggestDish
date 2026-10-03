@@ -8,7 +8,7 @@ const root = path.join(__dirname, '..');
 function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, env = {} } = {}) {
   const routes = new Map();
   const queries = [];
-  const app = { use() {}, get(route, handler) { routes.set(route, handler); }, listen() {} };
+  const app = { use() {}, post() {}, get(route, handler) { routes.set(route, handler); }, listen() {} };
   const express = () => app;
   express.json = () => () => {};
   const sql = async (strings, ...values) => {
@@ -18,6 +18,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
   };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'api/server.js'), 'utf8'), {
     require(name) {
+      if (name === './business-listings') return require('../api/business-listings');
       if (name === 'dotenv') return { config() {} };
       if (name === 'express') return express;
       if (name === 'cors') return () => () => {};
