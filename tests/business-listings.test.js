@@ -21,3 +21,8 @@ test('submission stores pending data only; invalid and duplicate requests handle
   assert.equal((await post(valid)).status,409);
  } finally {server.close();}
 });
+
+test('accepts Google shared business links and rejects lookalike domains', () => {
+ for(const profileUrl of ['https://share.google/exampleBusiness','https://maps.app.goo.gl/exampleBusiness','https://www.google.com/maps/place/Example','https://www.zomato.com/mumbai/example']) assert.equal(register.validate({...valid,profileUrl}).profileUrl,profileUrl);
+ for(const profileUrl of ['https://share.google.evil.test/example','https://share.google@evil.test/example','http://share.google/example']) assert.throws(()=>register.validate({...valid,profileUrl}));
+});
