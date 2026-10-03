@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const express = require('express');
-const register = require('../api/business-listings');
+const register = require('../lib/business-listings');
 const valid = {businessName:'Example Cafe',category:'Cafe',city:'Mumbai',address:'Example address',contactName:'Example Owner',email:'owner@example.com',phone:'9999999999',profileUrl:'https://maps.app.goo.gl/example',dishName:'Poha',dishPrice:'65',diet:'vegetarian',consent:true};
 test('rejects spoofed profiles, invalid prices and missing consent', () => {
  for(const profileUrl of ['http://google.com/maps','https://google.com.evil.test/maps','https://google.com@evil.test/maps','javascript:alert(1)']) assert.throws(()=>register.validate({...valid,profileUrl}));
