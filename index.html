@@ -572,7 +572,7 @@
         width: 135px;
       }
     }
-    #list-business { scroll-margin-top:200px; }
+    #list-business, #business-checkout { scroll-margin-top:200px; }
     .business-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
     .business-fields label { display:flex; flex-direction:column; gap:6px; font-weight:600; }
     .business-fields input,.business-fields select { width:100%; padding:12px; border:1px solid var(--border); border-radius:12px; background:var(--card); color:var(--text); }
@@ -1097,7 +1097,7 @@
           <li>✓ Per restaurant, per month</li>
           <li>✓ Profile and menu verification before listing</li>
         </ul>
-        <a class="btn btn-primary" href="#list-business">Enquire about monthly plan</a>
+        <a class="btn btn-primary" href="#business-checkout" data-billing-plan="monthly">Choose monthly plan</a>
       </div>
       <div class="card price-card">
         <span class="badge">HORECA · Annual</span>
@@ -1108,10 +1108,10 @@
           <li>✓ Per restaurant, for 12 months</li>
           <li>✓ Profile and menu verification before listing</li>
         </ul>
-        <a class="btn btn-secondary" href="#list-business">Enquire about annual plan</a>
+        <a class="btn btn-secondary" href="#business-checkout" data-billing-plan="annual">Choose annual plan</a>
       </div>
     </div>
-    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Paid plans are open for enquiries; online payment and subscription activation are coming soon.</p>
+    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Paid plans start after business approval and confirmed payment. Each purchase covers one month or one year; there is no automatic renewal.</p>
   </div>
 </section>
 
@@ -1380,6 +1380,25 @@
       <p id="businessListingStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
     </form>
   </div>
+</section>
+
+
+<section class="section" id="business-checkout">
+ <div class="container">
+  <div class="section-head"><div><h2>Activate your restaurant plan</h2><p class="sub">Already approved? Pay securely through Razorpay. New businesses should <a href="#list-business" style="text-decoration:underline">submit a listing first</a>.</p></div></div>
+  <form id="businessPaymentForm" class="card panel">
+   <p id="billingAvailability" class="mute" role="status">Checking payment availability…</p>
+   <div class="business-fields" style="margin-top:20px">
+    <label>Business reference *<input name="submissionId" required maxlength="36" autocomplete="off" placeholder="Your submission reference"></label>
+    <label>Private access code *<input name="accessCode" type="password" required maxlength="64" minlength="64" autocomplete="off" placeholder="Code provided when you submitted"></label>
+    <label>Restaurant plan *<select name="plan" required><option value="monthly">₹499 — 3 dishes for one month</option><option value="annual">₹4,999 — 2 dishes for one year</option></select></label>
+   </div>
+   <p class="small mute" style="margin:18px 0">One payment covers the selected period. No automatic renewal. Payment does not bypass business or menu verification. Save your business reference and private access code; never share the code publicly.</p>
+   <button type="submit" id="payBusinessPlan" class="btn btn-primary" disabled>Pay securely with Razorpay</button>
+   <button type="button" id="checkBusinessPayment" class="btn btn-light">Check payment status</button>
+   <p id="businessPaymentStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
+  </form>
+ </div>
 </section>
 
   </main>
@@ -2047,11 +2066,60 @@ document.addEventListener("DOMContentLoaded", () => {
      const response = await fetch('/api/business-listings', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
      const result = await response.json();
      if (!response.ok || !result.success) throw new Error(result.error || 'Unable to submit. Please try again.');
-     status.textContent = result.message + ' Your reference: ' + result.reference;
+     status.textContent = result.message + ' Save your business reference: ' + result.reference + '. Private access code: ' + result.accessCode + '. Keep this code private; you will need it to pay after approval.';
+     const paymentForm = document.getElementById('businessPaymentForm');
+     paymentForm.elements.submissionId.value = result.reference;
+     paymentForm.elements.accessCode.value = result.accessCode;
+     try { sessionStorage.setItem('suggestdishBusinessCheckout', JSON.stringify({submissionId:result.reference,accessCode:result.accessCode})); } catch {}
      form.reset();
    } catch(error) { status.textContent = error.message || 'Unable to submit. Please try again.'; }
    finally { button.disabled = false; }
  });
 </script>
+<script>
+(() => {
+ const form=document.getElementById('businessPaymentForm');
+ const pay=document.getElementById('payBusinessPlan');
+ const status=document.getElementById('businessPaymentStatus');
+ let available=false; let busy=false; let checkoutLoaded;
+ try {const saved=JSON.parse(sessionStorage.getItem('suggestdishBusinessCheckout') || 'null');if(saved){form.elements.submissionId.value=saved.submissionId;form.elements.accessCode.value=saved.accessCode;}} catch {}
+ const credentials=()=>({submissionId:form.elements.submissionId.value.trim(),accessCode:form.elements.accessCode.value.trim()});
+ async function api(path,body) {
+  const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(25000)});
+  let data;try {data=await response.json();}catch{throw new Error('The payment service is temporarily unavailable. Please try again later.');}
+  if(!response.ok || !data.success) throw new Error(data.error || 'Unable to complete this request.');
+  return data;
+ }
+ function loadCheckout() {
+  if(window.Razorpay) return Promise.resolve();
+  if(!checkoutLoaded) checkoutLoaded=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://checkout.razorpay.com/v1/checkout.js';script.onload=resolve;script.onerror=()=>{checkoutLoaded=null;reject(new Error('Razorpay could not load. Please try again.'));};document.head.appendChild(script);});
+  return checkoutLoaded;
+ }
+ function showResult(data) {
+  if(data.mode==='test' && data.status==='captured') {status.textContent='Test mode: no real money has been received. Production plans are not activated by test payments.';return;}
+  if(data.status==='captured' && new Date(data.endsAt)>new Date()) status.textContent='Payment confirmed. Your restaurant plan allows '+data.dishes+' verified dishes until '+new Date(data.endsAt).toLocaleDateString('en-IN')+'. Save your Razorpay receipt. No automatic renewal.';
+  else if(data.status==='refunded') status.textContent='This payment has been refunded. Its paid plan is inactive.';
+  else status.textContent=data.message || 'Business review: '+data.approval+'. Payment status: '+data.status+'. If you have paid, do not pay again; check status later or contact SuggestDish with your payment ID.';
+ }
+ fetch('/api/billing/config').then(r=>r.json()).then(data=>{available=data.available===true;pay.disabled=!available;document.getElementById('billingAvailability').textContent=available ? (data.mode==='test'?'Razorpay test mode — no real money will be charged.':'Secure Razorpay checkout is available for approved businesses.') : 'Online payments are being connected. Your free listing remains available.';}).catch(()=>{document.getElementById('billingAvailability').textContent='Payment availability could not be checked. Please reload later.';});
+ document.querySelectorAll('[data-billing-plan]').forEach(link=>link.addEventListener('click',()=>{form.elements.plan.value=link.dataset.billingPlan;}));
+ form.addEventListener('submit',async(event)=>{
+  event.preventDefault();if(!available || busy)return;busy=true;pay.disabled=true;status.textContent='Preparing secure checkout…';
+  const owner=credentials();
+  try {
+   await loadCheckout();
+   const order=await api('/api/billing/orders',{...owner,plan:form.elements.plan.value});
+   const checkout=new window.Razorpay({key:order.keyId,amount:order.amount,currency:order.currency,order_id:order.orderId,name:'SuggestDish',description:order.description,theme:{color:'#F36A21'},handler:async(result)=>{
+    status.textContent='Confirming payment…';
+    try{showResult(await api('/api/billing/verify',{...owner,...result}));}catch(error){status.textContent=error.message+' Save payment ID '+result.razorpay_payment_id+'. Do not pay again; use Check payment status.';}
+    finally{busy=false;pay.disabled=!available;}
+   },modal:{ondismiss:()=>{busy=false;pay.disabled=!available;status.textContent='Checkout closed. If you completed payment, use Check payment status before paying again.';}}});
+   checkout.on('payment.failed',()=>{status.textContent='Payment did not complete. Check payment status before retrying if your bank shows a debit.';});checkout.open();
+  }catch(error){status.textContent=error.message;busy=false;pay.disabled=!available;}
+ });
+ document.getElementById('checkBusinessPayment').addEventListener('click',async(event)=>{const button=event.currentTarget;button.disabled=true;status.textContent='Checking payment…';try{showResult(await api('/api/billing/status',credentials()));}catch(error){status.textContent=error.message;}finally{button.disabled=false;}});
+})();
+</script>
+
 </body>
 </html>
