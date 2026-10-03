@@ -1,0 +1,12 @@
+{
+  "snapshotSourceObjects": 84934,
+  "addedCandidates": 82726,
+  "existingSourceIdsSkipped": 2208,
+  "candidateTotalAfterImport": 84983,
+  "restaurantCountBefore": 61,
+  "restaurantCountAfter": 61,
+  "dishCountBefore": 2228,
+  "dishCountAfter": 2228,
+  "batchesCompleted": 57,
+  "completeBusinessCensus": false
+}
