@@ -494,7 +494,7 @@ app.get("/api/ai-recommend", async (req, res) => {
 
 
     const cuisineKeywords = {
-      "south indian": ["dosa", "idli", "paniyaram", "uttapam", "vada", "pongal", "podi"],
+      "south indian": ["dosa", "idli", "paniyaram", "uttapam", "medu vada", "dal vada", "pongal", "podi"],
       "north indian": ["paneer", "dal", "naan", "roti", "paratha", "chole", "rajma", "kulcha"],
       maharashtrian: ["misal", "vada pav", "puran poli", "modak", "poha", "sabudana", "thalipeeth"],
       indian: [
@@ -725,6 +725,12 @@ app.get("/api/ai-recommend", async (req, res) => {
       };
     });
 
+
+    // Do not fill cuisine-specific searches with unrelated restaurants.
+    for (let i = scoredDishes.length - 1; i >= 0; i--) {
+      if (selectedCuisineKeywords.length && !selectedCuisineKeywords.some(keyword => textForDish(scoredDishes[i]).includes(keyword))) scoredDishes.splice(i, 1);
+    }
+    if (!scoredDishes.length) return res.json({success:true, source:"database", recommendations:[], summary:"No available dishes match that cuisine within your budget and dietary settings. Try another cuisine or a higher budget."});
 
     // --------------------------------------------------
     // 8. SORT BEST CANDIDATES
