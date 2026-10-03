@@ -572,6 +572,10 @@
         width: 135px;
       }
     }
+    .business-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .business-fields label { display:flex; flex-direction:column; gap:6px; font-weight:600; }
+    .business-fields input,.business-fields select { width:100%; padding:12px; border:1px solid var(--border); border-radius:12px; background:var(--card); color:var(--text); }
+    @media(max-width:650px) { .business-fields { grid-template-columns:1fr; } }
   </style>
 
 </head>
@@ -596,6 +600,7 @@
     <a href="#ai-recommend">AI Recommend</a>
     <a href="#picks">Top picks</a>
     <a href="#horeca">Horeca</a>
+    <a href="#list-business">List your business</a>
     <a href="#transparency">Transparency</a>
     <a href="#pricing">Pricing</a>
     <a href="#compare">Compare</a>
@@ -1379,6 +1384,35 @@
 </section>
 ```
 
+
+<section class="section" id="list-business">
+  <div class="container">
+    <div class="section-head"><div><h2>List your HORECA business</h2><p class="sub">Help foodies discover your signature dish. Submit your restaurant, cafe, hotel or food business for review.</p></div></div>
+    <form id="businessListingForm" class="card" style="padding:28px">
+      <p class="mute" style="margin-bottom:20px">We check your Google Maps or Zomato profile and menu before adding your business to recommendations. A profile link helps us verify your details; it does not automatically verify ownership.</p>
+      <div class="business-fields">
+        <label>Business name *<input name="businessName" required maxlength="160" autocomplete="organization"></label>
+        <label>Business category *<select name="category" required><option value="">Choose category</option><option>Restaurant</option><option>Cafe</option><option>Hotel</option><option>Bakery</option><option>Catering</option><option>Other</option></select></label>
+        <label>City *<input name="city" required maxlength="100" autocomplete="address-level2"></label>
+        <label>Full business address *<input name="address" required maxlength="500" autocomplete="street-address"></label>
+        <label>Your name *<input name="contactName" required maxlength="100" autocomplete="name"></label>
+        <label>Contact email *<input name="email" type="email" required maxlength="254" autocomplete="email"></label>
+        <label>Phone number *<input name="phone" type="tel" required maxlength="20" autocomplete="tel"></label>
+        <label>Google Maps or Zomato profile link *<input name="profileUrl" type="url" required maxlength="2000" placeholder="https://maps.app.goo.gl/…"></label>
+        <label>Menu link (optional)<input name="menuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
+        <label>Signature dish name *<input name="dishName" required maxlength="160"></label>
+        <label>Dish price (₹) *<input name="dishPrice" type="number" required min="0.01" max="100000" step="0.01"></label>
+        <label>Dish dietary type *<select name="diet" required><option value="">Choose type</option><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
+      </div>
+      <div aria-hidden="true" style="display:none"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <label style="display:block;margin:20px 0"><input name="consent" type="checkbox" required> I am the owner or an authorised representative. I confirm these details are accurate and agree to be contacted about this submission.</label>
+      <p class="mute" style="margin-bottom:18px">Your contact details are used for listing review and are not displayed publicly by this form. Submission is free and does not guarantee approval or promotion.</p>
+      <button class="btn btn-primary" type="submit">Submit business for review</button>
+      <p id="businessListingStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
+    </form>
+  </div>
+</section>
+
   </main>
 
   <!-- FOOTER -->
@@ -2029,5 +2063,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+ document.getElementById('businessListingForm').addEventListener('submit', async function(event) {
+   event.preventDefault();
+   const form = event.currentTarget;
+   const button = form.querySelector('button[type="submit"]');
+   const status = document.getElementById('businessListingStatus');
+   const data = Object.fromEntries(new FormData(form));
+   data.consent = form.elements.consent.checked;
+   button.disabled = true; status.textContent = 'Submitting your business…';
+   try {
+     const response = await fetch('/api/business-listings', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+     const result = await response.json();
+     if (!response.ok || !result.success) throw new Error(result.error || 'Unable to submit. Please try again.');
+     status.textContent = result.message + ' Your reference: ' + result.reference;
+     form.reset();
+   } catch(error) { status.textContent = error.message || 'Unable to submit. Please try again.'; }
+   finally { button.disabled = false; }
+ });
+</script>
 </body>
 </html>
