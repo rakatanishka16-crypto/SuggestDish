@@ -1,0 +1,30 @@
+const test=require('node:test');const assert=require('node:assert/strict');
+const express=require('express');const register=require('../lib/razorpay-payments');
+const sid='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';const pid='cccccccc-cccc-4ccc-8ccc-cccccccccccc';const accessCode='a'.repeat(64);
+const env={RAZORPAY_ENABLED:'true',RAZORPAY_KEY_ID:'rzp_test_example',RAZORPAY_KEY_SECRET:'test-only-secret',RAZORPAY_WEBHOOK_SECRET:'test-only-webhook-secret'};
+async function harness({approval='approved',payment={},configured=env}={}) {
+ const calls=[];const gateway=[];let reserved=false;
+ const stored={id:pid,submissionId:sid,restaurantId:12,plan:'monthly',amount:49900,currency:'INR',keyId:env.RAZORPAY_KEY_ID,orderId:'order_example',status:'created'};
+ const sql=async(strings,...values)=>{const q=strings.join('?');calls.push({q,values});
+  if(q.includes('checkoutTokenHash'))return [{id:sid,status:approval,restaurantId:12,checkoutTokenHash:register.sha(accessCode)}];
+  if(q.includes('reserve_business_payment')){reserved=true;return[{id:pid}];}
+  if(q.includes('confirm_business_payment'))return[{...stored,status:values[2]?'refunded':'captured',endsAt:'2026-12-01T00:00:00Z'}];
+  if(q.startsWith('UPDATE'))return[];
+  return[{...stored}];};
+ const fetchImpl=async(url,options)=>{gateway.push({url,options});return{ok:true,json:async()=>options.method==='POST'?{id:'order_example',amount:49900,currency:'INR',status:'created'}:{id:'pay_example',order_id:'order_example',amount:49900,currency:'INR',status:'captured',amount_refunded:0,...payment}};};
+ const app=express();app.use(express.json({verify(req,res,buf){req.rawBody=Buffer.from(buf);}}));register(app,sql,{env:configured,fetchImpl});const server=app.listen(0);const base=`http://127.0.0.1:${server.address().port}`;
+ return {calls,gateway,get reserved(){return reserved;},post:async(path,body,headers={})=>{const raw=typeof body==='string'?body:JSON.stringify(body);const res=await fetch(base+path,{method:'POST',headers:{'Content-Type':'application/json',...headers},body:raw});return{status:res.status,body:await res.json()};},close:()=>server.close()};
+}
+const owner={submissionId:sid,accessCode};
+const proof={...owner,razorpay_order_id:'order_example',razorpay_payment_id:'pay_example',razorpay_signature:register.signature('order_example|pay_example',env.RAZORPAY_KEY_SECRET)};
+test('no keys means no checkout or gateway calls',async()=>{const h=await harness({configured:{}});try{assert.equal((await h.post('/api/billing/orders',{...owner,plan:'monthly'})).status,503);assert.equal(h.gateway.length,0);}finally{h.close();}});
+test('only approved owner can create an order',async()=>{const h=await harness({approval:'pending'});try{assert.equal((await h.post('/api/billing/orders',{...owner,plan:'monthly'})).status,409);assert.equal(h.reserved,false);assert.equal(h.gateway.length,0);}finally{h.close();}});
+test('wrong access code is rejected',async()=>{const h=await harness();try{assert.equal((await h.post('/api/billing/orders',{...owner,accessCode:'b'.repeat(64),plan:'monthly'})).status,403);assert.equal(h.gateway.length,0);}finally{h.close();}});
+test('server fixes monthly charge at 49900 paise despite client tampering',async()=>{const h=await harness();try{const r=await h.post('/api/billing/orders',{...owner,plan:'monthly',amount:1});assert.equal(r.status,200);assert.equal(r.body.amount,49900);assert.equal(JSON.parse(h.gateway[0].options.body).amount,49900);assert.equal(JSON.stringify(r.body).includes(env.RAZORPAY_KEY_SECRET),false);}finally{h.close();}});
+test('forged checkout signature never activates a plan',async()=>{const h=await harness();try{assert.equal((await h.post('/api/billing/verify',{...proof,razorpay_signature:'0'.repeat(64)})).status,400);assert.equal(h.gateway.length,0);assert.equal(h.calls.some(c=>c.q.includes('confirm_business_payment')),false);}finally{h.close();}});
+test('signed payment with wrong amount is rejected',async()=>{const h=await harness({payment:{amount:1}});try{assert.equal((await h.post('/api/billing/verify',proof)).status,503);assert.equal(h.calls.some(c=>c.q.includes('confirm_business_payment')),false);}finally{h.close();}});
+test('authorised but uncaptured payment stays pending',async()=>{const h=await harness({payment:{status:'authorized'}});try{const r=await h.post('/api/billing/verify',proof);assert.equal(r.status,202);assert.equal(r.body.status,'pending');assert.equal(h.calls.some(c=>c.q.includes('confirm_business_payment')),false);}finally{h.close();}});
+test('captured payment uses database confirmation; test mode is explicit',async()=>{const h=await harness();try{const r=await h.post('/api/billing/verify',proof);assert.equal(r.body.status,'captured');assert.equal(r.body.mode,'test');assert.equal(h.calls.filter(c=>c.q.includes('confirm_business_payment')).length,1);}finally{h.close();}});
+test('webhook checks HMAC against exact raw body before processing',async()=>{const h=await harness();try{const body=JSON.stringify({event:'payment.captured',payload:{payment:{entity:{id:'pay_example'}}}});assert.equal((await h.post('/api/razorpay-webhook',body,{'X-Razorpay-Signature':'0'.repeat(64)})).status,400);assert.equal(h.gateway.length,0);assert.equal((await h.post('/api/razorpay-webhook',body,{'X-Razorpay-Signature':register.signature(body,env.RAZORPAY_WEBHOOK_SECRET)})).status,200);assert.equal(h.calls.filter(c=>c.q.includes('confirm_business_payment')).length,1);}finally{h.close();}});
+test('refund confirmation revokes the paid record',async()=>{const h=await harness({payment:{status:'refunded',amount_refunded:49900}});try{const r=await h.post('/api/billing/verify',proof);assert.equal(r.body.status,'refunded');assert.equal(h.calls.find(c=>c.q.includes('confirm_business_payment')).values[2],true);}finally{h.close();}});
+test('plan prices and access signature helpers are exact',()=>{assert.equal(register.PLANS.annual.amount,499900);assert.equal(register.PLANS.annual.dishes,2);assert.equal(register.PLANS.monthly.dishes,3);assert.equal(register.equalHex('x'.repeat(64),'x'.repeat(64)),false);});
