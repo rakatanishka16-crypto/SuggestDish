@@ -822,6 +822,7 @@
 
         <p class="mute" id="aiRestaurant"></p>
         <p class="small mute" id="aiDishMeta"></p>
+        <a id="aiEvidenceSource" hidden target="_blank" rel="noopener noreferrer" style="text-decoration:underline">View restaurant menu evidence</a>
 
         <div class="divider"></div>
 
@@ -1935,6 +1936,7 @@ document.addEventListener("DOMContentLoaded", () => {
               for (const [tag, value] of [["h3", item.dishName], ["p", item.restaurant], ["p", item.reason], ["p", [Number.isFinite(Number(item.price)) && item.price != null ? "₹" + Number(item.price) : null, item.vegetarian === true ? "Vegetarian" : "Non-vegetarian", item.address, item.distanceKm != null ? item.distanceKm + " km away" : null].filter(Boolean).join(" · ")]]) {
                 const line = document.createElement(tag); line.textContent = value || ""; card.append(line);
               }
+              if (item.starSourceUrl) { try { const source = new URL(item.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { const link = document.createElement("a"); link.href = source.href; link.target = "_blank"; link.rel = "noopener noreferrer"; link.textContent = "View restaurant menu evidence"; card.append(link); } } catch {} }
               moreResults.append(card);
             }
             moreResults.style.display = recommendations.length > 1 ? "block" : "none";
@@ -1989,6 +1991,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const primaryMeta = document.getElementById("aiDishMeta");
           if (primaryMeta) primaryMeta.textContent = [first.price != null ? "₹" + Number(first.price) : null, first.vegetarian === true ? "Vegetarian" : "Non-vegetarian", first.address, first.distanceKm != null ? first.distanceKm + " km away" : null].filter(Boolean).join(" · ");
+          const evidenceLink = document.getElementById("aiEvidenceSource");
+          if (evidenceLink) { evidenceLink.hidden = true; try { const source = new URL(first.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { evidenceLink.href = source.href; evidenceLink.hidden = false; } } catch {} }
           /* Show result */
 
           if (aiResult) {

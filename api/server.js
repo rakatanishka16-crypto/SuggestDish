@@ -14,6 +14,7 @@ const sql = neon(process.env.DATABASE_URL);
 require("../lib/business-listings")(app, sql);
 require("../lib/business-directory")(app, sql);
 require("../lib/business-stars")(app, sql);
+const { label: starEvidenceLabel } = require("../lib/star-evidence");
 require("../lib/business-review")(app, sql);
 require("../lib/razorpay-payments")(app, sql);
 
@@ -274,8 +275,12 @@ app.get("/api/ai-recommend", async (req, res) => {
         d.price,
         d."isVeg",
         r.id AS "restaurantId",
-        (sd."dishId" IS NOT NULL) AS "starConfirmed",
-        sd."popularityBasis", sd."popularityVerified",
+        (sd."dishId" IS NOT NULL OR cs."dishId" IS NOT NULL) AS "starConfirmed",
+        CASE WHEN sd."dishId" IS NOT NULL THEN 'owner_claim' WHEN cs."dishId" IS NOT NULL THEN 'published_menu' ELSE NULL END AS "starOrigin",
+        COALESCE(sd."popularityBasis",cs."evidenceKind") AS "popularityBasis",
+        COALESCE(sd."popularityVerified",false) AS "popularityVerified",
+        COALESCE(sr."menuUrl",cs."sourceUrl") AS "starSourceUrl",
+        cs."sourceCheckedAt",
         r.name AS "restaurantName",
         r.address AS "restaurantAddress",
         r.city AS "restaurantCity",
@@ -285,7 +290,12 @@ app.get("/api/ai-recommend", async (req, res) => {
       JOIN "Restaurant" r
         ON r.id = d."restaurantId"
       LEFT JOIN "RestaurantStarDish" sd ON sd."dishId"=d.id AND sd.slot<=public.restaurant_star_limit(r.id)
-      WHERE (sd."dishId" IS NOT NULL OR NOT EXISTS (SELECT 1 FROM "RestaurantStarDish" current_star WHERE current_star."restaurantId"=r.id))
+      LEFT JOIN "StarDishRevision" sr ON sr.id=sd."revisionId"
+      LEFT JOIN "SourceStarDish" cs ON cs."dishId"=d.id AND cs."restaurantId"=r.id AND cs."expiresAt">NOW()
+        AND NOT EXISTS (SELECT 1 FROM "RestaurantStarDish" current_star WHERE current_star."restaurantId"=r.id)
+      WHERE (sd."dishId" IS NOT NULL OR cs."dishId" IS NOT NULL OR
+        (NOT EXISTS (SELECT 1 FROM "RestaurantStarDish" current_star WHERE current_star."restaurantId"=r.id)
+         AND NOT EXISTS (SELECT 1 FROM "SourceStarDish" current_source WHERE current_source."restaurantId"=r.id AND current_source."expiresAt">NOW())))
         AND d.price IS NOT NULL
         AND d.price <= ${budget}
         AND (${city} = '' OR LOWER(TRIM(r.city)) = LOWER(${city}))
@@ -755,6 +765,8 @@ app.get("/api/ai-recommend", async (req, res) => {
         dish.distanceKm !== null
           ? Number(dish.distanceKm.toFixed(2))
           : null,
+      starOrigin: dish.starOrigin || null,
+      popularityBasis: dish.popularityBasis || null,
       relevanceScore: dish.relevanceScore
     }));
 
@@ -833,7 +845,9 @@ Return exactly:
       starConfirmed: dish.starConfirmed === true,
       popularityBasis: dish.popularityBasis || null,
       popularityVerified: dish.popularityVerified === true,
-      reason: (dish.starConfirmed ? "Approved star dish (popularity " + (dish.popularityVerified ? "independently checked" : "owner-reported") + "). " : "Menu suggestion — star dish not yet confirmed. ") + (dish.distanceKm === null
+      starOrigin: dish.starOrigin || null,
+      starSourceUrl: dish.starSourceUrl || null,
+      reason: starEvidenceLabel(dish) + (dish.distanceKm === null
         ? `Listed at ₹${Number(dish.price)} within your budget.`
         : `Listed at ₹${Number(dish.price)}, ${dish.distanceKm.toFixed(1)} km away.`)
     }));
@@ -951,8 +965,10 @@ Return exactly:
                 starConfirmed: candidate.starConfirmed === true,
                 popularityBasis: candidate.popularityBasis || null,
                 popularityVerified: candidate.popularityVerified === true,
+                starOrigin: candidate.starOrigin || null,
+                starSourceUrl: candidate.starSourceUrl || null,
                 reason:
-                  (candidate.starConfirmed ? "Approved star dish (popularity " + (candidate.popularityVerified ? "independently checked" : "owner-reported") + "). " : "Menu suggestion — star dish not yet confirmed. ") + String(
+                  starEvidenceLabel(candidate) + String(
                     recommendation.reason ||
                       "This dish matches your preferences."
                   ).trim()
