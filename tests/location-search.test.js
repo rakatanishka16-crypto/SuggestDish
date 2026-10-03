@@ -156,5 +156,12 @@ test('South Indian fallback ranks source-backed paniyaram above unrelated cheape
   const {body}=await h.request('/api/ai-recommend',{city:'Mumbai',cuisine:'South Indian',budget:'180',vegetarian:'true'});
   assert.equal(body.recommendations[0].dishName,'Masala Paniyaram');
   assert.equal(body.recommendations[0].starOrigin,'published_menu');
+  assert.equal(body.recommendations.length,1);
   assert.match(body.recommendations[0].reason,/Restaurant-listed signature/);
+});
+
+test('South Indian search does not label vada pav as South Indian or pad empty results',async()=>{
+  const h=serverHarness({rows:[{id:1,name:'Vada Pav - Single Piece',price:65,isVeg:true,restaurantId:1,restaurantName:'Thepla House',restaurantCity:'Mumbai',restaurantAddress:'Mumbai',latitude:null,longitude:null}]});
+  const {body}=await h.request('/api/ai-recommend',{city:'Mumbai',cuisine:'South Indian',budget:'200',vegetarian:'true'});
+  assert.equal(body.recommendations.length,0);assert.match(body.summary,/No available dishes match that cuisine/);
 });
