@@ -19,6 +19,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
   vm.runInNewContext(fs.readFileSync(path.join(root, 'api/server.js'), 'utf8'), {
     require(name) {
       if (name === '../lib/razorpay-payments') return require('../lib/razorpay-payments');
+      if (name === '../lib/star-evidence') return require('../lib/star-evidence');
       if (name === '../lib/business-stars') return require('../lib/business-stars');
       if (name === '../lib/business-directory') return require('../lib/business-directory');
       if (name === '../lib/business-review') return require('../lib/business-review');
