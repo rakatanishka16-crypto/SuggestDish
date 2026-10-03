@@ -18,7 +18,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
   };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'api/server.js'), 'utf8'), {
     require(name) {
-      if (name === './business-listings') return require('../api/business-listings');
+      if (name === '../lib/business-listings') return require('../lib/business-listings');
       if (name === 'dotenv') return { config() {} };
       if (name === 'express') return express;
       if (name === 'cors') return () => () => {};
