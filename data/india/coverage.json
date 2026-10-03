@@ -1,0 +1,31 @@
+{
+  "collectedAt": "2026-10-03T15:44:15.266660+00:00",
+  "source": "Geofabrik India OpenStreetMap extract",
+  "sourceUrl": "https://download.geofabrik.de/asia/india.html",
+  "totalSourceObjects": 84934,
+  "withCityTag": 11820,
+  "withAddress": 18250,
+  "withNodeCoordinates": 72607,
+  "categories": {
+    "tourism:hotel": 14659,
+    "amenity:cafe": 9443,
+    "amenity:restaurant": 30029,
+    "shop:confectionery": 1343,
+    "amenity:fast_food": 10232,
+    "tourism:guest_house": 5116,
+    "shop:bakery": 7578,
+    "amenity:ice_cream": 1383,
+    "amenity:pub": 525,
+    "amenity:food_court": 1193,
+    "amenity:bar": 1857,
+    "shop:pastry": 533,
+    "tourism:motel": 632,
+    "craft:caterer": 304,
+    "shop:deli": 98,
+    "shop:catering": 1,
+    "tourism:resort": 8
+  },
+  "excludedClosedTaggedObjects": 7,
+  "completeBusinessCensus": false,
+  "hotelFoodServiceVerified": false
+}
