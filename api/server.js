@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const sql = neon(process.env.DATABASE_URL);
+require("./business-listings")(app, sql);
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
