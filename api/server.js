@@ -764,6 +764,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     // --------------------------------------------------
 
     const prompt = `
+Never invent ratings, popularity, most-ordered status or ownership. Do not claim unconfirmed menu dishes are star dishes.
 You are the AI recommendation engine for SuggestDish.
 
 Your job is to select the most suitable dishes from the supplied
@@ -832,7 +833,7 @@ Return exactly:
       starConfirmed: dish.starConfirmed === true,
       popularityBasis: dish.popularityBasis || null,
       popularityVerified: dish.popularityVerified === true,
-      reason: (dish.starConfirmed ? "Approved star dish. " : "Menu suggestion — star dish not yet confirmed. ") + (dish.distanceKm === null
+      reason: (dish.starConfirmed ? "Approved star dish (popularity " + (dish.popularityVerified ? "independently checked" : "owner-reported") + "). " : "Menu suggestion — star dish not yet confirmed. ") + (dish.distanceKm === null
         ? `Listed at ₹${Number(dish.price)} within your budget.`
         : `Listed at ₹${Number(dish.price)}, ${dish.distanceKm.toFixed(1)} km away.`)
     }));
@@ -951,7 +952,7 @@ Return exactly:
                 popularityBasis: candidate.popularityBasis || null,
                 popularityVerified: candidate.popularityVerified === true,
                 reason:
-                  (candidate.starConfirmed ? "Approved star dish. " : "Menu suggestion — star dish not yet confirmed. ") + String(
+                  (candidate.starConfirmed ? "Approved star dish (popularity " + (candidate.popularityVerified ? "independently checked" : "owner-reported") + "). " : "Menu suggestion — star dish not yet confirmed. ") + String(
                     recommendation.reason ||
                       "This dish matches your preferences."
                   ).trim()
