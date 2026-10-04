@@ -1,13 +1,12 @@
 require("dotenv").config();
 
 const express = require("express");
-const cors = require("cors");
 const { neon } = require("@neondatabase/serverless");
 const { GoogleGenAI } = require("@google/genai");
 
 const app = express();
 
-app.use(cors());
+require('../lib/launch-security')(app);
 app.use(express.json({ limit: "100kb", verify(req, res, buf) { req.rawBody = Buffer.from(buf); } }));
 
 const sql = neon(process.env.DATABASE_URL);
@@ -27,6 +26,11 @@ const ai = new GoogleGenAI({
 });
 
 const PORT = process.env.PORT || 3000;
+
+app.get('/api/db-test', async (req,res) => {
+  try { const rows=await sql`SELECT COUNT(*)::int AS count FROM "Restaurant"`; res.json({success:true,restaurantCount:rows[0].count}); }
+  catch {res.status(503).json({success:false,error:'Database diagnostics are temporarily unavailable.'});}
+});
 
 // A typed city filters the same production dishes used by recommendations.
 app.get("/api/location-search", async (req, res) => {
@@ -167,7 +171,7 @@ app.get("/api/geocode-restaurants", async (req, res) => {
 
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Restaurant geocoding is temporarily unavailable.'
     });
   }
 });
@@ -207,7 +211,7 @@ app.get("/api/ai-test", async (req, res) => {
 
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'AI diagnostics are temporarily unavailable.'
     });
   }
 });
@@ -237,6 +241,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     const taste = String(req.query.taste || "any").trim();
     const cuisine = String(req.query.cuisine || "any").trim();
     const mood = String(req.query.mood || "any").trim();
+    if ([taste,cuisine,mood].some(value=>value.length>80)) return res.status(400).json({success:false,error:'Keep taste, cuisine and mood within 80 characters.'});
     const city = String(req.query.city || "").trim();
     if (city.length > 120) {
       return res.status(400).json({ success: false, error: "City name is too long." });
@@ -245,6 +250,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     const customPreferences = String(req.query.customPreferences || "").trim();
     if (customPreferences.length > 500) return res.status(400).json({success:false,error:"Keep custom preferences within 500 characters."});
     const budgetRaw = Number(req.query.budget || 500);
+    if (req.query.budget !== undefined && (typeof req.query.budget !== 'string' || !req.query.budget.trim() || !Number.isFinite(budgetRaw) || budgetRaw <= 0 || budgetRaw > 100000)) return res.status(400).json({success:false,error:'Enter a maximum dish budget between ₹0.01 and ₹100,000.'});
     let budget =
       Number.isFinite(budgetRaw) && budgetRaw > 0
         ? Math.min(budgetRaw, 100000)
@@ -1108,7 +1114,7 @@ Return exactly:
 
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Recommendations are temporarily unavailable. Please try again shortly.'
     });
   }
 });
@@ -1126,4 +1132,3 @@ if (require.main === module) {
 }
 
 module.exports = app;
-

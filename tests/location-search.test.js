@@ -19,6 +19,8 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
   };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'api/server.js'), 'utf8'), {
     require(name) {
+      // Middleware has its own HTTP integration tests; this harness exercises route data flow.
+      if (name === '../lib/launch-security') return () => {};
       if (name === '../lib/razorpay-payments') return require('../lib/razorpay-payments');
       if (name === '../lib/dish-events') return require('../lib/dish-events');
       if (name === '../lib/business-media') return require('../lib/business-media');

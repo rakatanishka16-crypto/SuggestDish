@@ -10,6 +10,25 @@
   />
   <title>SuggestDish AI — Find the best dish</title>
 
+  <link rel="canonical" href="https://www.suggestdish.com/" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SuggestDish" />
+  <meta property="og:title" content="SuggestDish — Find your next dish" />
+  <meta property="og:description" content="Discover dishes for your taste, budget, mood and location using available menu data." />
+  <meta property="og:url" content="https://www.suggestdish.com/" />
+  <meta property="og:image" content="https://www.suggestdish.com/social-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="SuggestDish: find your next dish for your taste, budget, mood and location." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SuggestDish — Find your next dish" />
+  <meta name="twitter:description" content="Discover dishes for your taste, budget, mood and location." />
+  <meta name="twitter:image" content="https://www.suggestdish.com/social-preview.png" />
+  <link rel="stylesheet" href="/launch.css" />
+  <script src="/privacy-controls.js" defer></script>
+
   <style>
     :root {
       --bg: #FFF4DF;
@@ -244,7 +263,7 @@
       border-radius: 30px;
       background-image:
         linear-gradient(rgba(56, 37, 28, 0.08), rgba(56, 37, 28, 0.08)),
-        url("https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1200&q=80");
+        url("https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=65");
       background-size: cover;
       background-position: center;
       box-shadow: var(--shadow);
@@ -593,8 +612,8 @@
     <div class="container nav-inner">
       <a href="#home">
         <img
-          class="site-logo"
-          src="https://raw.githubusercontent.com/rakatanishka16-crypto/SuggestDish/main/logo.jpeg"
+          class="site-logo" width="320" height="320" decoding="async"
+          src="/logo.webp"
           alt="SuggestDish"
         />
       </a>
@@ -631,7 +650,8 @@
       </p>
 
       <div class="cta-row">
-        <button class="btn btn-primary" id="enableLocation">
+        <a class="btn btn-primary" href="#ai-recommend">Find My Dish</a>
+        <button class="btn btn-light" id="enableLocation">
           📍 Enable Location
         </button>
 
@@ -927,9 +947,9 @@
 
       <article class="card dish-card">
         <img
-          class="dish-image"
-          src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80"
-          alt="Paneer dish"
+          class="dish-image" width="800" height="520" loading="lazy" decoding="async"
+          src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=65"
+          alt="Illustrative vegetarian meal photo; not the actual Paneer Masala"
         />
 
         <div class="dish-content">
@@ -952,9 +972,9 @@
 
       <article class="card dish-card">
         <img
-          class="dish-image"
-          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80"
-          alt="Food dish"
+          class="dish-image" width="800" height="520" loading="lazy" decoding="async"
+          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=65"
+          alt="Illustrative food photo; not a listed restaurant dish"
         />
 
         <div class="dish-content">
@@ -976,9 +996,9 @@
 
       <article class="card dish-card">
         <img
-          class="dish-image"
-          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80"
-          alt="Burger"
+          class="dish-image" width="800" height="520" loading="lazy" decoding="async"
+          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=65"
+          alt="Illustrative burger photo; not a listed restaurant dish"
         />
 
         <div class="dish-content">
@@ -1485,8 +1505,8 @@
 
   <div>
     <img
-      class="site-logo"
-      src="https://raw.githubusercontent.com/rakatanishka16-crypto/SuggestDish/main/logo.jpeg"
+      class="site-logo" width="320" height="320" decoding="async"
+      src="/logo.webp"
       alt="SuggestDish"
     />
 
@@ -1527,6 +1547,10 @@
 
 </div>
 
+    <div class="container footer-links" style="margin-top:24px;display:flex;flex-wrap:wrap;gap:20px">
+      <a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms &amp; conditions</a>
+      <button type="button" class="btn btn-light" data-open-privacy>Cookie &amp; analytics settings</button>
+    </div>
   </footer>
 
   <script>
@@ -2135,7 +2159,7 @@ document.addEventListener("DOMContentLoaded", () => {
               "block";
           }
           const shownIds=recommendations.map(x=>x.dishId).filter(x=>Number.isSafeInteger(x)&&x>0).slice(0,3);
-          if(shownIds.length)fetch("/api/dish-events",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({event:"recommendation_shown",dishIds:shownIds}),keepalive:true}).catch(()=>{});
+          if(shownIds.length)window.SuggestDishPrivacy?.record("recommendation_shown",shownIds);
 
 
         } catch (error) {
@@ -2356,6 +2380,6 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
   </form></dialog>
 <script src="/foodie-controls.js" defer></script><script src="/dish-feedback.js" defer></script>
 <script>
-document.addEventListener('click',event=>{const target=event.target.closest('[data-dish-event]');if(!target)return;const id=Number(target.dataset.dishId);if(!Number.isSafeInteger(id)||id<1)return;fetch('/api/dish-events',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event:target.dataset.dishEvent,dishIds:[id]}),keepalive:true}).catch(()=>{});});
+document.addEventListener('click',event=>{const target=event.target.closest('[data-dish-event]');if(!target)return;const id=Number(target.dataset.dishId);if(!Number.isSafeInteger(id)||id<1)return;window.SuggestDishPrivacy?.record(target.dataset.dishEvent,[id]);});
 </script></body>
 </html>
