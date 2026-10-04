@@ -71,24 +71,29 @@ Done means the specified behavior is implemented. Partial means more work/data i
 | 24 | Dish evidence vs restaurant rating | Partial | Do not fabricate dish ratings; more evidence display pending |
 | 25 | Accurate photo label | Done | Matching reviewed media only; actual vs representative contract |
 | 26 | Recommendation refinements | Partial | Cheaper, closer, different and reset; evidence-based less-spicy pending |
-| 27 | Dislike reasons | Queued | Moderated feedback records |
+| 27 | Dislike reasons | Partial | Form and moderated backend added; live persistence needs verification |
 | 28 | Empty-result recovery | Done | Edit request or explicitly expand distance; constraints preserved |
 | 29 | Hindi/Hinglish search | Partial | Selected Hindi aliases only; full preference understanding pending |
 | 30 | Local dish aliases | Done | Golgappa/panipuri/puchka, khichdi and selected Hindi names |
 | 31 | WhatsApp sharing | Done | User-initiated share links |
 | 32 | Preference memory | Done | Opt-in on-device persistence and forget; precise location excluded |
-| 33 | Tried-it feedback | Queued | Moderation and database storage |
-| 34 | Correction reports | Queued | Moderation and database storage |
+| 33 | Tried-it feedback | Partial | Tried-it assertion, optional ratings, private moderation; persistence needs live verification |
+| 34 | Correction reports | Partial | Bounded reports and private review; persistence needs live verification |
 | 35 | Mobile usability | Partial | Focus/touch/overflow improvements; full phone verification pending |
 | 36 | Sponsored labels | Queued | No payment-based ranking introduced |
 | 37 | Paid listings respect constraints | Partial | Existing budget/diet filtering retained; full sponsorship tests pending |
 | 38 | Directory vs menu readiness | Done | Visible distinction and partial coverage copy |
 | 39 | Owner menu/photo upload | Queued | Reviewed ownership and durable storage |
-| 40 | Submission status journey | Partial | Private status already exists; clearer progress UI pending |
+| 40 | Submission status journey | Done | Dashboard and claim status show explicit review stages |
 | 41 | Verified ownership and controlled edits | Partial | Protected claims exist; badge display pending |
-| 42 | Owner dashboard | Queued | Consolidate existing protected owner tools |
+| 42 | Owner dashboard | Partial | Hub and protected submission lookup added; direct media/profile editing pending |
 | 43 | Actual performance metrics | Queued | Event collection and reporting; never call clicks orders |
-| 44 | About/contact/privacy/corrections | Queued | Founder-confirmed public contact/legal details needed |
-| 45 | Honest source coverage | Partial | Clear copy; locality-level menu counts pending |
+| 44 | About/contact/privacy/corrections | Partial | About, data flow and approved Instagram support added; legal business details not supplied |
+| 45 | Honest source coverage | Partial | City-level priced menu counts added; locality counts not available |
 
 Batch two implements ten improvements associated with items 8, 9, 14, 15, 23, 26, 28, 30, 32 and 38. Partial audit items remain partial. Automated tests: 55 pass before publishing this batch.
+
+## Batch three
+Implemented customer dislike reasons, tried-it feedback, correction reports, protected moderation, dining-mode selection with unverified-suitability disclosure, evidence/unknown-fact cards, review-status progress, business dashboard, approved Instagram support/privacy copy, and city-level priced-menu counts. Vegan/Jain requests explicitly require verified preparation and otherwise return no match. Sponsored badge rendering is reserved for explicit sponsored records; no paid placement is introduced.
+
+CustomerFeedback is an additive table created lazily by the protected moderation queue or a valid customer submission. Local tests verify validation, bound SQL, duplicate handling, unavailable storage, missing/wrong reviewer keys and moderation boundaries. It does not edit Dish records or publish customer ratings. Runtime database persistence is pending verification; do not claim it has been verified merely because mock tests pass. No public fabricated feedback is submitted for testing.

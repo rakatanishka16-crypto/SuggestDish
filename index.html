@@ -579,6 +579,7 @@
     @media(max-width:650px) { .business-fields { grid-template-columns:1fr; } }
       :focus-visible { outline: 3px solid #F36A21; outline-offset: 3px; }
     .field { min-width:0; max-width:100%; }
+    @media(max-width:900px) { .nav-inner { flex-wrap:wrap; gap:12px; padding:12px 0; } .nav-links { display:flex; flex-wrap:wrap; width:100%; gap:12px; } }
     @media (max-width:600px) { .nav-links { flex-wrap:wrap; gap:12px; } .btn { min-height:44px; white-space:normal; } .row { flex-wrap:wrap; } }
 </style>
 
@@ -602,7 +603,7 @@
     <a href="#ai-recommend">Find my dish</a>
     <a href="#saved-dishes">Saved dishes</a>
     <a href="#how-it-works">How it works</a>
-    <a href="#horeca">For businesses</a>
+    <a href="/owner-dashboard.html">For businesses</a>
   </div>
 </div>
 
@@ -642,6 +643,7 @@
         <label for="locationQuery"><strong>City or locality</strong></label>
         <input id="locationQuery" class="field" maxlength="120" list="supportedCities" placeholder="For example: Bandra West, Mumbai" />
         <datalist id="supportedCities"><option value="Mumbai"></option><option value="Jalna"></option></datalist>
+        <p id="menuCoverage" class="small mute" role="status"></p>
         <p id="selectedLocation" class="small mute" role="status" aria-live="polite">No location selected. Choose a city or allow location for nearby results.</p>
         <button type="button" id="clearLocation" class="btn btn-light">Clear location</button>
       </div>
@@ -808,12 +810,15 @@
 
       <label for="aiRadius"><strong>Maximum distance</strong></label>
       <select id="aiRadius" class="field"><option value="1">Within 1 km</option><option value="2">Within 2 km</option><option value="5" selected>Within 5 km</option><option value="10">Within 10 km</option><option value="25">Within 25 km</option></select>
-      <p class="small mute">Distance applies after you choose a location. Prices are per dish; delivery fees and taxes may differ.</p>
+      <p class="small mute">Distance applies when exact location coordinates are available. City-only searches cover the selected city. Prices are per dish; delivery fees and taxes may differ.</p>
       <div class="divider"></div>
 
 
+      <label for="aiDiningMode"><strong>How will you eat?</strong></label>
+      <select id="aiDiningMode" class="field"><option value="any">Any</option><option value="delivery">Delivery at home</option><option value="dine-in">Dine-in</option><option value="takeaway">Takeaway</option></select>
+      <p class="small mute">Delivery suitability and dine-in experience are not independently verified yet. This selection does not guarantee either.</p>
       <label for="aiDiet"><strong>Dietary preference</strong></label>
-      <select id="aiDiet" class="field"><option value="vegetarian" selected>Vegetarian</option><option value="nonvegetarian">Non-vegetarian</option><option value="any">Any dietary type</option></select>
+      <select id="aiDiet" class="field"><option value="vegetarian" selected>Vegetarian</option><option value="nonvegetarian">Non-vegetarian</option><option value="any">Any dietary type</option><option value="vegan">Vegan — verified ingredients required</option><option value="jain">Jain — verified preparation required</option></select>
 
 
       <div class="cta-row">
@@ -1344,6 +1349,7 @@
   </div>
 </section>
 
+<section class="section" id="about-support"><div class="container"><h2>About SuggestDish</h2><p>SuggestDish is a dish discovery website. We match available menu dishes to your preferences; restaurant listings, dish evidence and source coverage can be incomplete.</p><h3>Help and corrections</h3><p>Use Report incorrect information on a dish card, or contact <a href="https://www.instagram.com/suggestdish.ai/" target="_blank" rel="noopener noreferrer">@suggestdish.ai on Instagram</a>. Business ownership and menu changes are reviewed before publication.</p><h3>Privacy and preference controls</h3><p>Your search preferences and selected location are sent to SuggestDish to find dishes. Preferences may be sent to Google Gemini to interpret your request; locality resolution may use Geoapify. Precise location is requested through browser permission. Saved dishes and optional remembered preferences remain on this device. Location is not included in remembered preferences.</p><p>Feedback is stored for private moderation. Business contact details and ownership evidence are used for listing review. Keep private access codes private. You can remove saved dishes and forget remembered preferences using the website controls. Contact us on Instagram for other privacy requests.</p><p>Paid plans are paused. Buying dish slots does not guarantee placement; any future sponsored placement must be labelled and respect your dietary and budget constraints.</p></div></section>
 <!-- SAVE / SHARE -->
 <section class="section" id="saved-dishes">
   <div class="container">
@@ -1542,7 +1548,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let excludedDishIds = [];
   let lastRecommendations = [];
   const updateLocationLabel = text => { const label = document.getElementById("selectedLocation"); if (label) label.textContent = text; };
-  document.getElementById("clearLocation")?.addEventListener("click", () => { if (locationPending) return; userLatitude = null; userLongitude = null; selectedCity = ""; updateLocationLabel("No location selected. Distance filtering requires a location."); });
+  document.getElementById("clearLocation")?.addEventListener("click", () => { if (locationPending) return; userLatitude = null; userLongitude = null; selectedCity = ""; updateLocationLabel("No location selected. Distance filtering requires a location."); const coverage=document.getElementById("menuCoverage"); if(coverage)coverage.textContent=""; });
   let locationPending = false;
 
 
@@ -1723,7 +1729,10 @@ document.addEventListener("DOMContentLoaded", () => {
           selectedCity = city;
           userLatitude = hasCoordinates ? data.latitude : null;
           userLongitude = hasCoordinates ? data.longitude : null;
-          updateLocationLabel(`Location: ${data.label}`);
+          updateLocationLabel(`Location: ${data.label}` + (hasCoordinates ? "" : " — city-wide search; distance unavailable"));
+          const coverage=document.getElementById("menuCoverage");
+          if (coverage && city) { coverage.textContent="Checking menu coverage…"; try { const r=await fetch("/api/menu-coverage?"+new URLSearchParams({city}),{signal:AbortSignal.timeout(10000)}); const counts=await r.json(); if(!r.ok || !counts.success)throw Error(); coverage.textContent=`${city}: ${counts.restaurants} restaurants with ${counts.dishes} priced menu records. Current prices and availability may differ; directory listings are separate.`; }catch{coverage.textContent="Menu coverage could not be checked. Directory listings do not confirm available menus.";} }
+          else if(coverage)coverage.textContent="Locality-level coverage counts are not available. Results use menu records within your selected radius when coordinates are available.";
           toast(`Location set to ${data.label}. Choose your preferences and tap Recommend My Dish.`);
         } catch (error) {
           toast(error.message);
@@ -1768,6 +1777,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const checked = dish.sourceCheckedAt && new Date(dish.sourceCheckedAt);
     freshness.textContent = checked && !Number.isNaN(checked.getTime()) ? "Star-dish source checked: " + checked.toLocaleDateString("en-IN") + ". Current price and availability: confirm with the restaurant." : "Current price and availability are not independently confirmed. Check with the restaurant before travelling or ordering.";
     container.append(freshness, row);
+    if (Number.isSafeInteger(dish.dishId)) {
+      for (const [kind,label] of [["dislike","Not for me"],["review","I tried this dish"],["correction","Report incorrect information"]]) {
+        const button=document.createElement("button");button.type="button";button.className="btn btn-light";button.textContent=label;button.dataset.feedbackKind=kind;button.dataset.dishId=String(dish.dishId);button.dataset.dishName=dish.dishName;container.append(button);
+      }
+    }
+    if (dish.sponsored === true) { const sponsored=document.createElement("span"); sponsored.className="badge"; sponsored.textContent="Sponsored"; container.prepend(sponsored); }
+    const evidence=document.createElement("p");evidence.className="small mute";
+    evidence.textContent=dish.starOrigin==="owner_claim" ? "Owner-submitted star dish. Popularity: " + (dish.popularityVerified ? "independently checked" : "owner-reported, not independently verified") + "." : dish.starOrigin==="published_menu" ? "Star dish identified in a published menu. Dish-specific customer rating: not available." : "Menu suggestion. Dish-specific rating and popularity evidence: not available.";
+    container.append(evidence);
+    const facts=document.createElement("p");facts.className="small mute";facts.textContent="Portion size, spice/customisation, opening hours and delivery availability: not confirmed. Vegetarian does not mean vegan or Jain. Confirm ingredients and preparation with the restaurant.";container.append(facts);
   }
 
   async function showDishPhoto(container, dishName, vegetarian) {
@@ -1920,6 +1939,7 @@ document.addEventListener("DOMContentLoaded", () => {
         params.set("customPreferences", customPreferences);
         params.set("radiusKm", document.getElementById("aiRadius")?.value || "5");
         params.set("diet", diet);
+        params.set("diningMode", document.getElementById("aiDiningMode")?.value || "any");
         if (excludedDishIds.length) params.set("excludeDishIds", excludedDishIds.join(","));
 
         params.set(
@@ -2322,6 +2342,14 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
  });
 })();
 </script>
-<script src="/foodie-controls.js" defer></script>
+<dialog id="dishFeedbackDialog" style="max-width:600px;width:calc(100% - 32px);border:1px solid #eaded0;border-radius:16px;padding:20px">
+  <form id="dishFeedbackForm"><h2 id="feedbackTitle">Dish feedback</h2><input name="dishId" type="hidden"><input name="kind" type="hidden">
+  <label for="feedbackReason">Reason</label><select id="feedbackReason" name="reason" class="field" required></select>
+  <div id="reviewRatings" hidden><p>Only rate this dish if you have actually tried it.</p><label for="feedbackTaste">Taste</label><select id="feedbackTaste" name="taste" class="field"><option value="">Not rated</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><label for="feedbackPortion">Portion satisfaction</label><select id="feedbackPortion" name="portion" class="field"><option value="">Not rated</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><label for="feedbackValue">Value for money</label><select id="feedbackValue" name="value" class="field"><option value="">Not rated</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><label><input type="checkbox" name="tried"> I have personally tried this dish.</label></div>
+  <label for="feedbackNote">Optional details (up to 1,000 characters)</label><textarea id="feedbackNote" name="note" class="field" maxlength="1000" rows="3"></textarea><p class="small mute">Feedback goes to private review and does not immediately change menus or ratings.</p>
+  <label><input type="checkbox" name="consent" required> I confirm this feedback reflects my experience or the information I observed.</label>
+  <button type="submit" class="btn btn-primary">Submit feedback</button><button type="button" id="closeFeedback" class="btn btn-light">Close</button><p id="feedbackStatus" role="status" aria-live="polite"></p>
+  </form></dialog>
+<script src="/foodie-controls.js" defer></script><script src="/dish-feedback.js" defer></script>
 </body>
 </html>
