@@ -1,7 +1,7 @@
 'use strict';
 (() => {
  const key='suggestdish.preferences.v1';
- const fields=['aiTaste','aiCuisine','aiMood','aiBudget','aiCustomBudget','aiRadius','aiDiet','aiCustomPreferences'];
+ const fields=['aiTaste','aiCuisine','aiMood','aiBudget','aiCustomBudget','aiRadius','aiDiet','aiCustomPreferences','aiDiningMode'];
  const remember=document.getElementById('rememberPreferences');
  const status=document.getElementById('preferencesStatus');
  const notify=text=>{status.textContent=text;};
