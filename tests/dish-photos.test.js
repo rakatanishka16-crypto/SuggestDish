@@ -1,17 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),register=require('../lib/dish-photos');
-async function harness(fetchImpl){const routes=new Map();register({get:(p,h)=>routes.set(p,h)},{fetchImpl});return async (dish,vegetarian="false")=>{let body,status=200;const res={set(){},status(s){status=s;return this;},json(b){body=b;}};await routes.get('/api/dish-photo')({query:{dish,vegetarian}},res);return {body,status};};}
-test('dish photo lookup preserves licence credit and caches one dish family',async()=>{
- let calls=0;const run=await harness(async()=>{calls++;return {ok:true,json:async()=>({query:{pages:{one:{title:'File:Poha.jpg',index:1,imageinfo:[{mime:'image/jpeg',thumburl:'https://thumb.wikimedia.org/poha.jpg',descriptionurl:'https://commons.wikimedia.org/wiki/File:Poha.jpg',extmetadata:{LicenseShortName:{value:'CC BY-SA 4.0'},Artist:{value:'<a>Author</a>'}}}]}}}})};});
- const first=await run('Batata Kanda Poha (500ml)');assert.equal(first.body.photo.artist,'Author');assert.match(first.body.photo.label,/Representative/);await run('Poha');assert.equal(calls,1);
-});
-test('unknown dishes, unsupported licence and source failure have honest empty photos',async()=>{
- const run=await harness(async()=>{throw Error('offline');});assert.equal((await run('Poha')).body.photo,null);assert.equal((await run('Mystery signature dish')).body.photo,null);assert.equal((await run('x'.repeat(161))).status,400);
- const no=await harness(async()=>({ok:true,json:async()=>({query:{pages:{a:{title:'File:Poha.jpg',imageinfo:[{mime:'image/jpeg',url:'https://evil.example/photo',extmetadata:{LicenseShortName:{value:'All rights reserved'}}}]}}}})}));assert.equal((await no('Poha')).body.photo,null);
-});
-
-test('vegetarian and legacy requests never search unverified generic photos',async()=>{
- let calls=0;const run=await harness(async()=>{calls++;throw Error('must not search');});
- assert.equal((await run('Veg Sandwich','true')).body.photo,null);
- assert.equal((await run('Veg Sandwich','')).body.photo,null);
- assert.equal(calls,0);
-});
+function harness(photos=[]){let handler;register({get:(p,h)=>handler=h},{verifiedPhotos:photos});return async(dish,vegetarian)=>{let body,status=200;await handler({query:{dish,vegetarian}},{set(){},status(s){status=s;return this;},json(b){body=b;}});return {body,status};};}
+const photo={dishName:'Veg Sandwich',vegetarian:true,verified:true,ingredientEvidence:'Reviewed vegetable filling',license:'Restaurant permission',url:'https://images.example/veg.jpg',sourceUrl:'https://restaurant.example/menu',artist:'Restaurant'};
+test('exact verified vegetarian photo works with safe attribution',async()=>{const r=await harness([photo])('  VEG Sandwich  ','true');assert.equal(r.body.photo.url,photo.url);});
+test('vegetarian never receives nonvegetarian or unverified media',async()=>{for(const p of [{...photo,vegetarian:false},{...photo,verified:false},{...photo,ingredientEvidence:''}]) assert.equal((await harness([p])('Veg Sandwich','true')).body.photo,null);});
+test('nonvegetarian gets its exact verified photo, never a generic sandwich',async()=>{const p={...photo,dishName:'Chicken Sandwich',vegetarian:false,ingredientEvidence:'Chicken filling'};assert.equal((await harness([p])('Chicken Sandwich','false')).body.photo.url,p.url);assert.equal((await harness([p])('Mutton Sandwich','false')).body.photo,null);assert.equal((await harness([photo])('Veg Sandwich','false')).body.photo,null);});
+test('unknown diet and unsafe URLs fail closed',async()=>{assert.equal((await harness([photo])('Veg Sandwich')).body.photo,null);assert.equal((await harness([{...photo,url:'javascript:alert(1)'}])('Veg Sandwich','true')).body.photo,null);assert.equal((await harness()('x'.repeat(161),'true')).status,400);});
