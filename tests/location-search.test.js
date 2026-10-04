@@ -19,6 +19,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
   vm.runInNewContext(fs.readFileSync(path.join(root, 'api/server.js'), 'utf8'), {
     require(name) {
       if (name === '../lib/razorpay-payments') return require('../lib/razorpay-payments');
+      if (name === '../lib/dish-photos') return require('../lib/dish-photos');
       if (name === '../lib/star-evidence') return require('../lib/star-evidence');
       if (name === '../lib/business-stars') return require('../lib/business-stars');
       if (name === '../lib/business-directory') return require('../lib/business-directory');
@@ -102,7 +103,7 @@ function frontendHarness() {
   let geolocationSuccess;
   const document = {
     addEventListener(event, fn) { fn(); }, getElementById: element, querySelector() { return null; }, querySelectorAll() { return []; },
-    createElement() { return { style: {}, children: [], append(child) { this.children.push(child); }, setAttribute() {}, remove() {} }; }, body: { appendChild() {} }
+    createElement() { return { style: {}, children: [], replaceChildren() { this.children = []; }, append(child) { this.children.push(child); }, setAttribute() {}, remove() {} }; }, body: { appendChild() {} }
   };
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
