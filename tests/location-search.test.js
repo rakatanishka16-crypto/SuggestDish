@@ -165,3 +165,18 @@ test('South Indian search does not label vada pav as South Indian or pad empty r
   const {body}=await h.request('/api/ai-recommend',{city:'Mumbai',cuisine:'South Indian',budget:'200',vegetarian:'true'});
   assert.equal(body.recommendations.length,0);assert.match(body.summary,/No available dishes match that cuisine/);
 });
+
+test('breakfast and custom dish preferences affect fallback ranking', async()=>{
+ const base={isVeg:true,restaurantCity:'Mumbai',restaurantAddress:'Mumbai'};
+ const h=serverHarness({rows:[{...base,id:1,name:'Dal Curry',price:50,restaurantId:1,restaurantName:'One'},{...base,id:2,name:'Poha',price:80,restaurantId:2,restaurantName:'Two'}]});
+ const {body}=await h.request('/api/ai-recommend',{city:'Mumbai',mood:'breakfast',customPreferences:'poha please',budget:'200',vegetarian:'true'});
+ assert.equal(body.recommendations[0].dishName,'Poha');
+ assert.equal(body.preferences.customPreferences,'poha please');
+ assert.equal((await h.request('/api/ai-recommend',{customPreferences:'x'.repeat(501)})).status,400);
+});
+test('custom text and breakfast travel from the form to the API',async()=>{
+ const h=frontendHarness();h.element('aiMood').value='breakfast';h.element('aiCustomPreferences').value='poha & chutney';
+ await h.element('aiRecommendBtn').click();
+ const params=new URL(h.calls[0],'https://www.suggestdish.com').searchParams;
+ assert.equal(params.get('mood'),'breakfast');assert.equal(params.get('customPreferences'),'poha & chutney');
+});
