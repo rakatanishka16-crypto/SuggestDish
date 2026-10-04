@@ -62,7 +62,7 @@ Done means the specified behavior is implemented. Partial means more work/data i
 | 15 | Quick craving chips | Done | Breakfast, street food, sweet and light; diet preserved |
 | 16 | Veg/non-veg/vegan/Jain selection | Partial | Veg/non-veg/any; verified vegan/Jain signals needed |
 | 17 | Dietary evidence states | Partial | Unknown cautions; verified ingredients still needed |
-| 18 | Delivery/dine-in/takeaway mode | Queued | Reliable mode-specific evidence needed for ranking |
+| 18 | Delivery/dine-in/takeaway mode | Partial | Selection and unknown suitability disclosure; verified ranking evidence needed |
 | 19 | Per-dish budget meaning | Done | Explicit label and fees disclaimer |
 | 20 | Portion and serves | Data needed | Never infer serving sizes |
 | 21 | Spice level and customisation | Data needed | Verified restaurant information |
@@ -83,11 +83,11 @@ Done means the specified behavior is implemented. Partial means more work/data i
 | 36 | Sponsored labels | Queued | No payment-based ranking introduced |
 | 37 | Paid listings respect constraints | Partial | Existing budget/diet filtering retained; full sponsorship tests pending |
 | 38 | Directory vs menu readiness | Done | Visible distinction and partial coverage copy |
-| 39 | Owner menu/photo upload | Queued | Reviewed ownership and durable storage |
+| 39 | Owner menu/photo upload | Partial | Approved-owner uploads and protected image review implemented; real asset/runtime verification pending |
 | 40 | Submission status journey | Done | Dashboard and claim status show explicit review stages |
-| 41 | Verified ownership and controlled edits | Partial | Protected claims exist; badge display pending |
+| 41 | Verified ownership and controlled edits | Partial | Protected claims and verified-owner badge; real owner journey verification pending |
 | 42 | Owner dashboard | Partial | Hub and protected submission lookup added; direct media/profile editing pending |
-| 43 | Actual performance metrics | Queued | Event collection and reporting; never call clicks orders |
+| 43 | Actual performance metrics | Partial | Anonymous raw website events and protected owner totals; live collection verification pending |
 | 44 | About/contact/privacy/corrections | Partial | About, data flow and approved Instagram support added; legal business details not supplied |
 | 45 | Honest source coverage | Partial | City-level priced menu counts added; locality counts not available |
 
@@ -97,3 +97,6 @@ Batch two implements ten improvements associated with items 8, 9, 14, 15, 23, 26
 Implemented customer dislike reasons, tried-it feedback, correction reports, protected moderation, dining-mode selection with unverified-suitability disclosure, evidence/unknown-fact cards, review-status progress, business dashboard, approved Instagram support/privacy copy, and city-level priced-menu counts. Vegan/Jain requests explicitly require verified preparation and otherwise return no match. Sponsored badge rendering is reserved for explicit sponsored records; no paid placement is introduced.
 
 CustomerFeedback is an additive table created lazily by the protected moderation queue or a valid customer submission. Local tests verify validation, bound SQL, duplicate handling, unavailable storage, missing/wrong reviewer keys and moderation boundaries. It does not edit Dish records or publish customer ratings. Runtime database persistence is pending verification; do not claim it has been verified merely because mock tests pass. No public fabricated feedback is submitted for testing.
+
+## Batch four
+Implemented approved-owner menu/dish image submission, bounded database media storage, private image previews and approval, exact reviewed dish/diet photo retrieval, verified-owner and reviewed-star badges, factual recommendation reasons, anonymous recommendation/click counters, and protected owner metrics. Counts are raw website events, never orders or unique customers. 69 automated tests pass. Real owner credentials, approved assets, database persistence and live event collection still require verification.
