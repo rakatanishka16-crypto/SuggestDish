@@ -231,7 +231,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     const customPreferences = String(req.query.customPreferences || "").trim();
     if (customPreferences.length > 500) return res.status(400).json({success:false,error:"Keep custom preferences within 500 characters."});
     const budgetRaw = Number(req.query.budget || 500);
-    const budget =
+    let budget =
       Number.isFinite(budgetRaw) && budgetRaw > 0
         ? Math.min(budgetRaw, 100000)
         : 500;
@@ -239,6 +239,13 @@ app.get("/api/ai-recommend", async (req, res) => {
     const diet = String(req.query.diet || (String(req.query.vegetarian).toLowerCase() === "true" ? "vegetarian" : "any"));
     if (!["vegetarian", "nonvegetarian", "any"].includes(diet)) return res.status(400).json({success:false,error:"Choose a valid dietary preference."});
     const vegetarian = diet === "vegetarian";
+    const naturalBudget = customPreferences.match(/₹\s*(\d+)|\b(?:under|below|within|up to|upto)\s*(?:rs\.?\s*)?(\d+)\b/i);
+    if (naturalBudget) { const amount = Number(naturalBudget[1] || naturalBudget[2]); if (amount > 0) budget = Math.min(budget, amount); }
+    const explicitlyNonVeg = /\bnon[ -]?veg(?:etarian)?\b/i.test(customPreferences);
+    const explicitlyVeg = !explicitlyNonVeg && /\b(?:veg|vegetarian)\b/i.test(customPreferences);
+    const excludedRaw = String(req.query.excludeDishIds || "");
+    if (excludedRaw && !/^\d+(,\d+){0,19}$/.test(excludedRaw)) return res.status(400).json({success:false,error:"Invalid dish refinement list."});
+    const excludedDishIds = new Set(excludedRaw ? excludedRaw.split(",").map(Number) : []);
 
     const lat =
       req.query.lat !== undefined && req.query.lat !== ""
@@ -343,6 +350,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       : diet === "nonvegetarian" ? dishes.filter(dish => dish.isVeg === false) : dishes;
 
 
+    filteredDishes = filteredDishes.filter(dish => dish.price != null && Number.isFinite(Number(dish.price)) && Number(dish.price) <= budget && !excludedDishIds.has(Number(dish.id)) && (!explicitlyVeg || dish.isVeg === true) && (!explicitlyNonVeg || dish.isVeg === false));
     if (filteredDishes.length === 0) {
       return res.json({
         success: true,
@@ -424,6 +432,9 @@ app.get("/api/ai-recommend", async (req, res) => {
     const normalize = (value) =>
       String(value || "")
         .toLowerCase()
+        .replace(/गोलगप्पा|पानी पूरी|पानीपुरी|\bgolgappas?\b|\bpanipuri\b|\bpuchka\b/g, "pani puri")
+        .replace(/पोहा/g, "poha").replace(/डोसा/g, "dosa")
+        .replace(/\bkhichdi\b/g, "khichadi")
         .replace(/[^a-z0-9\s]/g, " ")
         .replace(/\s+/g, " ")
         .trim();
@@ -675,7 +686,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     // Explicit dish families and proteins are constraints, not soft suggestions.
     const requestedText = normalize(customPreferences);
     if (!/\b(without|avoid|no|not|allerg)\b/i.test(customPreferences)) {
-      const families = ["sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav"];
+      const families = ["sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav", "pani puri", "khichadi"];
       const proteins = ["chicken", "mutton", "fish", "prawn", "egg", "paneer"];
       const requestedFamilies = families.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
       const requestedProteins = proteins.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
@@ -793,6 +804,8 @@ app.get("/api/ai-recommend", async (req, res) => {
 
     const dishData = candidateDishes.map((dish) => ({
       id: dish.id,
+      dishId: Number(dish.id),
+      sourceCheckedAt: dish.sourceCheckedAt || null,
       dishName: dish.name,
       price: Number(dish.price),
       vegetarian: dish.isVeg === true,
@@ -876,6 +889,8 @@ Return exactly:
 
     // A real, filtered dish remains available when Gemini is overloaded.
     const fallbackRecommendations = candidateDishes.slice(0, 3).map((dish) => ({
+      dishId: Number(dish.id),
+      sourceCheckedAt: dish.sourceCheckedAt || null,
       dishName: dish.name,
       restaurant: dish.restaurantName,
       price: Number(dish.price),
@@ -992,6 +1007,8 @@ Return exactly:
               }
 
               return {
+                dishId: Number(candidate.id),
+                sourceCheckedAt: candidate.sourceCheckedAt || null,
                 dishName: candidate.name,
                 restaurant: candidate.restaurantName,
                 price: Number(candidate.price),
