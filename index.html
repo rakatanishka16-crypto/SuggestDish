@@ -830,6 +830,7 @@
         <h3 id="aiDishName" style="margin-top:12px;"></h3>
 
         <p class="mute" id="aiRestaurant"></p>
+        <div id="aiDishPhoto"></div>
         <p class="small mute" id="aiDishMeta"></p>
         <a id="aiEvidenceSource" hidden target="_blank" rel="noopener noreferrer" style="text-decoration:underline">View restaurant menu evidence</a>
 
@@ -1706,6 +1707,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const aiLoading =
     document.getElementById("aiLoading");
 
+  async function showDishPhoto(container, dishName) {
+    if (!container || !dishName) return;
+    container.replaceChildren();
+    const note = document.createElement("p"); note.className = "small mute"; note.textContent = "Finding a representative dish photo…"; container.append(note);
+    try {
+      const response = await fetch("/api/dish-photo?" + new URLSearchParams({dish: dishName}));
+      const data = await response.json();
+      if (!note.parentNode) return;
+      container.replaceChildren();
+      const photo = data.photo;
+      if (!photo) { note.textContent = "Photo not available yet."; container.append(note); return; }
+      const imageURL = new URL(photo.url), sourceURL = new URL(photo.sourceUrl);
+      if (imageURL.protocol !== "https:" || !["upload.wikimedia.org","thumb.wikimedia.org"].includes(imageURL.hostname) || sourceURL.protocol !== "https:" || sourceURL.hostname !== "commons.wikimedia.org") return;
+      const image = document.createElement("img"); image.src = imageURL.href; image.alt = photo.label; image.loading = "lazy"; image.referrerPolicy = "no-referrer"; image.style.cssText = "width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin-top:12px";
+      const caption = document.createElement("p"); caption.className = "small mute"; caption.textContent = photo.label;
+      const source = document.createElement("a"); source.href = sourceURL.href; source.target = "_blank"; source.rel = "noopener noreferrer"; source.textContent = "Photo: " + photo.artist + " · " + photo.license + " · Wikimedia Commons"; caption.append(source);
+      image.onerror = () => { container.replaceChildren(); note.textContent = "Photo not available yet."; container.append(note); };
+      container.append(image, caption);
+    } catch { if (note.parentNode) {note.textContent = "Photo not available yet.";} }
+  }
+
   const aiResult =
     document.getElementById("aiResult");
 
@@ -1950,6 +1972,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const line = document.createElement(tag); line.textContent = value || ""; card.append(line);
               }
               if (item.starSourceUrl) { try { const source = new URL(item.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { const link = document.createElement("a"); link.href = source.href; link.target = "_blank"; link.rel = "noopener noreferrer"; link.textContent = "View restaurant menu evidence"; card.append(link); } } catch {} }
+              const photoContainer = document.createElement("div"); card.append(photoContainer);
+              showDishPhoto(photoContainer, item.dishName);
               moreResults.append(card);
             }
             moreResults.style.display = recommendations.length > 1 ? "block" : "none";
@@ -1960,6 +1984,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const first =
             recommendations[0];
 
+
+          showDishPhoto(document.getElementById("aiDishPhoto"), first.dishName);
 
           /* =========================
              DISPLAY RESULT
