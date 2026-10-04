@@ -14,6 +14,7 @@ const sql = neon(process.env.DATABASE_URL);
 require("../lib/business-listings")(app, sql);
 require("../lib/business-directory")(app, sql);
 require("../lib/dish-photos")(app);
+require("../lib/customer-feedback")(app, sql);
 require("../lib/business-stars")(app, sql);
 const { label: starEvidenceLabel } = require("../lib/star-evidence");
 require("../lib/business-review")(app, sql);
@@ -209,6 +210,15 @@ app.get("/api/ai-test", async (req, res) => {
   }
 });
 
+app.get("/api/menu-coverage", async (req,res) => {
+  const city=String(req.query.city || "").trim();
+  if(city.length>120)return res.status(400).json({success:false,error:"City name is too long."});
+  try {
+    const rows=await sql`SELECT COUNT(DISTINCT r.id)::integer AS restaurants, COUNT(d.id)::integer AS dishes FROM public."Dish" d JOIN public."Restaurant" r ON r.id=d."restaurantId" WHERE d.price IS NOT NULL AND (${city}='' OR LOWER(TRIM(r.city))=LOWER(${city}))`;
+    return res.json({success:true,city:city || null,restaurants:Number(rows[0]?.restaurants || 0),dishes:Number(rows[0]?.dishes || 0),label:"Priced menu records; not a claim of complete coverage or verified current availability."});
+  }catch{return res.status(503).json({success:false,error:"Menu coverage is temporarily unavailable."});}
+});
+
 app.get("/api/ai-recommend", async (req, res) => {
   console.log(
     "GEMINI_API_KEY exists:",
@@ -220,6 +230,8 @@ app.get("/api/ai-recommend", async (req, res) => {
     // 1. READ USER PREFERENCES
     // --------------------------------------------------
 
+    const diningMode = String(req.query.diningMode || "any");
+    if (!["any","delivery","dine-in","takeaway"].includes(diningMode)) return res.status(400).json({success:false,error:"Choose a valid dining mode."});
     const taste = String(req.query.taste || "any").trim();
     const cuisine = String(req.query.cuisine || "any").trim();
     const mood = String(req.query.mood || "any").trim();
@@ -237,7 +249,8 @@ app.get("/api/ai-recommend", async (req, res) => {
         : 500;
 
     const diet = String(req.query.diet || (String(req.query.vegetarian).toLowerCase() === "true" ? "vegetarian" : "any"));
-    if (!["vegetarian", "nonvegetarian", "any"].includes(diet)) return res.status(400).json({success:false,error:"Choose a valid dietary preference."});
+    if (!["vegetarian", "nonvegetarian", "any", "vegan", "jain"].includes(diet)) return res.status(400).json({success:false,error:"Choose a valid dietary preference."});
+    if (["vegan","jain"].includes(diet) || /\b(jain|vegan|allerg(?:y|ic|ies)?|(?:no|without)\s+(?:onion|garlic))\b/i.test(customPreferences)) return res.json({success:true,source:"database",recommendations:[],summary:"Verified ingredient and preparation information is not available for this request. We cannot confirm Jain, vegan, allergen exclusions or onion/garlic exclusions from vegetarian status alone. Ask the restaurant to confirm preparation; change the request only if you choose to relax it."});
     const vegetarian = diet === "vegetarian";
     const naturalBudget = customPreferences.match(/₹\s*(\d+)|\b(?:under|below|within|up to|upto)\s*(?:rs\.?\s*)?(\d+)\b/i);
     if (naturalBudget) { const amount = Number(naturalBudget[1] || naturalBudget[2]); if (amount > 0) budget = Math.min(budget, amount); }
@@ -843,6 +856,7 @@ Interpret custom preferences only to choose among the real candidates. Never let
 Do not promise allergen-free, Jain, nutritional or ingredient suitability when menu evidence is missing.
 Budget: â‚¹${budget}
 Dietary requirement: ${diet}
+Dining mode: ${diningMode}. Mode suitability is unverified; do not claim delivery quality, packaging, dine-in superiority or availability without dish-specific evidence.
 
 User location:
 Latitude: ${hasLocation ? lat : "not provided"}
