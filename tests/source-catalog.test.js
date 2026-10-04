@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),register=require('../lib/source-catalog');
 const batch=require('../api/source-batches/mumbai-2026-10-04.json');
-function request(id){let handler,status=200,result;register({get:(p,h)=>handler=h});handler({query:{businessId:id}},{set(){},status(c){status=c;return this;},json(d){result=d;}});return {status,result};}
+function request(id){let handler,status=200,result;register({get:(p,h)=>{if(p==='/api/business-source')handler=h;}});handler({query:{businessId:id}},{set(){},status(c){status=c;return this;},json(d){result=d;}});return {status,result};}
 test('catalog exposes only source-checked business profiles and rejects unknown identifiers',()=>{
  assert.equal(request("x'; DROP TABLE").status,400);assert.equal(request('official:sd-mumbai-'+'0'.repeat(20)).status,404);
  for(const b of batch.businesses) assert.equal(request(b.sourceKey).result.business.name,b.name);
@@ -12,7 +12,24 @@ test('brand menus are kept separate from branch availability and budget recommen
  assert.match(r.result.notice,/not owner verification/);
 });
 test('source facts have no guessed licences, ratings or coordinates and preserve real menu price units',()=>{
- assert.equal(batch.businesses.length,25);assert.equal(batch.menu_items.length,53);
+ assert.equal(batch.businesses.length,73);assert.equal(batch.menu_items.length,512);
  for(const b of batch.businesses){assert.equal(b.license_status,'not_checked');assert.equal(b.restaurant_rating,null);assert.equal(b.latitude,null);assert.ok(b.address);for(const u of b.source_urls)assert.equal(new URL(u).protocol,'https:');}
  const m=batch.menu_items.find(m=>m.name==='Kadai Paneer');assert.equal(m.price_inr,399);assert.equal(m.portion,'500 ml');assert.equal(m.is_veg,true);
+});
+
+test('expanded catalog preserves menu variants, source dietary labels, and read-only eligibility',()=>{
+ assert.equal(new Set(batch.businesses.map(b=>b.sourceKey)).size,batch.businesses.length);
+ assert.equal(new Set(batch.menu_items.map(m=>m.external_id)).size,batch.menu_items.length);
+ const pizza=batch.menu_items.filter(m=>m.brand==='PizzaExpress');assert.equal(pizza.length,130);
+ assert.equal(pizza.find(m=>m.name==='American Pizza').is_veg,false);
+ assert.equal(pizza.find(m=>m.name==='Margherita Pizza').is_veg,true);
+ assert.ok(pizza.every(m=>m.price_inr===null));
+ const thepla=batch.menu_items.filter(m=>m.brand==="Thepla House by Tejal's Kitchen");assert.equal(thepla.length,248);
+ assert.deepEqual(thepla.filter(m=>m.name==='Methi Thepla - Vacuum Pack of 5 Piece').map(m=>m.price_inr).sort(),[122,137]);
+ assert.equal(batch.menu_items.find(m=>m.name==='Lagan Nu Custard Tart').is_veg,null);
+ for(const m of batch.menu_items){assert.equal(m.recommendation_eligible,false);assert.ok(m.price_inr===null || (Number.isFinite(m.price_inr)&&m.price_inr>0));}
+});
+test('coverage exposes honest counts without publishing unresolved research leads',()=>{
+ const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,73);assert.equal(result.menuEntries,512);assert.equal(result.publishedPrices,248);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });

@@ -1,0 +1,2465 @@
+{
+  "retrieved_on": "2026-10-04",
+  "notice": "Directory search candidates are not confirmed branch matches. These leads are not public business listings.",
+  "leads": [
+    {
+      "lead_id": "sd-mumbai-7d2fbec0fe7d5c0ec9d1",
+      "name": "Baglami",
+      "locality": "BKC",
+      "source_urls": [
+        "https://www.baglami.com/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-98770e98aba7c351e71c",
+      "name": "We & You Events",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.weandyoucatering.com/index.html/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [
+        "official:sd-mumbai-5a1d74a78bd4d549e1df"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-62c3cedaa45eb12cc589",
+      "name": "Ashok Vada Pav",
+      "locality": "Dadar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/5209809870"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-a98e74e1253b0ae00c77",
+      "name": "Gajanan Vada Pav",
+      "locality": "Thane",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/13377898071",
+        "osm:node/13975029397"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-00ae1a78db353bd1cb68",
+      "name": "Bhau Vada Pav",
+      "locality": "Mulund",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/5609869298"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-ff75408fa2ba6251d865",
+      "name": "Jalaram",
+      "locality": "Mulund",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/5734380271",
+        "osm:node/4699710387",
+        "osm:node/5527662483",
+        "osm:node/10861646058",
+        "osm:way/1433636147",
+        "osm:way/1245375439",
+        "osm:way/1367421152",
+        "osm:node/12945143093",
+        "osm:node/3293760668",
+        "osm:node/5328881122",
+        "osm:node/5753441521",
+        "osm:node/11994406345",
+        "osm:way/286440660",
+        "osm:node/4294695462",
+        "osm:node/4901483422",
+        "osm:node/10230504592"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-91629a92403341531a96",
+      "name": "Elco",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4386458989",
+        "osm:node/5221726505",
+        "osm:node/6039299337",
+        "osm:node/6039312690",
+        "osm:node/5435486822",
+        "osm:node/6840090494",
+        "osm:node/8188056783",
+        "osm:way/1258336039",
+        "osm:node/2195478453",
+        "osm:node/2715918131",
+        "osm:node/11400503409",
+        "osm:node/7471628894",
+        "osm:node/12995805834",
+        "osm:node/12271299187",
+        "osm:node/6089169185",
+        "osm:node/2986347839",
+        "osm:node/5239595670",
+        "osm:node/12076673385",
+        "osm:node/6637689502",
+        "osm:node/7795108672",
+        "osm:node/1392005687",
+        "osm:way/257880629",
+        "osm:node/11513226094",
+        "osm:node/3937622357",
+        "osm:node/4695667589",
+        "osm:node/4976601819",
+        "osm:node/5233052322",
+        "osm:node/7460332996",
+        "osm:node/11234236156",
+        "osm:way/726162093",
+        "osm:node/14107341406",
+        "osm:node/11402590615",
+        "official:sd-mumbai-5333efc7ffd5269e5513",
+        "osm:node/13004937757",
+        "osm:node/12631255532",
+        "osm:node/6274247688",
+        "osm:way/1174267820",
+        "osm:node/5420299335",
+        "osm:node/13462541579",
+        "osm:node/12600787866",
+        "osm:node/14162320913",
+        "osm:node/2379446065",
+        "osm:node/7111709490",
+        "osm:node/7111770575",
+        "osm:way/733439088",
+        "osm:way/1540219637",
+        "osm:node/7149063185",
+        "osm:node/6381165785",
+        "osm:node/1669642082",
+        "osm:node/12224099201"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-c7edcefa2f0880d0b4d4",
+      "name": "Gurukripa",
+      "locality": "Sion",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/8305227226",
+        "osm:node/8329715112",
+        "osm:node/11691285475",
+        "osm:node/12596314032",
+        "osm:node/12161775076"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-12c9e6904ef22527c330",
+      "name": "Amar Juice Centre",
+      "locality": "Vile Parle",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:way/1543023465"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-d065afdaab4db3171643",
+      "name": "Achija",
+      "locality": "Ghatkopar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/10245266134",
+        "osm:node/13383250797",
+        "osm:node/4585386593",
+        "osm:node/6795379087",
+        "osm:node/9129210435",
+        "osm:node/11728344375",
+        "osm:way/1434048783"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-0c87c80ee06004dfce09",
+      "name": "Sukh Sagar",
+      "locality": "Chowpatty",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/8188050053",
+        "osm:node/13410192284",
+        "osm:node/13381312201",
+        "osm:node/13810937745",
+        "osm:node/1474088680",
+        "osm:node/306585721",
+        "osm:node/314705276",
+        "osm:node/3872737462",
+        "osm:node/4447012034",
+        "osm:node/4733914603",
+        "osm:node/4900914944",
+        "osm:node/14213876690",
+        "osm:node/14213876688",
+        "osm:node/14213876689",
+        "osm:node/14213876691"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-72a73b49382f58e8b28e",
+      "name": "Joeys",
+      "locality": "Andheri",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4802894821"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-f88ad2b419e8d6bd742d",
+      "name": "1441 Pizzeria",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4663402302"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-da1cc0c9dc0e06cb272e",
+      "name": "Pizza Express",
+      "locality": "Powai",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/12475245313",
+        "osm:node/13970336390",
+        "osm:node/14046155178",
+        "osm:node/14098258403",
+        "osm:way/651060676",
+        "osm:node/4899432493"
+      ],
+      "source_profile_ids": [
+        "official:sd-mumbai-3f4ce890a1b3e5312f3b"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-fd2fc9f855a5240ea4f7",
+      "name": "Persian Darbar",
+      "locality": "Byculla",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11464621028",
+        "osm:node/12853058852",
+        "osm:node/13510320699",
+        "osm:node/8850393317"
+      ],
+      "source_profile_ids": [
+        "official:sd-mumbai-3499d9a3fda7a9a8d764"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-076eafd9dc89ac15d5c9",
+      "name": "Jaffer Bhai's Delhi Darbar",
+      "locality": "Grant Road",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-e84ea7891ab3a7f481ad",
+      "name": "Lucky",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:way/905802865",
+        "osm:node/7065985185",
+        "osm:node/10688895851",
+        "osm:way/434887935",
+        "osm:node/4901772856",
+        "osm:node/14089349473",
+        "osm:node/12135560005",
+        "osm:node/11749713913",
+        "osm:node/11580702757",
+        "osm:node/8188050627",
+        "osm:node/1195407647",
+        "osm:node/10781543267",
+        "osm:node/11229651307",
+        "osm:node/2663566774",
+        "osm:node/3923326767",
+        "osm:node/9903919154",
+        "osm:way/847943236",
+        "osm:node/12203513047",
+        "osm:node/2642583022",
+        "osm:node/12451140415",
+        "osm:node/5608451367",
+        "osm:node/10807058849",
+        "osm:node/11690375165",
+        "osm:node/13924036692",
+        "osm:node/2366733541",
+        "osm:node/12430713360",
+        "osm:node/10958959496",
+        "osm:node/13423753101",
+        "osm:node/13611109964",
+        "osm:node/5013726038",
+        "osm:node/8113809517",
+        "osm:node/10296987077",
+        "osm:node/10695242202",
+        "osm:node/11553915194",
+        "osm:node/11921216772",
+        "osm:node/7246495620",
+        "osm:node/9596743563",
+        "osm:node/1375978244",
+        "osm:way/1433915850",
+        "osm:node/12531578971",
+        "osm:node/4830849435",
+        "osm:node/5433165721",
+        "osm:node/728328520",
+        "osm:way/743543528",
+        "osm:node/6518502120",
+        "osm:way/1377185730",
+        "osm:node/14086876801",
+        "osm:node/13275664129",
+        "osm:node/13447649940",
+        "osm:node/10959797692"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-48eb9fe39d8e75266218",
+      "name": "Farid",
+      "locality": "Jogeshwari",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11225085449",
+        "osm:node/5409197468",
+        "osm:node/6931367086",
+        "osm:node/8549700903",
+        "osm:node/10116259650",
+        "osm:node/8586608841",
+        "osm:node/12306826901",
+        "osm:node/10205248978",
+        "osm:node/4141719065",
+        "osm:node/10736741428",
+        "osm:node/8621540046",
+        "osm:node/14058578038",
+        "osm:way/1321766843",
+        "osm:node/10232892019",
+        "osm:node/12595641640",
+        "osm:node/10949209830"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-9c189ca4feccfd8b5bd5",
+      "name": "Sarvi",
+      "locality": "Byculla",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/892055989",
+        "osm:node/878278853",
+        "osm:node/1038396969",
+        "osm:node/6693360867",
+        "osm:node/12422483853",
+        "osm:node/13536807336",
+        "osm:node/714973133"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-b026f295e9332f0ae00a",
+      "name": "Ayub/Bademiyan",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-e152bcf56cbe2ebe824d",
+      "name": "Jimis",
+      "locality": "Andheri",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/13380919122",
+        "osm:node/4483316091"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-a4e552f630e3854f030b",
+      "name": "Good Flipping Burger",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-39b56bfcd29f6e2b9cda",
+      "name": "Stacks And Racks",
+      "locality": "Malad",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-97a63b48bac58bf1c436",
+      "name": "Ram Ashray",
+      "locality": "Matunga",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4674771690"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-3ad70492d691abe153c3",
+      "name": "Madras Cafe",
+      "locality": "Matunga",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/13678650307",
+        "osm:node/11432262698",
+        "osm:node/11546228263",
+        "osm:node/11694740941",
+        "osm:node/12617659543",
+        "osm:node/339280986",
+        "osm:node/3554059493",
+        "osm:node/3711605444",
+        "osm:node/4269621852",
+        "osm:node/4517068296",
+        "osm:way/1312951126",
+        "osm:way/352726535",
+        "osm:node/13242935451"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-5ce6433e6a08c3ebafd5",
+      "name": "Thanjore Tiffin",
+      "locality": "Versova",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-0c14e5192ba50885e278",
+      "name": "Hotel Delux",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11219101991",
+        "osm:node/12596131844",
+        "osm:node/4183313092",
+        "osm:node/6616009287",
+        "osm:node/7471027386",
+        "osm:node/7502790955"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-84021136b86f427b9f88",
+      "name": "Taste of Kerala",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/6283843988",
+        "osm:node/7510097862"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-763661f3956f04c2e262",
+      "name": "Kerala House Bhavan",
+      "locality": "Vashi",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-5df7f768145a62f327d1",
+      "name": "Shree Thakker Bhojanalay",
+      "locality": "Marine Lines",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-c1bf45440375f003c97d",
+      "name": "Maharaja Bhog",
+      "locality": "Juhu",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [
+        "official:sd-mumbai-c8eb239d9f3ae5b1a955"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-bf8d3935e8ef5e4136e2",
+      "name": "Tip Top Grand Thali",
+      "locality": "Mulund Check Naka",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-19fcebc681c15da6c7fd",
+      "name": "Gajalee",
+      "locality": "Vile Parle",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/5224409071"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-2ce1a92d2f2987d34af5",
+      "name": "Mahesh Lunch Home",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11058167625",
+        "osm:node/1437244163",
+        "osm:node/1437249360",
+        "osm:node/662459670",
+        "osm:node/811226430",
+        "osm:node/9689539840",
+        "osm:way/1387274675"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-d764a3dfbc83af4cc447",
+      "name": "Chaitanya",
+      "locality": "Dadar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/7832445618",
+        "osm:node/8562655136",
+        "osm:way/621792361",
+        "osm:node/10185564428",
+        "osm:way/95600511",
+        "osm:node/6681215536",
+        "osm:node/7180156933",
+        "osm:way/332095970",
+        "osm:node/8347354874",
+        "osm:way/1272509787",
+        "osm:node/2383922172",
+        "osm:node/6336817029",
+        "osm:node/3861909167",
+        "osm:node/6246265785",
+        "osm:way/361006812",
+        "osm:node/4342146296",
+        "osm:node/5640994521"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-3afffb0c92bf4a89b5e0",
+      "name": "CinCin",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/10779234846"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-d64ad3995627db9a86b2",
+      "name": "Mia Cucina",
+      "locality": "Powai",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4761353923",
+        "osm:way/1334755914"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-96a4e3aa923b15673eb3",
+      "name": "Olive",
+      "locality": "Khar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/12366591901",
+        "osm:node/12564896083",
+        "osm:node/3287343272",
+        "osm:node/5482592822",
+        "osm:node/7065400485",
+        "osm:node/11836997469",
+        "osm:node/11843602269",
+        "osm:node/3306484875",
+        "osm:way/743782547",
+        "osm:node/7357790911",
+        "osm:way/40384135",
+        "osm:node/11385736905",
+        "osm:node/11786003993",
+        "osm:node/13296673492",
+        "osm:node/8557865449",
+        "osm:way/921796066",
+        "osm:node/13666686211",
+        "osm:node/12593683080",
+        "osm:node/10240084209",
+        "osm:node/11159462403",
+        "osm:node/11423311803",
+        "osm:node/3387008958",
+        "osm:node/5274917020",
+        "osm:node/7302326812",
+        "osm:node/9523117904",
+        "osm:node/9527015502",
+        "osm:way/1086032841",
+        "osm:way/799286502",
+        "osm:node/7334443830",
+        "osm:node/11711682418",
+        "osm:node/7334902894",
+        "osm:node/5275246122",
+        "osm:node/7130164435",
+        "osm:node/7509599229",
+        "osm:node/8794974051",
+        "osm:node/1129098580",
+        "osm:node/12031695719",
+        "osm:node/12247909089",
+        "osm:node/11005547716",
+        "osm:node/13045205432",
+        "osm:node/13277189745",
+        "osm:node/9776394796",
+        "osm:node/3407010163",
+        "osm:way/774616773",
+        "osm:node/12500400301",
+        "osm:node/7469522656",
+        "osm:way/1026128048",
+        "osm:node/1818603813",
+        "osm:node/2195478462",
+        "osm:node/2380691329"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-ff83bbe9e4d7a9377a94",
+      "name": "Sammy Sosa",
+      "locality": "Oshiwara",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11691629086"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-8b4e1082ec52728fed48",
+      "name": "Quattro Ristorante",
+      "locality": "Lower Parel",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/12412240592"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-6a8d70ca6135e9b0771b",
+      "name": "Poco Loco",
+      "locality": "Khar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/2173095188",
+        "osm:node/7213733383"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-30a5649aedfbc4c9740d",
+      "name": "Dev Momos",
+      "locality": "Tardeo",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-9398dd18d46ef504cff8",
+      "name": "Suraj Lama",
+      "locality": "Versova",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/9124310959"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-a7226703cd41ff46b1b5",
+      "name": "Appetite Momos",
+      "locality": "Thane",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-a829f096ed4bcd09ad69",
+      "name": "Carter Blue's",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-67fa6359165c5ccb2873",
+      "name": "Arsalan",
+      "locality": "Malad",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/2599246808",
+        "osm:node/13584498990",
+        "osm:node/4937969021",
+        "osm:way/358734784",
+        "osm:node/12822647401",
+        "osm:node/13270046407",
+        "osm:node/5694896102",
+        "osm:node/9819142308"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-1d7791202357e3cd5d17",
+      "name": "Kings",
+      "locality": "Mumbai Central",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/7111664535",
+        "osm:node/6815596343",
+        "osm:node/10285692122",
+        "osm:node/10316946203",
+        "osm:node/13285248845",
+        "osm:way/1237358005",
+        "osm:node/12841106601",
+        "osm:node/9768759055",
+        "osm:node/4455019289",
+        "osm:node/14134162801",
+        "osm:node/5094966679",
+        "osm:node/8917219336",
+        "osm:way/1172654815",
+        "osm:way/798027812",
+        "osm:node/13088206065",
+        "osm:node/10013621154",
+        "osm:way/357380669",
+        "osm:node/9103422829",
+        "osm:node/11690216711",
+        "osm:node/4273661190",
+        "osm:node/3431046845",
+        "osm:node/4420664524",
+        "osm:way/798444374",
+        "osm:way/799568862",
+        "osm:way/801340807",
+        "osm:node/7516465472",
+        "osm:node/9803239418",
+        "osm:node/7244480284",
+        "osm:node/6308214125",
+        "osm:node/11698159197",
+        "osm:node/8841885716",
+        "osm:node/13182392092",
+        "osm:node/12541130551",
+        "osm:node/12596127852",
+        "osm:node/278937352",
+        "osm:node/11998928697",
+        "osm:node/8386731743",
+        "osm:node/7349855129",
+        "osm:node/12142403861",
+        "osm:node/13393061335",
+        "osm:node/3346267233",
+        "osm:node/13295285678",
+        "osm:node/10801067121",
+        "osm:node/8364493123",
+        "osm:node/9369819267",
+        "osm:way/900394998",
+        "osm:node/12596035450",
+        "osm:node/2376662706",
+        "osm:node/12037301118",
+        "osm:node/13649021289"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-8e96ee9e90c0210ded37",
+      "name": "Yoko",
+      "locality": "Santacruz",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/2632034999",
+        "osm:node/10678500279",
+        "osm:node/14180566833",
+        "osm:node/10184847796"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-8a14f1ce00937b1dee62",
+      "name": "Kobe",
+      "locality": "Chowpatty",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/3250334422",
+        "osm:node/1474220540",
+        "osm:node/10558996783",
+        "osm:node/2467272258",
+        "osm:node/3657496181",
+        "osm:node/5081907157",
+        "osm:node/5258342084",
+        "osm:node/6135560586"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-99ffef4425795bec7bf2",
+      "name": "Fountain",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/13624420814",
+        "osm:node/2879917659",
+        "osm:node/7293746571",
+        "osm:node/11602938166",
+        "osm:node/6795476387",
+        "osm:node/1855389435",
+        "osm:node/9815508751",
+        "osm:node/13464335936",
+        "osm:node/11358156620",
+        "osm:node/10082191331",
+        "osm:node/10561756209",
+        "osm:node/13911496601",
+        "osm:node/7205313010",
+        "osm:node/10561733009"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-ce5ddc51d7025c80b3e6",
+      "name": "Lings Pavilion",
+      "locality": "Colaba",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-1e696011985dd02273da",
+      "name": "Royal China",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/12706731748",
+        "osm:node/13168786891",
+        "osm:node/3250377275",
+        "osm:node/5451047523"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-2138091f956a3301f2bb",
+      "name": "China Bistro",
+      "locality": "Chembur",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11452002810",
+        "osm:node/13970336119",
+        "osm:node/9019764317"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-8a00a902f5eab1f3b96a",
+      "name": "Grand Central",
+      "locality": "Chembur",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/8479906752",
+        "osm:way/46721513",
+        "osm:node/9899084122"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-6effcc287b4ef1dfbb0d",
+      "name": "Copper Chimney",
+      "locality": "Worli",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11372185940",
+        "osm:node/11383276966",
+        "osm:node/12890278999",
+        "osm:node/12926036241",
+        "osm:node/13293400549",
+        "osm:node/13881397288",
+        "osm:node/245653876",
+        "osm:node/4447119333",
+        "osm:node/4959496421",
+        "osm:node/357189520"
+      ],
+      "source_profile_ids": [
+        "official:sd-mumbai-fbaabd99abe6ee402f88"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-136cd3f9835d76b0fb50",
+      "name": "Shalimar",
+      "locality": "Bhendi Bazaar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11410996507",
+        "osm:node/10709045305",
+        "osm:node/3596879905",
+        "osm:node/7464226110",
+        "osm:node/8188051232",
+        "osm:node/9045517920",
+        "osm:way/353815444",
+        "osm:way/39165067",
+        "osm:node/4718448289",
+        "osm:node/2126250492",
+        "osm:node/1304858029",
+        "osm:node/3370028971",
+        "osm:node/9524287926",
+        "osm:node/9526832282",
+        "osm:node/9529797416",
+        "osm:way/367795218",
+        "osm:way/381469223",
+        "osm:way/672016338",
+        "osm:way/824809089",
+        "restaurant:58",
+        "osm:node/9094208384",
+        "osm:node/7380184927",
+        "osm:node/14201648766",
+        "osm:node/11106995801",
+        "osm:node/7362710473",
+        "osm:node/1676552974",
+        "osm:node/7488433798",
+        "osm:node/9427617978",
+        "osm:node/9869681827",
+        "osm:node/8117761351",
+        "osm:way/799048605",
+        "osm:node/13441700307",
+        "osm:way/799048606",
+        "osm:node/3257660096",
+        "osm:node/8397642215",
+        "osm:way/797601661",
+        "osm:way/961042279",
+        "osm:node/8118358394"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-fee004fc0f8948f96494",
+      "name": "Tibbs",
+      "locality": "Shivaji Park",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/12871004039",
+        "osm:node/347114424"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-0b9cf49bb57797160135",
+      "name": "Breadkraft",
+      "locality": "Lokhandvala",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/7426184239"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-cdf5be9845e234f8ab9e",
+      "name": "Dolphin",
+      "locality": "Ghatkopar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4574968802",
+        "osm:node/2766437763",
+        "osm:node/2766437764",
+        "osm:node/3523796694",
+        "osm:node/6865895984",
+        "osm:way/389325781",
+        "osm:node/13342061081",
+        "osm:node/1653868856",
+        "osm:node/3969699454",
+        "osm:node/12860719233",
+        "osm:node/6653388786",
+        "osm:node/11776249269",
+        "osm:node/1435296177",
+        "osm:node/5023778321",
+        "osm:node/6463567785",
+        "osm:node/7015719475",
+        "osm:node/13144399176",
+        "osm:node/7615683540",
+        "osm:node/380192176",
+        "osm:node/6246200385",
+        "osm:way/1051293653",
+        "osm:node/13355561201",
+        "osm:node/4644517793",
+        "osm:node/5392834579",
+        "osm:node/245675841",
+        "osm:node/12875361890",
+        "osm:way/380954238",
+        "osm:node/12118213309",
+        "osm:node/3997947139",
+        "osm:node/4844863349",
+        "osm:node/6040742831",
+        "osm:node/13013588710",
+        "osm:node/2641263728",
+        "osm:node/12968529759"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-feb7834c93f551971f60",
+      "name": "Yummies",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/6822126655"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-a668901da9aab706e5fb",
+      "name": "Howra Burger",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-e4f801adcc3747ad08eb",
+      "name": "Kepchaki Momos",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-42933149897a63a64c2d",
+      "name": "A-1 Bakery",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4445485239"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-1230edb93260f387d064",
+      "name": "Candies",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:way/801649631",
+        "osm:node/5246971908",
+        "osm:node/6960777256",
+        "osm:node/7123744049"
+      ],
+      "source_profile_ids": [
+        "official:sd-mumbai-c4bc2ae19d445c792237"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-2cd3777bdb7dfef27e51",
+      "name": "Indigo Delicatessen",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-dba22a05313ba26828b1",
+      "name": "Out of the Blue",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/2180954109",
+        "osm:node/5439462988"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-93f27bd289f9d186836c",
+      "name": "Kunafa Cafe",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-96b6c19ee8587ffff650",
+      "name": "Cafe Mommy Joon",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-af6fc86e9a32358139f8",
+      "name": "Sigdi",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/12923020648",
+        "osm:node/10284079003",
+        "osm:node/10284094416",
+        "osm:node/4340814165",
+        "osm:node/12595716136"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-a1bc8583e3d57fd42689",
+      "name": "Love, Sugar and Dough",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-8e17ce77aa8e8b27a703",
+      "name": "Blah",
+      "locality": "Bandra East",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/6979962072",
+        "osm:node/13013958062"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-ce280c931ccbe9e1edfd",
+      "name": "Opa Kipos",
+      "locality": "Bandra East",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-3e7eae12185770afa37d",
+      "name": "Dawat Hotel",
+      "locality": "Kurla",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-5472a9cdc748e2ee6d62",
+      "name": "Manju Dosa Centre",
+      "locality": "Santacruz",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-06b05fefb6fa485f2d5b",
+      "name": "Aasha Parekh Vada Pav Stall",
+      "locality": "Santacruz",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-66b60b01e52018fef1bb",
+      "name": "Anand Dosa Stall",
+      "locality": "Vile Parle",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-97896231f6f87406c949",
+      "name": "Copper Chimney",
+      "locality": "Juhu",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11372185940",
+        "osm:node/11383276966",
+        "osm:node/12890278999",
+        "osm:node/12926036241",
+        "osm:node/13293400549",
+        "osm:node/13881397288",
+        "osm:node/245653876",
+        "osm:node/4447119333",
+        "osm:node/4959496421",
+        "osm:node/357189520"
+      ],
+      "source_profile_ids": [
+        "official:sd-mumbai-ebdadbaf110197c2ae72"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-6f4c2e3aeb383ddea600",
+      "name": "Pink Wasabi",
+      "locality": "Juhu",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-837242dcb94342060efc",
+      "name": "Om Snacks",
+      "locality": "Andheri East",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/12875129610"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-2603470d1a35d7f2bb07",
+      "name": "Kapil Dabeli Centre",
+      "locality": "Andheri East",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-755ab84a2266c49fac91",
+      "name": "Chandan Paratha",
+      "locality": "Andheri",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-95f25e748e7cb43054f1",
+      "name": "Pandora's Box",
+      "locality": "Andheri",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/9124310961"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-f98ea61edca9be7d99db",
+      "name": "Nino Burgers",
+      "locality": "Andheri",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-96d08ccd6bdea9ca2002",
+      "name": "1522 Bar and Kitchen",
+      "locality": "Andheri",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-d7996f36dbf17dbe1086",
+      "name": "Queen Margherita's Pizzeria",
+      "locality": "Malad-Borivali",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-bb9826bed987e0054db9",
+      "name": "Jimi's Burgers",
+      "locality": "Malad-Borivali",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-956ff94cf148fa444417",
+      "name": "Agent Jack's Bar",
+      "locality": "Malad-Borivali",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-bfbdf7eb6828e1a3b58e",
+      "name": "Bansi Vada Pav",
+      "locality": "Malad-Borivali",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-932bd382c7eca6a1c2d5",
+      "name": "Hungry Head",
+      "locality": "Powai",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/13192046618"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-23a4b2dbda8efc38acd9",
+      "name": "Mirchi and Mime",
+      "locality": "Powai",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [
+        "official:sd-mumbai-08484cb561ade20c74c3"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-e82e6fc1a6c6a94987bc",
+      "name": "Madeira and Mime",
+      "locality": "Powai",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-273ef0980f5b08d65369",
+      "name": "Hitchki",
+      "locality": "Powai",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/10779234885",
+        "osm:node/9892036253"
+      ],
+      "source_profile_ids": [
+        "official:sd-mumbai-770e0f3fba3296ef49a7"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-129b7ba7483bc1c3932f",
+      "name": "Elementaria Bakery",
+      "locality": "Powai",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/6805468987",
+        "osm:node/6795540689"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-335a92012f4814736256",
+      "name": "Mini Punjab",
+      "locality": "Sion",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/2440075895",
+        "osm:node/3766893640",
+        "osm:node/1473902953"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-45eb89a04f684e614ed2",
+      "name": "Akkad Bakkad Bombay Boo",
+      "locality": "Sion",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-1c134cc04f1b0d607385",
+      "name": "Sardar Pav Bhaji",
+      "locality": "Tardeo",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-db8356bcb56e70c56c4f",
+      "name": "Aswad",
+      "locality": "Dadar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/1579253699",
+        "osm:node/4705646991",
+        "osm:node/5921458567",
+        "osm:node/10045524024",
+        "osm:node/9369819264",
+        "osm:node/5803624701",
+        "osm:node/6833885286",
+        "osm:node/12293786301",
+        "osm:node/4511507489",
+        "osm:node/6084177185",
+        "osm:node/11953259366"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-aaa662e58d1dc21e2a5a",
+      "name": "Shree Krushna Lassi",
+      "locality": "Dadar",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-3e6b6f2dc15665f20d99",
+      "name": "Messy Adda",
+      "locality": "Matunga",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-d5339a38287a319bbf1e",
+      "name": "Mamledar Misal",
+      "locality": "Thane",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-867c11292a37edfb956c",
+      "name": "Cafe Mondegar",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/669259659"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-9d47ee77c17051bb86a9",
+      "name": "Leopold Cafe",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-7c2d801f80483535d89a",
+      "name": "Cafe Churchill",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:way/40382476"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-a1c2d6b28f92119978d1",
+      "name": "Bachelorr's",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-411d81c1ce9736a34655",
+      "name": "Cream Centre",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11443658469",
+        "osm:node/1177974039",
+        "osm:node/12395684150",
+        "osm:node/378688532",
+        "osm:node/6779010213",
+        "osm:way/797414658"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-75a16b9ebd5ab6660976",
+      "name": "Gokul",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/7053786116",
+        "osm:node/4946500325",
+        "osm:node/7053786117",
+        "osm:node/12765641430",
+        "osm:node/1375547181",
+        "osm:node/3437149715",
+        "osm:node/6372428076",
+        "osm:node/6919736985",
+        "osm:node/7205313004",
+        "osm:node/8188050566",
+        "osm:node/11199388745",
+        "osm:node/3390668637",
+        "osm:way/40388243",
+        "osm:node/13517680451",
+        "osm:way/1434067786",
+        "osm:node/4748802221",
+        "osm:node/2429976498",
+        "osm:node/13383251576",
+        "osm:node/13383261116",
+        "osm:node/13509759401",
+        "osm:node/6751124828",
+        "osm:node/4644566241",
+        "osm:node/7071593449",
+        "osm:way/331338674",
+        "osm:way/1434139548",
+        "osm:way/347145334",
+        "osm:node/13073559193",
+        "osm:node/6875469185",
+        "osm:node/7467811891",
+        "osm:node/4561241496",
+        "osm:node/13058306197",
+        "osm:way/1343589765",
+        "osm:node/3273037673",
+        "osm:node/11727836025",
+        "osm:node/11753114211",
+        "osm:node/8137094034",
+        "osm:node/4272882591",
+        "osm:node/12595679903",
+        "osm:node/12618671517",
+        "osm:node/2487658336",
+        "osm:node/4273581692",
+        "osm:node/4447076724",
+        "osm:way/1180658038",
+        "osm:node/11691288439",
+        "osm:node/7258183185",
+        "osm:node/1474819888",
+        "osm:node/8188049945",
+        "osm:node/11835352549",
+        "osm:node/6779102362",
+        "osm:node/12254996793"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-1c38a82cf910b55cb5e7",
+      "name": "Rustom's",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-fcc6cc9b670eae49f503",
+      "name": "Gaylords",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-a225c597f4922482a1fd",
+      "name": "Pizza by the Bay",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4678083190"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-e1080a489a9a50bb043c",
+      "name": "145 Kala Ghoda",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-04d0f9fffd91be9ae75b",
+      "name": "Mumbai Bites",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/13948115435",
+        "osm:way/1380575750"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-483f1c0b28a79c27ef2d",
+      "name": "Toit",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4903727435",
+        "osm:node/1923665125",
+        "osm:node/831251526",
+        "osm:node/5762537253",
+        "osm:node/12181461728"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-252fd1b9a03d3c9a03df",
+      "name": "Taj Mahal Tea",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/4736444239"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-ca2718e18491bcc37f64",
+      "name": "The Bombay Canteen",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/5664893622"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-83b701c2b371c4b4d2e2",
+      "name": "99 Pancakes",
+      "locality": "South Mumbai (exact branch unknown)",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/12944649005",
+        "osm:node/13041514626",
+        "osm:node/13130970119",
+        "osm:node/13235113778",
+        "osm:node/13436399001",
+        "osm:node/14112525883",
+        "osm:node/14132644503",
+        "osm:node/6795540688",
+        "osm:node/7249314185"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-7aaa9da77d76d6b2f1f5",
+      "name": "Spesso Gourmet Kitchen",
+      "locality": "Nariman Point",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-aa268ffca5e04190b30f",
+      "name": "Aram Vada Pav",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-322dc9df4a5bd4f39202",
+      "name": "Sabalan",
+      "locality": "Fort",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-05641dc8c9a13da67e20",
+      "name": "Persian Palette",
+      "locality": "Bandra",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-c7902e2c4c3307d44d0f",
+      "name": "The Black Shephard",
+      "locality": "Bandra West",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-eab060be8e038a4bed15",
+      "name": "Hilltop Bites",
+      "locality": "Malad West",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-65d00055a8b71dee8835",
+      "name": "Tost",
+      "locality": "Andheri West",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-2ed00c867080fc8ed48f",
+      "name": "Luv Kitchen",
+      "locality": "Andheri West",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-ff83de485301bd01c38e",
+      "name": "Pinto Sando",
+      "locality": "Orlem, Malad West",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-401d4cd77ea014879b44",
+      "name": "Bang Bang Noodles",
+      "locality": "Goregaon West",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-cd1ae41ec87a8414c5b0",
+      "name": "Project Hum",
+      "locality": "Versova",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [
+        "osm:node/11296371116",
+        "osm:node/12607283683"
+      ],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    },
+    {
+      "lead_id": "sd-mumbai-1fcf1cba73a6f06ce8d7",
+      "name": "Maska Bakery",
+      "locality": "Mahim",
+      "source_urls": [
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+      ],
+      "checked_on": "2026-10-04",
+      "directory_search_status": "checked",
+      "possible_directory_match_ids": [],
+      "source_profile_ids": [],
+      "status": "needs_branch_and_official_source_verification",
+      "recommendation_eligible": false
+    }
+  ]
+}
