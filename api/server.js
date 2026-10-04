@@ -672,6 +672,19 @@ app.get("/api/ai-recommend", async (req, res) => {
     // --------------------------------------------------
 
     const customWords = /\b(without|avoid|no|not|allerg)\b/i.test(customPreferences) ? [] : [...new Set(normalize(customPreferences).split(" ").filter(word => word.length > 2 && !["the","and","for","with","want","some","something","please","without","avoid","not"].includes(word)))];
+    // Explicit dish families and proteins are constraints, not soft suggestions.
+    const requestedText = normalize(customPreferences);
+    if (!/\b(without|avoid|no|not|allerg)\b/i.test(customPreferences)) {
+      const families = ["sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav"];
+      const proteins = ["chicken", "mutton", "fish", "prawn", "egg", "paneer"];
+      const requestedFamilies = families.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
+      const requestedProteins = proteins.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
+      filteredDishes = filteredDishes.filter(dish => {
+        const name = " " + normalize(dish.name) + " ";
+        return (!requestedFamilies.length || requestedFamilies.some(word => name.includes(" " + word + " "))) && (!requestedProteins.length || requestedProteins.some(word => name.includes(" " + word + " ")));
+      });
+      if (!filteredDishes.length) return res.json({success:true,source:"database",recommendations:[],summary:"No matching dishes were found for your specific request within the selected dietary preference, budget and distance. Change your request or filters to see other options."});
+    }
     const scoredDishes = filteredDishes.map((dish) => {
       const dishText = textForDish(dish);
 
