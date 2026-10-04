@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin-review.html
+Disallow: /owner-dashboard.html
+Disallow: /claim-business.html
+Disallow: /lib/
+Disallow: /prisma/
+Sitemap: https://www.suggestdish.com/sitemap.xml

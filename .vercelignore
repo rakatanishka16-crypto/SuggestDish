@@ -1,0 +1,11 @@
+.git
+.env*
+node_modules
+tests
+docs
+scripts
+data
+migrations
+index.html.backup
+osmium-tool
+*.zip
