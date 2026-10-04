@@ -1325,6 +1325,8 @@
     <div class="section-head">
       <div>
         <h2>Built for your next food decision</h2>
+        <button type="button" id="viewSavedDishes" class="btn btn-light">View saved dishes</button>
+        <div id="savedDishList" aria-live="polite"></div>
 
         <p class="sub">
           Save your preferences, discover new dishes and make your
@@ -1341,8 +1343,7 @@
         <h3>Save</h3>
 
         <p>
-          Keep track of dishes you want to try in future versions of
-          SuggestDish.
+          Save dishes on this device and return to your shortlist anytime.
         </p>
       </div>
 
@@ -2249,6 +2250,29 @@ for(const b of data.businesses){const card=document.createElement('article');car
 }catch(e){status.textContent=e.message || 'Directory unavailable.';}finally{busy=false;}}
 form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fromEntries(new FormData(form));search();});next.addEventListener('click',()=>{offset+=20;search();});})();
 </script>
+
+
+
+<script>
+(() => {
+ const list=document.getElementById('savedDishList');
+ document.getElementById('viewSavedDishes').addEventListener('click',()=>{
+  list.replaceChildren();
+  try {
+   const saved=JSON.parse(localStorage.getItem('suggestdish.saved') || '[]');
+   if(!Array.isArray(saved)) throw Error('Invalid saved list');
+   if(!saved.length){list.textContent='No saved dishes yet. Save a recommendation to build your shortlist.';return;}
+   saved.forEach((dish,index)=>{
+    const card=document.createElement('article');card.className='card panel';
+    const title=document.createElement('h3');title.textContent=dish.dishName;
+    const detail=document.createElement('p');detail.textContent=[dish.restaurant,dish.price != null ? '₹'+dish.price : '',dish.address].filter(Boolean).join(' · ');
+    const remove=document.createElement('button');remove.className='btn btn-light';remove.textContent='Remove from saved';
+    remove.onclick=()=>{const current=JSON.parse(localStorage.getItem('suggestdish.saved') || '[]');localStorage.setItem('suggestdish.saved',JSON.stringify(current.filter(x=>!(x.dishName===dish.dishName && x.restaurant===dish.restaurant && x.address===dish.address))));card.remove();};
+    card.append(title,detail,remove);list.append(card);
+   });
+  }catch{list.textContent='Saved dishes are unavailable on this device.';}
+ });
+})();
+</script>
 </body>
 </html>
-
