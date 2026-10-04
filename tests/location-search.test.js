@@ -11,6 +11,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
   const app = { use() {}, post() {}, get(route, handler) { routes.set(route, handler); }, listen() {} };
   const express = () => app;
   express.json = () => () => {};
+  express.raw = () => () => {};
   const sql = async (strings, ...values) => {
     const query = strings.join('?');
     queries.push({ query, values });
@@ -19,6 +20,8 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
   vm.runInNewContext(fs.readFileSync(path.join(root, 'api/server.js'), 'utf8'), {
     require(name) {
       if (name === '../lib/razorpay-payments') return require('../lib/razorpay-payments');
+      if (name === '../lib/dish-events') return require('../lib/dish-events');
+      if (name === '../lib/business-media') return require('../lib/business-media');
       if (name === '../lib/customer-feedback') return require('../lib/customer-feedback');
       if (name === '../lib/dish-photos') return require('../lib/dish-photos');
       if (name === '../lib/star-evidence') return require('../lib/star-evidence');
@@ -105,7 +108,7 @@ function frontendHarness() {
   let geolocationSuccess;
   const document = {
     addEventListener(event, fn) { fn(); }, getElementById(id) { return id==='menuCoverage' ? null : element(id); }, querySelector() { return null; }, querySelectorAll() { return []; },
-    createElement() { return { style: {}, children: [], replaceChildren() { this.children = []; }, append(child) { this.children.push(child); }, setAttribute() {}, remove() {} }; }, body: { appendChild() {} }
+    createElement() { return { style: {}, dataset: {}, children: [], replaceChildren() { this.children = []; }, append(child) { this.children.push(child); }, setAttribute() {}, remove() {} }; }, body: { appendChild() {} }
   };
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];

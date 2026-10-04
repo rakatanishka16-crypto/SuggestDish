@@ -1349,7 +1349,7 @@
   </div>
 </section>
 
-<section class="section" id="about-support"><div class="container"><h2>About SuggestDish</h2><p>SuggestDish is a dish discovery website. We match available menu dishes to your preferences; restaurant listings, dish evidence and source coverage can be incomplete.</p><h3>Help and corrections</h3><p>Use Report incorrect information on a dish card, or contact <a href="https://www.instagram.com/suggestdish.ai/" target="_blank" rel="noopener noreferrer">@suggestdish.ai on Instagram</a>. Business ownership and menu changes are reviewed before publication.</p><h3>Privacy and preference controls</h3><p>Your search preferences and selected location are sent to SuggestDish to find dishes. Preferences may be sent to Google Gemini to interpret your request; locality resolution may use Geoapify. Precise location is requested through browser permission. Saved dishes and optional remembered preferences remain on this device. Location is not included in remembered preferences.</p><p>Feedback is stored for private moderation. Business contact details and ownership evidence are used for listing review. Keep private access codes private. You can remove saved dishes and forget remembered preferences using the website controls. Contact us on Instagram for other privacy requests.</p><p>Paid plans are paused. Buying dish slots does not guarantee placement; any future sponsored placement must be labelled and respect your dietary and budget constraints.</p></div></section>
+<section class="section" id="about-support"><div class="container"><h2>About SuggestDish</h2><p>SuggestDish is a dish discovery website. We match available menu dishes to your preferences; restaurant listings, dish evidence and source coverage can be incomplete.</p><h3>Help and corrections</h3><p>Use Report incorrect information on a dish card, or contact <a href="https://www.instagram.com/suggestdish.ai/" target="_blank" rel="noopener noreferrer">@suggestdish.ai on Instagram</a>. Business ownership and menu changes are reviewed before publication.</p><h3>Privacy and preference controls</h3><p>Your search preferences and selected location are sent to SuggestDish to find dishes. Preferences may be sent to Google Gemini to interpret your request; locality resolution may use Geoapify. Precise location is requested through browser permission. Saved dishes and optional remembered preferences remain on this device. Location is not included in remembered preferences.</p><p>Anonymous recommendation displays and outbound dish-link clicks are counted; these counts are not unique users or orders. Feedback is stored for private moderation. Business contact details and ownership evidence are used for listing review. Keep private access codes private. You can remove saved dishes and forget remembered preferences using the website controls. Contact us on Instagram for other privacy requests.</p><p>Paid plans are paused. Buying dish slots does not guarantee placement; any future sponsored placement must be labelled and respect your dietary and budget constraints.</p></div></section>
 <!-- SAVE / SHARE -->
 <section class="section" id="saved-dishes">
   <div class="container">
@@ -1768,11 +1768,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const directions = document.createElement("a"); directions.className = "btn btn-light";
     directions.textContent = "Find on Google Maps";
     directions.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent([dish.restaurant,dish.address,dish.city].filter(Boolean).join(", "));
-    directions.target = "_blank"; directions.rel = "noopener noreferrer"; row.append(directions);
+    directions.dataset.dishEvent="maps_click"; directions.dataset.dishId=String(dish.dishId || ""); directions.target = "_blank"; directions.rel = "noopener noreferrer"; row.append(directions);
     const save = document.createElement("button"); save.className = "btn btn-light"; save.textContent = "Save dish";
     save.onclick = () => { try { const saved = JSON.parse(localStorage.getItem("suggestdish.saved") || "[]"); const key = JSON.stringify([dish.dishName,dish.restaurant,dish.address]); if (!saved.some(x=>JSON.stringify([x.dishName,x.restaurant,x.address])===key)) saved.push(dish); localStorage.setItem("suggestdish.saved",JSON.stringify(saved.slice(-50))); save.textContent="Saved on this device"; } catch { save.textContent="Unable to save on this device"; } }; row.append(save);
     const share = document.createElement("a"); share.className = "btn btn-light"; share.textContent = "Share on WhatsApp";
-    share.href = "https://wa.me/?text=" + encodeURIComponent(`${dish.dishName} at ${dish.restaurant}${dish.price != null ? " · ₹" + dish.price : ""}\n${dish.address || ""}\nDiscover dishes at https://www.suggestdish.com`); share.target="_blank"; share.rel="noopener noreferrer"; row.append(share);
+    share.href = "https://wa.me/?text=" + encodeURIComponent(`${dish.dishName} at ${dish.restaurant}${dish.price != null ? " · ₹" + dish.price : ""}\n${dish.address || ""}\nDiscover dishes at https://www.suggestdish.com`); share.dataset.dishEvent="share_click";share.dataset.dishId=String(dish.dishId || "");share.target="_blank"; share.rel="noopener noreferrer"; row.append(share);
     const freshness = document.createElement("p"); freshness.className="small mute";
     const checked = dish.sourceCheckedAt && new Date(dish.sourceCheckedAt);
     freshness.textContent = checked && !Number.isNaN(checked.getTime()) ? "Star-dish source checked: " + checked.toLocaleDateString("en-IN") + ". Current price and availability: confirm with the restaurant." : "Current price and availability are not independently confirmed. Check with the restaurant before travelling or ordering.";
@@ -1783,25 +1783,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     if (dish.sponsored === true) { const sponsored=document.createElement("span"); sponsored.className="badge"; sponsored.textContent="Sponsored"; container.prepend(sponsored); }
+    for (const label of [dish.ownerVerified===true ? "Verified owner" : null,dish.starConfirmed===true ? (dish.starOrigin==="published_menu" ? "Menu-listed specialty" : "Reviewed star dish") : null].filter(Boolean)) { const badge=document.createElement("span"); badge.className="badge";badge.textContent=label;container.append(badge); }
     const evidence=document.createElement("p");evidence.className="small mute";
     evidence.textContent=dish.starOrigin==="owner_claim" ? "Owner-submitted star dish. Popularity: " + (dish.popularityVerified ? "independently checked" : "owner-reported, not independently verified") + "." : dish.starOrigin==="published_menu" ? "Star dish identified in a published menu. Dish-specific customer rating: not available." : "Menu suggestion. Dish-specific rating and popularity evidence: not available.";
     container.append(evidence);
     const facts=document.createElement("p");facts.className="small mute";facts.textContent="Portion size, spice/customisation, opening hours and delivery availability: not confirmed. Vegetarian does not mean vegan or Jain. Confirm ingredients and preparation with the restaurant.";container.append(facts);
   }
 
-  async function showDishPhoto(container, dishName, vegetarian) {
+  async function showDishPhoto(container, dishName, vegetarian, dishId) {
     if (!container || !dishName) return;
     container.replaceChildren();
     const note = document.createElement("p"); note.className = "small mute"; note.textContent = "Finding a verified matching dish photo…"; container.append(note);
     try {
-      const response = await fetch("/api/dish-photo?" + new URLSearchParams({dish: dishName, vegetarian: String(vegetarian !== false), v: "3"}));
+      const response = await fetch("/api/dish-photo?" + new URLSearchParams({dish: dishName, vegetarian: String(vegetarian !== false), dishId:String(dishId || ""), v: "4"}));
       const data = await response.json();
       if (!note.parentNode) return;
       container.replaceChildren();
       const photo = data.photo;
       if (!photo) { note.textContent = "Verified matching dish photo not available yet."; container.append(note); return; }
       const imageURL = new URL(photo.url), sourceURL = new URL(photo.sourceUrl);
-      if (imageURL.protocol !== "https:" || !["upload.wikimedia.org","thumb.wikimedia.org"].includes(imageURL.hostname) || sourceURL.protocol !== "https:" || sourceURL.hostname !== "commons.wikimedia.org") return;
+      if (imageURL.protocol !== "https:" || !["upload.wikimedia.org","thumb.wikimedia.org","www.suggestdish.com"].includes(imageURL.hostname) || sourceURL.protocol !== "https:" || !["commons.wikimedia.org","www.suggestdish.com"].includes(sourceURL.hostname)) return;
       const image = document.createElement("img"); image.src = imageURL.href; image.alt = photo.label; image.loading = "lazy"; image.referrerPolicy = "no-referrer"; image.style.cssText = "width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin-top:12px";
       const caption = document.createElement("p"); caption.className = "small mute"; caption.textContent = photo.label;
       const source = document.createElement("a"); source.href = sourceURL.href; source.target = "_blank"; source.rel = "noopener noreferrer"; source.textContent = "Photo: " + photo.artist + " · " + photo.license; caption.append(source);
@@ -2036,6 +2037,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const recommendations =
             Array.isArray(data.recommendations) ? data.recommendations : [];
           lastRecommendations = recommendations;
+
           const recovery = document.getElementById("emptyRecovery"); if (recovery) recovery.style.display = recommendations.length ? "none" : "block";
           const refinements = document.getElementById("searchRefinements"); if (refinements) refinements.style.display = recommendations.length ? "flex" : "none";
 
@@ -2060,9 +2062,9 @@ document.addEventListener("DOMContentLoaded", () => {
               for (const [tag, value] of [["h3", item.dishName], ["p", item.restaurant], ["p", item.reason], ["p", [Number.isFinite(Number(item.price)) && item.price != null ? "₹" + Number(item.price) : null, item.vegetarian === true ? "Vegetarian" : "Non-vegetarian", item.address, item.distanceKm != null ? item.distanceKm + " km away" : null].filter(Boolean).join(" · ")]]) {
                 const line = document.createElement(tag); line.textContent = value || ""; card.append(line);
               }
-              if (item.starSourceUrl) { try { const source = new URL(item.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { const link = document.createElement("a"); link.href = source.href; link.target = "_blank"; link.rel = "noopener noreferrer"; link.textContent = "View restaurant menu evidence"; card.append(link); } } catch {} }
+              if (item.starSourceUrl) { try { const source = new URL(item.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { const link = document.createElement("a"); link.href = source.href; link.target = "_blank"; link.rel = "noopener noreferrer"; link.textContent = "View restaurant menu evidence"; link.dataset.dishEvent="menu_click";link.dataset.dishId=String(item.dishId || "");card.append(link); } } catch {} }
               const photoContainer = document.createElement("div"); card.append(photoContainer);
-              showDishPhoto(photoContainer, item.dishName, item.vegetarian);
+              showDishPhoto(photoContainer, item.dishName, item.vegetarian, item.dishId);
               addDishActions(card, item);
               moreResults.append(card);
             }
@@ -2075,7 +2077,7 @@ document.addEventListener("DOMContentLoaded", () => {
             recommendations[0];
 
 
-          showDishPhoto(document.getElementById("aiDishPhoto"), first.dishName, first.vegetarian);
+          showDishPhoto(document.getElementById("aiDishPhoto"), first.dishName, first.vegetarian, first.dishId);
 
           /* =========================
              DISPLAY RESULT
@@ -2124,7 +2126,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const primaryMeta = document.getElementById("aiDishMeta");
           if (primaryMeta) primaryMeta.textContent = [first.price != null ? "₹" + Number(first.price) : null, first.vegetarian === true ? "Vegetarian" : "Non-vegetarian", first.address, first.distanceKm != null ? first.distanceKm + " km away" : null].filter(Boolean).join(" · ");
           const evidenceLink = document.getElementById("aiEvidenceSource");
-          if (evidenceLink) { evidenceLink.hidden = true; try { const source = new URL(first.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { evidenceLink.href = source.href; evidenceLink.hidden = false; } } catch {} }
+          if (evidenceLink) { evidenceLink.hidden = true; try { const source = new URL(first.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { evidenceLink.href = source.href; evidenceLink.dataset.dishEvent="menu_click";evidenceLink.dataset.dishId=String(first.dishId || "");evidenceLink.hidden = false; } } catch {} }
           /* Show result */
 
           if (aiResult) {
@@ -2132,6 +2134,8 @@ document.addEventListener("DOMContentLoaded", () => {
             aiResult.style.display =
               "block";
           }
+          const shownIds=recommendations.map(x=>x.dishId).filter(x=>Number.isSafeInteger(x)&&x>0).slice(0,3);
+          if(shownIds.length)fetch("/api/dish-events",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({event:"recommendation_shown",dishIds:shownIds}),keepalive:true}).catch(()=>{});
 
 
         } catch (error) {
@@ -2351,5 +2355,7 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
   <button type="submit" class="btn btn-primary">Submit feedback</button><button type="button" id="closeFeedback" class="btn btn-light">Close</button><p id="feedbackStatus" role="status" aria-live="polite"></p>
   </form></dialog>
 <script src="/foodie-controls.js" defer></script><script src="/dish-feedback.js" defer></script>
-</body>
+<script>
+document.addEventListener('click',event=>{const target=event.target.closest('[data-dish-event]');if(!target)return;const id=Number(target.dataset.dishId);if(!Number.isSafeInteger(id)||id<1)return;fetch('/api/dish-events',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event:target.dataset.dishEvent,dishIds:[id]}),keepalive:true}).catch(()=>{});});
+</script></body>
 </html>
