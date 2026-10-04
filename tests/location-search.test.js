@@ -99,6 +99,7 @@ function frontendHarness() {
     return elements.get(id);
   };
   element('aiBudget').value = '500';
+  element('locationQuery').value = 'Mumbai';
   let locationChoice = 'Mumbai';
   let geolocationSuccess;
   const document = {
@@ -117,7 +118,7 @@ function frontendHarness() {
         : { success: true, recommendations: [{ dishName: 'BBQ Paneer Pizza', restaurant: "Pop Tate's - Time Square" }, { dishName: '<script>dish</script>', restaurant: 'Second restaurant', price: 200, vegetarian: true }, { dishName: 'Third dish', restaurant: 'Third restaurant' }], source: 'database' } };
     }
   });
-  return { element, calls, setLocation(value) { locationChoice = value; }, enableGPS() { geolocationSuccess({ coords: { latitude: 19.07, longitude: 72.88 } }); } };
+  return { element, calls, setLocation(value) { locationChoice = value; element("locationQuery").value = value; }, enableGPS() { geolocationSuccess({ coords: { latitude: 19.07, longitude: 72.88 } }); } };
 }
 
 test('Enter Location Mumbai reaches recommendation request and displays its result', async () => {
@@ -186,3 +187,8 @@ test('custom text and breakfast travel from the form to the API',async()=>{
  test('distance filter validates radius and excludes far restaurants',async()=>{const h=serverHarness({rows:[{id:1,name:'Sandwich',price:100,isVeg:true,restaurantName:'Far Place',latitude:20,longitude:73}]});assert.equal((await h.request('/api/ai-recommend',{radiusKm:'bad'})).status,400);const {body}=await h.request('/api/ai-recommend',{lat:'19',lon:'72',radiusKm:'2',budget:'200'});assert.equal(body.recommendations.length,0);});
 
 test('specific sandwich request never substitutes biryani',async()=>{const h=serverHarness({rows:[{id:1,name:'Chicken Biryani',price:150,isVeg:false,restaurantName:'Restaurant',restaurantCity:'Mumbai'}]});const {body}=await h.request('/api/ai-recommend',{diet:'nonvegetarian',budget:'200',customPreferences:'chicken sandwich'});assert.equal(body.recommendations.length,0);assert.match(body.summary,/specific request/);});
+
+test('dish refinements exclude only specified dishes and preserve diet',async()=>{const h=serverHarness({rows:[{id:1,name:'Veg Sandwich',price:100,isVeg:true,restaurantName:'A'},{id:2,name:'Veg Sandwich',price:120,isVeg:true,restaurantName:'B'}]});const {body}=await h.request('/api/ai-recommend',{diet:'vegetarian',budget:'200',excludeDishIds:'1'});assert.equal(body.recommendations.length,1);assert.equal(body.recommendations[0].dishId,2);assert.equal((await h.request('/api/ai-recommend',{excludeDishIds:'1,evil'})).status,400);});
+test('golgappa alias keeps a pani puri request specific',async()=>{const h=serverHarness({rows:[{id:1,name:'Pani Puri',price:80,isVeg:true,restaurantName:'A'},{id:2,name:'Veg Sandwich',price:90,isVeg:true,restaurantName:'B'}]});const {body}=await h.request('/api/ai-recommend',{diet:'vegetarian',budget:'200',customPreferences:'golgappa'});assert.equal(body.recommendations.length,1);assert.equal(body.recommendations[0].dishName,'Pani Puri');});
+
+test('natural budget and veg request constrain any-diet results',async()=>{const h=serverHarness({rows:[{id:1,name:'Veg Sandwich',price:100,isVeg:true,restaurantName:'A'},{id:2,name:'Chicken Sandwich',price:100,isVeg:false,restaurantName:'B'},{id:3,name:'Veg Sandwich',price:180,isVeg:true,restaurantName:'C'}]});const {body}=await h.request('/api/ai-recommend',{diet:'any',budget:'300',customPreferences:'veg sandwich under 150'});assert.equal(body.recommendations.length,1);assert.equal(body.recommendations[0].dishId,1);});

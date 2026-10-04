@@ -577,7 +577,10 @@
     .business-fields label { display:flex; flex-direction:column; gap:6px; font-weight:600; }
     .business-fields input,.business-fields select { width:100%; padding:12px; border:1px solid var(--border); border-radius:12px; background:var(--card); color:var(--text); }
     @media(max-width:650px) { .business-fields { grid-template-columns:1fr; } }
-  </style>
+      :focus-visible { outline: 3px solid #F36A21; outline-offset: 3px; }
+    .field { min-width:0; max-width:100%; }
+    @media (max-width:600px) { .nav-links { flex-wrap:wrap; gap:12px; } .btn { min-height:44px; white-space:normal; } .row { flex-wrap:wrap; } }
+</style>
 
 </head>
 
@@ -596,15 +599,10 @@
       </a>
 
   <div class="nav-links">
+    <a href="#ai-recommend">Find my dish</a>
+    <a href="#saved-dishes">Saved dishes</a>
     <a href="#how-it-works">How it works</a>
-    <a href="#ai-recommend">AI Recommend</a>
-    <a href="#picks">Top picks</a>
-    <a href="#horeca">Horeca</a>
-    <a href="#business-directory">Find a business</a>
-    <a href="#list-business">List your business</a>
-    <a href="#transparency">Transparency</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#compare">Compare</a>
+    <a href="#horeca">For businesses</a>
   </div>
 </div>
 
@@ -639,6 +637,13 @@
         <button class="btn btn-light" id="enterLocation">
           Enter Location
         </button>
+      </div>
+      <div id="manualLocation" style="margin-top:16px">
+        <label for="locationQuery"><strong>City or locality</strong></label>
+        <input id="locationQuery" class="field" maxlength="120" list="supportedCities" placeholder="For example: Bandra West, Mumbai" />
+        <datalist id="supportedCities"><option value="Mumbai"></option><option value="Jalna"></option></datalist>
+        <p id="selectedLocation" class="small mute" role="status" aria-live="polite">No location selected. Choose a city or allow location for nearby results.</p>
+        <button type="button" id="clearLocation" class="btn btn-light">Clear location</button>
       </div>
     </div>
 
@@ -715,6 +720,15 @@
 
     <div class="card panel">
 
+      <label for="aiCustomPreferences"><strong>What would you like to eat?</strong></label>
+      <textarea id="aiCustomPreferences" class="field" rows="3" maxlength="500" placeholder="For example: veg sandwich, poha for breakfast, or golgappa"></textarea>
+      <p class="small mute">Add your own preferences (up to 500 characters). Suggestions use available menu data; ingredients, allergies and Jain preparation must be confirmed with the restaurant.</p>
+      <div class="row" style="flex-wrap:wrap;margin:12px 0" aria-label="Quick cravings">
+        <button type="button" class="btn btn-light" data-craving="poha" data-occasion="breakfast">Breakfast</button>
+        <button type="button" class="btn btn-light" data-craving="pani puri">Street food</button>
+        <button type="button" class="btn btn-light" data-craving="" data-taste="sweet">Sweet craving</button>
+        <button type="button" class="btn btn-light" data-craving="" data-taste="light">Light meal</button>
+      </div>
       <div class="two-col">
 
         <div>
@@ -797,9 +811,6 @@
       <p class="small mute">Distance applies after you choose a location. Prices are per dish; delivery fees and taxes may differ.</p>
       <div class="divider"></div>
 
-      <label for="aiCustomPreferences"><strong>Anything else you’re craving?</strong></label>
-      <textarea id="aiCustomPreferences" class="field" rows="3" maxlength="500" placeholder="For example: poha for breakfast, something tangy, or a light sandwich"></textarea>
-      <p class="small mute">Add your own preferences (up to 500 characters). Suggestions use available menu data; ingredients, allergies and Jain preparation must be confirmed with the restaurant.</p>
 
       <label for="aiDiet"><strong>Dietary preference</strong></label>
       <select id="aiDiet" class="field"><option value="vegetarian" selected>Vegetarian</option><option value="nonvegetarian">Non-vegetarian</option><option value="any">Any dietary type</option></select>
@@ -811,6 +822,10 @@
         </button>
       </div>
 
+      <label class="row"><input type="checkbox" id="rememberPreferences" /> Remember my preferences on this device</label>
+      <button type="button" id="forgetPreferences" class="btn btn-light">Forget saved preferences</button>
+      <p id="preferencesStatus" class="small mute" role="status"></p>
+      <p class="small mute">Results use our available menu records. A directory listing alone does not mean its menu is available. Coverage varies by city and locality.</p>
       <!-- LOADING -->
       <div
         id="aiLoading"
@@ -824,6 +839,17 @@
         </p>
       </div>
 
+      <div id="searchRefinements" class="row" style="display:none;flex-wrap:wrap;margin-top:12px">
+        <button type="button" id="refineCheaper" class="btn btn-light">Show cheaper dishes</button>
+        <button type="button" id="refineCloser" class="btn btn-light">Search closer</button>
+        <button type="button" id="refineDifferent" class="btn btn-light">Something different</button>
+        <button type="button" id="refineReset" class="btn btn-light">Clear refinements</button>
+      </div>
+      <div id="emptyRecovery" style="display:none;margin-top:12px">
+        <p>No automatic substitutions. Your dietary preference and specific dish request remain unchanged.</p>
+        <button type="button" id="expandDistance" class="btn btn-light">Increase distance</button>
+        <button type="button" id="editRequest" class="btn btn-light">Edit my request</button>
+      </div>
       <!-- RESULT -->
       <div
         id="aiResult"
@@ -1319,7 +1345,7 @@
 </section>
 
 <!-- SAVE / SHARE -->
-<section class="section">
+<section class="section" id="saved-dishes">
   <div class="container">
 
     <div class="section-head">
@@ -1513,6 +1539,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let userLatitude = null;
   let userLongitude = null;
   let selectedCity = "";
+  let excludedDishIds = [];
+  let lastRecommendations = [];
+  const updateLocationLabel = text => { const label = document.getElementById("selectedLocation"); if (label) label.textContent = text; };
+  document.getElementById("clearLocation")?.addEventListener("click", () => { if (locationPending) return; userLatitude = null; userLongitude = null; selectedCity = ""; updateLocationLabel("No location selected. Distance filtering requires a location."); });
   let locationPending = false;
 
 
@@ -1596,6 +1626,7 @@ document.addEventListener("DOMContentLoaded", () => {
           (position) => {
 
             selectedCity = "";
+            updateLocationLabel("Location: your current GPS position");
 
             userLatitude =
               position.coords.latitude;
@@ -1666,17 +1697,16 @@ document.addEventListener("DOMContentLoaded", () => {
      ENTER LOCATION
   ========================= */
 
+  document.getElementById("locationQuery")?.addEventListener("keydown", event => { if (event.key === "Enter") { event.preventDefault(); enterLocation?.click?.(); } });
   if (enterLocation) {
 
     enterLocation.addEventListener(
       "click",
       async () => {
 
-        const loc =
-          prompt(
-            "Enter your area or locality:",
-            "Bandra West"
-          );
+        const locationField = document.getElementById("locationQuery");
+        const loc = locationField?.value?.trim() || "";
+        if (!loc) { toast("Enter a city or locality in the location field."); locationField?.focus?.(); return; }
 
         if (!loc || !loc.trim() || locationPending) return;
         locationPending = true;
@@ -1693,6 +1723,7 @@ document.addEventListener("DOMContentLoaded", () => {
           selectedCity = city;
           userLatitude = hasCoordinates ? data.latitude : null;
           userLongitude = hasCoordinates ? data.longitude : null;
+          updateLocationLabel(`Location: ${data.label}`);
           toast(`Location set to ${data.label}. Choose your preferences and tap Recommend My Dish.`);
         } catch (error) {
           toast(error.message);
@@ -1715,6 +1746,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const aiLoading =
     document.getElementById("aiLoading");
 
+  const rerun = () => document.getElementById("aiRecommendBtn")?.click?.();
+  document.getElementById("refineCheaper")?.addEventListener("click", () => { const prices=lastRecommendations.map(x=>Number(x.price)).filter(x=>Number.isFinite(x)&&x>1); if (!prices.length) return toast("No lower price target is available."); document.getElementById("aiBudget").value="custom"; document.getElementById("aiCustomBudget").value=String(Math.max(1,Math.floor(Math.min(...prices))-1)); rerun(); });
+  document.getElementById("refineCloser")?.addEventListener("click", () => { if (userLatitude===null || userLongitude===null) return toast("Choose a locality or enable location to search closer."); const field=document.getElementById("aiRadius"); const options=[1,2,5,10,25]; field.value=String(options.filter(x=>x<Number(field.value)).pop() || 1); rerun(); });
+  document.getElementById("refineDifferent")?.addEventListener("click", () => { excludedDishIds=[...new Set([...excludedDishIds,...lastRecommendations.map(x=>x.dishId).filter(x=>Number.isInteger(x)&&x>0)])].slice(-20); rerun(); });
+  document.getElementById("refineReset")?.addEventListener("click", () => { excludedDishIds=[]; rerun(); });
+  document.getElementById("expandDistance")?.addEventListener("click", () => { if (userLatitude===null || userLongitude===null) return toast("Choose a locality or enable location first."); const field=document.getElementById("aiRadius"); field.value=String([1,2,5,10,25].find(x=>x>Number(field.value)) || 25); rerun(); });
+  document.getElementById("editRequest")?.addEventListener("click", () => document.getElementById("aiCustomPreferences")?.focus?.());
+
   function addDishActions(container, dish) {
     const row = document.createElement("div"); row.className = "row"; row.style.flexWrap = "wrap";
     const directions = document.createElement("a"); directions.className = "btn btn-light";
@@ -1725,7 +1764,10 @@ document.addEventListener("DOMContentLoaded", () => {
     save.onclick = () => { try { const saved = JSON.parse(localStorage.getItem("suggestdish.saved") || "[]"); const key = JSON.stringify([dish.dishName,dish.restaurant,dish.address]); if (!saved.some(x=>JSON.stringify([x.dishName,x.restaurant,x.address])===key)) saved.push(dish); localStorage.setItem("suggestdish.saved",JSON.stringify(saved.slice(-50))); save.textContent="Saved on this device"; } catch { save.textContent="Unable to save on this device"; } }; row.append(save);
     const share = document.createElement("a"); share.className = "btn btn-light"; share.textContent = "Share on WhatsApp";
     share.href = "https://wa.me/?text=" + encodeURIComponent(`${dish.dishName} at ${dish.restaurant}${dish.price != null ? " · ₹" + dish.price : ""}\n${dish.address || ""}\nDiscover dishes at https://www.suggestdish.com`); share.target="_blank"; share.rel="noopener noreferrer"; row.append(share);
-    container.append(row);
+    const freshness = document.createElement("p"); freshness.className="small mute";
+    const checked = dish.sourceCheckedAt && new Date(dish.sourceCheckedAt);
+    freshness.textContent = checked && !Number.isNaN(checked.getTime()) ? "Star-dish source checked: " + checked.toLocaleDateString("en-IN") + ". Current price and availability: confirm with the restaurant." : "Current price and availability are not independently confirmed. Check with the restaurant before travelling or ordering.";
+    container.append(freshness, row);
   }
 
   async function showDishPhoto(container, dishName, vegetarian) {
@@ -1807,6 +1849,7 @@ document.addEventListener("DOMContentLoaded", () => {
           aiError.style.display = "none";
         }
 
+        aiRecommendBtn.disabled = true;
         /* Show loading */
 
         if (aiLoading) {
@@ -1834,7 +1877,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const budgetChoice = document.getElementById("aiBudget")?.value || "300";
         const budget = budgetChoice === "custom" ? document.getElementById("aiCustomBudget")?.value : budgetChoice;
-        if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0) { if (aiLoading) aiLoading.style.display = "none"; if (aiErrorText) aiErrorText.textContent = "Enter a valid maximum budget in rupees."; if (aiError) aiError.style.display = "block"; return; }
+        if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0) { aiRecommendBtn.disabled = false; if (aiLoading) aiLoading.style.display = "none"; if (aiErrorText) aiErrorText.textContent = "Enter a valid maximum budget in rupees."; if (aiError) aiError.style.display = "block"; return; }
 
         const diet = document.getElementById("aiDiet")?.value || "vegetarian";
         const vegetarian = diet === "vegetarian";
@@ -1877,6 +1920,7 @@ document.addEventListener("DOMContentLoaded", () => {
         params.set("customPreferences", customPreferences);
         params.set("radiusKm", document.getElementById("aiRadius")?.value || "5");
         params.set("diet", diet);
+        if (excludedDishIds.length) params.set("excludeDishIds", excludedDishIds.join(","));
 
         params.set(
           "mood",
@@ -1971,6 +2015,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const recommendations =
             Array.isArray(data.recommendations) ? data.recommendations : [];
+          lastRecommendations = recommendations;
+          const recovery = document.getElementById("emptyRecovery"); if (recovery) recovery.style.display = recommendations.length ? "none" : "block";
+          const refinements = document.getElementById("searchRefinements"); if (refinements) refinements.style.display = recommendations.length ? "flex" : "none";
 
 
           if (
@@ -2096,6 +2143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } finally {
 
+          aiRecommendBtn.disabled = false;
           /* Hide loading */
 
           if (aiLoading) {
@@ -2274,5 +2322,6 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
  });
 })();
 </script>
+<script src="/foodie-controls.js" defer></script>
 </body>
 </html>
