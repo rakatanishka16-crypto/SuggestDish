@@ -1,4 +1,13 @@
 (() => {
+  const showCoverage = async () => {
+    const target = document.getElementById('sourceCoverage'); if (!target) return;
+    try {
+      const response = await fetch('/api/data-coverage', {signal:AbortSignal.timeout(10000)});
+      const data = await response.json(); if (!response.ok || !data.success) return;
+      target.textContent = 'Official source details: ' + data.businessProfiles + ' business profiles, ' + data.menuEntries + ' menu entries and ' + data.publishedPrices + ' published prices. Checked ' + data.checkedOn + '. Coverage is partial; food licences and current availability remain unverified.';
+    } catch {}
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',showCoverage,{once:true}); else showCoverage();
   const line = (parent, text, className = 'small mute') => {
     const p = document.createElement('p'); p.className = className; p.textContent = text; parent.append(p);
   };
@@ -32,10 +41,17 @@
         if (data.menuItems.length) {
           const heading = document.createElement('h4'); heading.textContent = 'Published brand menu'; panel.append(heading);
           line(panel,'Branch availability is unconfirmed. These menu entries are reference information; they do not enter budget or dietary recommendations automatically.');
+          const label = document.createElement('label'); label.textContent = 'Search this menu';
+          const filter = document.createElement('input'); filter.type = 'search'; filter.id = panel.id + '-filter';
+          label.htmlFor = filter.id; filter.placeholder = 'Dish or menu category'; filter.maxLength = 100;
+          filter.style.width = '100%'; panel.append(label,filter);
+          const count = document.createElement('p'); count.className = 'small mute'; count.setAttribute('aria-live','polite'); panel.append(count);
           const list = document.createElement('ul'); list.style.paddingLeft = '20px';
           for (const m of data.menuItems) {
-            const item = document.createElement('li'); item.textContent = m.name + (m.portion ? ' · '+m.portion : '') + (m.price_inr === null ? ' · Price not published' : ' · ₹'+m.price_inr+' (source menu price)') + (m.is_veg === true ? ' · Vegetarian according to source' : ''); list.append(item);
+            const item = document.createElement('li'); item.textContent = m.name + (m.menu_category ? ' · '+m.menu_category : '') + (m.portion ? ' · '+m.portion : '') + (m.price_inr === null ? ' · Price not published' : ' · ₹'+m.price_inr+' (source menu price)') + (m.is_veg === true ? ' · Vegetarian according to source' : m.is_veg === false ? ' · Non-vegetarian according to source' : ' · Dietary type unconfirmed') + (m.service_time ? ' · Served '+m.service_time : '') + (m.order_note ? ' · '+m.order_note : ''); list.append(item);
           }
+          const applyFilter = () => {const query=filter.value.trim().toLowerCase();let visible=0;for(const item of list.children){item.hidden=!item.textContent.toLowerCase().includes(query);if(!item.hidden)visible++;}count.textContent=visible+' of '+data.menuItems.length+' menu entries';};
+          filter.addEventListener('input',applyFilter);applyFilter();
           panel.append(list); for (const url of new Set(data.menuItems.map(m=>m.source_url))) { const p = document.createElement('p'); link(p,'View published menu',url); panel.append(p); }
           line(panel,'Menu effective date and tax inclusion are unspecified. Confirm today’s price, ingredients and preparation with the outlet.');
         } else line(panel,'No transcribed menu is available yet. Use the official source or contact the business.');
