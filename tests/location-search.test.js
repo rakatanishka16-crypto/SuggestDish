@@ -19,6 +19,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
   vm.runInNewContext(fs.readFileSync(path.join(root, 'api/server.js'), 'utf8'), {
     require(name) {
       if (name === '../lib/razorpay-payments') return require('../lib/razorpay-payments');
+      if (name === '../lib/customer-feedback') return require('../lib/customer-feedback');
       if (name === '../lib/dish-photos') return require('../lib/dish-photos');
       if (name === '../lib/star-evidence') return require('../lib/star-evidence');
       if (name === '../lib/business-stars') return require('../lib/business-stars');
@@ -103,7 +104,7 @@ function frontendHarness() {
   let locationChoice = 'Mumbai';
   let geolocationSuccess;
   const document = {
-    addEventListener(event, fn) { fn(); }, getElementById: element, querySelector() { return null; }, querySelectorAll() { return []; },
+    addEventListener(event, fn) { fn(); }, getElementById(id) { return id==='menuCoverage' ? null : element(id); }, querySelector() { return null; }, querySelectorAll() { return []; },
     createElement() { return { style: {}, children: [], replaceChildren() { this.children = []; }, append(child) { this.children.push(child); }, setAttribute() {}, remove() {} }; }, body: { appendChild() {} }
   };
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -192,3 +193,5 @@ test('dish refinements exclude only specified dishes and preserve diet',async()=
 test('golgappa alias keeps a pani puri request specific',async()=>{const h=serverHarness({rows:[{id:1,name:'Pani Puri',price:80,isVeg:true,restaurantName:'A'},{id:2,name:'Veg Sandwich',price:90,isVeg:true,restaurantName:'B'}]});const {body}=await h.request('/api/ai-recommend',{diet:'vegetarian',budget:'200',customPreferences:'golgappa'});assert.equal(body.recommendations.length,1);assert.equal(body.recommendations[0].dishName,'Pani Puri');});
 
 test('natural budget and veg request constrain any-diet results',async()=>{const h=serverHarness({rows:[{id:1,name:'Veg Sandwich',price:100,isVeg:true,restaurantName:'A'},{id:2,name:'Chicken Sandwich',price:100,isVeg:false,restaurantName:'B'},{id:3,name:'Veg Sandwich',price:180,isVeg:true,restaurantName:'C'}]});const {body}=await h.request('/api/ai-recommend',{diet:'any',budget:'300',customPreferences:'veg sandwich under 150'});assert.equal(body.recommendations.length,1);assert.equal(body.recommendations[0].dishId,1);});
+
+test('Jain and vegan requests never infer preparation from vegetarian status',async()=>{const h=serverHarness({rows:[{id:1,name:'Pav Bhaji',price:100,isVeg:true,restaurantName:'A'}]});for(const query of [{diet:'jain'},{diet:'vegan'},{diet:'vegetarian',customPreferences:'jain pav bhaji'}]){const {body}=await h.request('/api/ai-recommend',query);assert.equal(body.recommendations.length,0);assert.match(body.summary,/Verified ingredient/);}});
