@@ -100,3 +100,6 @@ CustomerFeedback is an additive table created lazily by the protected moderation
 
 ## Batch four
 Implemented approved-owner menu/dish image submission, bounded database media storage, private image previews and approval, exact reviewed dish/diet photo retrieval, verified-owner and reviewed-star badges, factual recommendation reasons, anonymous recommendation/click counters, and protected owner metrics. Counts are raw website events, never orders or unique customers. 69 automated tests pass. Real owner credentials, approved assets, database persistence and live event collection still require verification.
+
+## Deployment verification — 4 October 2026
+Batch four merged in PR #20, commit e1d7a2c6ad29e561f03e00b9d14063bd63f48df3. GitHub commit checks for both Vercel projects fail with build-rate-limit upgrade links. Production is still commit 17d718b98c87a514b56faff1fa880fba62611e9b (batch two). Public owner-dashboard.html returns 404. Batch three and four are merged source implementations, not production-verified features. Tracker Done means implemented and tested; live status is separate. Audit totals: 17 Done, 24 Partial, 3 Data needed, 1 Queued. No paid upgrade is authorised or performed.
