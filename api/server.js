@@ -12,6 +12,7 @@ app.use(express.json({ limit: "100kb", verify(req, res, buf) { req.rawBody = Buf
 const sql = neon(process.env.DATABASE_URL);
 require("../lib/business-listings")(app, sql);
 require("../lib/business-directory")(app, sql);
+require("../lib/source-catalog")(app);
 require("../lib/dish-photos")(app, {sql});
 require("../lib/customer-feedback")(app, sql);
 const ownerMetrics = require("../lib/dish-events")(app, sql);

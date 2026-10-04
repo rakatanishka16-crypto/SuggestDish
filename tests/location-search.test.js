@@ -29,6 +29,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
       if (name === '../lib/star-evidence') return require('../lib/star-evidence');
       if (name === '../lib/business-stars') return require('../lib/business-stars');
       if (name === '../lib/business-directory') return require('../lib/business-directory');
+      if (name === '../lib/source-catalog') return require('../lib/source-catalog');
       if (name === '../lib/business-review') return require('../lib/business-review');
       if (name === '../lib/business-listings') return require('../lib/business-listings');
       if (name === 'dotenv') return { config() {} };
