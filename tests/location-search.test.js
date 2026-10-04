@@ -109,7 +109,7 @@ function frontendHarness() {
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
   vm.runInNewContext(script, {
     document, window: { location: { hostname: 'www.suggestdish.com' } }, console: { log() {}, error() {} },
-    prompt: () => locationChoice, URLSearchParams, setTimeout() {}, navigator: { geolocation: { getCurrentPosition(fn) { geolocationSuccess = fn; } } },
+    prompt: () => locationChoice, URL, URLSearchParams, setTimeout() {}, navigator: { geolocation: { getCurrentPosition(fn) { geolocationSuccess = fn; } } },
     fetch: async url => {
       calls.push(url);
       return { ok: true, json: async () => url.includes('location-search')
@@ -181,3 +181,6 @@ test('custom text and breakfast travel from the form to the API',async()=>{
  const params=new URL(h.calls[0],'https://www.suggestdish.com').searchParams;
  assert.equal(params.get('mood'),'breakfast');assert.equal(params.get('customPreferences'),'poha & chutney');
 });
+
+ test('nonvegetarian filter never substitutes vegetarian dishes',async()=>{const h=serverHarness({rows:[{id:1,name:'Veg Sandwich',price:100,isVeg:true,restaurantName:'Veg Place',restaurantCity:'Mumbai'},{id:2,name:'Chicken Sandwich',price:150,isVeg:false,restaurantName:'Chicken Place',restaurantCity:'Mumbai'}]});const {body}=await h.request('/api/ai-recommend',{diet:'nonvegetarian',budget:'200'});assert.equal(body.recommendations.length,1);assert.equal(body.recommendations[0].vegetarian,false);});
+ test('distance filter validates radius and excludes far restaurants',async()=>{const h=serverHarness({rows:[{id:1,name:'Sandwich',price:100,isVeg:true,restaurantName:'Far Place',latitude:20,longitude:73}]});assert.equal((await h.request('/api/ai-recommend',{radiusKm:'bad'})).status,400);const {body}=await h.request('/api/ai-recommend',{lat:'19',lon:'72',radiusKm:'2',budget:'200'});assert.equal(body.recommendations.length,0);});
