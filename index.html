@@ -757,12 +757,17 @@
 
           <select id="aiMood" class="field">
             <option value="any">Any occasion</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="brunch">Brunch</option>
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
             <option value="quick meal">Quick meal</option>
             <option value="comfort food">Comfort food</option>
             <option value="date night">Date night</option>
             <option value="family meal">Family meal</option>
+            <option value="friends outing">Friends outing</option>
+            <option value="snack">Evening snack</option>
+            <option value="celebration">Celebration</option>
           </select>
         </div>
 
@@ -783,6 +788,10 @@
       </div>
 
       <div class="divider"></div>
+
+      <label for="aiCustomPreferences"><strong>Anything else you’re craving?</strong></label>
+      <textarea id="aiCustomPreferences" class="field" rows="3" maxlength="500" placeholder="For example: poha for breakfast, something tangy, or a light sandwich"></textarea>
+      <p class="small mute">Add your own preferences (up to 500 characters). Suggestions use available menu data; ingredients, allergies and Jain preparation must be confirmed with the restaurant.</p>
 
       <label class="row" style="align-items:center; cursor:pointer;">
         <input type="checkbox" id="aiVegetarian" checked />
@@ -1778,6 +1787,8 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById("aiMood")?.value ||
           "any";
 
+        const customPreferences = document.getElementById("aiCustomPreferences")?.value.trim() || "";
+
         const budget =
           document.getElementById("aiBudget")?.value ||
           "300";
@@ -1820,6 +1831,8 @@ document.addEventListener("DOMContentLoaded", () => {
           "cuisine",
           cuisine
         );
+
+        params.set("customPreferences", customPreferences);
 
         params.set(
           "mood",
