@@ -289,7 +289,9 @@
       ],
       "sourceKey": "official:sd-mumbai-44d66757668f93e82710",
       "category": "amenity:restaurant",
-      "review_status": "source_observed"
+      "review_status": "source_observed",
+      "existingBusinessId": "restaurant:174",
+      "existing_business_match": "Official branch address reconciled against the live directory on 2026-10-04"
     },
     {
       "external_id": "sd-mumbai-9bcd0e9b44166b477510",
@@ -326,7 +328,9 @@
       ],
       "sourceKey": "official:sd-mumbai-9bcd0e9b44166b477510",
       "category": "amenity:restaurant",
-      "review_status": "source_observed"
+      "review_status": "source_observed",
+      "existingBusinessId": "restaurant:175",
+      "existing_business_match": "Official branch address reconciled against the live directory on 2026-10-04"
     },
     {
       "external_id": "sd-mumbai-9a5f750ca33280377e82",
@@ -363,7 +367,9 @@
       ],
       "sourceKey": "official:sd-mumbai-9a5f750ca33280377e82",
       "category": "amenity:restaurant",
-      "review_status": "source_observed"
+      "review_status": "source_observed",
+      "existingBusinessId": "restaurant:176",
+      "existing_business_match": "Official branch address reconciled against the live directory on 2026-10-04"
     },
     {
       "external_id": "sd-mumbai-14fabcb2dc6568bab2b5",
@@ -400,7 +406,9 @@
       ],
       "sourceKey": "official:sd-mumbai-14fabcb2dc6568bab2b5",
       "category": "amenity:restaurant",
-      "review_status": "source_observed"
+      "review_status": "source_observed",
+      "existingBusinessId": "restaurant:177",
+      "existing_business_match": "Official branch address reconciled against the live directory on 2026-10-04"
     },
     {
       "external_id": "sd-mumbai-1fbbf33b617e7ab271eb",
@@ -437,7 +445,9 @@
       ],
       "sourceKey": "official:sd-mumbai-1fbbf33b617e7ab271eb",
       "category": "amenity:restaurant",
-      "review_status": "source_observed"
+      "review_status": "source_observed",
+      "existingBusinessId": "restaurant:178",
+      "existing_business_match": "Official branch address reconciled against the live directory on 2026-10-04"
     },
     {
       "external_id": "sd-mumbai-4c36914403af1ddedc2e",
