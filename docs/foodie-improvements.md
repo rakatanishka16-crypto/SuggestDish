@@ -4,6 +4,7 @@ All customer-facing content remains English. Preserve the existing visual identi
 
 ## Implemented and tested
 - Explicit Vegetarian, Non-vegetarian and Any dietary type controls, including hard non-vegetarian filtering.
+- Explicit requested dish families/proteins are hard constraints; unavailable sandwiches cannot be silently replaced by biryani.
 - Exact dish and dietary evidence required for photos for every dietary type. No generic image search. Production reviewed photo catalog is currently empty.
 - Distinct restaurant-brand candidates instead of repeated branch recommendations.
 - Configurable nearby distance, validated on the server.
@@ -28,12 +29,12 @@ All customer-facing content remains English. Preserve the existing visual identi
 - About, contact and source/correction processes using verified business details.
 
 ## Data or product decisions needed
-- Actual restaurant dish photographs, ingredient/diet evidence and permission to use each asset. Do not treat a generated image as an actual restaurant photograph.
+- Founder selected placeholder when a verified matching photograph is unavailable. Collect actual restaurant photographs, ingredient/diet evidence and permission before populating media. Never substitute an illustration.
 - Durable media storage for owner uploads; confirm cost constraints before selecting a paid service.
 - Verified hours, serving sizes, allergens, vegan/Jain availability, order/call URLs and current prices. Display unknown when unavailable.
-- Monthly vs annual dish limits: current approved pricing stays unchanged until founder decides.
+- Founder confirmed annual plan remains ₹4,999 for 2 dishes. Monthly remains ₹499 for 3 dishes.
 - Public support contact and legal business details; never fabricate them.
 - Feedback and analytics records need database migrations and retention choices.
 
 ## Validation
-48 automated tests pass after the first implementation batch. Live frontend controls confirmed; verify deployed vegetarian and non-vegetarian searches and saved shortlist separately. No claim that the complete audit backlog is finished.
+49 automated tests pass after the first implementation batch. Live frontend controls confirmed; verify deployed vegetarian and non-vegetarian searches and saved shortlist separately. No claim that the complete audit backlog is finished.
