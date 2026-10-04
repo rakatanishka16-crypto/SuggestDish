@@ -13,8 +13,10 @@ app.use(express.json({ limit: "100kb", verify(req, res, buf) { req.rawBody = Buf
 const sql = neon(process.env.DATABASE_URL);
 require("../lib/business-listings")(app, sql);
 require("../lib/business-directory")(app, sql);
-require("../lib/dish-photos")(app);
+require("../lib/dish-photos")(app, {sql});
 require("../lib/customer-feedback")(app, sql);
+const ownerMetrics = require("../lib/dish-events")(app, sql);
+require("../lib/business-media")(app, sql, {getMetrics:ownerMetrics,rawParser:express.raw({type:["image/jpeg","image/png"],limit:"2mb"})});
 require("../lib/business-stars")(app, sql);
 const { label: starEvidenceLabel } = require("../lib/star-evidence");
 require("../lib/business-review")(app, sql);
@@ -307,6 +309,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         COALESCE(sd."popularityVerified",false) AS "popularityVerified",
         COALESCE(sr."menuUrl",cs."sourceUrl") AS "starSourceUrl",
         cs."sourceCheckedAt",
+        (oc.status='approved' AND oc."restaurantId"=r.id) AS "ownerVerified",
         r.name AS "restaurantName",
         r.address AS "restaurantAddress",
         r.city AS "restaurantCity",
@@ -317,6 +320,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         ON r.id = d."restaurantId"
       LEFT JOIN "RestaurantStarDish" sd ON sd."dishId"=d.id AND sd.slot<=public.restaurant_star_limit(r.id)
       LEFT JOIN "StarDishRevision" sr ON sr.id=sd."revisionId"
+      LEFT JOIN "BusinessClaim" oc ON oc.id=sr."claimId"
       LEFT JOIN "SourceStarDish" cs ON cs."dishId"=d.id AND cs."restaurantId"=r.id AND cs."expiresAt">NOW()
         AND NOT EXISTS (SELECT 1 FROM "RestaurantStarDish" current_star WHERE current_star."restaurantId"=r.id)
       WHERE (sd."dishId" IS NOT NULL OR cs."dishId" IS NOT NULL OR
@@ -819,6 +823,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       id: dish.id,
       dishId: Number(dish.id),
       sourceCheckedAt: dish.sourceCheckedAt || null,
+      ownerVerified: dish.ownerVerified === true,
       dishName: dish.name,
       price: Number(dish.price),
       vegetarian: dish.isVeg === true,
@@ -901,10 +906,20 @@ Return exactly:
 `;
 
 
+    function factualReason(dish) {
+      const parts=[`Listed as ${dish.isVeg===true ? "vegetarian" : "non-vegetarian"} at ₹${Number(dish.price)}, within your ₹${budget} per-dish budget.`];
+      if(dish.distanceKm!==null) parts.push(`${dish.distanceKm.toFixed(1)} km from your selected location.`);
+      const matched=[...selectedCuisineKeywords,...selectedTasteKeywords,...selectedMoodKeywords].filter(word=>normalize(dish.name).includes(word));
+      if(matched.length) parts.push(`Menu-name keywords matching your preferences: ${[...new Set(matched)].slice(0,3).join(", ")}.`);
+      if(customWords.some(word=>normalize(dish.name).split(" ").includes(word)))parts.push("Your dish search terms occur in this menu item.");
+      return starEvidenceLabel(dish)+parts.join(" ");
+    }
+
     // A real, filtered dish remains available when Gemini is overloaded.
     const fallbackRecommendations = candidateDishes.slice(0, 3).map((dish) => ({
       dishId: Number(dish.id),
       sourceCheckedAt: dish.sourceCheckedAt || null,
+      ownerVerified: dish.ownerVerified === true,
       dishName: dish.name,
       restaurant: dish.restaurantName,
       price: Number(dish.price),
@@ -917,9 +932,7 @@ Return exactly:
       popularityVerified: dish.popularityVerified === true,
       starOrigin: dish.starOrigin || null,
       starSourceUrl: dish.starSourceUrl || null,
-      reason: starEvidenceLabel(dish) + (dish.distanceKm === null
-        ? `${dish.isVeg === true ? "Vegetarian" : "Non-vegetarian"} dish listed at ₹${Number(dish.price)}, within your ₹${budget} per-dish budget.`
-        : `${dish.isVeg === true ? "Vegetarian" : "Non-vegetarian"} dish listed at ₹${Number(dish.price)}, within your ₹${budget} per-dish budget, ${dish.distanceKm.toFixed(1)} km away.`)
+      reason: factualReason(dish)
     }));
 
     const fallbackResponse = () => res.json({
@@ -1023,6 +1036,7 @@ Return exactly:
               return {
                 dishId: Number(candidate.id),
                 sourceCheckedAt: candidate.sourceCheckedAt || null,
+                ownerVerified: candidate.ownerVerified === true,
                 dishName: candidate.name,
                 restaurant: candidate.restaurantName,
                 price: Number(candidate.price),
@@ -1040,11 +1054,7 @@ Return exactly:
                 popularityVerified: candidate.popularityVerified === true,
                 starOrigin: candidate.starOrigin || null,
                 starSourceUrl: candidate.starSourceUrl || null,
-                reason:
-                  starEvidenceLabel(candidate) + String(
-                    recommendation.reason ||
-                      "This dish matches your preferences."
-                  ).trim()
+                reason: factualReason(candidate)
               };
             })
             .filter(Boolean).filter((r,i,all)=>all.findIndex(x=>x.restaurant===r.restaurant && x.address===r.address)===i)
@@ -1087,11 +1097,7 @@ Return exactly:
 
       recommendations,
 
-      summary:
-        String(
-          parsed.summary ||
-            "These dishes match your preferences based on the available SuggestDish data."
-        ).trim()
+      summary: "These menu dishes match the selected dietary and budget constraints. Preference keywords are matched to menu names; preparation, prices and availability should be confirmed with the restaurant."
     });
 
   } catch (error) {
@@ -1106,6 +1112,9 @@ Return exactly:
     });
   }
 });
+
+
+app.use((error,req,res,next)=>{if(error.type==='entity.too.large')return res.status(413).json({success:false,error:'This upload is too large. Dish and menu images must be under 2 MB.'});return res.status(400).json({success:false,error:'The request could not be processed. Check the submitted format.'});});
 
 
 if (require.main === module) {
