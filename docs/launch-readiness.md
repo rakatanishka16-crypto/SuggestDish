@@ -19,7 +19,7 @@ The checklist is implemented in the repository. This is not a claim that the upd
 | 13 | Contrast | Original palette retained; orange buttons use dark text and small orange text uses existing burgundy. Visible focus and reduced-motion support. |
 | 14 | Mobile | Existing responsive layout retained; narrower heading, wrapping controls and navigation, bounded fields and consent banner added. Remote browser cannot open localhost; visual checks of the new deployment pending. |
 | 15 | 404 | Branded `404.html` with recovery links and noindex; actual missing-route response requires deployment verification. |
-| 16 | Broken links | Local files and anchors checked, zero broken local references. External source/social links may change and are not all audited. |
+| 16 | Broken links | Local files and anchors checked, zero broken local references. Published Instagram, Geoapify and OpenStreetMap links also returned HTTP 200. Source links can change. |
 | 17 | Validation | Existing form/backend checks retained; invalid explicit budgets rejected, preference fields bounded. |
 | 18 | Spam protection | Existing listing honeypot retained. API request limits added, with protected diagnostics, explicit CORS origins and retry headers. Per-instance memory limits are not a shared distributed quota; provider webhook keeps its existing signature verification. |
 | 19 | Analytics | Existing anonymous dish/day event counting is now permission-gated. Counts are events, never unique people/orders. No additional paid tracking service introduced. Live database event persistence remains unverified. |
@@ -29,7 +29,7 @@ The checklist is implemented in the repository. This is not a claim that the upd
 75 Node tests pass, including HTTP integration checks for origin restrictions, diagnostics and rate limits, and consent tests for rejection, changes, privacy signals and unavailable storage. JavaScript syntax and local link/alt checks pass. No real business claims, feedback or payments submitted for testing.
 
 ## Deployment
-At inspection, main commit f7f340d has failing Vercel checks with `build-rate-limit` upgrade links for both connected projects. Production is still an older commit (17d718b). No paid upgrade is authorised. Recheck deployment after the limit resets; verify new policy pages, custom 404, security headers, mobile layout and real recommendation/consent paths before calling the live launch checks complete.
+The review deployment for commit 9646c5179ed686ac979fd436b3f3436ff8ed99b7 reached READY (dpl_5xbg4WfJaEqHsbGp4dcXGanCnotQ). The earlier build-rate-limit failure did not block this preview. Protected preview fetch was denied by Vercel with 403 (read_protection_bypass), so policy responses, custom 404, security headers, mobile rendering and load metrics remain unverified on the new deployment. Automatic approval review rejected merging PR #21 into main because explicit merge authorisation is required. The PR remains open; production has not been changed. No paid upgrade or protection change was performed.
 
 ## Operational limits
 Policies describe current implementation and do not certify legal compliance. Terms do not invent a legal entity, dedicated email address, refund promise or subscription process. Contact uses the already-published @suggestdish.ai channel. Precise data retention automation has not been added. Production database and Gemini/Geoapify credentials remain in provider settings; they were not retrieved or embedded in the changes.
