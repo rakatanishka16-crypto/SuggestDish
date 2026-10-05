@@ -1,5 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),register=require('../lib/source-catalog');
 const batch=require('../api/source-batches/mumbai-2026-10-04.json');
+const chains=require('../lib/chain-source-catalog');
 function request(id){let handler,status=200,result;register({get:(p,h)=>{if(p==='/api/business-source')handler=h;}});handler({query:{businessId:id}},{set(){},status(c){status=c;return this;},json(d){result=d;}});return {status,result};}
 test('catalog exposes only source-checked business profiles and rejects unknown identifiers',()=>{
  assert.equal(request("x'; DROP TABLE").status,400);assert.equal(request('official:sd-mumbai-'+'0'.repeat(20)).status,404);
@@ -31,7 +32,7 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,402+naturals.businesses.length);assert.equal(result.menuEntries,896+naturals.menu_items.length);assert.equal(result.publishedPrices,632+naturals.menu_items.filter(m=>Number.isFinite(m.price_inr)).length);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,402+naturals.businesses.length+chains.businesses.length);assert.equal(result.menuEntries,896+naturals.menu_items.length+chains.menuItems.length);assert.equal(result.publishedPrices,632+naturals.menu_items.filter(m=>Number.isFinite(m.price_inr)).length+chains.menuItems.filter(m=>Number.isFinite(m.price_inr)).length);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });
 
 const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');
