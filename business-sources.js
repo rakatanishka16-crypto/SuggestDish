@@ -39,6 +39,12 @@
         if (Number.isFinite(b.latitude) && Number.isFinite(b.longitude)) {line(panel,'Source map location: '+b.latitude+', '+b.longitude+'. Pin accuracy is unconfirmed.'); const map=document.createElement('p');link(map,'Open outlet map','https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(b.latitude+','+b.longitude));panel.append(map);}
         line(panel,'Source checked: ' + b.retrieved_on + '. Food licence status has not been checked.');
         for (const url of b.source_urls || []) { const p = document.createElement('p'); link(p,'Official business source',url); panel.append(p); }
+        if (b.google_listing_status==='business_link_published' && b.google_maps_url) {
+          const url=new URL(b.google_maps_url);
+          if (url.protocol==='https:' && ['share.google','maps.app.goo.gl','goo.gl','g.page','www.google.com','maps.google.com'].includes(url.hostname)) {
+            const p=document.createElement('p');link(p,'Google listing link published by the business',url.href);panel.append(p);
+          }
+        }
         if (data.menuItems.length) {
           const heading = document.createElement('h4'); heading.textContent = data.menuScope==='outlet_page' ? 'Published outlet menu' : 'Brand menu reference'; panel.append(heading);
           line(panel,data.menuNotice || 'Branch availability is unconfirmed. These menu entries are reference information; they do not enter budget or dietary recommendations automatically.');
