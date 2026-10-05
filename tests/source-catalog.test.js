@@ -31,7 +31,7 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,402);assert.equal(result.menuEntries,896);assert.equal(result.publishedPrices,632);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,402+naturals.businesses.length);assert.equal(result.menuEntries,896+naturals.menu_items.length);assert.equal(result.publishedPrices,632+naturals.menu_items.filter(m=>Number.isFinite(m.price_inr)).length);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });
 
 const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');
@@ -43,4 +43,25 @@ test('bakery catalog preserves priced variants, source locations and unknown reg
  for(const b of expansion.businesses){assert.equal(b.license_status,'not_checked');assert.equal(b.restaurant_rating,null);assert.ok(b.address);assert.equal(request(b.sourceKey).status,200);}
  for(const m of expansion.menu_items){assert.equal(m.branch_availability,'not_confirmed');assert.equal(m.recommendation_eligible,false);assert.ok(m.price_inr>0);}
  assert.equal(new Set([...batch.menu_items,...expansion.menu_items].map(m=>m.external_id)).size,batch.menu_items.length+expansion.menu_items.length);
+});
+
+const naturals=require('../api/source-batches/naturals-2026-10-05.json');
+test('misaligned Naturals store fields cannot become addresses, hours or recommendation facts',()=>{
+ assert.equal(naturals.businesses.length,185);
+ for(const b of naturals.businesses){
+  assert.equal(b.address,null);assert.equal(b.opening_hours,null);assert.equal(b.phone,null);
+  assert.equal(b.latitude,null);assert.equal(b.longitude,null);assert.equal(b.recommendation_eligible,false);
+  assert.equal(request(b.sourceKey).status,200);assert.ok(b.city);assert.ok(b.locality);
+ }
+ const all=[...batch.businesses,...expansion.businesses,...naturals.businesses];
+ assert.equal(new Set(all.map(b=>b.sourceKey)).size,all.length);
+ for(const m of naturals.menu_items){
+  assert.equal(m.portion,null);assert.equal(m.price_inr,null);assert.equal(m.branch_availability,'not_confirmed');
+  assert.equal(m.recommendation_eligible,false);assert.ok([true,null].includes(m.is_veg));
+  if(m.is_veg===true) assert.match(m.veg_evidence,/100% Vegetarian/);
+  assert.match(m.order_note,/does not identify a scoop or pack size/);
+  assert.equal(new URL(m.source_url).hostname,'naturalicecreams.in');
+ }
+ const coconut=naturals.menu_items.find(m=>m.name==='Tender Coconut Ice Cream');
+ assert.ok(coconut);assert.equal(coconut.price_inr,null);assert.equal(coconut.observed_price_inr,100);
 });
