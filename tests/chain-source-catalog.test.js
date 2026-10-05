@@ -13,12 +13,12 @@ test('outlet-page menu evidence stays attached to that outlet rather than leakin
 });
 test('outlet data preserves source identities and missing facts instead of inventing ratings or city-wide coverage',()=>{
  assert.ok(chains.businesses.length>2000);assert.equal(new Set(chains.businesses.map(b=>b.sourceKey)).size,chains.businesses.length);
- for(const b of chains.businesses){assert.ok(b.address===null || typeof b.address==='string' && b.address.length>0);assert.ok(b.city);assert.equal(b.restaurant_rating,null);assert.equal(b.fssai_license_number,null);assert.equal(b.recommendation_eligible,false);for(const url of b.source_urls)assert.equal(new URL(url).protocol,'https:');}
+ for(const b of chains.businesses){assert.ok(b.address===null || typeof b.address==='string' && b.address.length>0);assert.ok(b.city);assert.equal(b.restaurant_rating,null);if(b.fssai_license_number!==null)assert.match(b.fssai_license_number,/^\d{14}$/);assert.equal(b.license_status,'not_checked');assert.equal(b.recommendation_eligible,false);for(const url of b.source_urls)assert.equal(new URL(url).protocol,'https:');}
  assert.equal(new Set(chains.menuItems.map(m=>m.external_id)).size,chains.menuItems.length);
  const {body}=request(chains.businesses.find(b=>b.brand==='Burger King' && !b.outlet_menu_set_id)?.sourceKey || 'official:sd-food-'+'0'.repeat(20));if(body?.menuItems)assert.deepEqual(body.menuItems,[]);
 });
 test('remaining outlets have factual cities and do not inherit unobserved brand menus',()=>{
- const waffle=chains.businesses.find(b=>b.brand==='The Belgian Waffle Co.' && b.city==='Jalna');assert.ok(waffle);assert.match(waffle.address,/Civil Club/);assert.equal(request(waffle.sourceKey).body.menuScope,'none');
+ const waffle=chains.businesses.find(b=>b.brand==='The Belgian Waffle Co.' && b.city==='Jalna');assert.ok(waffle);assert.match(waffle.address,/Civil Club/);const menu=request(waffle.sourceKey).body;assert.equal(menu.menuScope,'brand_reference');assert.ok(menu.menuItems.some(m=>/Chocomelt/.test(m.name)));assert.ok(menu.menuItems.every(m=>m.price_inr===null && m.source_business_id===null && m.branch_availability==='not_confirmed'));
  const lapino=chains.businesses.find(b=>b.brand==="La Pino'z Pizza");assert.equal(lapino.address_scope,'locality_only');assert.equal(lapino.state,null);assert.match(lapino.service_note,/not a full street address/);assert.ok(Number.isFinite(lapino.latitude));
  assert.ok(chains.businesses.some(b=>b.brand==='Jumboking' && b.city==='Mumbai'));
  assert.ok(chains.businesses.every(b=>!['Test City','Punjab','Telangana'].includes(b.city)));

@@ -4,7 +4,7 @@
     try {
       const response = await fetch('/api/data-coverage', {signal:AbortSignal.timeout(10000)});
       const data = await response.json(); if (!response.ok || !data.success) return;
-      target.textContent = 'Official source details: ' + data.businessProfiles + ' business profiles, ' + data.menuEntries + ' menu entries and ' + data.publishedPrices + ' published prices and ' + data.profilesWithCoordinates + ' source map locations. Checked ' + data.checkedOn + '. Coverage is partial; food licences and current availability remain unverified.';
+      target.textContent = 'Published source details: ' + data.businessProfiles + ' business profiles, ' + data.menuEntries + ' menu entries and ' + data.publishedPrices + ' published prices and ' + data.profilesWithCoordinates + ' source map locations. Checked ' + data.checkedOn + '. Coverage is partial; food licences and current availability remain unverified.';
     } catch {}
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',showCoverage,{once:true}); else showCoverage();
@@ -38,11 +38,11 @@
         for (const [label,value] of [['State',b.state],['Locality',b.locality],['Phone',b.phone],['Email',b.email],['Published hours',b.opening_hours],['Service',b.service_note],['FSSAI number published by business (unverified)',b.fssai_license_number]]) if (value) line(panel,label + ': ' + value);
         if (Number.isFinite(b.latitude) && Number.isFinite(b.longitude)) {line(panel,'Source map location: '+b.latitude+', '+b.longitude+'. Pin accuracy is unconfirmed.'); const map=document.createElement('p');link(map,'Open outlet map','https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(b.latitude+','+b.longitude));panel.append(map);}
         line(panel,'Source checked: ' + b.retrieved_on + '. Food licence status has not been checked.');
-        for (const url of b.source_urls || []) { const p = document.createElement('p'); link(p,'Official business source',url); panel.append(p); }
+        for (const url of b.source_urls || []) { const p = document.createElement('p'); link(p,new URL(url).hostname.endsWith('zomato.com') ? 'Published delivery-platform source' : 'Official business source',url); panel.append(p); }
         if (b.google_listing_status==='business_link_published' && b.google_maps_url) {
           const url=new URL(b.google_maps_url);
           if (url.protocol==='https:' && ['share.google','maps.app.goo.gl','goo.gl','g.page','www.google.com','maps.google.com'].includes(url.hostname)) {
-            const p=document.createElement('p');link(p,'Google listing link published by the business',url.href);panel.append(p);
+            const p=document.createElement('p');link(p,'Google Maps link published by the business',url.href);panel.append(p);
           }
         }
         if (data.menuItems.length) {
@@ -61,7 +61,7 @@
           filter.addEventListener('input',applyFilter);applyFilter();
           panel.append(list); for (const url of new Set(data.menuItems.map(m=>m.source_url))) { const p = document.createElement('p'); link(p,'View published menu',url); panel.append(p); }
           line(panel,'Confirm today’s total price, taxes, availability, ingredients and preparation with the outlet.');
-        } else line(panel,'No transcribed menu is available yet. Use the official source or contact the business.');
+        } else line(panel,'No transcribed menu is available yet. Use the published source or contact the business.');
         loaded = true;
       } catch (e) { panel.replaceChildren(); line(panel,e.message || 'Details unavailable. Try again.'); }
       finally { busy = false; button.disabled = false; }
