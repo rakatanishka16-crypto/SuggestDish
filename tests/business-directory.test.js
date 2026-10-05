@@ -7,3 +7,6 @@ test('directory returns optional straight-line distance without guessing missing
  assert.equal(r.body.businesses[0].distanceKm,0);assert.equal(r.body.businesses[0].distanceBasis,'straight_line');assert.equal(r.body.businesses[1].distanceKm,null);
  const invalid=await run({lat:'19'});assert.equal(invalid.status,400);assert.equal(invalid.calls.length,0);
 });
+test('city searches do not mistake a road name for the outlet city',async()=>{
+ const r=await run({city:'Jalna'});assert.match(r.calls[0].q,/AND city ILIKE/);assert.doesNotMatch(r.calls[0].q,/city ILIKE \? OR COALESCE\(address/);assert.match(r.calls[0].q,/COALESCE\(s.city,e.city\) AS city/);
+});
