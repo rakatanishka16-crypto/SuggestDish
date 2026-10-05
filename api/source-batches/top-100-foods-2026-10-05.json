@@ -1,0 +1,943 @@
+{
+  "id": "top-100-food-shortlist-2026-10-05",
+  "curated": true,
+  "measured_rank": false,
+  "dishes": [
+    {
+      "id": 1,
+      "name": "Hyderabadi chicken dum biryani",
+      "menu_item_ids": [
+        "sd-menu-d488c6dcdb63abf726bf"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 2,
+      "name": "Mutton biryani",
+      "menu_item_ids": [
+        "sd-menu-28695e87ad3c3e5e9518"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 3,
+      "name": "Vegetable dum biryani",
+      "menu_item_ids": [
+        "sd-menu-ac162e1f263938ef3deb"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 4,
+      "name": "Paneer biryani",
+      "menu_item_ids": [
+        "sd-menu-3b561ee24db2861ba4df"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 5,
+      "name": "Kolkata biryani",
+      "menu_item_ids": [
+        "sd-menu-e8568e16cc3705c6e4e2",
+        "sd-menu-3221c9bd11c8a7e73832"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 6,
+      "name": "Lucknowi biryani",
+      "menu_item_ids": [
+        "sd-menu-2b7e205692e637fa79a3",
+        "sd-menu-c426dd9b570b4583e8ee"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 7,
+      "name": "Butter chicken",
+      "menu_item_ids": [
+        "sd-menu-27ff131386cfbee65548"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 8,
+      "name": "Paneer butter masala",
+      "menu_item_ids": [
+        "sd-menu-5ad6535be9b3cf8754eb"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 9,
+      "name": "Dal makhani",
+      "menu_item_ids": [
+        "sd-menu-fcca42a4edb77aa18ecd",
+        "sd-menu-75a130be2ff78b0c07da"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 10,
+      "name": "Chole bhature",
+      "menu_item_ids": [
+        "sd-menu-879b42589319dc0a4d29"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 11,
+      "name": "Rajma chawal",
+      "menu_item_ids": [
+        "sd-menu-cd64361385baec837059"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 12,
+      "name": "Chole kulche",
+      "menu_item_ids": [
+        "sd-menu-9ee7af79b31add60b2de"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 13,
+      "name": "Masala dosa",
+      "menu_item_ids": [
+        "sd-menu-f2f04d2d0c67bcc46d48"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 14,
+      "name": "Mysore masala dosa",
+      "menu_item_ids": [
+        "sd-menu-48b38fac0030bb0c41a3"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 15,
+      "name": "Ghee roast dosa",
+      "menu_item_ids": [
+        "sd-menu-363d6c7072fcd38d20c1"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 16,
+      "name": "Idli with sambar",
+      "menu_item_ids": [
+        "sd-menu-27917f4ec2194fc5784e"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 17,
+      "name": "Medu vada",
+      "menu_item_ids": [
+        "sd-menu-e546008995355e43481d"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 18,
+      "name": "Aloo paratha",
+      "menu_item_ids": [
+        "sd-menu-341d8a6ad97b68732f66"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 19,
+      "name": "Paneer paratha",
+      "menu_item_ids": [
+        "sd-menu-01476bf653566c84ff6e"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 20,
+      "name": "Poori bhaji",
+      "menu_item_ids": [
+        "sd-menu-923770609c1ade838fa0"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 21,
+      "name": "Pav bhaji",
+      "menu_item_ids": [
+        "sd-menu-0a110904296c6a8d466a"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 22,
+      "name": "Vada pav",
+      "menu_item_ids": [
+        "sd-menu-30a12e5ae4d914ebd911"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 23,
+      "name": "Misal pav",
+      "menu_item_ids": [
+        "sd-menu-b29d686ca30c6476016d"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 24,
+      "name": "Pani puri / golgappa / puchka",
+      "menu_item_ids": [
+        "sd-menu-33fbc0c451ce2e71c2ec",
+        "sd-menu-a9b2cdecae88a9495d97"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 25,
+      "name": "Dahi puri",
+      "menu_item_ids": [
+        "sd-menu-e36e44a1eec85a470bf1"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 26,
+      "name": "Sev puri",
+      "menu_item_ids": [
+        "sd-menu-455d5dd7f23b8d65e7c2"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 27,
+      "name": "Bhel puri",
+      "menu_item_ids": [
+        "sd-menu-631be7554b20382fefb7"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 28,
+      "name": "Papdi chaat",
+      "menu_item_ids": [
+        "sd-menu-fdab9be9a6d93412b775"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 29,
+      "name": "Aloo tikki chaat",
+      "menu_item_ids": [
+        "sd-menu-bc70963adadab9802837"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 30,
+      "name": "Samosa",
+      "menu_item_ids": [
+        "sd-menu-3802b1bf190157906642"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 31,
+      "name": "Samosa chaat",
+      "menu_item_ids": [
+        "sd-menu-44a44f9b8433cd9019a9"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 32,
+      "name": "Kachori with aloo sabzi",
+      "menu_item_ids": [
+        "sd-menu-86dcc898910cb596e15b"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 33,
+      "name": "Dabeli",
+      "menu_item_ids": [
+        "sd-menu-007dca4625b9d380685b"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 34,
+      "name": "Ragda pattice",
+      "menu_item_ids": [
+        "sd-menu-ac646fd2bf2dcbe44993"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 35,
+      "name": "Ram ladoo",
+      "menu_item_ids": [
+        "sd-menu-1b63b0aa1272425ff151"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 36,
+      "name": "Bread pakora",
+      "menu_item_ids": [
+        "sd-menu-ade631344053c6e85ed6"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 37,
+      "name": "Onion pakora / kanda bhaji",
+      "menu_item_ids": [
+        "sd-menu-f9a6b8266a12efe013c3"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 38,
+      "name": "Mirchi bajji",
+      "menu_item_ids": [
+        "sd-menu-0086fd9ef4abf5f489dc"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 39,
+      "name": "Amritsari stuffed kulcha",
+      "menu_item_ids": [
+        "sd-menu-41a7e0c83e7d9edc6974"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 40,
+      "name": "Chilli cheese toast",
+      "menu_item_ids": [
+        "sd-menu-2a538a50d239fe4e02de"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 41,
+      "name": "Steamed vegetable momos",
+      "menu_item_ids": [
+        "sd-menu-873e61bd826b8e194a5f"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 42,
+      "name": "Steamed chicken momos",
+      "menu_item_ids": [
+        "sd-menu-1135028d04e8d9676063"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 43,
+      "name": "Tandoori momos",
+      "menu_item_ids": [
+        "sd-menu-1cec17b46c899365543b"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 44,
+      "name": "Kurkure momos",
+      "menu_item_ids": [
+        "sd-menu-27ea16a125b6b562ecf1",
+        "sd-menu-d4c0774c64c9bd7c819f"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 45,
+      "name": "Chilli momos",
+      "menu_item_ids": [
+        "sd-menu-a3c634d4bc1e8b79909b",
+        "sd-menu-99aa002a78f196323357"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 46,
+      "name": "Vegetable Hakka noodles",
+      "menu_item_ids": [
+        "sd-menu-7d0ccb168745d87d19c8"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 47,
+      "name": "Schezwan fried rice",
+      "menu_item_ids": [
+        "sd-menu-a990a4b8a03ec5a795a1"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 48,
+      "name": "Vegetable Manchurian",
+      "menu_item_ids": [
+        "sd-menu-e49e91852910a120de7f"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 49,
+      "name": "Chilli paneer",
+      "menu_item_ids": [
+        "sd-menu-5b14e8792519a3f1b8d6"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 50,
+      "name": "Chilli chicken",
+      "menu_item_ids": [
+        "sd-menu-088dc6afccb10f498cf2"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 51,
+      "name": "Honey chilli potatoes",
+      "menu_item_ids": [
+        "sd-menu-80a7dd81a8c39d3612ee"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 52,
+      "name": "Spring rolls",
+      "menu_item_ids": [
+        "sd-menu-7554401b4ef34c32f98b"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 53,
+      "name": "Chicken lollipop",
+      "menu_item_ids": [
+        "sd-menu-b1136aa8bce1affb564b"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 54,
+      "name": "Chicken 65",
+      "menu_item_ids": [
+        "sd-menu-94de36b9e6030231fbbe"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 55,
+      "name": "Crispy fried chicken",
+      "menu_item_ids": [
+        "sd-menu-8fae81c38005823f1ccc"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 56,
+      "name": "Chicken shawarma",
+      "menu_item_ids": [
+        "sd-menu-7b0ac7d7d3fbd56486bc"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 57,
+      "name": "Chicken kathi roll",
+      "menu_item_ids": [
+        "sd-menu-92ea7635e9a08cb36768"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 58,
+      "name": "Paneer kathi roll",
+      "menu_item_ids": [
+        "sd-menu-ba701594bb6b4c74d5d4"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 59,
+      "name": "Egg roll",
+      "menu_item_ids": [
+        "sd-menu-464719341cc2f80191de"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 60,
+      "name": "Chicken seekh kebab",
+      "menu_item_ids": [
+        "sd-menu-c6fd3f118a7f168132d0"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 61,
+      "name": "Paneer tikka",
+      "menu_item_ids": [
+        "sd-menu-10c7898a4072a903d319"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 62,
+      "name": "Tandoori chicken",
+      "menu_item_ids": [
+        "sd-menu-33f56704ad5a4f9c41ab"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 63,
+      "name": "Malai chicken tikka",
+      "menu_item_ids": [
+        "sd-menu-1edfe8e373d685c19080"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 64,
+      "name": "Tandoori soya chaap",
+      "menu_item_ids": [
+        "sd-menu-b538415510b2cc740b39"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 65,
+      "name": "Malai soya chaap",
+      "menu_item_ids": [
+        "sd-menu-3238ce43062d6126d147"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 66,
+      "name": "Margherita pizza",
+      "menu_item_ids": [
+        "sd-menu-d9f4f83991d2445ca3f7",
+        "sd-menu-1c45f87f05fb36ed65eb"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 67,
+      "name": "Paneer tikka pizza",
+      "menu_item_ids": [
+        "sd-menu-45e5369a9cd209dd07e3",
+        "sd-menu-4d016d361cc25b4c63c1",
+        "sd-menu-2189c85d9315253ca217",
+        "sd-menu-c26b17af52bff2555900",
+        "sd-menu-9b4d932acb52c5ab769c",
+        "sd-menu-c76df120574fd50e04cc",
+        "sd-menu-5ccf6d2b14ada4475f42",
+        "sd-menu-e817b11f57e13875c37c",
+        "sd-menu-13e045d842d7b5893455",
+        "sd-menu-e2a5fbddbe64c87802f5",
+        "sd-menu-44fd3718d967591a5bc4",
+        "sd-menu-f30b810d2cef8ec01e5f",
+        "sd-menu-4d05a4ae3e710ed8e92f",
+        "sd-menu-431608ecf16a2ed1ad88",
+        "sd-menu-9ae2252d76c498257e5d",
+        "sd-menu-202f51dc2f792d83b5ed",
+        "sd-menu-3a609a21e8cb97cff27a",
+        "sd-menu-344d8a031dbc3689aeb6",
+        "sd-menu-6a6a42b2d9606eafe220",
+        "sd-menu-eb42531a78b44754af8b",
+        "sd-menu-da4078c4c57d88a4ef17",
+        "sd-menu-b1b2d3664fd6b6f02094",
+        "sd-menu-35d8d809c784ca7e290d",
+        "sd-menu-d57cb9aef32ce599fa81",
+        "sd-menu-3e9e13ad85ab364d2967"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 68,
+      "name": "Chicken pizza",
+      "menu_item_ids": [
+        "sd-menu-98f8c80bad1397f7cdd3"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 69,
+      "name": "Vegetable cheese burger",
+      "menu_item_ids": [
+        "sd-menu-99516f43d5c55388ef78"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 70,
+      "name": "Crispy chicken burger",
+      "menu_item_ids": [
+        "sd-menu-76f96da315d0be756b6b"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 71,
+      "name": "Cheese-loaded fries",
+      "menu_item_ids": [
+        "sd-menu-ff2bf4f0d43778abb60b"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 72,
+      "name": "Peri-peri fries",
+      "menu_item_ids": [
+        "sd-menu-60437eb2f3c6df6d0342"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 73,
+      "name": "Stuffed garlic bread",
+      "menu_item_ids": [
+        "sd-menu-8714874d34ac9af430dc"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 74,
+      "name": "White sauce pasta",
+      "menu_item_ids": [
+        "sd-menu-0cc5fb8d9c81096e9eef"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 75,
+      "name": "Arrabbiata pasta",
+      "menu_item_ids": [
+        "sd-menu-1be75a19e9ed06d93537"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 76,
+      "name": "Korean cheese corn dog",
+      "menu_item_ids": [
+        "sd-menu-a1cf3aea442e9b4006c9"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 77,
+      "name": "Spicy Korean-style ramen",
+      "menu_item_ids": [
+        "sd-menu-5fe7b6ae9a49ec5755fa"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 78,
+      "name": "Tteokbokki",
+      "menu_item_ids": [
+        "sd-menu-bec9f933ef7177415c1d"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 79,
+      "name": "Sushi rolls",
+      "menu_item_ids": [
+        "sd-menu-eceeeb7796bece847b84"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 80,
+      "name": "Mexican nachos",
+      "menu_item_ids": [
+        "sd-menu-8acefc5c78e4090f86ab"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 81,
+      "name": "Indori poha with jalebi",
+      "menu_item_ids": [
+        "sd-menu-e4b95192edddad07b6d2",
+        "sd-menu-9de9689d54d7862cd09a"
+      ],
+      "status": "source_menu_match",
+      "note": "Indori Poha and Jalebi are separately listed menu items; a combined meal or combo price is not established."
+    },
+    {
+      "id": 82,
+      "name": "Khaman dhokla",
+      "menu_item_ids": [
+        "sd-menu-cf7afaed7e3445d7f797"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 83,
+      "name": "Dal baati churma",
+      "menu_item_ids": [
+        "sd-menu-0b418e10f1ec3e40d2be"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 84,
+      "name": "Litti chokha",
+      "menu_item_ids": [
+        "sd-menu-942baac1daf5297ef825"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 85,
+      "name": "Sarson ka saag with makki ki roti",
+      "menu_item_ids": [
+        "sd-menu-c0b3565215b2dafc0969"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 86,
+      "name": "Appam with stew",
+      "menu_item_ids": [
+        "sd-menu-fd4f646ef30ffde56d9a",
+        "sd-menu-ceca101d52609eaa4810"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 87,
+      "name": "Kerala parotta with curry",
+      "menu_item_ids": [
+        "sd-menu-a9c73ea1462d35d5493c"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 88,
+      "name": "Bisi bele bath",
+      "menu_item_ids": [
+        "sd-menu-4017a47db11d6256405a"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 89,
+      "name": "Puran poli",
+      "menu_item_ids": [
+        "sd-menu-850a3cea2fb46113e598"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 90,
+      "name": "Ukadiche modak",
+      "menu_item_ids": [
+        "sd-menu-0d5e741b1b4780426063",
+        "sd-menu-6b38271540cfffce68ae"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 91,
+      "name": "Gulab jamun",
+      "menu_item_ids": [
+        "sd-menu-5fcde4995861cd8c0d14"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 92,
+      "name": "Jalebi with rabri",
+      "menu_item_ids": [
+        "sd-menu-52fc47f429342fcd4e59"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 93,
+      "name": "Rasmalai",
+      "menu_item_ids": [
+        "sd-menu-dc81bdbd112ef20e77db"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 94,
+      "name": "Kulfi falooda",
+      "menu_item_ids": [
+        "sd-menu-a5b35649f5d14167ac66"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 95,
+      "name": "Chocolate waffle",
+      "menu_item_ids": [
+        "sd-menu-39350e39ed4219f4781d"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 96,
+      "name": "Sizzling brownie with ice cream",
+      "menu_item_ids": [
+        "sd-menu-2e38325d6712068530f9"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 97,
+      "name": "Biscoff cheesecake",
+      "menu_item_ids": [
+        "sd-menu-902989bc44ee243d1764"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 98,
+      "name": "Kunafa",
+      "menu_item_ids": [
+        "sd-menu-e742b8c85fd1a35bcd51"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 99,
+      "name": "Dubai-style pistachio kunafa chocolate",
+      "menu_item_ids": [
+        "sd-menu-c9251c1982a88d58df3e"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    },
+    {
+      "id": 100,
+      "name": "Matcha cheesecake",
+      "menu_item_ids": [
+        "sd-menu-86f6fcd3345b553b8d6e"
+      ],
+      "status": "source_menu_match",
+      "note": "Menu item or regional variant; see the published item name. Local availability requires confirmation."
+    }
+  ],
+  "checked_on": "2026-10-05",
+  "notice": "Curated 100-dish shortlist, not a measured viral ranking. Menus and prices are source observations; brand references do not establish branch availability."
+}
