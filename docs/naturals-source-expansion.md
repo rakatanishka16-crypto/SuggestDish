@@ -1,0 +1,13 @@
+# Naturals public-source batch — 5 October 2026
+
+The public Naturals store finder supplies 185 source outlet records. This is a directory observation, not proof that every outlet is open or that each source record represents a distinct business in the combined directory. Display names combine the brand and published locality. City aliases are normalized while the source city label is retained.
+
+Source: https://naturalicecreams.in/store-locator/ and the public JSON endpoint used by that page, https://naturalicecreams.in/find-stores.php. The collector uses only this brand-owned public endpoint, not Google Maps content. The store response has inconsistent fields: opening_hours contains postal-code-like numbers, closing_hours contains phone-like numbers, and store_address frequently contains only a state. These values are not promoted to street addresses, opening times, or contacts. Uncorroborated map coordinates also remain null. New records therefore cannot generate distances until location evidence is collected. Existing source map pins remain unchanged.
+
+Product pages linked by the public shop provide flavor names, categories, published amounts and vegetarian tags. The main product summaries consistently show ₹100 without identifying which scoop, shake or pack it buys. These amounts are retained as observations and explained in the source notes; usable price_inr remains null and these entries do not increase the published-price count. No current branch price, stock, seasonal availability, tax inclusion or serving size is inferred. Website stock status is retained separately from branch availability.
+
+Every new record retains source URLs and a retrieval date. Photos, reviews, ratings and marketing descriptions are not copied. The source supplement is read-only and is displayed through the existing directory and source-menu interface. New records are not automatically eligible for AI recommendations. Missing fields stay unknown, and the website's visual design is unchanged.
+
+Reproduce with Python and BeautifulSoup installed: `python scripts/collect-naturals.py --cache /path/to/research-cache`. Public requests use two workers with a pause before each uncached product fetch. Failed pages are recorded in the batch rather than replaced with invented data. Counts reflect successfully parsed pages.
+
+Published additions: 185 source outlet records across 55 normalized city labels and 37 successfully parsed flavor entries. Two linked product pages lacked usable summaries and were excluded. Combined official catalog: 587 profiles and 933 menu entries. Confirmed published-price count stays 632; source map locations stay 327. Validation: all 85 tests pass.
