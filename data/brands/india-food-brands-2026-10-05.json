@@ -1,0 +1,935 @@
+{
+  "catalogId": "india-food-brands-2026-10-05",
+  "checkedOn": "2026-10-05",
+  "scope": "Brand-level reference catalogue for India, not an exhaustive list or franchise offer. Brand records do not confirm individual outlets, menus, prices, availability or ownership.",
+  "brands": [
+    {
+      "id": "brand-528c77e32404c96f",
+      "name": "Burger King",
+      "category": "Burgers",
+      "operatingModel": "master_or_regional_operator",
+      "enquiryStatus": "Contact the authorised India operator; individual availability unconfirmed",
+      "note": "Operates in India through master franchise or regional operators. This entry is not an offer of an individual outlet franchise.",
+      "sourceUrls": [
+        "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2263414&lang=1&reg=3"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-b9505d1477dc0ffa",
+      "name": "Burger Singh",
+      "category": "Burgers",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.burgersinghonline.com/franchise/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-8003fac92b180119",
+      "name": "Jumboking",
+      "category": "Burgers",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.jumboking.co.in/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-d0e49973bb4c6451",
+      "name": "McDonald’s",
+      "category": "Burgers",
+      "operatingModel": "master_or_regional_operator",
+      "enquiryStatus": "Contact the authorised India operator; individual availability unconfirmed",
+      "note": "Operates in India through master franchise or regional operators. This entry is not an offer of an individual outlet franchise.",
+      "sourceUrls": [
+        "https://corporate.mcdonalds.com/corpmcd/franchising-overview/global-franchising/status-india.html"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-7320215f08e68b12",
+      "name": "The Burger Company",
+      "category": "Burgers",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.linkedin.com/company/theburgercompanyindia/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-b8d484b0bca31ed7",
+      "name": "Wat-a-Burger",
+      "category": "Burgers",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://wataburgerin.limetray.com/franchise"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-19b8da90f19906e2",
+      "name": "7th Heaven",
+      "category": "Cakes & bakeries",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.7thheaven.in/own-a-franchise"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-fdc1f40750a7c258",
+      "name": "Atul Bakery",
+      "category": "Cakes & bakeries",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://atulbakery.com/get-franchise/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-3875d57bc1791f93",
+      "name": "Monginis",
+      "category": "Cakes & bakeries",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.monginis.net/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-92f3399ac52be236",
+      "name": "Ribbons & Balloons",
+      "category": "Cakes & bakeries",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.ribbonsandballoons.com/mumbai/franchise"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-d44c008cade156a3",
+      "name": "WS Bakers",
+      "category": "Cakes & bakeries",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.wsbakers.com/app-landing-page"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-ba824df2c0a6622d",
+      "name": "Barista",
+      "category": "Coffee & cafes",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.barista.co.in/index.php/franchise-with-us"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-db0ef8c3481704b0",
+      "name": "Costa Coffee",
+      "category": "Coffee & cafes",
+      "operatingModel": "master_or_regional_operator",
+      "enquiryStatus": "Contact the authorised India operator; individual availability unconfirmed",
+      "note": "Operates in India through master franchise or regional operators. This entry is not an offer of an individual outlet franchise.",
+      "sourceUrls": [
+        "https://dil-rjcorp.com/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-a57d71d94e570142",
+      "name": "Southern Vibe Café",
+      "category": "Coffee & cafes",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://sankalp-group.org/franchise-with-us/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-8210754f22599179",
+      "name": "The Chocolate Room",
+      "category": "Coffee & cafes",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.thechocolateroomindia.com/franchise/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-cb8432dfc93aec15",
+      "name": "WAB Café",
+      "category": "Coffee & cafes",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.wabcafe.com/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-8a5c1923d0af9371",
+      "name": "Dunkin’",
+      "category": "Donuts",
+      "operatingModel": "agreement_transition",
+      "enquiryStatus": "Agreement transition announced",
+      "note": "Jubilant FoodWorks announced non-renewal of the Indian development agreement when its current term ends on 31 December 2026. Future operation and ownership require a fresh check.",
+      "sourceUrls": [
+        "https://nsearchives.nseindia.com/corporate/JUBLFOOD_30032026165723_SEIntimationPhoenix30thMarch.pdf"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-a2e5c2289208ca70",
+      "name": "Mad Over Donuts",
+      "category": "Donuts",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://madoverdonuts.com/franchise"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-2c14410b57ba9fc4",
+      "name": "KFC",
+      "category": "Fried chicken",
+      "operatingModel": "master_or_regional_operator",
+      "enquiryStatus": "Contact the authorised India operator; individual availability unconfirmed",
+      "note": "Operates in India through master franchise or regional operators. This entry is not an offer of an individual outlet franchise.",
+      "sourceUrls": [
+        "https://dil-rjcorp.com/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-65bcedbf01b144ad",
+      "name": "Popeyes",
+      "category": "Fried chicken",
+      "operatingModel": "master_or_regional_operator",
+      "enquiryStatus": "Contact the authorised India operator; individual availability unconfirmed",
+      "note": "Operates in India through master franchise or regional operators. This entry is not an offer of an individual outlet franchise.",
+      "sourceUrls": [
+        "https://www.jubilantfoodworks.com/Uploads/Files/1031foodfile-22-05-PressRelease.pdf"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-a30962a315188691",
+      "name": "NORF — Not Only Regular Fries",
+      "category": "Fries & quick snacks",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://sankalp-group.org/franchise-with-us/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-720c53741694e5c0",
+      "name": "The Belgian Fries Co.",
+      "category": "Fries & quick snacks",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.tbfc.co/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-1b8d29888dfcf0d9",
+      "name": "Amul Parlours",
+      "category": "Ice cream & parlours",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://old.amul.com/m/amul-franchise-business-opportunity"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-e4839c0fb3417e01",
+      "name": "Baskin-Robbins",
+      "category": "Ice cream & parlours",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://baskinrobbinsindia.com/pages/franchise-enquiry"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-3c4dbe4d311b90d1",
+      "name": "Giani’s",
+      "category": "Ice cream & parlours",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.gianisicecream.com/franchisee/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-2ad6d3129278e301",
+      "name": "Naturals Ice Cream",
+      "category": "Ice cream & parlours",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "New franchise requests paused",
+      "note": "An existing franchise network. The official enquiry page currently says new franchise requests are not accepted.",
+      "sourceUrls": [
+        "https://naturalicecreams.in/franchise-queries/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-4b8779e4c511e4d8",
+      "name": "Frozen Bottle",
+      "category": "Milkshakes & dessert cafes",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://frozenbottle.com/pages/franchise"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-b017cefbad8329be",
+      "name": "The ThickShake Factory",
+      "category": "Milkshakes & dessert cafes",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://thethickshakefactory.com/ind/franchise/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-e82157cf068158bf",
+      "name": "Momo Magic Cafe",
+      "category": "Momos",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://momomagiccafe.in/franchise/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-7ee0fb1954795c23",
+      "name": "Momo Nation Cafe",
+      "category": "Momos",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://momonationcafe.com/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-c65d8b01e4d76409",
+      "name": "Wow! Momo",
+      "category": "Momos",
+      "operatingModel": "confirmation_needed",
+      "enquiryStatus": "Current franchise status needs confirmation",
+      "note": "A historical official brand statement says it did not have a franchise model. This does not establish the current position; obtain new official confirmation.",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/wow-momo_fakefranchise-alert-wowmomofakefranchise-activity-6898957131639328768--bLp"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-6c901a664e5952e7",
+      "name": "Saffron Restaurant",
+      "category": "North Indian & multicuisine",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://sankalp-group.org/franchise-with-us/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-46e8621eeca87bb7",
+      "name": "Sankalp Multicuisine",
+      "category": "North Indian & multicuisine",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://sankalp-group.org/franchise-with-us/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-6df3e6b2237e9399",
+      "name": "Chicago Pizza",
+      "category": "Pizza",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://chicagopizza.in/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-fac574489b02ea84",
+      "name": "Domino’s",
+      "category": "Pizza",
+      "operatingModel": "master_or_regional_operator",
+      "enquiryStatus": "Contact the authorised India operator; individual availability unconfirmed",
+      "note": "Operates in India through master franchise or regional operators. This entry is not an offer of an individual outlet franchise.",
+      "sourceUrls": [
+        "https://www.jubilantfoodworks.com/Uploads/Files/1031foodfile-22-05-PressRelease.pdf"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-2a26baba2a64cd6e",
+      "name": "La Pino’z Pizza",
+      "category": "Pizza",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://lapinozpizza.in/franchise-enquiry"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-b005e0f33645d97e",
+      "name": "MOJO Pizza",
+      "category": "Pizza",
+      "operatingModel": "confirmation_needed",
+      "enquiryStatus": "Franchise status needs confirmation",
+      "note": "Pizza chain. Current open individual-franchise availability has not been established.",
+      "sourceUrls": [
+        "https://mojopizza.in/about"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-6790d50f9068c597",
+      "name": "Pizza Hut",
+      "category": "Pizza",
+      "operatingModel": "master_or_regional_operator",
+      "enquiryStatus": "Contact the authorised India operator; individual availability unconfirmed",
+      "note": "Operates in India through master franchise or regional operators. This entry is not an offer of an individual outlet franchise.",
+      "sourceUrls": [
+        "https://dil-rjcorp.com/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-6edbbd76b02fed0d",
+      "name": "Sam’s Pizza",
+      "category": "Pizza",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.samspizza.in/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-4b1249372551c23a",
+      "name": "The Pizza Bakery",
+      "category": "Pizza",
+      "operatingModel": "company_operated",
+      "enquiryStatus": "No franchise offered according to brand",
+      "note": "The brand states that all locations are company-owned and operated and that it does not franchise.",
+      "sourceUrls": [
+        "https://thepizzabakery.in/contact/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-128ebab7ed3d4280",
+      "name": "Kathi Junction",
+      "category": "Rolls & frankies",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.kathijunction.com/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-e90681654eb2a0c3",
+      "name": "Rolls Mania",
+      "category": "Rolls & frankies",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.rollsmania.com/open.php"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-aa8ef7cfea2eec60",
+      "name": "Tibb’s Frankie",
+      "category": "Rolls & frankies",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://tibbsfrankie.com/be-our-partner/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-9bfd4f92fa5fdf20",
+      "name": "Subway",
+      "category": "Sandwiches",
+      "operatingModel": "master_or_regional_operator",
+      "enquiryStatus": "Contact the authorised India operator; individual availability unconfirmed",
+      "note": "Operates in India through master franchise or regional operators. This entry is not an offer of an individual outlet franchise.",
+      "sourceUrls": [
+        "https://everbrands.in/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-3a14ea6d92a2d193",
+      "name": "Dosa Plaza",
+      "category": "South Indian",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.dosaplaza.in/dp_franchise.php"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-2af158091563c93f",
+      "name": "Sagar Ratna",
+      "category": "South Indian",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.sagarratna.com/franchise-policy/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-fa215b76a73c53a5",
+      "name": "Sankalp Restaurant",
+      "category": "South Indian",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://sankalp-group.org/franchise-with-us/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-0dc6a0b7826224b3",
+      "name": "Bikanervala",
+      "category": "Sweets & Indian snacks",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://bikanervala.com/pages/contact"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-b13a4e5b52f75ad6",
+      "name": "Haldiram’s",
+      "category": "Sweets & Indian snacks",
+      "operatingModel": "confirmation_needed",
+      "enquiryStatus": "Restaurant franchise status needs confirmation",
+      "note": "A restaurant and packaged-food brand. Packaged-product distributorship is not a restaurant franchise. Confirm restaurant franchising with the relevant group entity.",
+      "sourceUrls": [
+        "https://www.haldiram.com/distributorship"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-aa3ba1923351b057",
+      "name": "Chai Garam",
+      "category": "Tea",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.chaigaramcafe.com/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-91545329cf44dde0",
+      "name": "Chai Kings",
+      "category": "Tea",
+      "operatingModel": "company_operated",
+      "enquiryStatus": "No franchise offered according to brand",
+      "note": "The brand states that its outlets are company-owned and company-operated and that it does not offer franchise rights.",
+      "sourceUrls": [
+        "https://chaikings.com/why-chai-kings-operates-only-on-a-coco-model/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-322c14183eccac0c",
+      "name": "Chai Sutta Bar",
+      "category": "Tea",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.chaisuttabarindia.com/enquire-franchise/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-fd98c45ca5ac8a1a",
+      "name": "Tea Post",
+      "category": "Tea",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://teapost.in/franchisee/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-170498d30e5e978a",
+      "name": "Tea Time",
+      "category": "Tea",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://teatimegroup.com/franchise/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-c9b60ccd738c9c89",
+      "name": "Yewale Amruttulya",
+      "category": "Tea",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://www.yewaleamruttulya.com/franchise/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-67310b27584127d1",
+      "name": "Goli Vada Pav",
+      "category": "Vada pav",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://m.golivadapav.com/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-e9d8404401068c89",
+      "name": "99 Pancakes",
+      "category": "Waffles & pancakes",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://99pancakes.in/pages/franchise"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    },
+    {
+      "id": "brand-638093f482a1e965",
+      "name": "The Belgian Waffle Co.",
+      "category": "Waffles & pancakes",
+      "operatingModel": "franchise_network",
+      "enquiryStatus": "Enquiry subject to brand and location approval",
+      "note": "",
+      "sourceUrls": [
+        "https://thebelgianwaffle.co/"
+      ],
+      "checkedOn": "2026-10-05",
+      "ownerVerified": false,
+      "outletCoverageConfirmed": false,
+      "menuCoverageConfirmed": false,
+      "recommendationEligible": false
+    }
+  ]
+}
