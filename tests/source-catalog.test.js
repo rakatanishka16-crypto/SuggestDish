@@ -31,5 +31,16 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,73);assert.equal(result.menuEntries,512);assert.equal(result.publishedPrices,248);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,402);assert.equal(result.menuEntries,896);assert.equal(result.publishedPrices,632);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+});
+
+const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');
+test('bakery catalog preserves priced variants, source locations and unknown regular cake ingredients',()=>{
+ assert.equal(expansion.businesses.length,329);assert.equal(expansion.menu_items.length,384);
+ const variants=expansion.menu_items.filter(m=>m.name==='Belgian Chocolate Cake');
+ assert.ok(variants.some(m=>m.portion==='0.5 KG / Eggless' && m.price_inr===1550 && m.is_veg===true));
+ assert.ok(variants.some(m=>m.portion==='0.5 KG / Regular' && m.price_inr===1550 && m.is_veg===null));
+ for(const b of expansion.businesses){assert.equal(b.license_status,'not_checked');assert.equal(b.restaurant_rating,null);assert.ok(b.address);assert.equal(request(b.sourceKey).status,200);}
+ for(const m of expansion.menu_items){assert.equal(m.branch_availability,'not_confirmed');assert.equal(m.recommendation_eligible,false);assert.ok(m.price_inr>0);}
+ assert.equal(new Set([...batch.menu_items,...expansion.menu_items].map(m=>m.external_id)).size,batch.menu_items.length+expansion.menu_items.length);
 });

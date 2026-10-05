@@ -4,7 +4,7 @@
     try {
       const response = await fetch('/api/data-coverage', {signal:AbortSignal.timeout(10000)});
       const data = await response.json(); if (!response.ok || !data.success) return;
-      target.textContent = 'Official source details: ' + data.businessProfiles + ' business profiles, ' + data.menuEntries + ' menu entries and ' + data.publishedPrices + ' published prices. Checked ' + data.checkedOn + '. Coverage is partial; food licences and current availability remain unverified.';
+      target.textContent = 'Official source details: ' + data.businessProfiles + ' business profiles, ' + data.menuEntries + ' menu entries and ' + data.publishedPrices + ' published prices and ' + data.profilesWithCoordinates + ' source map locations. Checked ' + data.checkedOn + '. Coverage is partial; food licences and current availability remain unverified.';
     } catch {}
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',showCoverage,{once:true}); else showCoverage();
@@ -35,7 +35,8 @@
         const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Details unavailable.');
         panel.replaceChildren(); const b = data.business;
         line(panel,data.notice);
-        for (const [label,value] of [['Locality',b.locality],['Phone',b.phone],['Email',b.email],['Published hours',b.opening_hours],['Service',b.service_note]]) if (value) line(panel,label + ': ' + value);
+        for (const [label,value] of [['Locality',b.locality],['Phone',b.phone],['Email',b.email],['Published hours',b.opening_hours],['Service',b.service_note],['FSSAI number published by business (unverified)',b.fssai_license_number]]) if (value) line(panel,label + ': ' + value);
+        if (Number.isFinite(b.latitude) && Number.isFinite(b.longitude)) {line(panel,'Source map location: '+b.latitude+', '+b.longitude+'. Pin accuracy is unconfirmed.'); const map=document.createElement('p');link(map,'Open outlet map','https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(b.latitude+','+b.longitude));panel.append(map);}
         line(panel,'Source checked: ' + b.retrieved_on + '. Food licence status has not been checked.');
         for (const url of b.source_urls || []) { const p = document.createElement('p'); link(p,'Official business source',url); panel.append(p); }
         if (data.menuItems.length) {
@@ -48,7 +49,7 @@
           const count = document.createElement('p'); count.className = 'small mute'; count.setAttribute('aria-live','polite'); panel.append(count);
           const list = document.createElement('ul'); list.style.paddingLeft = '20px';
           for (const m of data.menuItems) {
-            const item = document.createElement('li'); item.textContent = m.name + (m.menu_category ? ' · '+m.menu_category : '') + (m.portion ? ' · '+m.portion : '') + (m.price_inr === null ? ' · Price not published' : ' · ₹'+m.price_inr+' (source menu price)') + (m.is_veg === true ? ' · Vegetarian according to source' : m.is_veg === false ? ' · Non-vegetarian according to source' : ' · Dietary type unconfirmed') + (m.service_time ? ' · Served '+m.service_time : '') + (m.order_note ? ' · '+m.order_note : ''); list.append(item);
+            const item = document.createElement('li'); item.textContent = m.name + (m.menu_category ? ' · '+m.menu_category : '') + (m.portion ? ' · '+m.portion : '') + (m.price_inr === null ? ' · Price not published' : ' · ₹'+m.price_inr+' (source menu price)') + (m.is_veg === true ? ' · Vegetarian according to source' : m.is_veg === false ? ' · Non-vegetarian according to source' : ' · Dietary type unconfirmed') + (m.service_time ? ' · Served '+m.service_time : '') + (m.order_note ? ' · '+m.order_note : '') + (m.source_availability === 'OutOfStock' ? ' · Source lists unavailable' : ''); list.append(item);
           }
           const applyFilter = () => {const query=filter.value.trim().toLowerCase();let visible=0;for(const item of list.children){item.hidden=!item.textContent.toLowerCase().includes(query);if(!item.hidden)visible++;}count.textContent=visible+' of '+data.menuItems.length+' menu entries';};
           filter.addEventListener('input',applyFilter);applyFilter();
