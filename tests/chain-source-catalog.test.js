@@ -17,3 +17,15 @@ test('outlet data preserves source identities and missing facts instead of inven
  assert.equal(new Set(chains.menuItems.map(m=>m.external_id)).size,chains.menuItems.length);
  const {body}=request(chains.businesses.find(b=>b.brand==='Burger King' && !b.outlet_menu_set_id)?.sourceKey || 'official:sd-food-'+'0'.repeat(20));if(body?.menuItems)assert.deepEqual(body.menuItems,[]);
 });
+test('remaining outlets have factual cities and do not inherit unobserved brand menus',()=>{
+ const waffle=chains.businesses.find(b=>b.brand==='The Belgian Waffle Co.' && b.city==='Jalna');assert.ok(waffle);assert.match(waffle.address,/Civil Club/);assert.equal(request(waffle.sourceKey).body.menuScope,'none');
+ const lapino=chains.businesses.find(b=>b.brand==="La Pino'z Pizza");assert.equal(lapino.address_scope,'locality_only');assert.equal(lapino.state,null);assert.match(lapino.service_note,/not a full street address/);assert.ok(Number.isFinite(lapino.latitude));
+ assert.ok(chains.businesses.some(b=>b.brand==='Jumboking' && b.city==='Mumbai'));
+ assert.ok(chains.businesses.every(b=>!['Test City','Punjab','Telangana'].includes(b.city)));
+ const conflict=chains.businesses.find(b=>b.brand==='The Belgian Waffle Co.' && /Khosbagan/.test(b.name));assert.equal(conflict.state,null);assert.match(conflict.service_note,/conflicts/);
+});
+test('McDonald’s Jalna Road menu belongs to Aurangabad and never to Jalna',()=>{
+ const b=chains.businesses.find(b=>b.brand==="McDonald's" && b.outlet_menu_set_id);assert.equal(b.city,'Aurangabad');assert.match(b.address,/Jalna Road/);
+ const {body}=request(b.sourceKey);assert.equal(body.menuScope,'outlet_page');assert.equal(body.menuItems.find(m=>m.name==='McChicken Burger Combo').price_inr,325);
+ const other=chains.businesses.find(b=>b.brand==="McDonald's" && !b.outlet_menu_set_id);assert.deepEqual(chains.menuFor(other),{menuScope:'none',menuItems:[]});
+});
