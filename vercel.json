@@ -48,7 +48,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "api/source-batches/chain-outlets-2026-10-05.json.gz"
+      "includeFiles": "api/source-batches/*.json.gz"
     }
   }
 }
