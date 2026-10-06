@@ -1,0 +1,644 @@
+{
+  "checked_on": "2026-10-06",
+  "targets": [
+    {
+      "sourceKey": "official:sd-food-022918f8c6f84bc12ff2",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - PROZONE MALL-AURANGABAD",
+      "city": "Aurangabad",
+      "mall_name": "Prozone Mall",
+      "mall_city": "Aurangabad",
+      "source_url": "https://www.dominos.co.in/store-location/aurangabad"
+    },
+    {
+      "sourceKey": "official:sd-food-30b8ddd3035454a899a9",
+      "brand": "KFC",
+      "name": "KFC - Chikalthana Industrial Estate, Aurangabad",
+      "city": "Aurangabad",
+      "mall_name": "Prozone Mall",
+      "mall_city": "Aurangabad",
+      "source_url": "https://restaurants.kfc.co.in/kfc-chikalthana-industrial-estate-restaurants-chikalthana-industrial-estate-aurangabad-35018/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-546f105843a8e1347c32",
+      "brand": "Burger King",
+      "name": "Burger King - Chikalthana, Aurangabad",
+      "city": "Aurangabad",
+      "mall_name": "Prozone Mall",
+      "mall_city": "Aurangabad",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-chikalthana-aurangabad-179369/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-aef0f54cd02e3b038004",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - TAPADIA CITY CENTRE AMRAVATI MAHARASHTRA",
+      "city": "Amravati",
+      "mall_name": "Tapadia City Centre",
+      "mall_city": "Amravati",
+      "source_url": "https://www.dominos.co.in/store-location/amravati"
+    },
+    {
+      "sourceKey": "official:sd-food-cd8339a8c2218df153ca",
+      "brand": "KFC",
+      "name": "KFC - Saturna, Amravati",
+      "city": "Amravati",
+      "mall_name": "Tapadia City Centre",
+      "mall_city": "Amravati",
+      "source_url": "https://restaurants.kfc.co.in/kfc-kfc-tapadia-mall-amravati-restaurants-saturna-amravati-442515/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-0b6813a4903cf8310869",
+      "brand": "Burger King",
+      "name": "Burger King - Saturna, Amravati",
+      "city": "Amravati",
+      "mall_name": "Tapadia City Centre",
+      "mall_city": "Amravati",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-saturna-amravati-270114/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-541fe77993256c6e7ee6",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - Tapadia City Centre",
+      "city": "Amravati",
+      "mall_name": "Tapadia City Centre",
+      "mall_city": "Amravati",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-tapadia-city-centre-momo-restaurant-badnera-amravati-338137/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-b30f05452f994a4a3f53",
+      "brand": "The Belgian Waffle Co.",
+      "name": "The Belgian Waffle Co. - Tapadia City Center, Amravati",
+      "city": "Amravati",
+      "mall_name": "Tapadia City Centre",
+      "mall_city": "Amravati",
+      "source_url": "https://thebelgianwaffle.co/store-locator"
+    },
+    {
+      "sourceKey": "official:sd-food-3819cf03dc542ab3fb07",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Tapadia City Centre, Amravati",
+      "city": "Amravati",
+      "mall_name": "Tapadia City Centre",
+      "mall_city": "Amravati",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-ph-tapadia-city-centre-mall-amravati-pizza-restaurant-saturna-amravati-166839/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-f1c31c41a5623666b861",
+      "brand": "KFC",
+      "name": "KFC - Untkhana, Nagpur",
+      "city": "Nagpur",
+      "mall_name": "Trillium Mall",
+      "mall_city": "Nagpur",
+      "source_url": "https://restaurants.kfc.co.in/kfc-untkhana-restaurants-untkhana-nagpur-82056/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-dbbc32de11168148cca1",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Trilium Mall, Nagpur",
+      "city": "Nagpur",
+      "mall_name": "Trillium Mall",
+      "mall_city": "Nagpur",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-trillium-mall-nagpur-pizza-restaurant-ayodhya-nagar-nagpur-92330/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-2a52b955ed923a5dc0cd",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - CITY CENTER MALL, NASHIK, MAHARASHTRA",
+      "city": "Nashik",
+      "mall_name": "City Centre Mall",
+      "mall_city": "Nashik",
+      "source_url": "https://www.dominos.co.in/store-location/nashik/city-center-mall-nashik-maharashtra"
+    },
+    {
+      "sourceKey": "official:sd-food-a77b39847ef946edd499",
+      "brand": "KFC",
+      "name": "KFC - Lawate Nagar, Nashik",
+      "city": "Nashik",
+      "mall_name": "City Centre Mall",
+      "mall_city": "Nashik",
+      "source_url": "https://restaurants.kfc.co.in/kfc-kfc-city-center-mall-nashik-restaurants-lawate-nagar-nashik-315725/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-04cc6a3242c2959a7775",
+      "brand": "Burger King",
+      "name": "Burger King - Lavate Nagar, Nashik",
+      "city": "Nashik",
+      "mall_name": "City Centre Mall",
+      "mall_city": "Nashik",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-lavate-nagar-nashik-305228/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-f36efae456f9dd349745",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Lawate Nagar, Nashik",
+      "city": "Nashik",
+      "mall_name": "City Centre Mall",
+      "mall_city": "Nashik",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-ph-ccm-nashik-pizza-restaurant-untwadi-nashik-305156/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-718578f7dcb8d55b1d0b",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - R CITY,GROUND FLOOR,GHATKOPAR",
+      "city": "Mumbai",
+      "mall_name": "R City Mall",
+      "mall_city": "Mumbai",
+      "source_url": "https://www.dominos.co.in/store-location/mumbai"
+    },
+    {
+      "sourceKey": "official:sd-food-659b97408a94b17fce19",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - R CITY GHATKOPAR WEST MUMBAI",
+      "city": "Mumbai",
+      "mall_name": "R City Mall",
+      "mall_city": "Mumbai",
+      "source_url": "https://www.dominos.co.in/store-location/mumbai"
+    },
+    {
+      "sourceKey": "official:sd-food-e4f002a622fc67d56c46",
+      "brand": "KFC",
+      "name": "KFC - Ghatkopar East, Mumbai",
+      "city": "Mumbai",
+      "mall_name": "R City Mall",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.kfc.co.in/kfc-ghatkopar-east-restaurants-ghatkopar-east-mumbai-35126/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-94193e9d21b05fca8892",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - R City",
+      "city": "Mumbai",
+      "mall_name": "R City Mall",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-r-city-momo-restaurant-ghatkopar-west-mumbai-281985/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-40b907488e960faa3596",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - R City Ghatkopar, Mumbai",
+      "city": "Mumbai",
+      "mall_name": "R City Mall",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-ghatkopar-west-pizza-restaurant-ghatkopar-west-mumbai-27206/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-b061d57272c45e4f2c26",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - PHOENIX MARKET CITY, KURLA",
+      "city": "Mumbai",
+      "mall_name": "Phoenix Marketcity, Kurla",
+      "mall_city": "Mumbai",
+      "source_url": "https://www.dominos.co.in/store-location/mumbai"
+    },
+    {
+      "sourceKey": "official:sd-food-9893a3ce5de282d080a5",
+      "brand": "KFC",
+      "name": "KFC - Kurla West, Mumbai",
+      "city": "Mumbai",
+      "mall_name": "Phoenix Marketcity, Kurla",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.kfc.co.in/kfc-kurla-west-restaurants-kurla-west-mumbai-35084/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-e66d16b463fe11b57fe7",
+      "brand": "Burger King",
+      "name": "Burger King - Kurla West, Mumbai",
+      "city": "Mumbai",
+      "mall_name": "Phoenix Marketcity, Kurla",
+      "mall_city": "Mumbai",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-kurla-west-mumbai-179368/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-48980a53b97aed023c9b",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - Phoenix",
+      "city": "Mumbai",
+      "mall_name": "Phoenix Marketcity, Kurla",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-phoenix-momo-restaurant-kamani-mumbai-281995/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-583755cbec328a2285f5",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Phoenix Market City Kurla, Mumbai",
+      "city": "Mumbai",
+      "mall_name": "Phoenix Marketcity, Kurla",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.pizzahut.co.in/Maharashtra?page=7"
+    },
+    {
+      "sourceKey": "official:sd-food-86d899de459faddee76b",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - INFINITY MALL MALAD",
+      "city": "Mumbai",
+      "mall_name": "Infiniti Mall, Malad",
+      "mall_city": "Mumbai",
+      "source_url": "https://www.dominos.co.in/store-location/mumbai"
+    },
+    {
+      "sourceKey": "official:sd-food-fa04671b2f35783ff36c",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - INFINITY MALL MALAD MUMBAI MAHARASHTRA",
+      "city": "Mumbai",
+      "mall_name": "Infiniti Mall, Malad",
+      "mall_city": "Mumbai",
+      "source_url": "https://www.dominos.co.in/store-location/mumbai"
+    },
+    {
+      "sourceKey": "official:sd-food-229f3ee31d034164e1e8",
+      "brand": "KFC",
+      "name": "KFC - Malad West, Mumbai",
+      "city": "Mumbai",
+      "mall_name": "Infiniti Mall, Malad",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.kfc.co.in/kfc-malad-west-restaurants-malad-west-mumbai-35086/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-14ca9d26fb4ebe596e47",
+      "brand": "Haldiram's",
+      "name": "Haldiram's - Haldiram’s Infinity Mall Malad",
+      "city": "Mumbai",
+      "mall_name": "Infiniti Mall, Malad",
+      "mall_city": "Mumbai",
+      "source_url": "https://www.haldirams.com/store-locator"
+    },
+    {
+      "sourceKey": "official:sd-food-bf5bdd3f5445a330974e",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - Malad Infiniti Mall",
+      "city": "Mumbai",
+      "mall_name": "Infiniti Mall, Malad",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-malad-infiniti-mall-momo-restaurant-malad-west-mumbai-282145/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-0a11d74171ec089c2ede",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Infiniti Mall Malad, Mumbai",
+      "city": "Mumbai",
+      "mall_name": "Infiniti Mall, Malad",
+      "mall_city": "Mumbai",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-malad-west-pizza-restaurant-malad-west-mumbai-100406/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-4f2082aee68af022b49a",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - VIVIANA MALL THANE",
+      "city": "Thane",
+      "mall_name": "Viviana Mall",
+      "mall_city": "Thane",
+      "source_url": "https://www.dominos.co.in/store-location/thane"
+    },
+    {
+      "sourceKey": "official:sd-food-3b160d8073e3aa14cedd",
+      "brand": "KFC",
+      "name": "KFC - Panchpakhadi, Thane",
+      "city": "Thane",
+      "mall_name": "Viviana Mall",
+      "mall_city": "Thane",
+      "source_url": "https://restaurants.kfc.co.in/kfc-panchpakhadi-restaurants-panchpakhadi-thane-35023/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-37aeb8e2939674abe250",
+      "brand": "Burger King",
+      "name": "Burger King - Subhash Nagar, Thane",
+      "city": "Thane",
+      "mall_name": "Viviana Mall",
+      "mall_city": "Thane",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-subhash-nagar-thane-179292/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-271d03fc0ade618195ba",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - VIVIANA",
+      "city": "Thane",
+      "mall_name": "Viviana Mall",
+      "mall_city": "Thane",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-viviana-momo-restaurant-eastern-express-highway-thane-286724/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-e779e36cace0343e6c05",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - KORUM MALL THANE MUMBAI MAHARASHTRA",
+      "city": "Thane",
+      "mall_name": "Korum Mall",
+      "mall_city": "Thane",
+      "source_url": "https://www.dominos.co.in/store-location/thane"
+    },
+    {
+      "sourceKey": "official:sd-food-fe56c296a64d74da7022",
+      "brand": "KFC",
+      "name": "KFC - Thane west, Thane",
+      "city": "Thane",
+      "mall_name": "Korum Mall",
+      "mall_city": "Thane",
+      "source_url": "https://restaurants.kfc.co.in/kfc-thane-west-restaurants-thane-west-thane-35017/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-fff9c9d5c17382f409e1",
+      "brand": "Burger King",
+      "name": "Burger King - Shahid Mangal Pandey Road, Thane",
+      "city": "Thane",
+      "mall_name": "Korum Mall",
+      "mall_city": "Thane",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-shahid-mangal-pandey-road-thane-179357/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-ed8d42b296ae9eadbdf7",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - Korum Mall",
+      "city": "Thane",
+      "mall_name": "Korum Mall",
+      "mall_city": "Thane",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-korum-mall-momo-restaurant-samata-nagar-thane-282215/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-667236e41e292d360c89",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Korum Mall, Thane, Mumbai",
+      "city": "Thane",
+      "mall_name": "Korum Mall",
+      "mall_city": "Thane",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-samata-nagar-pizza-restaurant-samata-nagar-thane-6822/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-edbfc77c66961c46673c",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - INORBIT MALL, VASHI, MUMBAI",
+      "city": "Navi Mumbai",
+      "mall_name": "Inorbit Mall, Vashi",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://www.dominos.co.in/store-location/navi-mumbai/inorbit-mall-vashi-mumbai"
+    },
+    {
+      "sourceKey": "official:sd-food-14fd14529fba386eaf71",
+      "brand": "KFC",
+      "name": "KFC - Sector 30A, Vashi, Navi Mumbai",
+      "city": "Navi Mumbai",
+      "mall_name": "Inorbit Mall, Vashi",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://restaurants.kfc.co.in/kfc-kfc-mumbai-inorbit-mall-vashi-restaurants-sector-30a-vashi-navi-mumbai-442602/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-f28c27da38e038228206",
+      "brand": "Burger King",
+      "name": "Burger King - Sector 30A, Vashi, Navi Mumbai",
+      "city": "Navi Mumbai",
+      "mall_name": "Inorbit Mall, Vashi",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-sector-30a-vashi-navi-mumbai-179350/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-41dcd5d616ad37183d95",
+      "brand": "Haldiram's",
+      "name": "Haldiram's - Haldiram’s Inorbit Mall",
+      "city": "Mumbai",
+      "mall_name": "Inorbit Mall, Vashi",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://www.haldirams.com/store-locator"
+    },
+    {
+      "sourceKey": "official:sd-food-19ac1b9ea5412bf2453f",
+      "brand": "Haldiram's",
+      "name": "Haldiram's - Haldiram’s Inorbit Mall",
+      "city": "New Mumbai",
+      "mall_name": "Inorbit Mall, Vashi",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://www.haldirams.com/store-locator"
+    },
+    {
+      "sourceKey": "official:sd-food-9a75f346b52f38fa8d8f",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - Inorbit Vashi",
+      "city": "Navi Mumbai",
+      "mall_name": "Inorbit Mall, Vashi",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-inorbit-vashi-momo-restaurant-vashi-sector-30a-navi-mumbai-286707/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-5f880db777ffdd605ed9",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Inorbit Mall, Vashi , Mumbai",
+      "city": "Navi Mumbai",
+      "mall_name": "Inorbit Mall, Vashi",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-vashi-pizza-restaurant-vashi-sector-30a-navi-mumbai-1465/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-47f6219100346563b1be",
+      "brand": "Jumboking",
+      "name": "Jumboking - 114 - Lower Ground Floor, Seawoods Grand Central Mall",
+      "city": "Navi Mumbai",
+      "mall_name": "Seawoods Grand Central",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://www.jumboking.co.in/store-locator/?location=Navi+Mumbai"
+    },
+    {
+      "sourceKey": "official:sd-food-5b01686b13320ccecfa6",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Grand Central Mall Seawoods, Mumbai",
+      "city": "Navi Mumbai",
+      "mall_name": "Seawoods Grand Central",
+      "mall_city": "Navi Mumbai",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-ph-seawoods-mall-navi-mumbai-pizza-restaurant-nerul-east-sector-40-navi-mumbai-172025/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-a6fd30b4929fa5097139",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - AMANORA MALL",
+      "city": "Pune",
+      "mall_name": "Amanora Mall",
+      "mall_city": "Pune",
+      "source_url": "https://www.dominos.co.in/store-location/pune"
+    },
+    {
+      "sourceKey": "official:sd-food-ad37bdab1611a1ab43c7",
+      "brand": "KFC",
+      "name": "KFC - Hadapsar, Pune",
+      "city": "Pune",
+      "mall_name": "Amanora Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.kfc.co.in/kfc-hadapsar-restaurants-hadapsar-pune-35030/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-b46d66290fd93220859b",
+      "brand": "Burger King",
+      "name": "Burger King - Amanora Town Centre, Pune",
+      "city": "Pune",
+      "mall_name": "Amanora Mall",
+      "mall_city": "Pune",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-amanora-town-centre-pune-179328/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-e6f42640f293a734801c",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - Amanora Mall",
+      "city": "Pune",
+      "mall_name": "Amanora Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-amanora-mall-momo-restaurant-hadapsar-pune-372684/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-bbdbfdeb586fa4ead8d0",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Amanora Mall, Pune",
+      "city": "Pune",
+      "mall_name": "Amanora Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-ph-amanora-mall-pizzerias-hadapsar-pune-366885/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-2f858bdd5f3b28f56e0c",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - PHOENIX MARKET CITY",
+      "city": "Pune",
+      "mall_name": "Phoenix Marketcity",
+      "mall_city": "Pune",
+      "source_url": "https://www.dominos.co.in/store-location/pune"
+    },
+    {
+      "sourceKey": "official:sd-food-e59d48d5290e37f03013",
+      "brand": "Burger King",
+      "name": "Burger King - Viman Nagar, Pune",
+      "city": "Pune",
+      "mall_name": "Phoenix Marketcity",
+      "mall_city": "Pune",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-viman-nagar-pune-179302/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-a017197d6273bbfe4506",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - PMC, Pune",
+      "city": "Pune",
+      "mall_name": "Phoenix Marketcity",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-viman-nagar-pizza-delivery-viman-nagar-pune-23552/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-d11a995e0efcd68ab2ee",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Phoenix Market City Mall, Pune",
+      "city": "Pune",
+      "mall_name": "Phoenix Marketcity",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-viman-nagar-pizza-restaurant-viman-nagar-pune-1179/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-d3a2b33f7535b00062d9",
+      "brand": "Domino's Pizza",
+      "name": "Domino's Pizza - NEXUS WESTEND MALL PUNE MAHARASHTRA",
+      "city": "Pune",
+      "mall_name": "Westend Mall",
+      "mall_city": "Pune",
+      "source_url": "https://www.dominos.co.in/store-location/pune"
+    },
+    {
+      "sourceKey": "official:sd-food-e884b5fbb6d887544141",
+      "brand": "KFC",
+      "name": "KFC - Aund, Pune",
+      "city": "Pune",
+      "mall_name": "Westend Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.kfc.co.in/kfc-aund-restaurants-aund-pune-35049/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-28c8301769133f6afcab",
+      "brand": "Wow! Momo",
+      "name": "Wow! Momo - Westend mall",
+      "city": "Pune",
+      "mall_name": "Westend Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.wowmomo.com/wow-momo-westend-mall-momo-restaurant-aundh-pune-303288/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-44a7beecc8ddae32d35d",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - WestEnd Mall, Pune",
+      "city": "Pune",
+      "mall_name": "Westend Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-aundh-pizza-restaurant-aundh-pune-6147/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-e399dee2eac8fccfb9ed",
+      "brand": "KFC",
+      "name": "KFC - Magarpatta Road, Pune",
+      "city": "Pune",
+      "mall_name": "Seasons Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.kfc.co.in/kfc-magarpatta-road-restaurants-magarpatta-road-pune-82038/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-18df6e3ec8f04f8f7752",
+      "brand": "Burger King",
+      "name": "Burger King - Magarpatta, Pune",
+      "city": "Pune",
+      "mall_name": "Seasons Mall",
+      "mall_city": "Pune",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-magarpatta-pune-179378/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-ffbfa0dd8e1266e61f11",
+      "brand": "Haldiram's",
+      "name": "Haldiram's Seasons Mall, Pune",
+      "city": "Pune",
+      "mall_name": "Seasons Mall",
+      "mall_city": "Pune",
+      "source_url": "https://www.haldirams.com/store-locator"
+    },
+    {
+      "sourceKey": "official:sd-food-6d217ab7ffc9555df108",
+      "brand": "Jumboking",
+      "name": "Jumboking - Unit No T1A, Seasons Mall, 3rd Floor, Magarpatta Road, Hadapsar",
+      "city": "Pune",
+      "mall_name": "Seasons Mall",
+      "mall_city": "Pune",
+      "source_url": "https://www.jumboking.co.in/store-locator/?location=Pune"
+    },
+    {
+      "sourceKey": "official:sd-food-b04b551f7e6f990b653d",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Seasons Mall, Pune",
+      "city": "Pune",
+      "mall_name": "Seasons Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-hadapsar-pizza-takeaway-hadapsar-pune-23041/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-0590824edc9c7ab55030",
+      "brand": "KFC",
+      "name": "KFC - SB Road, Pune",
+      "city": "Pune",
+      "mall_name": "The Pavilion Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.kfc.co.in/kfc-sb-road-restaurants-sb-road-pune-35060/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-267e442f9937a8cdd2d3",
+      "brand": "Burger King",
+      "name": "Burger King - Shivaji Nagar, Pune",
+      "city": "Pune",
+      "mall_name": "The Pavilion Mall",
+      "mall_city": "Pune",
+      "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-shivaji-nagar-pune-179306/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-8c920202bf93bc89fbc3",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - The Pavilion ( ICC) Mall, Pune",
+      "city": "Pune",
+      "mall_name": "The Pavilion Mall",
+      "mall_city": "Pune",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-shivaji-nagar-pizza-restaurant-shivaji-nagar-pune-22509/Home"
+    },
+    {
+      "sourceKey": "official:sd-food-3944466ced75f1bb598e",
+      "brand": "Pizza Hut",
+      "name": "Pizza Hut - Orion Mall Panvel, Mumbai",
+      "city": "Panvel",
+      "mall_name": "Orion Mall",
+      "mall_city": "Panvel",
+      "source_url": "https://restaurants.pizzahut.co.in/pizza-hut-ph-orion-mall-pizzerias-panvel-navi-mumbai-130471/Home"
+    }
+  ]
+}

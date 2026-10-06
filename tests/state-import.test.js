@@ -18,7 +18,9 @@ test('Nagpur menu source belongs to its branch and absent prices remain unknown'
  for(const m of menu.menuItems){assert.equal(m.source_business_id,b.sourceKey);assert.match(m.source_url,/163313\/Menu$/);assert.equal(m.price_inr,null);assert.equal(m.recommendation_eligible,false);}
  const margherita=menu.menuItems.find(m=>m.name==='Margherita Ultimate Cheese');assert.equal(margherita.is_veg,true);
  const chicken=menu.menuItems.find(m=>m.name==='Chicken Sausage Ultimate Cheese');assert.equal(chicken.is_veg,false);
- for(const other of batch.businesses.filter(x=>x.sourceKey!==b.sourceKey))assert.deepEqual(chains.menuFor(other),{menuScope:'none',menuItems:[]});
+ const mallBatch=JSON.parse(zlib.gunzipSync(fs.readFileSync(require('node:path').join(__dirname,'../api/source-batches/maharashtra-mall-menus-2026-10-06.json.gz'))));
+ const enriched=new Set(mallBatch.menu_associations.map(p=>p.sourceKey));
+ for(const other of chains.businesses.filter(x=>batch.businesses.some(y=>y.sourceKey===x.sourceKey) && x.sourceKey!==b.sourceKey && !enriched.has(x.sourceKey)))assert.deepEqual(chains.menuFor(other),{menuScope:'none',menuItems:[]});
 });
 test('state queue keeps Maharashtra incomplete and Chennai within Tamil Nadu',()=>{
  const handlers={};register({get:(p,h)=>handlers[p]=h});let result;

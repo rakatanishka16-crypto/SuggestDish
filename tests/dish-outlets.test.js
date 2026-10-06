@@ -1,5 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const register=require('../lib/source-catalog'),chains=require('../lib/chain-source-catalog');
+const shortlist=require('../api/source-batches/top-100-foods-2026-10-05.json');
 const routes={};register({get:(p,h)=>routes[p]=h});
 function request(query={},path='/api/dish-outlets'){let body,status=200;routes[path]({query},{set(){},status(n){status=n;return this},json(d){body=d;return this}});return {body,status};}
 test('all 100 curated dishes resolve reviewed menu IDs to real catalog outlets',()=>{
@@ -12,8 +13,8 @@ test('preparation-specific matches cannot confuse vegetable noodles, chicken 65 
  const shawarma=request({dishId:'56'}).body;assert.equal(shawarma.total,1);assert.equal(shawarma.outlets[0].city,'New Delhi');assert.deepEqual(shawarma.outlets[0].sourceTypes,['delivery_platform','business_website']);assert.equal(shawarma.outlets[0].menuItems[0].price_inr,490);
 });
 test('branch-specific momo and matcha menus stay at their checked outlets',()=>{
- const momo=request({dishId:'41'}).body;assert.equal(momo.total,1);assert.equal(momo.outlets[0].name,'Wow! Momo - CR Park');assert.equal(momo.outlets[0].menuScope,'outlet_page');
- const another=chains.businesses.find(b=>b.brand==='Wow! Momo' && b.locality!=='CR Park');assert.deepEqual(chains.menuFor(another),{menuScope:'none',menuItems:[]});
+ const momo=request({dishId:'41'}).body;assert.equal(momo.total,10);assert.ok(momo.outlets.some(b=>b.name==='Wow! Momo - CR Park'));assert.ok(momo.outlets.every(b=>b.menuScope==='outlet_page' && b.menuItems.every(m=>m.source_business_id===b.id)));
+ const another=chains.businesses.find(b=>b.brand==='Wow! Momo' && !b.outlet_menu_set_id);assert.deepEqual(chains.menuFor(another),{menuScope:'none',menuItems:[]});
  const matcha=request({dishId:'100'}).body;assert.equal(matcha.total,1);assert.equal(matcha.outlets[0].city,'Chandigarh');assert.equal(matcha.outlets[0].menuItems[0].price_inr,750);
 });
 test('city filters are exact and pagination and IDs are bounded',()=>{
@@ -30,4 +31,15 @@ test('new branch records and menu enrichments are unique and source eligibility 
  assert.equal(new Set(chains.menuItems.map(m=>m.external_id)).size,chains.menuItems.length);
  for(const b of chains.businesses){assert.equal(b.recommendation_eligible,false);assert.equal(b.publish_ready,false);}
  const chocolate=chains.businesses.find(b=>b.brand==='Kunafa Bytes');const menu=chains.menuFor(chocolate);assert.equal(menu.menuScope,'brand_reference');const item=menu.menuItems.find(m=>m.name==='Dubai Kunafa Chocolate');assert.equal(item.portion,'55 g');assert.equal(item.price_inr,320);assert.equal(item.source_business_id,null);
+});
+test('refreshed evidence IDs require exact product and portion matches to reviewed dishes',()=>{
+ const build=require('../lib/dish-outlets').buildCatalog;
+ const evidence=[...new Set(shortlist.dishes.flatMap(d=>d.menu_item_ids))].map(external_id=>({external_id,brand:'Test Brand',name:external_id,portion:'250g',is_veg:false}));
+ const original=evidence.find(m=>m.external_id===shortlist.dishes[0].menu_item_ids[0]);
+ const business={sourceKey:'test-outlet',brand:'Test Brand',source_urls:['https://example.com']};
+ const resolve=menu=>build({businesses:[business],menu_items:evidence,menuFor:()=>({menuScope:'outlet_page',menuItems:[menu]})}).rows[0].outlets;
+ assert.equal(resolve({...original,external_id:'refreshed-evidence'}).length,1);
+ assert.equal(resolve({...original,external_id:'refreshed-evidence',portion:'500g'}).length,0);
+ assert.equal(resolve({...original,external_id:'refreshed-evidence',name:original.name+' Combo'}).length,0);
+ assert.equal(resolve({...original,external_id:'refreshed-evidence',is_veg:true}).length,0);
 });
