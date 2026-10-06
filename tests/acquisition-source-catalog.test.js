@@ -2,9 +2,9 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const source=require('../lib/source-catalog'),acquisition=require('../lib/acquisition-source-catalog');
 const handlers={};source({get:(p,h)=>handlers[p]=h});
 function request(id){let body,status=200;handlers['/api/business-source']({query:{businessId:id}},{set(){},status(code){status=code;return this;},json(value){body=value;}});return {body,status};}
-test('both Mumbai batches publish every outlet through one stable source profile',()=>{
- const stats=acquisition.coverage();assert.equal(stats.outlets,190);assert.equal(stats.businesses,22);assert.equal(stats.dishes,6719);assert.equal(stats.neonImport,false);assert.deepEqual(stats.publication.unresolvedMatches,[]);
- assert.equal(acquisition.outletProfiles.size,190);assert.equal(new Set(acquisition.outletProfiles.values()).size,190);assert.equal(new Set(source.listingRows.map(b=>b.id)).size,source.listingRows.length);
+test('three Mumbai batch checkpoints publish every outlet through one stable source profile',()=>{
+ const stats=acquisition.coverage();assert.equal(stats.outlets,197);assert.equal(stats.businesses,29);assert.equal(stats.dishes,6856);assert.equal(stats.neonImport,false);assert.deepEqual(stats.publication.unresolvedMatches,[]);
+ assert.equal(acquisition.outletProfiles.size,197);assert.equal(new Set(acquisition.outletProfiles.values()).size,197);assert.equal(new Set(source.listingRows.map(b=>b.id)).size,source.listingRows.length);
  for(const [outlet,id] of acquisition.outletProfiles){const r=request(id);assert.equal(r.status,200);assert.equal(r.body.business.acquisition_outlet_id,outlet);assert.equal(r.body.business.address,acquisition.rawOutlets.get(outlet).full_address);}
 });
 test('dietary conflicts, variant ranges and testimonial scope cannot become confirmed recommendations',()=>{
