@@ -13,7 +13,7 @@ test('preparation-specific matches cannot confuse vegetable noodles, chicken 65 
  const shawarma=request({dishId:'56'}).body;assert.equal(shawarma.total,1);assert.equal(shawarma.outlets[0].city,'New Delhi');assert.deepEqual(shawarma.outlets[0].sourceTypes,['delivery_platform','business_website']);assert.equal(shawarma.outlets[0].menuItems[0].price_inr,490);
 });
 test('branch-specific momo and matcha menus stay at their checked outlets',()=>{
- const momo=request({dishId:'41'}).body;assert.equal(momo.total,10);assert.ok(momo.outlets.some(b=>b.name==='Wow! Momo - CR Park'));assert.ok(momo.outlets.every(b=>b.menuScope==='outlet_page' && b.menuItems.every(m=>m.source_business_id===b.id)));
+ const momo=request({dishId:'41',limit:'50'}).body;assert.equal(momo.total,23);assert.ok(momo.outlets.some(b=>b.name==='Wow! Momo - CR Park'));assert.ok(momo.outlets.every(b=>b.menuScope==='outlet_page' && b.menuItems.every(m=>m.source_business_id===b.id)));
  const another=chains.businesses.find(b=>b.brand==='Wow! Momo' && !b.outlet_menu_set_id);assert.deepEqual(chains.menuFor(another),{menuScope:'none',menuItems:[]});
  const matcha=request({dishId:'100'}).body;assert.equal(matcha.total,1);assert.equal(matcha.outlets[0].city,'Chandigarh');assert.equal(matcha.outlets[0].menuItems[0].price_inr,750);
 });
