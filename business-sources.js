@@ -37,6 +37,8 @@
         line(panel,data.notice);
         for (const [label,value] of [['State',b.state],['Locality',b.locality],['Phone',b.phone],['Email',b.email],['Published hours',b.opening_hours],['Service',b.service_note],['FSSAI number published by business (unverified)',b.fssai_license_number]]) if (value) line(panel,label + ': ' + value);
         if (Number.isFinite(b.latitude) && Number.isFinite(b.longitude)) {line(panel,'Source map location: '+b.latitude+', '+b.longitude+'. Pin accuracy is unconfirmed.'); const map=document.createElement('p');link(map,'Open outlet map','https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(b.latitude+','+b.longitude));panel.append(map);}
+        const destination = Number.isFinite(b.latitude) && Number.isFinite(b.longitude) ? b.latitude+','+b.longitude : b.address_scope!=='locality_only' && b.address ? b.name+', '+b.address : null;
+        if (destination) {const directions=document.createElement('p');link(directions,'Get directions','https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(destination));panel.append(directions);}
         line(panel,'Source checked: ' + b.retrieved_on + '. Food licence status has not been checked.');
         for (const url of b.source_urls || []) { const p = document.createElement('p'); link(p,new URL(url).hostname.endsWith('zomato.com') ? 'Published delivery-platform source' : 'Official business source',url); panel.append(p); }
         if (b.google_listing_status==='business_link_published' && b.google_maps_url) {

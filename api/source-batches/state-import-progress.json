@@ -1,0 +1,24 @@
+{
+  "updated_on": "2026-10-06",
+  "active_state": "Maharashtra",
+  "state_order": ["Maharashtra", "Karnataka", "Goa", "Gujarat", "Delhi", "Haryana", "Tamil Nadu"],
+  "states": [
+    {"state": "Maharashtra", "status": "in_progress", "city_priority": ["Jalna", "Aurangabad", "Mumbai", "Thane", "Navi Mumbai", "Pune", "Nagpur", "Nashik", "Kolhapur", "Solapur", "Amravati", "Nanded", "Latur", "Satara", "Sangli", "Jalgaon", "Ahmednagar", "Ratnagiri"], "batch_ids": ["maharashtra-2026-10-06"]},
+    {"state": "Karnataka", "status": "queued", "city_priority": ["Bengaluru", "Mysuru", "Mangaluru", "Hubballi", "Belagavi"]},
+    {"state": "Goa", "status": "queued", "city_priority": ["Panaji", "Margao", "Mapusa", "Vasco da Gama", "Calangute"]},
+    {"state": "Gujarat", "status": "queued", "city_priority": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Gandhinagar"]},
+    {"state": "Delhi", "status": "queued", "city_priority": ["New Delhi", "Delhi"]},
+    {"state": "Haryana", "status": "queued", "city_priority": ["Gurugram", "Faridabad", "Panipat", "Ambala", "Rohtak"]},
+    {"state": "Tamil Nadu", "status": "queued", "city_priority": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"]}
+  ],
+  "remaining_categories": ["Street vendors and carts", "Independent restaurants", "Cafes", "Mall food outlets", "Hotel restaurants", "Remaining chain branches"],
+  "remaining_fields": ["Branch-specific menus", "Published current prices", "Owner confirmation of operation", "Source location conflicts"],
+  "source_attempts": [
+    {"source": "Pizza Hut Maharashtra locator", "status": "source_observed", "url": "https://restaurants.pizzahut.co.in/Maharashtra"},
+    {"source": "Pizza Hut national huts list", "status": "research_only_not_merged", "reason": "Count and address differences from the state locator; avoid duplicate branches"},
+    {"source": "Cafe Coffee Day Maharashtra", "status": "retry_pending", "reason": "Source fetch failed; no records published from failed fetch"},
+    {"source": "Starbucks official locator", "status": "retry_pending", "reason": "Source fetch failed; no records published from failed fetch"}
+  ],
+  "complete_state_census": false,
+  "notice": "Progress tracks this expansion, not all historical records. Official-source observations do not confirm current operation, food quality, food licences or menu availability. A city or state is never marked complete from a single brand locator."
+}
