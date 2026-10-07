@@ -676,52 +676,6 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section" id="how-it-works">
-  <div class="container">
-
-    <div class="section-head">
-      <div>
-        <h2>How SuggestDish works</h2>
-        <p class="sub">
-          Restaurant discovery is only the beginning. SuggestDish
-          focuses on the dish you actually want to eat.
-        </p>
-      </div>
-    </div>
-
-    <div class="steps">
-
-      <div class="card step">
-        <div class="step-number">1</div>
-        <h3>Tell us what you want</h3>
-        <p>
-          Choose your taste, cuisine, occasion, budget and dietary
-          preferences.
-        </p>
-      </div>
-
-      <div class="card step">
-        <div class="step-number">2</div>
-        <h3>AI understands your preferences</h3>
-        <p>
-          SuggestDish analyzes your preferences against available
-          dish and restaurant information.
-        </p>
-      </div>
-
-      <div class="card step">
-        <div class="step-number">3</div>
-        <h3>Get a specific dish</h3>
-        <p>
-          Instead of simply saying where to eat, SuggestDish tells
-          you what dish to try.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- AI RECOMMENDATION -->
 <section class="section" id="ai-recommend">
@@ -930,6 +884,55 @@
   </div>
 </section>
 
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2>How SuggestDish works</h2>
+        <p class="sub">
+          Restaurant discovery is only the beginning. SuggestDish
+          focuses on the dish you actually want to eat.
+        </p>
+      </div>
+    </div>
+
+    <div class="steps">
+
+      <div class="card step">
+        <div class="step-number">1</div>
+        <h3>Tell us what you want</h3>
+        <p>
+          Choose your taste, cuisine, occasion, budget and dietary
+          preferences.
+        </p>
+      </div>
+
+      <div class="card step">
+        <div class="step-number">2</div>
+        <h3>AI understands your preferences</h3>
+        <p>
+          SuggestDish analyzes your preferences against available
+          dish and restaurant information.
+        </p>
+      </div>
+
+      <div class="card step">
+        <div class="step-number">3</div>
+        <h3>Get a specific dish</h3>
+        <p>
+          Instead of simply saying where to eat, SuggestDish tells
+          you what dish to try.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 <!-- TOP PICKS -->
 <section class="section" id="picks">
   <div class="container">
@@ -1024,6 +1027,87 @@
   </div>
 </section>
 
+<section class="section" id="popular-dishes" style="scroll-margin-top:180px">
+ <div class="container">
+  <div class="section-head"><div><h2>Explore 100 loved dishes</h2><p class="sub">Find published menu matches and actual outlets. This is a curated shortlist, not a measured popularity ranking.</p><p class="small mute">A brand reference does not confirm that a branch serves the dish. Compare the published item name and confirm today’s price and availability.</p></div></div>
+  <form id="dishOutletForm" class="card panel"><div class="business-fields">
+   <label>Dish<select id="dishOutletSelect" name="dishId"><option value="">All 100 dishes</option></select></label>
+   <label>City<input name="city" maxlength="100" placeholder="Leave blank to explore all listed cities"></label>
+  </div><button class="btn btn-primary" type="submit" style="margin-top:20px">Find dish outlets</button></form>
+  <p id="dishOutletStatus" role="status" aria-live="polite" style="margin-top:20px"></p>
+  <div id="dishOutletResults" class="pricing-grid"></div><button id="dishOutletNext" class="btn btn-light" hidden>Next outlets</button>
+ </div>
+</section>
+
+
+
+<section class="section" id="business-directory" style="scroll-margin-top:180px">
+ <div class="container"><div class="section-head"><div><h2>Find a food business</h2><p class="sub">Search our growing India directory. Listing coverage is partial; source records and menus may still need verification.</p><p class="small mute" id="sourceCoverage"></p><p class="small mute"><a href="#popular-dishes" style="text-decoration:underline">Explore 100 loved dishes and their outlets</a>. Search chain outlets by city, then open “Business details &amp; menu” for the outlet’s source details and available menu information.</p></div></div>
+ <form id="businessDirectoryForm" class="card panel"><div class="business-fields">
+  <label>Business name or address<input name="q" maxlength="100" placeholder="Search a restaurant, bakery or outlet"></label>
+  <label>City<input name="city" maxlength="100" placeholder="Mumbai, Jalna, Bengaluru…"></label>
+  <label>Category<select name="category"><option value="">All categories</option><option value="restaurant">Restaurants</option><option value="cafe">Cafes</option><option value="fast_food">Food outlets</option><option value="bakery">Bakeries and sweets</option><option value="catering">Catering</option><option value="hotel">Hotels and stays</option><option value="other">Other mapped outlets</option></select></label>
+ </div><button class="btn btn-primary" type="submit" style="margin-top:20px">Search businesses</button>
+ <p class="small mute" style="margin-top:16px">Missing your business? <a href="#list-business" style="text-decoration:underline">Submit it free for review</a>. A mapped hotel or pub does not confirm that it currently serves food. Unknown addresses and menu details are left unfilled.</p></form>
+ <p id="directoryStatus" role="status" aria-live="polite" style="margin-top:20px"></p><div id="directoryResults" class="pricing-grid"></div><button id="directoryNext" class="btn btn-light" hidden>Next results</button>
+ </div>
+</section>
+
+<!-- SAVE / SHARE -->
+<section class="section" id="saved-dishes">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2>Built for your next food decision</h2>
+        <button type="button" id="viewSavedDishes" class="btn btn-light">View saved dishes</button>
+        <div id="savedDishList" aria-live="polite"></div>
+
+        <p class="sub">
+          Save your preferences, discover new dishes and make your
+          next meal easier to choose.
+        </p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="card feature">
+        <div class="feature-icon">💾</div>
+
+        <h3>Save</h3>
+
+        <p>
+          Save dishes on this device and return to your shortlist anytime.
+        </p>
+      </div>
+
+      <div class="card feature">
+        <div class="feature-icon">📤</div>
+
+        <h3>Share</h3>
+
+        <p>
+          Share interesting dish discoveries with friends and family.
+        </p>
+      </div>
+
+      <div class="card feature">
+        <div class="feature-icon">👤</div>
+
+        <h3>Profile-ready</h3>
+
+        <p>
+          Build a personalized food profile around your taste and
+          preferences.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 <!-- HORECA -->
 <section class="section" id="horeca">
   <div class="container">
@@ -1080,6 +1164,121 @@
   </div>
 </section>
 
+<section class="section" id="list-business">
+  <div class="container">
+    <div class="section-head"><div><h2>List your HORECA business</h2><p class="sub">Help foodies discover your signature dish. Submit your restaurant, cafe, hotel or food business for review.</p></div></div>
+    <form id="businessListingForm" class="card" style="padding:28px">
+      <p class="mute" style="margin-bottom:20px">We check your Google Maps or Zomato profile and menu before adding your business to recommendations. A profile link helps us verify your details; it does not automatically verify ownership.</p>
+      <div class="business-fields">
+        <label>Business name *<input name="businessName" required maxlength="160" autocomplete="organization"></label>
+        <label>Business category *<select name="category" required><option value="">Choose category</option><option>Restaurant</option><option>Cafe</option><option>Hotel</option><option>Bakery</option><option>Catering</option><option>Other</option></select></label>
+        <label>City *<input name="city" required maxlength="100" autocomplete="address-level2"></label>
+        <label>Full business address *<input name="address" required maxlength="500" autocomplete="street-address"></label>
+        <label>Your name *<input name="contactName" required maxlength="100" autocomplete="name"></label>
+        <label>Contact email *<input name="email" type="email" required maxlength="254" autocomplete="email"></label>
+        <label>Phone number *<input name="phone" type="tel" required maxlength="20" autocomplete="tel"></label>
+        <label>Google Maps or Zomato profile link *<input name="profileUrl" type="url" required maxlength="2000" placeholder="https://share.google/… or https://maps.app.goo.gl/…"></label>
+        <label>Menu link (optional)<input name="menuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
+        <label>Signature dish name *<input name="dishName" required maxlength="160"></label>
+        <label>Dish price (₹) *<input name="dishPrice" type="number" required min="0.01" max="100000" step="0.01"></label>
+        <label>Dish dietary type *<select name="diet" required><option value="">Choose type</option><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
+      </div>
+      <div aria-hidden="true" style="display:none"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <label style="display:block;margin:20px 0"><input name="consent" type="checkbox" required> I am the owner or an authorised representative. I confirm these details are accurate and agree to be contacted about this submission.</label>
+      <p class="mute" style="margin-bottom:18px">Your contact details are used for listing review and are not displayed publicly by this form. Submission is free and does not guarantee approval or promotion.</p>
+      <button class="btn btn-primary" type="submit">Submit business for review</button>
+      <p id="businessListingStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
+    </form>
+  </div>
+</section>
+
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head"><div>
+      <h2>Simple pricing</h2>
+      <p class="sub">Free for food lovers. Choose a dish listing plan for your restaurant.</p>
+    </div></div>
+    <div class="card panel" style="margin-bottom:22px">
+      <span class="badge">For users · Always free</span>
+      <h3 style="margin-top:12px">₹0 — Discover your next dish</h3>
+      <p class="mute">Get AI dish recommendations based on your taste, budget, dietary preferences and location.</p>
+      <a class="btn btn-light" href="#ai-recommend" style="margin-top:16px">Get started</a>
+    </div>
+    <div class="pricing-grid">
+      <div class="card price-card">
+        <span class="badge">HORECA · Free</span>
+        <div class="price">₹0 <span class="small">/ month</span></div>
+        <p class="mute">Start with one signature dish from your restaurant.</p>
+        <ul class="price-list">
+          <li>✓ 1 dish eligible for recommendations</li>
+          <li>✓ Per restaurant</li>
+          <li>✓ Profile and menu verification before listing</li>
+        </ul>
+        <a class="btn btn-light" href="#list-business">List your dish</a>
+      </div>
+      <div class="card price-card featured">
+        <span class="badge">HORECA · Monthly</span>
+        <div class="price">₹499 <span class="small">/ month</span></div>
+        <p class="mute">Showcase three dishes from your restaurant each month.</p>
+        <ul class="price-list">
+          <li>✓ 3 dishes eligible for recommendations</li>
+          <li>✓ Per restaurant, per month</li>
+          <li>✓ Profile and menu verification before listing</li>
+        </ul>
+        <a class="btn btn-primary" href="#business-checkout" data-billing-plan="monthly">Monthly plan — coming soon</a>
+      </div>
+      <div class="card price-card">
+        <span class="badge">HORECA · Annual</span>
+        <div class="price">₹4,999 <span class="small">/ year</span></div>
+        <p class="mute">Keep two dishes from your restaurant listed for a year.</p>
+        <ul class="price-list">
+          <li>✓ 2 dishes eligible for recommendations</li>
+          <li>✓ Per restaurant, for 12 months</li>
+          <li>✓ Profile and menu verification before listing</li>
+        </ul>
+        <a class="btn btn-secondary" href="#business-checkout" data-billing-plan="annual">Annual plan — coming soon</a>
+      </div>
+    </div>
+    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Paid plans are coming soon. The free plan remains available. Each purchase covers one month or one year; there is no automatic renewal.</p>
+  </div>
+</section>
+
+
+
+<section class="section" id="business-checkout">
+ <div class="container">
+  <div class="section-head"><div><h2>Manage your business listing</h2><p class="sub">Check your submission and update your signature dish before review. Paid plans are coming soon. New businesses should <a href="#list-business" style="text-decoration:underline">submit a listing first</a>.</p></div></div>
+  <form id="businessPaymentForm" class="card panel">
+   <p id="billingAvailability" class="mute" role="status">Checking payment availability…</p>
+   <div class="business-fields" style="margin-top:20px">
+    <label>Business reference *<input name="submissionId" required maxlength="36" autocomplete="off" placeholder="Your submission reference"></label>
+    <label>Private access code *<input name="accessCode" type="password" required maxlength="64" minlength="64" autocomplete="off" placeholder="Code provided when you submitted"></label>
+    <label>Restaurant plan *<select name="plan" required><option value="monthly">₹499 — 3 dishes for one month</option><option value="annual">₹4,999 — 2 dishes for one year</option></select></label>
+   </div>
+   <button type="button" id="checkBusinessReview" class="btn btn-secondary" style="margin-top:18px">Check business review status</button>
+   <p id="businessReviewStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
+   <fieldset id="signatureDishEditor" hidden style="border:0;padding:0;margin-top:20px">
+    <legend>Update your signature dish for review</legend>
+    <div class="business-fields">
+     <label>Dish name<input name="updatedDishName" maxlength="160"></label>
+     <label>Price (₹)<input name="updatedDishPrice" type="number" min="0.01" max="100000" step="0.01"></label>
+     <label>Dietary type<select name="updatedDiet"><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
+     <label>Menu source link<input name="updatedMenuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
+    </div>
+    <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these dish and menu details are accurate and I am authorised to submit them.</label>
+    <button type="button" id="saveBusinessDish" class="btn btn-primary">Submit dish details for review</button>
+   </fieldset>
+   <p class="small mute" style="margin:18px 0">One payment covers the selected period. No automatic renewal. Payment does not bypass business or menu verification. Save your business reference and private access code; never share the code publicly.</p>
+   <button type="submit" id="payBusinessPlan" class="btn btn-primary" disabled>Pay securely with Razorpay</button>
+   <button type="button" id="checkBusinessPayment" class="btn btn-light">Check payment status</button>
+   <p id="businessPaymentStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
+  </form>
+ </div>
+</section>
+
+
 <!-- TRANSPARENCY -->
 <section class="section" id="transparency">
   <div class="container">
@@ -1135,57 +1334,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="section" id="pricing">
-  <div class="container">
-    <div class="section-head"><div>
-      <h2>Simple pricing</h2>
-      <p class="sub">Free for food lovers. Choose a dish listing plan for your restaurant.</p>
-    </div></div>
-    <div class="card panel" style="margin-bottom:22px">
-      <span class="badge">For users · Always free</span>
-      <h3 style="margin-top:12px">₹0 — Discover your next dish</h3>
-      <p class="mute">Get AI dish recommendations based on your taste, budget, dietary preferences and location.</p>
-      <a class="btn btn-light" href="#ai-recommend" style="margin-top:16px">Get started</a>
-    </div>
-    <div class="pricing-grid">
-      <div class="card price-card">
-        <span class="badge">HORECA · Free</span>
-        <div class="price">₹0 <span class="small">/ month</span></div>
-        <p class="mute">Start with one signature dish from your restaurant.</p>
-        <ul class="price-list">
-          <li>✓ 1 dish eligible for recommendations</li>
-          <li>✓ Per restaurant</li>
-          <li>✓ Profile and menu verification before listing</li>
-        </ul>
-        <a class="btn btn-light" href="#list-business">List your dish</a>
-      </div>
-      <div class="card price-card featured">
-        <span class="badge">HORECA · Monthly</span>
-        <div class="price">₹499 <span class="small">/ month</span></div>
-        <p class="mute">Showcase three dishes from your restaurant each month.</p>
-        <ul class="price-list">
-          <li>✓ 3 dishes eligible for recommendations</li>
-          <li>✓ Per restaurant, per month</li>
-          <li>✓ Profile and menu verification before listing</li>
-        </ul>
-        <a class="btn btn-primary" href="#business-checkout" data-billing-plan="monthly">Monthly plan — coming soon</a>
-      </div>
-      <div class="card price-card">
-        <span class="badge">HORECA · Annual</span>
-        <div class="price">₹4,999 <span class="small">/ year</span></div>
-        <p class="mute">Keep two dishes from your restaurant listed for a year.</p>
-        <ul class="price-list">
-          <li>✓ 2 dishes eligible for recommendations</li>
-          <li>✓ Per restaurant, for 12 months</li>
-          <li>✓ Profile and menu verification before listing</li>
-        </ul>
-        <a class="btn btn-secondary" href="#business-checkout" data-billing-plan="annual">Annual plan — coming soon</a>
-      </div>
-    </div>
-    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Paid plans are coming soon. The free plan remains available. Each purchase covers one month or one year; there is no automatic renewal.</p>
-  </div>
-</section>
 
 <!-- COMPARE -->
 <section class="section" id="compare">
@@ -1262,6 +1410,7 @@
   </div>
 </section>
 
+
 <!-- AI SCORING -->
 <section class="section">
   <div class="container">
@@ -1313,6 +1462,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- PRIVACY -->
 <section class="section">
@@ -1371,143 +1521,8 @@
   </div>
 </section>
 
+
 <section class="section" id="about-support"><div class="container"><h2>About SuggestDish</h2><p>SuggestDish is a dish discovery website. We match available menu dishes to your preferences; restaurant listings, dish evidence and source coverage can be incomplete.</p><h3>Help and corrections</h3><p>Use Report incorrect information on a dish card, or contact <a href="https://www.instagram.com/suggestdish.ai/" target="_blank" rel="noopener noreferrer">@suggestdish.ai on Instagram</a>. Business ownership and menu changes are reviewed before publication.</p><h3>Privacy and preference controls</h3><p>Your search preferences and selected location are sent to SuggestDish to find dishes. Preferences may be sent to Google Gemini to interpret your request; locality resolution may use Geoapify. Precise location is requested through browser permission. Saved dishes and optional remembered preferences remain on this device. Location is not included in remembered preferences.</p><p>Anonymous recommendation displays and outbound dish-link clicks are counted; these counts are not unique users or orders. Feedback is stored for private moderation. Business contact details and ownership evidence are used for listing review. Keep private access codes private. You can remove saved dishes and forget remembered preferences using the website controls. Contact us on Instagram for other privacy requests.</p><p>Paid plans are paused. Buying dish slots does not guarantee placement; any future sponsored placement must be labelled and respect your dietary and budget constraints.</p></div></section>
-<!-- SAVE / SHARE -->
-<section class="section" id="saved-dishes">
-  <div class="container">
-
-    <div class="section-head">
-      <div>
-        <h2>Built for your next food decision</h2>
-        <button type="button" id="viewSavedDishes" class="btn btn-light">View saved dishes</button>
-        <div id="savedDishList" aria-live="polite"></div>
-
-        <p class="sub">
-          Save your preferences, discover new dishes and make your
-          next meal easier to choose.
-        </p>
-      </div>
-    </div>
-
-    <div class="feature-grid">
-
-      <div class="card feature">
-        <div class="feature-icon">💾</div>
-
-        <h3>Save</h3>
-
-        <p>
-          Save dishes on this device and return to your shortlist anytime.
-        </p>
-      </div>
-
-      <div class="card feature">
-        <div class="feature-icon">📤</div>
-
-        <h3>Share</h3>
-
-        <p>
-          Share interesting dish discoveries with friends and family.
-        </p>
-      </div>
-
-      <div class="card feature">
-        <div class="feature-icon">👤</div>
-
-        <h3>Profile-ready</h3>
-
-        <p>
-          Build a personalized food profile around your taste and
-          preferences.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<section class="section" id="business-directory" style="scroll-margin-top:180px">
- <div class="container"><div class="section-head"><div><h2>Find a food business</h2><p class="sub">Search our growing India directory. Listing coverage is partial; source records and menus may still need verification.</p><p class="small mute" id="sourceCoverage"></p><p class="small mute"><a href="#popular-dishes" style="text-decoration:underline">Explore 100 loved dishes and their outlets</a>. Search chain outlets by city, then open “Business details &amp; menu” for the outlet’s source details and available menu information.</p></div></div>
- <form id="businessDirectoryForm" class="card panel"><div class="business-fields">
-  <label>Business name or address<input name="q" maxlength="100" placeholder="Search a restaurant, bakery or outlet"></label>
-  <label>City<input name="city" maxlength="100" placeholder="Mumbai, Jalna, Bengaluru…"></label>
-  <label>Category<select name="category"><option value="">All categories</option><option value="restaurant">Restaurants</option><option value="cafe">Cafes</option><option value="fast_food">Food outlets</option><option value="bakery">Bakeries and sweets</option><option value="catering">Catering</option><option value="hotel">Hotels and stays</option><option value="other">Other mapped outlets</option></select></label>
- </div><button class="btn btn-primary" type="submit" style="margin-top:20px">Search businesses</button>
- <p class="small mute" style="margin-top:16px">Missing your business? <a href="#list-business" style="text-decoration:underline">Submit it free for review</a>. A mapped hotel or pub does not confirm that it currently serves food. Unknown addresses and menu details are left unfilled.</p></form>
- <p id="directoryStatus" role="status" aria-live="polite" style="margin-top:20px"></p><div id="directoryResults" class="pricing-grid"></div><button id="directoryNext" class="btn btn-light" hidden>Next results</button>
- </div>
-</section>
-<section class="section" id="popular-dishes" style="scroll-margin-top:180px">
- <div class="container">
-  <div class="section-head"><div><h2>Explore 100 loved dishes</h2><p class="sub">Find published menu matches and actual outlets. This is a curated shortlist, not a measured popularity ranking.</p><p class="small mute">A brand reference does not confirm that a branch serves the dish. Compare the published item name and confirm today’s price and availability.</p></div></div>
-  <form id="dishOutletForm" class="card panel"><div class="business-fields">
-   <label>Dish<select id="dishOutletSelect" name="dishId"><option value="">All 100 dishes</option></select></label>
-   <label>City<input name="city" maxlength="100" placeholder="Leave blank to explore all listed cities"></label>
-  </div><button class="btn btn-primary" type="submit" style="margin-top:20px">Find dish outlets</button></form>
-  <p id="dishOutletStatus" role="status" aria-live="polite" style="margin-top:20px"></p>
-  <div id="dishOutletResults" class="pricing-grid"></div><button id="dishOutletNext" class="btn btn-light" hidden>Next outlets</button>
- </div>
-</section>
-<section class="section" id="list-business">
-  <div class="container">
-    <div class="section-head"><div><h2>List your HORECA business</h2><p class="sub">Help foodies discover your signature dish. Submit your restaurant, cafe, hotel or food business for review.</p></div></div>
-    <form id="businessListingForm" class="card" style="padding:28px">
-      <p class="mute" style="margin-bottom:20px">We check your Google Maps or Zomato profile and menu before adding your business to recommendations. A profile link helps us verify your details; it does not automatically verify ownership.</p>
-      <div class="business-fields">
-        <label>Business name *<input name="businessName" required maxlength="160" autocomplete="organization"></label>
-        <label>Business category *<select name="category" required><option value="">Choose category</option><option>Restaurant</option><option>Cafe</option><option>Hotel</option><option>Bakery</option><option>Catering</option><option>Other</option></select></label>
-        <label>City *<input name="city" required maxlength="100" autocomplete="address-level2"></label>
-        <label>Full business address *<input name="address" required maxlength="500" autocomplete="street-address"></label>
-        <label>Your name *<input name="contactName" required maxlength="100" autocomplete="name"></label>
-        <label>Contact email *<input name="email" type="email" required maxlength="254" autocomplete="email"></label>
-        <label>Phone number *<input name="phone" type="tel" required maxlength="20" autocomplete="tel"></label>
-        <label>Google Maps or Zomato profile link *<input name="profileUrl" type="url" required maxlength="2000" placeholder="https://share.google/… or https://maps.app.goo.gl/…"></label>
-        <label>Menu link (optional)<input name="menuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
-        <label>Signature dish name *<input name="dishName" required maxlength="160"></label>
-        <label>Dish price (₹) *<input name="dishPrice" type="number" required min="0.01" max="100000" step="0.01"></label>
-        <label>Dish dietary type *<select name="diet" required><option value="">Choose type</option><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
-      </div>
-      <div aria-hidden="true" style="display:none"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
-      <label style="display:block;margin:20px 0"><input name="consent" type="checkbox" required> I am the owner or an authorised representative. I confirm these details are accurate and agree to be contacted about this submission.</label>
-      <p class="mute" style="margin-bottom:18px">Your contact details are used for listing review and are not displayed publicly by this form. Submission is free and does not guarantee approval or promotion.</p>
-      <button class="btn btn-primary" type="submit">Submit business for review</button>
-      <p id="businessListingStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
-    </form>
-  </div>
-</section>
-
-
-<section class="section" id="business-checkout">
- <div class="container">
-  <div class="section-head"><div><h2>Manage your business listing</h2><p class="sub">Check your submission and update your signature dish before review. Paid plans are coming soon. New businesses should <a href="#list-business" style="text-decoration:underline">submit a listing first</a>.</p></div></div>
-  <form id="businessPaymentForm" class="card panel">
-   <p id="billingAvailability" class="mute" role="status">Checking payment availability…</p>
-   <div class="business-fields" style="margin-top:20px">
-    <label>Business reference *<input name="submissionId" required maxlength="36" autocomplete="off" placeholder="Your submission reference"></label>
-    <label>Private access code *<input name="accessCode" type="password" required maxlength="64" minlength="64" autocomplete="off" placeholder="Code provided when you submitted"></label>
-    <label>Restaurant plan *<select name="plan" required><option value="monthly">₹499 — 3 dishes for one month</option><option value="annual">₹4,999 — 2 dishes for one year</option></select></label>
-   </div>
-   <button type="button" id="checkBusinessReview" class="btn btn-secondary" style="margin-top:18px">Check business review status</button>
-   <p id="businessReviewStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
-   <fieldset id="signatureDishEditor" hidden style="border:0;padding:0;margin-top:20px">
-    <legend>Update your signature dish for review</legend>
-    <div class="business-fields">
-     <label>Dish name<input name="updatedDishName" maxlength="160"></label>
-     <label>Price (₹)<input name="updatedDishPrice" type="number" min="0.01" max="100000" step="0.01"></label>
-     <label>Dietary type<select name="updatedDiet"><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
-     <label>Menu source link<input name="updatedMenuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
-    </div>
-    <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these dish and menu details are accurate and I am authorised to submit them.</label>
-    <button type="button" id="saveBusinessDish" class="btn btn-primary">Submit dish details for review</button>
-   </fieldset>
-   <p class="small mute" style="margin:18px 0">One payment covers the selected period. No automatic renewal. Payment does not bypass business or menu verification. Save your business reference and private access code; never share the code publicly.</p>
-   <button type="submit" id="payBusinessPlan" class="btn btn-primary" disabled>Pay securely with Razorpay</button>
-   <button type="button" id="checkBusinessPayment" class="btn btn-light">Check payment status</button>
-   <p id="businessPaymentStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
-  </form>
- </div>
-</section>
 
   </main>
 
