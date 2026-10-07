@@ -132,9 +132,11 @@
       "name": "Elco",
       "locality": "Bandra",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
+        "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/",
+        "https://www.zomato.com/mumbai/elco-restaurant-hill-road-bandra-west/order",
+        "https://www.district.in/dining/mumbai/elco-restaurant-hill-road-bandra-west"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/4386458989",
@@ -188,9 +190,12 @@
         "osm:node/1669642082",
         "osm:node/12224099201"
       ],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-elco-bandra-west-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-c7edcefa2f0880d0b4d4",
