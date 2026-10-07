@@ -2421,18 +2421,24 @@
     {
       "lead_id": "sd-mumbai-a225c597f4922482a1fd",
       "name": "Pizza by the Bay",
-      "locality": "South Mumbai (exact branch unknown)",
+      "locality": "Churchgate",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.zomato.com/mumbai/pizza-by-the-bay-churchgate",
+        "https://www.swiggy.com/city/mumbai/pizza-by-the-bay-marine-lines-fort-area-rest30927",
+        "https://www.district.in/dining/mumbai/pizza-by-the-bay-churchgate"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/4678083190"
       ],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-pizza-by-the-bay-churchgate-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-e1080a489a9a50bb043c",
