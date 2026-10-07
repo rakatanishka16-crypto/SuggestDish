@@ -2020,14 +2020,20 @@
       "name": "Bansi Vada Pav",
       "locality": "Malad-Borivali",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.swiggy.com/restaurants/bansi-vadapav-malad-kan-west-malad-kan-west-219388/dineout/menu",
+        "https://www.zomato.com/mumbai/bansi-vadapav-1-malad-west/order"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-bansi-vadapav-malad-west-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-932bd382c7eca6a1c2d5",
@@ -2264,14 +2270,19 @@
       "name": "Leopold Cafe",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://leopoldcafe.limetray.com/locate-us"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "official:sd-mumbai-267bc6964e377f5d7dad"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-7c2d801f80483535d89a",
@@ -2314,9 +2325,10 @@
       "name": "Cream Centre",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://creamcentre.com/Location/location.asp"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/11443658469",
@@ -2326,9 +2338,14 @@
         "osm:node/6779010213",
         "osm:way/797414658"
       ],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "official:sd-mumbai-816f3da11da3ccc727ac",
+        "official:sd-mumbai-2d3f70d09703f87fea8d"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-75a16b9ebd5ab6660976",
@@ -2414,14 +2431,19 @@
       "name": "Gaylords",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://kwalitygroup.com/gaylord/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "official:sd-mumbai-eaf5289587761d0eefbd"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-a225c597f4922482a1fd",
@@ -2450,14 +2472,19 @@
       "name": "145 Kala Ghoda",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://145cafeandbar.com/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "official:sd-mumbai-145-kala-ghoda-20261007"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-04d0f9fffd91be9ae75b",
@@ -2481,9 +2508,11 @@
       "name": "Toit",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://toit.in/contact-us/",
+        "https://www.zomato.com/mumbai/toit-lower-parel/order"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/4903727435",
@@ -2492,50 +2521,68 @@
         "osm:node/5762537253",
         "osm:node/12181461728"
       ],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-toit-lower-parel-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-252fd1b9a03d3c9a03df",
       "name": "Taj Mahal Tea",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.zomato.com/mumbai/taj-mahal-tea-house-reclamation-bandra-west/menu",
+        "https://www.district.in/dining/mumbai/taj-mahal-tea-house-reclamation-bandra-west",
+        "https://www.swiggy.com/city/mumbai/taj-mahal-tea-house-bandra-west-rest300811"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/4736444239"
       ],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-taj-mahal-tea-house-bandra-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-ca2718e18491bcc37f64",
       "name": "The Bombay Canteen",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://thebombaycanteen.com/pages/contact"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/5664893622"
       ],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "official:sd-mumbai-2face15d5d2669974022"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-83b701c2b371c4b4d2e2",
       "name": "99 Pancakes",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://99pancakes.in/pages/locations",
+        "https://99pancakes.in/pages/99pancakes-store-in-mumbai"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/12944649005",
@@ -2548,9 +2595,43 @@
         "osm:node/6795540688",
         "osm:node/7249314185"
       ],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "official:sd-mumbai-99-pancakes-andheri-mahakali-caves-20261007",
+        "official:sd-mumbai-99-pancakes-kurla-20261007",
+        "official:sd-mumbai-99-pancakes-borivali-east-20261007",
+        "official:sd-mumbai-99-pancakes-vikhroli-20261007",
+        "official:sd-mumbai-99-pancakes-chandivali-nahar-20261007",
+        "official:sd-mumbai-99-pancakes-cp-tank-20261007",
+        "official:sd-mumbai-99-pancakes-d-n-nagar-andheri-20261007",
+        "official:sd-mumbai-99-pancakes-prabhadevi-20261007",
+        "official:sd-mumbai-99-pancakes-borivali-west-20261007",
+        "official:sd-mumbai-99-pancakes-chembur-20261007",
+        "official:sd-mumbai-99-pancakes-fort-kala-ghoda-20261007",
+        "official:sd-mumbai-99-pancakes-ghatkopar-20261007",
+        "official:sd-mumbai-99-pancakes-girgaon-chowpatty-20261007",
+        "official:sd-mumbai-99-pancakes-mazgaon-20261007",
+        "official:sd-mumbai-99-pancakes-kandivali-mahavir-nagar-20261007",
+        "official:sd-mumbai-99-pancakes-kandivali-thakur-village-20261007",
+        "official:sd-mumbai-99-pancakes-lower-parel-20261007",
+        "official:sd-mumbai-99-pancakes-malad-sv-road-20261007",
+        "official:sd-mumbai-99-pancakes-mulund-west-20261007",
+        "official:sd-mumbai-99-pancakes-parel-20261007",
+        "official:sd-mumbai-99-pancakes-powai-iit-gate-20261007",
+        "official:sd-mumbai-99-pancakes-vile-parle-20261007",
+        "official:sd-mumbai-99-pancakes-goregaon-gokuldham-20261007",
+        "official:sd-mumbai-99-pancakes-mahim-west-20261007",
+        "official:sd-mumbai-99-pancakes-pmc-kurla-reliance-20261007",
+        "official:sd-mumbai-99-pancakes-bhandup-20261007",
+        "official:sd-mumbai-99-pancakes-marathon-futurex-20261007",
+        "official:sd-mumbai-99-pancakes-bandra-20261007",
+        "official:sd-mumbai-99-pancakes-marol-andheri-20261007",
+        "official:sd-mumbai-99-pancakes-oshiwara-20261007",
+        "official:sd-mumbai-99-pancakes-acme-mall-santacruz-20261007"
+      ],
+      "status": "corroborated_official_profile",
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-7aaa9da77d76d6b2f1f5",
@@ -2605,14 +2686,20 @@
       "name": "Persian Palette",
       "locality": "Bandra",
       "source_urls": [
-        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
+        "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/",
+        "https://www.zomato.com/mumbai/persian-palette-bandstand-bandra-west/order",
+        "https://www.swiggy.com/city/mumbai/persian-palette-mount-mary-bandra-west-rest817973"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-persian-palette-bandstand-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending",
+      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
     },
     {
       "lead_id": "sd-mumbai-c7902e2c4c3307d44d0f",
