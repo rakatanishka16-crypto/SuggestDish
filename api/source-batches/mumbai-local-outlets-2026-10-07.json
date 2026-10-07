@@ -1,7 +1,7 @@
 {
   "batch_id": "mumbai-local-outlets-2026-10-07",
   "retrieved_on": "2026-10-07",
-  "coverage": "Partial Mumbai metropolitan area source batch. 94 local restaurant profiles and 26 menu observations are copied from linked public listings checked on 2026-10-07. Directory/menu observations do not establish owner verification, current branch operation, in-store availability, licence status, or a complete city census. Menu prices are third-party listing observations only.",
+  "coverage": "Partial Mumbai metropolitan area source batch. 96 local restaurant profiles and 26 menu observations are copied from linked public listings checked on 2026-10-07. Directory/menu observations do not establish owner verification, current branch operation, in-store availability, licence status, or a complete city census. Menu prices are third-party listing observations only.",
   "businesses": [
     {
       "external_id": "sd-mumbai-ashok-vada-pav-dadar-20261007",
@@ -3503,6 +3503,80 @@
       "verification_status": "source_observed",
       "review_status": "source_observed",
       "directory_publish_ready": true,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    },
+    {
+      "external_id": "sd-mumbai-chandan-paratha-andheri-west-20261007",
+      "sourceKey": "listing:sd-mumbai-chandan-paratha-andheri-west-20261007",
+      "name": "Chandan Paratha — Andheri West",
+      "brand": "Chandan Paratha",
+      "locality": "Andheri West",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai Suburban",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "Shop 5, Veera Desai Road, opposite Company Studio, Andheri West, Mumbai 400053",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Public listing/article observation checked 2026-10-07; address source is older. Current branch operation, owner identity, licensing, hours and coordinates have not been independently verified; owner claim is pending.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://curlytales.com/enjoy-egg-dishes-stuffed-in-a-paratha-at-chandan-paratha-in-andheri/"
+      ],
+      "source_types": [
+        "news_article"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": true,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    },
+    {
+      "external_id": "sd-mumbai-pandora-s-box-versova-andheri-west-20261007",
+      "sourceKey": "listing:sd-mumbai-pandora-s-box-versova-andheri-west-20261007",
+      "name": "Pandora’s Box — Versova",
+      "brand": "Pandora’s Box",
+      "locality": "Versova, Andheri West",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai Suburban",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "Shop KWX-11-9, Ground and First Floor, J P Road, Versova, Andheri West, Mumbai",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Public listing observed on 2026-10-07; source listing reports temporarily closed for dine-in. Current operation, owner identity, licensing, hours and coordinates have not been independently verified; owner claim is pending.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://www.zomato.com/mumbai/pandoras-box-versova"
+      ],
+      "source_types": [
+        "restaurant_directory"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": false,
       "publish_ready": false,
       "recommendation_eligible": false
     }
