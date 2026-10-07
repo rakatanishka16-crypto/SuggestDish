@@ -1,6 +1,6 @@
 {
   "retrieved_on": "2026-10-07",
-  "notice": "Research leads remain pending owner, licence, and operational verification. Where a public listing was matched on 2026-10-07, its source profile is linked; a third-party listing alone does not verify that the business owner claimed the profile or that the branch is currently operating.",
+  "notice": "112 leads remain pending business-owner verification. This batch adds public source observations and research dispositions only. Public listings do not prove owner claims, GST identity, licence validity, or current operation; ambiguous locations and closure reports are explicitly unresolved.",
   "leads": [
     {
       "lead_id": "sd-mumbai-7d2fbec0fe7d5c0ec9d1",
@@ -17,7 +17,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-98770e98aba7c351e71c",
@@ -33,7 +35,9 @@
         "official:sd-mumbai-5a1d74a78bd4d549e1df"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-62c3cedaa45eb12cc589",
@@ -52,7 +56,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-a98e74e1253b0ae00c77",
@@ -72,7 +78,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-00ae1a78db353bd1cb68",
@@ -91,7 +99,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-ff75408fa2ba6251d865",
@@ -125,7 +135,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-91629a92403341531a96",
@@ -195,7 +207,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-c7edcefa2f0880d0b4d4",
@@ -218,7 +232,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-12c9e6904ef22527c330",
@@ -237,7 +253,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-d065afdaab4db3171643",
@@ -262,7 +280,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-0c87c80ee06004dfce09",
@@ -295,7 +315,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-72a73b49382f58e8b28e",
@@ -314,7 +336,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-f88ad2b419e8d6bd742d",
@@ -333,7 +357,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-da1cc0c9dc0e06cb272e",
@@ -356,7 +382,9 @@
         "official:sd-mumbai-3f4ce890a1b3e5312f3b"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-fd2fc9f855a5240ea4f7",
@@ -377,7 +405,9 @@
         "official:sd-mumbai-3499d9a3fda7a9a8d764"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-076eafd9dc89ac15d5c9",
@@ -394,7 +424,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-e84ea7891ab3a7f481ad",
@@ -462,7 +494,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-48eb9fe39d8e75266218",
@@ -496,7 +530,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-9c189ca4feccfd8b5bd5",
@@ -521,7 +557,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-b026f295e9332f0ae00a",
@@ -530,12 +568,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
       "source_profile_ids": [],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Name combines Ayub and Bademiya; distinct brands/listings exist and cannot be safely merged into one business record.",
+      "research_disposition": "no_safe_exact_public_match"
     },
     {
       "lead_id": "sd-mumbai-e152bcf56cbe2ebe824d",
@@ -555,7 +596,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-a4e552f630e3854f030b",
@@ -572,7 +615,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-39b56bfcd29f6e2b9cda",
@@ -589,7 +634,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-97a63b48bac58bf1c436",
@@ -608,7 +655,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-3ad70492d691abe153c3",
@@ -639,7 +688,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-5ce6433e6a08c3ebafd5",
@@ -656,7 +707,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-0c14e5192ba50885e278",
@@ -680,7 +733,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-84021136b86f427b9f88",
@@ -700,7 +755,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-763661f3956f04c2e262",
@@ -717,7 +774,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-5df7f768145a62f327d1",
@@ -734,7 +793,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-c1bf45440375f003c97d",
@@ -750,7 +811,9 @@
         "official:sd-mumbai-c8eb239d9f3ae5b1a955"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-bf8d3935e8ef5e4136e2",
@@ -767,7 +830,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-19fcebc681c15da6c7fd",
@@ -786,7 +851,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-2ce1a92d2f2987d34af5",
@@ -811,7 +878,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-d764a3dfbc83af4cc447",
@@ -846,7 +915,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-3afffb0c92bf4a89b5e0",
@@ -865,7 +936,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-d64ad3995627db9a86b2",
@@ -885,7 +958,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-96a4e3aa923b15673eb3",
@@ -953,7 +1028,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-ff83bbe9e4d7a9377a94",
@@ -972,7 +1049,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-8b4e1082ec52728fed48",
@@ -991,7 +1070,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-6a8d70ca6135e9b0771b",
@@ -1011,7 +1092,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-30a5649aedfbc4c9740d",
@@ -1028,7 +1111,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-9398dd18d46ef504cff8",
@@ -1047,7 +1132,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-a7226703cd41ff46b1b5",
@@ -1064,7 +1151,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-a829f096ed4bcd09ad69",
@@ -1081,7 +1170,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-67fa6359165c5ccb2873",
@@ -1107,7 +1198,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-1d7791202357e3cd5d17",
@@ -1175,7 +1268,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-8e96ee9e90c0210ded37",
@@ -1197,7 +1292,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-8a14f1ce00937b1dee62",
@@ -1223,7 +1320,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-99ffef4425795bec7bf2",
@@ -1255,7 +1354,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-ce5ddc51d7025c80b3e6",
@@ -1272,7 +1373,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-1e696011985dd02273da",
@@ -1294,7 +1397,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-2138091f956a3301f2bb",
@@ -1315,7 +1420,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-8a00a902f5eab1f3b96a",
@@ -1336,7 +1443,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-6effcc287b4ef1dfbb0d",
@@ -1363,7 +1472,9 @@
         "official:sd-mumbai-fbaabd99abe6ee402f88"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-136cd3f9835d76b0fb50",
@@ -1419,7 +1530,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-fee004fc0f8948f96494",
@@ -1439,7 +1552,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-0b9cf49bb57797160135",
@@ -1458,7 +1573,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-cdf5be9845e234f8ab9e",
@@ -1510,7 +1627,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-feb7834c93f551971f60",
@@ -1529,7 +1648,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-a668901da9aab706e5fb",
@@ -1546,7 +1667,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-e4f801adcc3747ad08eb",
@@ -1563,7 +1686,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-42933149897a63a64c2d",
@@ -1582,7 +1707,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-1230edb93260f387d064",
@@ -1603,7 +1730,9 @@
         "official:sd-mumbai-c4bc2ae19d445c792237"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-2cd3777bdb7dfef27e51",
@@ -1620,7 +1749,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-dba22a05313ba26828b1",
@@ -1640,7 +1771,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-93f27bd289f9d186836c",
@@ -1649,12 +1782,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
       "source_profile_ids": [],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Search found Kunafa World in Bandra, not a sufficiently supported exact Kunafa Cafe match.",
+      "research_disposition": "no_safe_exact_public_match"
     },
     {
       "lead_id": "sd-mumbai-96b6c19ee8587ffff650",
@@ -1671,7 +1807,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-af6fc86e9a32358139f8",
@@ -1694,7 +1832,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-a1bc8583e3d57fd42689",
@@ -1711,7 +1851,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-8e17ce77aa8e8b27a703",
@@ -1731,21 +1873,28 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-ce280c931ccbe9e1edfd",
       "name": "Opa Kipos",
       "locality": "Bandra East",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://opaworld.com/mumbai/contacts-info/",
+        "https://www.zomato.com/mumbai/opa-kipos-1-worli"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
       "source_profile_ids": [],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Official OPA page and directory now list the current Mumbai location at Ascent Worli/Lower Parel; the lead says Bandra East. No evidence that this is the same branch or a relocation, so it remains unmatched.",
+      "research_disposition": "brand_listing_found_locality_mismatch"
     },
     {
       "lead_id": "sd-mumbai-3e7eae12185770afa37d",
@@ -1764,7 +1913,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-5472a9cdc748e2ee6d62",
@@ -1781,21 +1932,31 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-06b05fefb6fa485f2d5b",
       "name": "Aasha Parekh Vada Pav Stall",
       "locality": "Santacruz",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://magicpin.in/Mumbai/Santacruz-West/Restaurant/Balaji-Wada-Pav-Asha-Parekh-Vada-Pav/store/203a5ba",
+        "https://www.whatshot.in/mumbai/30-year-old-vada-pav-stall-c-13987"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-asha-parekh-vada-pav-santacruz-west-2026-10-07"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Name/locality corroborated by public listings; exact address, owner claim, licence and operation pending.",
+      "public_listing_status": "observed_owner_claim_pending",
+      "research_disposition": "public_listing_match_owner_verification_pending"
     },
     {
       "lead_id": "sd-mumbai-66b60b01e52018fef1bb",
@@ -1812,7 +1973,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-97896231f6f87406c949",
@@ -1839,7 +2002,9 @@
         "official:sd-mumbai-ebdadbaf110197c2ae72"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-6f4c2e3aeb383ddea600",
@@ -1856,7 +2021,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-837242dcb94342060efc",
@@ -1875,7 +2042,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-2603470d1a35d7f2bb07",
@@ -1892,7 +2061,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-755ab84a2266c49fac91",
@@ -1909,7 +2080,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-95f25e748e7cb43054f1",
@@ -1928,7 +2101,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "listing_observed_temporarily_closed"
+      "public_listing_status": "listing_observed_temporarily_closed",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-f98ea61edca9be7d99db",
@@ -1945,7 +2120,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-96d08ccd6bdea9ca2002",
@@ -1962,7 +2139,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-d7996f36dbf17dbe1086",
@@ -1979,7 +2158,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-bb9826bed987e0054db9",
@@ -1996,7 +2177,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-956ff94cf148fa444417",
@@ -2013,7 +2196,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-bfbdf7eb6828e1a3b58e",
@@ -2033,23 +2218,31 @@
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-932bd382c7eca6a1c2d5",
       "name": "Hungry Head",
       "locality": "Powai",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.zomato.com/mumbai/hungry-head-powai"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/13192046618"
       ],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "listing:sd-mumbai-hungry-head-powai-2026-10-07"
+      ],
+      "status": "public_listing_reports_temporary_closure",
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Powai directory listing reports temporary dining closure; keep unavailable pending owner confirmation.",
+      "public_listing_status": "observed_owner_claim_pending",
+      "research_disposition": "public_listing_reports_temporary_closure"
     },
     {
       "lead_id": "sd-mumbai-23a4b2dbda8efc38acd9",
@@ -2065,21 +2258,31 @@
         "official:sd-mumbai-08484cb561ade20c74c3"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-e82e6fc1a6c6a94987bc",
       "name": "Madeira and Mime",
       "locality": "Powai",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.zomato.com/mumbai/madeira-mime-powai",
+        "https://wanderlog.com/place/details/3949210/madeira--mime-powai"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "listing:sd-mumbai-madeira-and-mime-powai-2026-10-07"
+      ],
+      "status": "public_sources_conflict_on_closure",
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Directory says temporarily closed while other public listings say permanently closed; unresolved and excluded from active recommendations.",
+      "public_listing_status": "observed_owner_claim_pending",
+      "research_disposition": "public_sources_conflict_on_closure"
     },
     {
       "lead_id": "sd-mumbai-273ef0980f5b08d65369",
@@ -2098,7 +2301,9 @@
         "official:sd-mumbai-770e0f3fba3296ef49a7"
       ],
       "status": "corroborated_official_profile",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-129b7ba7483bc1c3932f",
@@ -2118,7 +2323,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-335a92012f4814736256",
@@ -2139,7 +2346,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-45eb89a04f684e614ed2",
@@ -2148,12 +2357,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
       "source_profile_ids": [],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public results surfaced branches in other localities but did not establish a Sion outlet.",
+      "research_disposition": "no_safe_exact_public_match"
     },
     {
       "lead_id": "sd-mumbai-1c134cc04f1b0d607385",
@@ -2170,7 +2382,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-db8356bcb56e70c56c4f",
@@ -2199,21 +2413,31 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-aaa662e58d1dc21e2a5a",
       "name": "Shree Krushna Lassi",
       "locality": "Dadar",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.freepressjournal.in/lifestyle/the-best-lassi-in-mumbai-where-to-find-the-iconic-jai-shri-krishna-dairy-farm-in-dadar",
+        "https://www.justdial.com/Mumbai/Jay-Shri-Krishna-Dairy-Farm-Dadar-West/022PXX22-XX22-140318153211-S9D2_BZDET"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "listing:sd-mumbai-shree-krishna-lassi-dadar-2026-10-07"
+      ],
+      "status": "candidate_alias_match_needs_owner_confirmation",
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Candidate alias match to Jai Shri Krishna Dairy Farm/Lassi in Dadar; identity and address need owner confirmation.",
+      "public_listing_status": "observed_owner_claim_pending",
+      "research_disposition": "candidate_alias_match_needs_owner_confirmation"
     },
     {
       "lead_id": "sd-mumbai-3e6b6f2dc15665f20d99",
@@ -2222,12 +2446,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
       "source_profile_ids": [],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Historic Matunga references and current Sion listings disagree on locality; branch identity unresolved.",
+      "research_disposition": "no_safe_exact_public_match"
     },
     {
       "lead_id": "sd-mumbai-d5339a38287a319bbf1e",
@@ -2244,7 +2471,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-867c11292a37edfb956c",
@@ -2263,7 +2492,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-9d47ee77c17051bb86a9",
@@ -2282,7 +2513,8 @@
       "status": "corroborated_official_profile",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-7c2d801f80483535d89a",
@@ -2301,7 +2533,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-a1c2d6b28f92119978d1",
@@ -2318,7 +2552,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-411d81c1ce9736a34655",
@@ -2345,16 +2581,19 @@
       "status": "corroborated_official_profile",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-75a16b9ebd5ab6660976",
       "name": "Gokul",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.zomato.com/mumbai/gokul-colaba",
+        "https://www.district.in/dining/mumbai/gokul-colaba"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/7053786116",
@@ -2408,23 +2647,37 @@
         "osm:node/6779102362",
         "osm:node/12254996793"
       ],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-gokul-colaba-2026-10-07"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public listing match to Gokul, Colaba; owner claim, licence and current operation remain pending.",
+      "public_listing_status": "observed_owner_claim_pending",
+      "research_disposition": "public_listing_match_owner_verification_pending"
     },
     {
       "lead_id": "sd-mumbai-1c38a82cf910b55cb5e7",
       "name": "Rustom's",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.district.in/dining/mumbai/k-rustom-and-co-churchgate",
+        "https://indianexpress.com/article/cities/mumbai/mumbais-noor-mohammadi-shalimar-k-rustom-reopen-fda-licence-10818361/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "source_profile_ids": [
+        "listing:sd-mumbai-k-rustom-churchgate-2026-10-07"
+      ],
+      "status": "public_listing_match_fda_status_requires_direct_verification",
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Candidate match to K Rustom & Co. FDA suspension stay reported in August 2026, but current licence and operation need direct verification.",
+      "public_listing_status": "observed_owner_claim_pending",
+      "research_disposition": "public_listing_match_fda_status_requires_direct_verification"
     },
     {
       "lead_id": "sd-mumbai-fcc6cc9b670eae49f503",
@@ -2443,7 +2696,8 @@
       "status": "corroborated_official_profile",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-a225c597f4922482a1fd",
@@ -2465,7 +2719,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-e1080a489a9a50bb043c",
@@ -2484,16 +2740,19 @@
       "status": "corroborated_official_profile",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-04d0f9fffd91be9ae75b",
       "name": "Mumbai Bites",
       "locality": "South Mumbai (exact branch unknown)",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.zomato.com/mumbai/mumbai-bites-opera-house/order",
+        "https://www.swiggy.com/city/mumbai/mumbai-bites-charni-road-east-rest548658"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/13948115435",
@@ -2501,7 +2760,10 @@
       ],
       "source_profile_ids": [],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public delivery and restaurant directories show differing Girgaon addresses; possible separate branches, exact lead match unresolved.",
+      "research_disposition": "no_safe_exact_public_match"
     },
     {
       "lead_id": "sd-mumbai-483f1c0b28a79c27ef2d",
@@ -2527,7 +2789,8 @@
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-252fd1b9a03d3c9a03df",
@@ -2550,7 +2813,8 @@
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-ca2718e18491bcc37f64",
@@ -2571,7 +2835,8 @@
       "status": "corroborated_official_profile",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-83b701c2b371c4b4d2e2",
@@ -2631,21 +2896,31 @@
       "status": "corroborated_official_profile",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-7aaa9da77d76d6b2f1f5",
       "name": "Spesso Gourmet Kitchen",
       "locality": "Nariman Point",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.spessorestaurant.com/the-restaurant",
+        "https://www.zomato.com/mumbai/spesso-gourmet-kitchen-nariman-point/menu",
+        "https://www.swiggy.com/city/mumbai/spesso-gourmet-kitchen-nariman-point-rest3808"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-spesso-gourmet-kitchen-nariman-point-2026-10-07"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Official source and current directory match at Regent Chambers, Nariman Point; owner claim, licence and current operation pending.",
+      "public_listing_status": "observed_owner_claim_pending",
+      "research_disposition": "public_listing_match_owner_verification_pending"
     },
     {
       "lead_id": "sd-mumbai-aa268ffca5e04190b30f",
@@ -2662,7 +2937,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-322dc9df4a5bd4f39202",
@@ -2679,7 +2956,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-05641dc8c9a13da67e20",
@@ -2699,7 +2978,8 @@
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
-      "verification_note": "Public source match recorded; owner claim, licence, and current operation remain unverified."
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending.",
+      "owner_claim_status": "not_verified"
     },
     {
       "lead_id": "sd-mumbai-c7902e2c4c3307d44d0f",
@@ -2716,7 +2996,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-eab060be8e038a4bed15",
@@ -2725,12 +3007,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
       "source_profile_ids": [],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Discovery mention provides no precise address corroborated by a reliable current public listing.",
+      "research_disposition": "no_safe_exact_public_match"
     },
     {
       "lead_id": "sd-mumbai-65d00055a8b71dee8835",
@@ -2747,7 +3032,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-2ed00c867080fc8ed48f",
@@ -2756,12 +3043,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
       "source_profile_ids": [],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "owner_claim_status": "not_verified",
+      "verification_note": "Exact Luv Kitchen branch unsupported; similarly named Luv restaurant is a different business.",
+      "research_disposition": "no_safe_exact_public_match"
     },
     {
       "lead_id": "sd-mumbai-ff83de485301bd01c38e",
@@ -2778,7 +3068,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-401d4cd77ea014879b44",
@@ -2795,7 +3087,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-cd1ae41ec87a8414c5b0",
@@ -2815,7 +3109,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     },
     {
       "lead_id": "sd-mumbai-1fcf1cba73a6f06ce8d7",
@@ -2832,7 +3128,9 @@
       ],
       "status": "needs_branch_and_official_source_verification",
       "recommendation_eligible": false,
-      "public_listing_status": "observed_owner_claim_pending"
+      "public_listing_status": "observed_owner_claim_pending",
+      "owner_claim_status": "not_verified",
+      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
     }
   ]
 }
