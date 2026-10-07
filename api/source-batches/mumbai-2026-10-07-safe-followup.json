@@ -1,0 +1,70 @@
+{
+  "batch_id": "mumbai-2026-10-07-safe-followup",
+  "retrieved_on": "2026-10-07",
+  "businesses": [
+    {
+      "external_id": "sd-mumbai-messy-adda-matunga-east-20261007",
+      "sourceKey": "listing:sd-mumbai-messy-adda-matunga-east-20261007",
+      "name": "Messy Addaa — Matunga East (candidate)",
+      "brand": "Messy Addaa",
+      "locality": "Matunga East",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "Ground Floor, Noor Mahal, Plot No. 541, near King Circle, Matunga East, Mumbai 400019",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Two public listings match the lead name and Matunga locality. A separate current Sion listing creates branch/status ambiguity; this Matunga candidate is not confirmed active by the owner.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://yappe.in/maharashtra/mumbai/messy-addaa/273788",
+        "https://www.whatshot.in/mumbai/messy-addaa-cafe-and-restaurant-mumbai-v-170049"
+      ],
+      "source_types": [
+        "business_directory",
+        "editorial_listing"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": false,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    }
+  ],
+  "menu_items": [],
+  "sources": [
+    {
+      "id": "messy-adda-matunga-directory",
+      "url": "https://yappe.in/maharashtra/mumbai/messy-addaa/273788",
+      "type": "business_directory",
+      "notes": "Public listing gives Ground Floor, Noor Mahal, Plot No. 541 near King Circle, Matunga East.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "messy-adda-matunga-editorial",
+      "url": "https://www.whatshot.in/mumbai/messy-addaa-cafe-and-restaurant-mumbai-v-170049",
+      "type": "editorial_listing",
+      "notes": "Independent public listing also identifies the Matunga branch at Noor Mahal near King Circle.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "messy-adda-sion-listing",
+      "url": "https://www.zomato.com/mumbai/messy-adda-sion",
+      "type": "restaurant_directory",
+      "notes": "Separate Sion locality listing creates uncertainty about branch identity/current status; retained as a conflict, not used to overwrite the Matunga record.",
+      "retrieved_on": "2026-10-07"
+    }
+  ],
+  "coverage": "Follow-up on unresolved Mumbai leads. One candidate location match was added with active status unverified and recommendation eligibility disabled."
+}
