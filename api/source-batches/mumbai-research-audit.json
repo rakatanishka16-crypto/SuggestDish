@@ -1750,16 +1750,21 @@
     {
       "lead_id": "sd-mumbai-3e7eae12185770afa37d",
       "name": "Dawat Hotel",
-      "locality": "Kurla",
+      "locality": "Kurla West",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://www.zomato.com/mumbai/dawat-hotel-kurla",
+        "https://www.district.in/dining/mumbai/dawat-hotel-kurla"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-dawat-hotel-kurla-west-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-5472a9cdc748e2ee6d62",
