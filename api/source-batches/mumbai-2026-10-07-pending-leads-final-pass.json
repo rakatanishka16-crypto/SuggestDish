@@ -1,0 +1,367 @@
+{
+  "batch_id": "mumbai-2026-10-07-pending-leads-final-pass",
+  "retrieved_on": "2026-10-07",
+  "businesses": [
+    {
+      "external_id": "sd-mumbai-asha-parekh-vada-pav-santacruz-west-2026-10-07",
+      "sourceKey": "listing:sd-mumbai-asha-parekh-vada-pav-santacruz-west-2026-10-07",
+      "name": "Balaji Wada Pav / Asha Parekh Vada Pav",
+      "brand": "Balaji Wada Pav",
+      "locality": "Santacruz West",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "Tilak Road / near Asha Parekh Hospital, Santacruz West, Mumbai 400054",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Name and locality match public listings for the Asha Parekh Vada Pav stall; street address varies among sources. Owner claim, exact address, licence and current operation remain unverified.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://magicpin.in/Mumbai/Santacruz-West/Restaurant/Balaji-Wada-Pav-Asha-Parekh-Vada-Pav/store/203a5ba",
+        "https://www.whatshot.in/mumbai/30-year-old-vada-pav-stall-c-13987"
+      ],
+      "source_types": [
+        "restaurant_directory",
+        "editorial_listing"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": true,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    },
+    {
+      "external_id": "sd-mumbai-hungry-head-powai-2026-10-07",
+      "sourceKey": "listing:sd-mumbai-hungry-head-powai-2026-10-07",
+      "name": "Hungry Head — Powai",
+      "brand": "Hungry Head",
+      "locality": "Powai",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "Near Supreme Business Park, South Avenue Road, Powai, Mumbai",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Public directory marks the Powai outlet temporarily closed for dining; do not recommend until the owner confirms reopening.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://www.zomato.com/mumbai/hungry-head-powai"
+      ],
+      "source_types": [
+        "restaurant_directory"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": false,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    },
+    {
+      "external_id": "sd-mumbai-madeira-and-mime-powai-2026-10-07",
+      "sourceKey": "listing:sd-mumbai-madeira-and-mime-powai-2026-10-07",
+      "name": "Madeira & Mime — Powai",
+      "brand": "Madeira & Mime",
+      "locality": "Powai",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "G 2, Transocean House, Lake Boulevard, Hiranandani Business Park, Powai, Mumbai 400076",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Public closure information conflicts (temporarily closed versus permanently closed); do not publish as an active restaurant or recommend without direct owner confirmation.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://www.zomato.com/mumbai/madeira-mime-powai",
+        "https://wanderlog.com/place/details/3949210/madeira--mime-powai"
+      ],
+      "source_types": [
+        "restaurant_directory",
+        "directory_listing"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": false,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    },
+    {
+      "external_id": "sd-mumbai-shree-krishna-lassi-dadar-2026-10-07",
+      "sourceKey": "listing:sd-mumbai-shree-krishna-lassi-dadar-2026-10-07",
+      "name": "Jai Shri Krishna Dairy Farm / Lassi — candidate",
+      "brand": "Jai Shri Krishna Lassi",
+      "locality": "Dadar West",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "Ranade Road, near Kabutar Khana, Dadar West, Mumbai",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Candidate alias match only: public sources identify a similarly named Dadar dairy/lassi shop but exact business identity/address need owner confirmation.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://www.freepressjournal.in/lifestyle/the-best-lassi-in-mumbai-where-to-find-the-iconic-jai-shri-krishna-dairy-farm-in-dadar",
+        "https://www.justdial.com/Mumbai/Jay-Shri-Krishna-Dairy-Farm-Dadar-West/022PXX22-XX22-140318153211-S9D2_BZDET"
+      ],
+      "source_types": [
+        "news_article",
+        "business_directory"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": true,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    },
+    {
+      "external_id": "sd-mumbai-gokul-colaba-2026-10-07",
+      "sourceKey": "listing:sd-mumbai-gokul-colaba-2026-10-07",
+      "name": "Gokul — Colaba",
+      "brand": "Gokul",
+      "locality": "Colaba",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "10 Apollo Bunder, Tullock Road, Colaba, Mumbai",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Public directories agree on the Colaba listing. Owner claim, licence and current operation remain unverified.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://www.zomato.com/mumbai/gokul-colaba",
+        "https://www.district.in/dining/mumbai/gokul-colaba"
+      ],
+      "source_types": [
+        "restaurant_directory"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": true,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    },
+    {
+      "external_id": "sd-mumbai-k-rustom-churchgate-2026-10-07",
+      "sourceKey": "listing:sd-mumbai-k-rustom-churchgate-2026-10-07",
+      "name": "K Rustom & Co. — Churchgate",
+      "brand": "K Rustom & Co.",
+      "locality": "Churchgate",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "87 Stadium House, Veer Nariman Road, Churchgate, Mumbai",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Public FDA reporting says the suspension was stayed after reinspection, following a temporary renovation closure. Current operation/licence must be verified directly.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://www.district.in/dining/mumbai/k-rustom-and-co-churchgate",
+        "https://indianexpress.com/article/cities/mumbai/mumbais-noor-mohammadi-shalimar-k-rustom-reopen-fda-licence-10818361/",
+        "https://www.mid-day.com/mumbai/mumbai-news/article/mumbai-k-rustom-and-co-closes-for-renovation-after-fda-suspends-licence-23639408"
+      ],
+      "source_types": [
+        "restaurant_directory",
+        "news_article"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": false,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    },
+    {
+      "external_id": "sd-mumbai-spesso-gourmet-kitchen-nariman-point-2026-10-07",
+      "sourceKey": "listing:sd-mumbai-spesso-gourmet-kitchen-nariman-point-2026-10-07",
+      "name": "Spesso Gourmet Kitchen — Nariman Point",
+      "brand": "Spesso Gourmet Kitchen",
+      "locality": "Nariman Point",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "business_type": "restaurant",
+      "category": "amenity:restaurant",
+      "address": "Ground Floor, Regent Chambers, Jamnalal Bajaj Road, Nariman Point, Mumbai 400021",
+      "phone": null,
+      "email": null,
+      "opening_hours": null,
+      "latitude": null,
+      "longitude": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "fssai_license_number": null,
+      "license_status": "not_checked",
+      "service_note": "Official venue and public listings agree on the Nariman Point branch. Owner claim, licence, current operations and item availability remain unverified.",
+      "image_url": null,
+      "image_usage_permission": "not_obtained",
+      "source_urls": [
+        "https://www.spessorestaurant.com/the-restaurant",
+        "https://www.zomato.com/mumbai/spesso-gourmet-kitchen-nariman-point/menu",
+        "https://www.swiggy.com/city/mumbai/spesso-gourmet-kitchen-nariman-point-rest3808"
+      ],
+      "source_types": [
+        "official_business_website",
+        "restaurant_directory",
+        "delivery_directory"
+      ],
+      "retrieved_on": "2026-10-07",
+      "verification_status": "source_observed",
+      "review_status": "source_observed",
+      "directory_publish_ready": true,
+      "publish_ready": false,
+      "recommendation_eligible": false
+    }
+  ],
+  "menu_items": [],
+  "sources": [
+    {
+      "id": "opa-kipos-official",
+      "url": "https://opaworld.com/mumbai/contacts-info/",
+      "type": "official_business_website",
+      "notes": "Official OPA location page lists Ascent Worli, Plot No. 248B, Lower Parel. The directory lead says Bandra East; this is a brand-level location update, not proof that the original branch relocated.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "opa-kipos-listing",
+      "url": "https://www.zomato.com/mumbai/opa-kipos-1-worli",
+      "type": "restaurant_directory",
+      "notes": "Public listing confirms a Worli location for Opa Kipos. Does not resolve the Bandra East lead identity.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "asha-parekh-stall-listing",
+      "url": "https://magicpin.in/Mumbai/Santacruz-West/Restaurant/Balaji-Wada-Pav-Asha-Parekh-Vada-Pav/store/203a5ba",
+      "type": "restaurant_directory",
+      "notes": "Public listing uses both Balaji Wada Pav and Asha Parekh Vada Pav names in Santacruz West. Address precision differs across directories; exact stall address should be confirmed by its operator.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "hungry-head-powai-listing",
+      "url": "https://www.zomato.com/mumbai/hungry-head-powai",
+      "type": "restaurant_directory",
+      "notes": "Powai listing near Supreme Business Park; page says temporarily closed for dining. Do not recommend pending direct operating-status confirmation.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "madeira-mime-listing",
+      "url": "https://www.zomato.com/mumbai/madeira-mime-powai",
+      "type": "restaurant_directory",
+      "notes": "Powai listing at G 2, Transocean House, Lake Boulevard, Hiranandani Business Park; directory says temporarily closed, while other public sources say permanently closed. Current status unresolved.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "shree-krishna-lassi-listing",
+      "url": "https://www.freepressjournal.in/lifestyle/mumbais-hidden-gem-100-yr-old-iconic-dairy-in-dadar-known-for-its-lassi-is-a-must-try-this-summer",
+      "type": "news_article",
+      "notes": "Free Press Journal identifies Jai Shri Krishna Dairy Farm as popularly known as Jai Shri Krishna Lassi, near Kabutar Khana. Public directory lists its Ranade Road/Dadar West address.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "gokul-colaba-listing",
+      "url": "https://www.zomato.com/mumbai/gokul-colaba",
+      "type": "restaurant_directory",
+      "notes": "Public listing identifies Gokul at 10 Apollo Bunder, Tullock Road, Colaba. Owner claim, licence and current operations remain unverified.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "k-rustom-listing",
+      "url": "https://www.district.in/dining/mumbai/k-rustom-and-co-churchgate",
+      "type": "restaurant_directory",
+      "notes": "Public listing identifies K Rustom & Co at Stadium House, Churchgate. FDA suspension was stayed in August 2026 after compliance/reinspection reporting; current licence and operations still need direct verification.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "k-rustom-fda-report",
+      "url": "https://indianexpress.com/article/cities/mumbai/mumbais-noor-mohammadi-shalimar-k-rustom-reopen-fda-licence-10818361/",
+      "type": "news_article",
+      "notes": "Reports FDA stayed the licence suspension on 5 August 2026 and allowed the establishment to resume after inspections; does not establish status on the date of any future visit.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "spesso-official-menu",
+      "url": "https://www.spessorestaurant.com/the-restaurant",
+      "type": "official_business_website",
+      "notes": "Official venue page identifies Spesso Gourmet Kitchen and its Regent Chambers, Nariman Point address; public directory pages independently list the same branch.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "spesso-zomato-listing",
+      "url": "https://www.zomato.com/mumbai/spesso-gourmet-kitchen-nariman-point/menu",
+      "type": "restaurant_directory",
+      "notes": "Current public listing matches Ground Floor, Regent Chambers, Jamnalal Bajaj Road, Nariman Point.",
+      "retrieved_on": "2026-10-07"
+    },
+    {
+      "id": "spesso-swiggy-listing",
+      "url": "https://www.swiggy.com/city/mumbai/spesso-gourmet-kitchen-nariman-point-rest3808",
+      "type": "delivery_directory",
+      "notes": "Public delivery listing matches the Nariman Point branch address; availability remains subject to real-time listing.",
+      "retrieved_on": "2026-10-07"
+    }
+  ],
+  "coverage": "One-pass public-source audit of the 112 pending Mumbai leads. Seven exact or candidate profiles were added, one OPA brand location was documented but not matched to the Bandra East lead, and eight no-safe-match leads remain unresolved. Owner claims, licences and current operations are not verified."
+}
