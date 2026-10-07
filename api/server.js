@@ -19,6 +19,7 @@ const ownerMetrics = require("../lib/dish-events")(app, sql);
 require("../lib/business-media")(app, sql, {getMetrics:ownerMetrics,rawParser:express.raw({type:["image/jpeg","image/png"],limit:"2mb"})});
 require("../lib/business-stars")(app, sql);
 const { label: starEvidenceLabel } = require("../lib/star-evidence");
+const safeRecommendationRows = require("../lib/recommendation-shape");
 require("../lib/business-review")(app, sql);
 require("../lib/razorpay-payments")(app, sql);
 
@@ -1003,8 +1004,7 @@ Return exactly:
 
 
     const recommendations =
-      Array.isArray(parsed.recommendations)
-        ? parsed.recommendations
+      safeRecommendationRows(parsed)
             .slice(0, 3)
             .map((recommendation) => {
 
@@ -1065,7 +1065,7 @@ Return exactly:
               };
             })
             .filter(Boolean).filter((r,i,all)=>all.findIndex(x=>x.restaurant===r.restaurant && x.address===r.address)===i)
-        : [];
+        ;
     for (const item of fallbackRecommendations) {
       if (recommendations.length >= 3) break;
       if (!recommendations.some(r=>r.restaurant===item.restaurant && r.address===item.address)) recommendations.push(item);
