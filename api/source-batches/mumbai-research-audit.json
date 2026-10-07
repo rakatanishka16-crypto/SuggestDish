@@ -1,6 +1,6 @@
 {
   "retrieved_on": "2026-10-07",
-  "notice": "112 leads remain pending business-owner verification. This batch adds public source observations and research dispositions only. Public listings do not prove owner claims, GST identity, licence validity, or current operation; ambiguous locations and closure reports are explicitly unresolved.",
+  "notice": "112 leads remain pending business-owner verification. This batch adds public source observations and research dispositions only. Public listings do not prove owner claims, GST identity, licence validity, or current operation; ambiguous locations and closure reports are explicitly unresolved. Follow-up research added a Matunga candidate for Messy Addaa, but its current operation remains unverified due a separate Sion listing.",
   "leads": [
     {
       "lead_id": "sd-mumbai-7d2fbec0fe7d5c0ec9d1",
@@ -2444,17 +2444,23 @@
       "name": "Messy Adda",
       "locality": "Matunga",
       "source_urls": [
-        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
+        "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/",
+        "https://yappe.in/maharashtra/mumbai/messy-addaa/273788",
+        "https://www.whatshot.in/mumbai/messy-addaa-cafe-and-restaurant-mumbai-v-170049",
+        "https://www.zomato.com/mumbai/messy-adda-sion"
       ],
       "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
-      "status": "needs_branch_and_official_source_verification",
+      "source_profile_ids": [
+        "listing:sd-mumbai-messy-adda-matunga-east-20261007"
+      ],
+      "status": "candidate_branch_match_current_status_unverified",
       "recommendation_eligible": false,
       "owner_claim_status": "not_verified",
-      "verification_note": "Historic Matunga references and current Sion listings disagree on locality; branch identity unresolved.",
-      "research_disposition": "no_safe_exact_public_match"
+      "verification_note": "Two public sources match Messy Addaa at Noor Mahal, Matunga East. A separate Sion listing creates branch/current-status uncertainty, so this candidate remains directory-disabled and recommendation-ineligible pending owner verification.",
+      "research_disposition": "matunga_candidate_recorded_sion_branch_conflict",
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-d5339a38287a319bbf1e",
