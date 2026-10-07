@@ -199,7 +199,7 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/8305227226",
@@ -208,9 +208,12 @@
         "osm:node/12596314032",
         "osm:node/12161775076"
       ],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-guru-kripa-sion-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-12c9e6904ef22527c330",
@@ -219,14 +222,17 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:way/1543023465"
       ],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-amar-fast-food-juice-centre-vile-parle-west-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-d065afdaab4db3171643",
@@ -712,12 +718,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-shree-thaker-kalbadevi-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-c1bf45440375f003c97d",
@@ -742,12 +751,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-tip-top-grand-thali-teen-haath-naka-thane-west-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-19fcebc681c15da6c7fd",
@@ -1241,12 +1253,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-ling-s-pavilion-colaba-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-1e696011985dd02273da",
@@ -1422,14 +1437,17 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/1djfxg5/ive_tried_to_compile_all_the_best/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [
         "osm:node/7426184239"
       ],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-breadkraft-andheri-lokhandwala-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-cdf5be9845e234f8ab9e",
@@ -1894,12 +1912,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-nino-burgers-marol-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-96d08ccd6bdea9ca2002",
@@ -1942,12 +1963,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbai/comments/11dh0qf/a_list_of_good_eateries_across_mumbai_that_i_made/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-jimi-s-burger-malad-west-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-956ff94cf148fa444417",
@@ -2563,12 +2587,15 @@
       "source_urls": [
         "https://www.reddit.com/r/mumbaiFood/comments/1q15gdr/my_food_reccos_of_2025_mumbai_edition/"
       ],
-      "checked_on": "2026-10-04",
+      "checked_on": "2026-10-07",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
-      "source_profile_ids": [],
+      "source_profile_ids": [
+        "listing:sd-mumbai-the-black-shepherd-bandstand-20261007"
+      ],
       "status": "needs_branch_and_official_source_verification",
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "public_listing_status": "observed_owner_claim_pending"
     },
     {
       "lead_id": "sd-mumbai-eab060be8e038a4bed15",
