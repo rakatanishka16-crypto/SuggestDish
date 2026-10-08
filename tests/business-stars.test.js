@@ -10,3 +10,23 @@ test('pending claim corrections stay in review and never write live menus',async
 test('approved ownership cannot be rewritten by pending-claim corrections',async()=>{const code='c'.repeat(64),c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status:'approved'};const h=harness(q=>q.includes('SELECT *')?[c]:[]);const r=await h.call('/api/business-claims/correction',{...input,claimId:c.id,accessCode:code,city:'Mumbai',address:'Full address',profileUrl:'https://www.google.com/maps',ownershipEvidence:'Updated official contact for independent review.'});assert.equal(r.code,409);});
 
 test('owner menu edits reject coerced prices and implicit slot zero without database writes',async()=>{for(const patch of [{dishPrice:true},{dishPrice:[100]},{dishPrice:{value:100}},{dishPrice:'1e2'},{dishPrice:1.001},{slot:0},{slot:null},{slot:true},{slot:[1]}]){assert.throws(()=>register.validateStar({...input,...patch}));const h=harness([]);const r=await h.call('/api/business-claims/star-dish',{...input,...patch});assert.equal(r.code,400);assert.equal(h.writes.length,0);}assert.equal(register.validateStar({...input,dishPrice:'100.50',slot:'2'}).price,100.5);});
+
+test('website and social ownership claims remain pending and do not publish live dishes',async()=>{
+ for(const profileUrl of ['https://www.instagram.com/examplecafe/','https://www.facebook.com/examplecafe','https://example.com/']){
+  const h=harness(q=>q.includes('FROM public."Restaurant"')?[{name:'Example Cafe',city:'Mumbai',address:'Full branch address',restaurantId:1}]:[]);
+  const r=await h.call('/api/business-claims',{...input,businessId:'restaurant:1',contactName:'Example Owner',email:'owner@example.com',phone:'9999999999',profileUrl,ownershipEvidence:'Verify authority using the published official business contact.'});
+  assert.equal(r.code,201);assert.ok(r.data.claimId);assert.equal(r.data.status,undefined);
+  const insert=h.writes.find(w=>w.query.includes('WITH claim AS'));assert.ok(insert.values.includes(profileUrl));assert.ok(insert.query.includes('"BusinessClaim"'));assert.ok(insert.query.includes('"StarDishRevision"'));
+  assert.equal(h.writes.some(w=>/INSERT INTO public\."(Dish|Restaurant)"|approve_business_claim|approve_star_revision/.test(w.query)),false);
+ }
+});
+test('social profile corrections still require owner credentials and independent approval',async()=>{
+ const profileUrl='https://www.instagram.com/examplecafe/',body={...input,city:'Mumbai',address:'Full address',profileUrl,ownershipEvidence:'Updated official business contact for independent review.'};
+ const denied=harness([]);assert.equal((await denied.call('/api/business-claims/correction',body)).code,403);assert.equal(denied.writes.length,0);
+ const code='d'.repeat(64),c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status:'needs_information'};
+ const h=harness(q=>q.includes('SELECT *')?[c]:[{id:'revision'}]);assert.equal((await h.call('/api/business-claims/correction',{...body,claimId:c.id,accessCode:code})).code,200);
+ const write=h.writes.find(w=>w.query.includes('UPDATE'));assert.ok(write.values.includes(profileUrl));assert.match(write.query,/status='pending'/);assert.match(write.query,/status IN \('pending','needs_information'\)/);
+});
+test('invalid ownership profile is rejected before database work',async()=>{
+ const h=harness([]);const r=await h.call('/api/business-claims/correction',{...input,city:'Mumbai',address:'Full address',profileUrl:'https://owner:secret@example.com/',ownershipEvidence:'Updated official contact for independent review.'});assert.equal(r.code,400);assert.equal(h.writes.length,0);
+});

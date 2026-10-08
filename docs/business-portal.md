@@ -9,3 +9,9 @@ Reviewer independently checks profile identity, owner authority, price and diet.
 Approvals insert the reviewed signature dish into the existing recommendation database. Existing curated menus are preserved. New restaurants still need source-verified coordinates for distance-based results. City-based searches can use approved city records. Never infer coordinates from an owner assertion without checking them.
 
 Paid checkout is paused by default in the billing module, even if Razorpay credentials are present. The existing payment verifier and ledger are preserved. Re-enable only after an explicit founder request and integration verification. No new schema migration is required for this release.
+
+## Ownership evidence options — 8 October 2026
+
+Directory ownership claims and pending-claim corrections accept HTTPS official business websites and public business profiles, including Google, Zomato, Instagram and Facebook. URLs are stored for private manual review, not fetched or treated as ownership proof. Public GST registration details may be cited in the existing private ownership-evidence text; no GST verification service or document upload is implemented. Never submit passwords or identity documents. Identity, branch address and submitter authority still require independent review. This does not broaden the separate new-business listing form or its approval evidence rules.
+
+The existing production spelling BUSINESS_REVEIW_KEY is supported as a compatibility fallback. BUSINESS_REVIEW_KEY takes precedence, even when empty; both require at least 32 characters. No key value is returned to clients.
