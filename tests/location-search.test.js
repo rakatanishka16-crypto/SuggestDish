@@ -98,7 +98,7 @@ test('area search uses Indian geocoding and returns real coordinates', async () 
   assert.equal(body.city, null);
 });
 
-function frontendHarness() {
+function frontendHarness(fetchOverride) {
   const elements = new Map();
   const calls = [];
   const element = id => {
@@ -117,9 +117,10 @@ function frontendHarness() {
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
   vm.runInNewContext(script, {
     document, window: { location: { hostname: 'www.suggestdish.com' } }, console: { log() {}, error() {} },
-    prompt: () => locationChoice, URL, URLSearchParams, setTimeout() {}, navigator: { geolocation: { getCurrentPosition(fn) { geolocationSuccess = fn; } } },
-    fetch: async url => {
+    prompt: () => locationChoice, URL, URLSearchParams, AbortSignal, setTimeout() {}, navigator: { geolocation: { getCurrentPosition(fn) { geolocationSuccess = fn; } } },
+    fetch: async (url,options) => {
       calls.push(url);
+      if(fetchOverride)return fetchOverride(url,options);
       return { ok: true, json: async () => url.includes('location-search')
         ? { success: true, city: 'Mumbai', label: 'Mumbai', latitude: null, longitude: null }
         : { success: true, recommendations: [{ dishName: 'BBQ Paneer Pizza', restaurant: "Pop Tate's - Time Square" }, { dishName: '<script>dish</script>', restaurant: 'Second restaurant', price: 200, vegetarian: true }, { dishName: 'Third dish', restaurant: 'Third restaurant' }], source: 'database' } };
@@ -205,3 +206,20 @@ test('Jain and vegan requests never infer preparation from vegetarian status',as
 test('health endpoint confirms server reachability without exposing configuration',async()=>{const h=serverHarness();const {status,body}=await h.request('/api/health',{});assert.equal(status,200);assert.equal(body.success,true);assert.equal(body.status,'ok');assert.equal(Object.keys(body).length,2);});
 test('blank, repeated and incomplete coordinate inputs never turn into a zero location',async()=>{for(const query of [{lat:' ',lon:'72'},{lat:['19'],lon:'72'},{lat:'19',lon:['72']},{lat:'19'},{lat:'',lon:''}]){const h=serverHarness();const r=await h.request('/api/ai-recommend',query);assert.equal(r.status,400);assert.equal(h.queries.length,0);}});
 test('fallback recommends one eligible dish and refinement advances to the next',async()=>{const h=serverHarness({rows:[{id:1,name:'Poha',price:60,isVeg:true,restaurantName:'A',restaurantCity:'Jalna'},{id:2,name:'Poha',price:80,isVeg:true,restaurantName:'B',restaurantCity:'Jalna'}]});const first=await h.request('/api/ai-recommend',{city:'Jalna',diet:'vegetarian',budget:'100'});assert.equal(first.body.recommendations.length,1);assert.equal(first.body.recommendations[0].dishId,1);assert.doesNotMatch(first.body.summary,/available dishes/);const next=await h.request('/api/ai-recommend',{city:'Jalna',diet:'vegetarian',budget:'100',excludeDishIds:'1'});assert.equal(next.body.recommendations.length,1);assert.equal(next.body.recommendations[0].dishId,2);});
+
+
+test('timed-out recommendation releases loading and allows retry without changing preferences', async () => {
+ const h=frontendHarness(async(url,options)=>{assert.ok(options.signal);throw Object.assign(new Error('timed out'),{name:'TimeoutError'});});
+ const before=h.element('aiDiet').value;
+ await h.element('aiRecommendBtn').click();
+ assert.equal(h.element('aiRecommendBtn').disabled,false);
+ assert.equal(h.element('aiLoading').style.display,'none');
+ assert.match(h.element('aiErrorText').textContent,/Please try again; your preferences are unchanged/);
+ assert.equal(h.element('aiDiet').value,before);
+ await h.element('aiRecommendBtn').click();assert.equal(h.calls.length,2);
+});
+test('timed-out location search releases the location button and can be retried', async () => {
+ const h=frontendHarness(async(url,options)=>{assert.ok(options.signal);throw Object.assign(new Error('timed out'),{name:'TimeoutError'});});
+ await h.element('enterLocation').click();assert.equal(h.element('enterLocation').disabled,false);
+ await h.element('enterLocation').click();assert.equal(h.calls.length,2);
+});

@@ -1773,7 +1773,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toast("Finding your chosen location...");
         try {
           const apiBase = window.location.hostname === "localhost" ? "http://localhost:3000" : "";
-          const response = await fetch(`${apiBase}/api/location-search?q=${encodeURIComponent(loc.trim())}`);
+          const response = await fetch(`${apiBase}/api/location-search?q=${encodeURIComponent(loc.trim())}`, {signal:AbortSignal.timeout(15000)});
           const data = await response.json();
           if (!response.ok || !data.success) throw new Error(data.error || "Unable to find that location.");
           const city = typeof data.city === "string" ? data.city : "";
@@ -1788,7 +1788,7 @@ document.addEventListener("DOMContentLoaded", () => {
           else if(coverage)coverage.textContent="Locality-level coverage counts are not available. Results use menu records within your selected radius when coordinates are available.";
           toast(`Location set to ${data.label}. Choose your preferences and tap Recommend My Dish.`);
         } catch (error) {
-          toast(error.message);
+          toast(error.name === "TimeoutError" ? "Location search took too long. Please try again." : error.message);
         } finally {
           locationPending = false;
           enterLocation.disabled = false;
@@ -2049,7 +2049,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
 
           const response =
-            await fetch(url);
+            await fetch(url, {signal:AbortSignal.timeout(45000)});
 
 
           console.log(
@@ -2206,7 +2206,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (aiErrorText) {
 
             aiErrorText.textContent =
-              error.message ||
+              (error.name === "TimeoutError" ? "Finding your dish took too long. Please try again; your preferences are unchanged." : error.message) ||
               "Something went wrong.";
           }
 
