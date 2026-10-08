@@ -1950,7 +1950,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const budgetChoice = document.getElementById("aiBudget")?.value || "300";
         const budget = budgetChoice === "custom" ? document.getElementById("aiCustomBudget")?.value : budgetChoice;
-        if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0) { aiRecommendBtn.disabled = false; if (aiLoading) aiLoading.style.display = "none"; if (aiErrorText) aiErrorText.textContent = "Enter a valid maximum budget in rupees."; if (aiError) aiError.style.display = "block"; return; }
+        if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0 || Number(budget) > 100000) { aiRecommendBtn.disabled = false; if (aiLoading) aiLoading.style.display = "none"; if (aiErrorText) aiErrorText.textContent = "Enter a maximum budget greater than ₹0 and no more than ₹100,000."; if (aiError) aiError.style.display = "block"; return; }
 
         const diet = document.getElementById("aiDiet")?.value || "vegetarian";
         const vegetarian = diet === "vegetarian";
