@@ -1,4 +1,6 @@
 /* Preserve the existing palette and layout while improving contrast and narrow screens. */
+/* Component display styles must not expose controls hidden by their UI state. */
+[hidden] { display:none !important; }
 .btn-primary { color:#38251c; }
 .hero h1 span, .nav-links a:hover {color:#7c3040;}
 :focus-visible { outline-color:#7c3040; }
