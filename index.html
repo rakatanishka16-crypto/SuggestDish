@@ -2393,7 +2393,16 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
     const title=document.createElement('h3');title.textContent=dish.dishName;
     const detail=document.createElement('p');detail.textContent=[dish.restaurant,dish.price != null ? '₹'+dish.price : '',dish.address].filter(Boolean).join(' · ');
     const remove=document.createElement('button');remove.className='btn btn-light';remove.textContent='Remove from saved';
-    remove.onclick=()=>{const current=JSON.parse(localStorage.getItem('suggestdish.saved') || '[]');localStorage.setItem('suggestdish.saved',JSON.stringify(current.filter(x=>!(x.dishName===dish.dishName && x.restaurant===dish.restaurant && x.address===dish.address))));card.remove();};
+    remove.onclick=()=>{
+     try {
+      const current=JSON.parse(localStorage.getItem('suggestdish.saved') || '[]');
+      if(!Array.isArray(current)) throw Error('Invalid saved list');
+      const remaining=current.filter(x=>!(x.dishName===dish.dishName && x.restaurant===dish.restaurant && x.address===dish.address));
+      localStorage.setItem('suggestdish.saved',JSON.stringify(remaining));
+      card.remove();
+      if(!list.children.length)list.textContent='No saved dishes yet. Save a recommendation to build your shortlist.';
+     }catch{remove.textContent='Unable to remove on this device — try again';}
+    };
     card.append(title,detail,remove);list.append(card);
    });
   }catch{list.textContent='Saved dishes are unavailable on this device.';}
