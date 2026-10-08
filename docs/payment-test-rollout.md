@@ -37,3 +37,13 @@ An approved real business submission and its private access code are required. `
 Live payments require a separate readiness decision after actual sandbox checkout, webhook delivery, database idempotency and refund tests, merchant account approval and the business's published commercial policies. This change does not enable live payments or initiate a refund. Paid plans are single-period purchases without automatic renewal.
 
 References: https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/ and https://razorpay.com/docs/webhooks/
+
+## Read-only database prerequisite check
+
+In the VS Code Terminal, from the SuggestDish project folder, run:
+
+```sh
+node scripts/check-payment-readiness.js
+```
+
+Use the intended database's `DATABASE_URL` from your private environment configuration. Never paste its value into chat or commit it. The checker uses a read-only transaction, reads schema metadata only, and does not apply migrations or touch business/payment records. Missing columns/functions are listed and exit status is nonzero. `schemaReady: true` confirms only the checked metadata: constraints, execution permissions, actual checkout, duplicate-event handling and refunds still need sandbox verification. A connection failure prints a generic message without connection credentials.
