@@ -38,7 +38,8 @@
         "maharashtra-2026-10-06",
         "maharashtra-mall-menus-2026-10-06",
         "maharashtra-local-official-2026-10-08",
-        "maharashtra-kolhapur-official-2026-10-08"
+        "maharashtra-kolhapur-official-2026-10-08",
+        "maharashtra-nashik-official-2026-10-08"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -54,54 +55,22 @@
       "latest_bounded_batch": {
         "state": "Maharashtra",
         "city_counts": {
-          "Kolhapur": 3
+          "Nashik": 1
         },
         "localities": [
-          "Shahupuri",
-          "Kadamwadi",
-          "Tarabai Park"
+          "Mahatmanagar"
         ],
-        "new_outlets": 3,
-        "menu_entries": 34,
+        "new_outlets": 1,
+        "menu_entries": 10,
         "published_prices": 0,
         "source_pages": [
           {
-            "url": "https://basaltculinaryjourney.com/",
-            "sha256": "7b7e712d1196bccd7c9e466fe7c276a6fb9117437995c5834e5513c57e2d798e",
+            "url": "https://rajubhaidabeliwale.com/",
+            "sha256": "099a3d4a4f28790a96de0a1e052ae44b255ec9756bc4c14262b49341319ce302",
             "checked_on": "2026-10-08",
             "access_method": "anonymous_public_page",
             "robots_respected": true,
-            "robots_url": "https://basaltculinaryjourney.com/robots.txt",
-            "robots_status": 200,
-            "http_status": 200
-          },
-          {
-            "url": "https://www.hotelcarrnival.com/carrnival-resto-menu.php",
-            "sha256": "fcd1894650e4e8b51add7db0d03800f87b5de65d792548cf55e538ca382cbe28",
-            "checked_on": "2026-10-08",
-            "access_method": "anonymous_public_page",
-            "robots_respected": true,
-            "robots_url": "https://www.hotelcarrnival.com/robots.txt",
-            "robots_status": 404,
-            "http_status": 200
-          },
-          {
-            "url": "https://basaltculinaryjourney.com/vertical-tripple-lanes-webgl/",
-            "sha256": "6e8ca5b3624cb0f44d9b5f9e59138201aa0f90d89aeb1a2b0b95b2ea8d388ab4",
-            "checked_on": "2026-10-08",
-            "access_method": "anonymous_public_page",
-            "robots_respected": true,
-            "robots_url": "https://basaltculinaryjourney.com/robots.txt",
-            "robots_status": 200,
-            "http_status": 200
-          },
-          {
-            "url": "https://www.zorbarestaurant.in/menu",
-            "sha256": "6246662490bee80f00f7eface0826bf735568761d9ded3e40ffe27605d9f15ba",
-            "checked_on": "2026-10-08",
-            "access_method": "anonymous_public_page",
-            "robots_respected": true,
-            "robots_url": "https://www.zorbarestaurant.in/robots.txt",
+            "robots_url": "https://rajubhaidabeliwale.com/robots.txt",
             "robots_status": 200,
             "http_status": 200
           }
@@ -110,22 +79,45 @@
         "conflicts_found": 0,
         "failed_or_held_sources": [
           {
-            "url": "https://www.darshanexecutive.com/foodmenu",
-            "status": "held",
-            "reason": "Menu is image-based in public text view; no dish/price transcribed in this batch."
+            "url": "https://dalchinicafe.com/",
+            "status": "held_source_restriction",
+            "reason": "Explicit content reuse restriction; no records or prices imported."
+          },
+          {
+            "url": "https://www.sadhanamisal.com/",
+            "status": "held_access_restriction",
+            "reason": "robots.txt returned 403 Forbidden; indexed menu observations not imported."
+          },
+          {
+            "url": "https://www.prathameshpavbhaji.com/",
+            "status": "held_insufficient_source",
+            "reason": "Public text view contains only identity/city; branch address not corroborated."
+          },
+          {
+            "url": "https://moderncafenashik.com/",
+            "status": "retry_pending",
+            "reason": "Public source fetch timed out; no records imported."
+          },
+          {
+            "url": "https://inayatcafe.com/",
+            "status": "retry_pending",
+            "reason": "Public source fetch timed out; no records imported."
+          },
+          {
+            "url": "https://tusharmisal.com/",
+            "status": "retry_pending",
+            "reason": "Public source fetch timed out; no records imported."
           }
         ],
         "complete_city_census": false,
         "complete_state_census": false,
         "brand_counts": {
-          "Zorba Restaurant": 1,
-          "Hotel Carrnival": 1,
-          "Basalt Culinary Journey": 1
+          "Rajubhai Dabeliwale": 1
         },
         "gaps": [
-          "All added dish prices and current availability remain unconfirmed",
-          "Kolhapur street stalls, remaining hotel restaurants and smaller localities require a broad source pass",
-          "Nashik sources discovered but not collected in this batch"
+          "Other Nashik localities, stalls and restaurant branches remain pending",
+          "Full Rajubhai menu, dish prices, coordinates and operation unconfirmed",
+          "Restricted sources require permitted access or owner-provided/licensed data"
         ]
       },
       "bounded_batch_history": [
@@ -199,6 +191,83 @@
             "Branch menus for EssPressOh and Grand Madhuram",
             "Jalna independent restaurant addresses need accessible corroboration",
             "Street vendors/carts and remaining district towns not yet broadly covered"
+          ]
+        },
+        {
+          "state": "Maharashtra",
+          "city_counts": {
+            "Kolhapur": 3
+          },
+          "localities": [
+            "Shahupuri",
+            "Kadamwadi",
+            "Tarabai Park"
+          ],
+          "new_outlets": 3,
+          "menu_entries": 34,
+          "published_prices": 0,
+          "source_pages": [
+            {
+              "url": "https://basaltculinaryjourney.com/",
+              "sha256": "7b7e712d1196bccd7c9e466fe7c276a6fb9117437995c5834e5513c57e2d798e",
+              "checked_on": "2026-10-08",
+              "access_method": "anonymous_public_page",
+              "robots_respected": true,
+              "robots_url": "https://basaltculinaryjourney.com/robots.txt",
+              "robots_status": 200,
+              "http_status": 200
+            },
+            {
+              "url": "https://www.hotelcarrnival.com/carrnival-resto-menu.php",
+              "sha256": "fcd1894650e4e8b51add7db0d03800f87b5de65d792548cf55e538ca382cbe28",
+              "checked_on": "2026-10-08",
+              "access_method": "anonymous_public_page",
+              "robots_respected": true,
+              "robots_url": "https://www.hotelcarrnival.com/robots.txt",
+              "robots_status": 404,
+              "http_status": 200
+            },
+            {
+              "url": "https://basaltculinaryjourney.com/vertical-tripple-lanes-webgl/",
+              "sha256": "6e8ca5b3624cb0f44d9b5f9e59138201aa0f90d89aeb1a2b0b95b2ea8d388ab4",
+              "checked_on": "2026-10-08",
+              "access_method": "anonymous_public_page",
+              "robots_respected": true,
+              "robots_url": "https://basaltculinaryjourney.com/robots.txt",
+              "robots_status": 200,
+              "http_status": 200
+            },
+            {
+              "url": "https://www.zorbarestaurant.in/menu",
+              "sha256": "6246662490bee80f00f7eface0826bf735568761d9ded3e40ffe27605d9f15ba",
+              "checked_on": "2026-10-08",
+              "access_method": "anonymous_public_page",
+              "robots_respected": true,
+              "robots_url": "https://www.zorbarestaurant.in/robots.txt",
+              "robots_status": 200,
+              "http_status": 200
+            }
+          ],
+          "duplicates_found": 0,
+          "conflicts_found": 0,
+          "failed_or_held_sources": [
+            {
+              "url": "https://www.darshanexecutive.com/foodmenu",
+              "status": "held",
+              "reason": "Menu is image-based in public text view; no dish/price transcribed in this batch."
+            }
+          ],
+          "complete_city_census": false,
+          "complete_state_census": false,
+          "brand_counts": {
+            "Zorba Restaurant": 1,
+            "Hotel Carrnival": 1,
+            "Basalt Culinary Journey": 1
+          },
+          "gaps": [
+            "All added dish prices and current availability remain unconfirmed",
+            "Kolhapur street stalls, remaining hotel restaurants and smaller localities require a broad source pass",
+            "Nashik sources discovered but not collected in this batch"
           ]
         }
       ]
@@ -359,6 +428,42 @@
       "url": "https://www.darshanexecutive.com/foodmenu",
       "status": "held",
       "reason": "Menu is image-based in public text view; no dish/price transcribed in this batch."
+    },
+    {
+      "source": "Rajubhai Dabeliwale",
+      "url": "https://rajubhaidabeliwale.com/",
+      "status": "source_observed",
+      "checked_on": "2026-10-08"
+    },
+    {
+      "url": "https://dalchinicafe.com/",
+      "status": "held_source_restriction",
+      "reason": "Explicit content reuse restriction; no records or prices imported."
+    },
+    {
+      "url": "https://www.sadhanamisal.com/",
+      "status": "held_access_restriction",
+      "reason": "robots.txt returned 403 Forbidden; indexed menu observations not imported."
+    },
+    {
+      "url": "https://www.prathameshpavbhaji.com/",
+      "status": "held_insufficient_source",
+      "reason": "Public text view contains only identity/city; branch address not corroborated."
+    },
+    {
+      "url": "https://moderncafenashik.com/",
+      "status": "retry_pending",
+      "reason": "Public source fetch timed out; no records imported."
+    },
+    {
+      "url": "https://inayatcafe.com/",
+      "status": "retry_pending",
+      "reason": "Public source fetch timed out; no records imported."
+    },
+    {
+      "url": "https://tusharmisal.com/",
+      "status": "retry_pending",
+      "reason": "Public source fetch timed out; no records imported."
     }
   ],
   "complete_state_census": false,
