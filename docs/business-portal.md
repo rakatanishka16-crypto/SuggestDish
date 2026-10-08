@@ -1,6 +1,6 @@
 # Business portal and private review
 
-Owners use the reference and private access code returned by a new listing to check its status at /#business-checkout. Pending or needs-information submissions can correct their signature dish, price, diet and menu source. Corrections stay pending; they never change live Dish records. Approved/rejected submissions cannot be edited through this endpoint. Older submissions without access codes require a trusted ownership check and private code issuance; never expose existing hashes.
+Owners use the reference and private access code returned by a new listing to check its status at /#business-checkout. Pending or needs-information submissions can correct their business profile link, signature dish, price, diet and menu source. Corrections stay pending; they never change live Dish records. Approved/rejected submissions cannot be edited through this endpoint. Older submissions without access codes require a trusted ownership check and private code issuance; never expose existing hashes.
 
 The private review page is /admin-review.html. Queue and decision APIs are unavailable until BUSINESS_REVIEW_KEY (a securely generated secret at least 32 characters long) is saved in Vercel Production and redeployed. Enter it directly into the page; it stays in memory and is never stored in browser storage. Do not share it with restaurant owners. This is a founder-only initial review tool, not a multi-user login system. Existing Neon review remains available without this setting.
 
@@ -31,3 +31,7 @@ Official-source directory cards now carry the stable sourceBusinessId to the new
 ## Consistent new-business evidence — 8 October 2026
 
 New-business submissions, pending dish corrections and private approval evidence now use the same bounded HTTPS URL validator as ownership claims. Official websites and Instagram/Facebook business profiles can be submitted alongside Google/Zomato profiles. URL syntax is validated, not business identity or ownership. URLs are not fetched automatically. Review still requires independent owner, exact branch, menu-price and dietary checks, explicit reviewer confirmation and private notes. No automatic approval or database migration is introduced.
+
+## Pending listing profile correction — 8 October 2026
+
+Authenticated new-business submission status includes the saved business profile link. Check business review status loads that link alongside the dish fields and resets consent. Submit corrections for review can replace the profile URL with a validated HTTPS website/social profile. The endpoint locks business identity and contact fields to the saved submission, requires owner credentials and fresh consent, refuses reviewed submissions, and keeps corrections pending. It does not change published Restaurant/Dish records or contact details. Omitting profileUrl preserves the old link for existing API clients. Actual owner-authenticated production persistence remains unverified.

@@ -1260,15 +1260,16 @@
    <button type="button" id="checkBusinessReview" class="btn btn-secondary" style="margin-top:18px">Check business review status</button>
    <p id="businessReviewStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
    <fieldset id="signatureDishEditor" hidden style="border:0;padding:0;margin-top:20px">
-    <legend>Update your signature dish for review</legend>
+    <legend>Update your business profile and signature dish for review</legend>
     <div class="business-fields">
+     <label>Official website or business profile link<input name="updatedProfileUrl" type="url" maxlength="2000" placeholder="https://…"></label>
      <label>Dish name<input name="updatedDishName" maxlength="160"></label>
      <label>Price (₹)<input name="updatedDishPrice" type="number" min="0.01" max="100000" step="0.01"></label>
      <label>Dietary type<select name="updatedDiet"><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
      <label>Menu source link<input name="updatedMenuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
     </div>
-    <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these dish and menu details are accurate and I am authorised to submit them.</label>
-    <button type="button" id="saveBusinessDish" class="btn btn-primary">Submit dish details for review</button>
+    <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these business profile, dish and menu details are accurate and I am authorised to submit them.</label>
+    <button type="button" id="saveBusinessDish" class="btn btn-primary">Submit corrections for review</button>
    </fieldset>
    <p class="small mute" style="margin:18px 0">One payment covers the selected period. No automatic renewal. Payment does not bypass business or menu verification. Save your business reference and private access code; never share the code publicly.</p>
    <button type="submit" id="payBusinessPlan" class="btn btn-primary" disabled>Pay securely with Razorpay</button>
@@ -2355,12 +2356,12 @@ document.addEventListener("DOMContentLoaded", () => {
  document.getElementById('checkBusinessReview').addEventListener('click',async(event)=>{
   const button=event.currentTarget;button.disabled=true;editor.hidden=true;reviewStatus.textContent='Checking business review…';
   try {const data=await api('/api/business-listings/status',credentials());reviewStatus.textContent=data.businessName+': '+data.message;
-   if(data.canEdit){form.elements.updatedDishName.value=data.dishName;form.elements.updatedDishPrice.value=data.dishPrice;form.elements.updatedDiet.value=data.isVeg?'vegetarian':'non-vegetarian';form.elements.updatedMenuUrl.value=data.menuUrl || '';editor.hidden=false;}
+   if(data.canEdit){form.elements.dishUpdateConsent.checked=false;form.elements.updatedProfileUrl.value=data.profileUrl || '';form.elements.updatedDishName.value=data.dishName;form.elements.updatedDishPrice.value=data.dishPrice;form.elements.updatedDiet.value=data.isVeg?'vegetarian':'non-vegetarian';form.elements.updatedMenuUrl.value=data.menuUrl || '';editor.hidden=false;}
   }catch(error){reviewStatus.textContent=error.message;}finally{button.disabled=false;}
  });
  document.getElementById('saveBusinessDish').addEventListener('click',async(event)=>{
   const button=event.currentTarget;button.disabled=true;
-  try{const data=await api('/api/business-listings/dish',{...credentials(),dishName:form.elements.updatedDishName.value,dishPrice:form.elements.updatedDishPrice.value,diet:form.elements.updatedDiet.value,menuUrl:form.elements.updatedMenuUrl.value,consent:form.elements.dishUpdateConsent.checked});reviewStatus.textContent=data.message;editor.hidden=true;form.elements.dishUpdateConsent.checked=false;}
+  try{const data=await api('/api/business-listings/dish',{...credentials(),profileUrl:form.elements.updatedProfileUrl.value,dishName:form.elements.updatedDishName.value,dishPrice:form.elements.updatedDishPrice.value,diet:form.elements.updatedDiet.value,menuUrl:form.elements.updatedMenuUrl.value,consent:form.elements.dishUpdateConsent.checked});reviewStatus.textContent=data.message;editor.hidden=true;form.elements.dishUpdateConsent.checked=false;}
   catch(error){reviewStatus.textContent=error.message;}finally{button.disabled=false;}
  });
  document.getElementById('checkBusinessPayment').addEventListener('click',async(event)=>{const button=event.currentTarget;button.disabled=true;status.textContent='Checking payment…';try{showResult(await api('/api/billing/status',credentials()));}catch(error){status.textContent=error.message;}finally{button.disabled=false;}});
