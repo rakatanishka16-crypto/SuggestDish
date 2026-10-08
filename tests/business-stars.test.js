@@ -45,3 +45,20 @@ test('approved and rejected owners cannot restore pending ownership corrections'
 test('saved details preserve unknown diet and unavailable dish without fabricating facts',async()=>{
  const code='e'.repeat(64),c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status:'pending'};for(const rows of [[],[{name:'Unknown diet dish',price:100,isVeg:null}]]){const h=harness(q=>q.includes('SELECT *')?[c]:rows);const r=await h.call('/api/business-claims/edit-details',{claimId:c.id,accessCode:code});assert.equal(r.code,200);assert.equal(rows.length?r.data.details.dish.diet:r.data.details.dish,null);}
 });
+
+test('approved owners load only the exact claim and permitted dish slot without private notes',async()=>{
+ const code='e'.repeat(64),c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status:'approved',restaurantId:1},dish={slot:2,name:'Fish curry',price:250,isVeg:false,menuUrl:'https://example.com/menu',popularityBasis:'signature',popularityEvidence:'Owner evidence',status:'needs_information',reviewNotes:'Private review note',tokenHash:'PRIVATE'};
+ const h=harness(q=>q.includes('SELECT *')?[c]:q.includes('restaurant_star_limit')?[{capacity:2}]:[dish]);const r=await h.call('/api/business-claims/dish-edit-details',{claimId:c.id,accessCode:code,slot:'2'});assert.equal(r.code,200);assert.equal(r.data.slot,2);assert.equal(r.data.dish.diet,'non-vegetarian');assert.equal(r.data.reviewStatus,'needs_information');assert.ok(!JSON.stringify(r.data).includes('Private review note'));assert.ok(!JSON.stringify(r.data).includes('PRIVATE'));const query=h.writes.at(-1);assert.match(query.query,/WHERE "claimId"=\?::uuid AND slot=\?/);assert.deepEqual(query.values,[c.id,2]);assert.ok(h.writes.every(w=>w.query.startsWith('SELECT')));
+});
+test('dish restore rejects invalid slots, wrong credentials, unapproved claims and expired plan slots',async()=>{
+ for(const slot of [0,null,true,[1],4]){const h=harness([]);assert.equal((await h.call('/api/business-claims/dish-edit-details',{slot})).code,400);assert.equal(h.writes.length,0);}
+ const empty=harness([]);assert.equal((await empty.call('/api/business-claims/dish-edit-details',{slot:1})).code,403);assert.equal(empty.writes.length,0);
+ const code='e'.repeat(64),c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status:'pending',restaurantId:1},body={claimId:c.id,accessCode:code,slot:2};
+ const h=harness(q=>q.includes('SELECT *')?[c]:[{capacity:1}]);assert.equal((await h.call('/api/business-claims/dish-edit-details',body)).code,409);assert.equal(h.writes.length,1);c.status='approved';const limited=harness(q=>q.includes('SELECT *')?[c]:[{capacity:1}]);assert.equal((await limited.call('/api/business-claims/dish-edit-details',body)).code,409);assert.equal(limited.writes.length,2);
+ const wrong=harness([c]);assert.equal((await wrong.call('/api/business-claims/dish-edit-details',{...body,accessCode:'f'.repeat(64)})).code,403);assert.equal(wrong.writes.length,1);
+});
+test('dish restore leaves missing records absent and fails closed on unknown plan allowance',async()=>{
+ const code='e'.repeat(64),c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status:'approved',restaurantId:1},body={claimId:c.id,accessCode:code,slot:1};
+ const missing=harness(q=>q.includes('SELECT *')?[c]:q.includes('restaurant_star_limit')?[{capacity:1}]:[]);assert.equal((await missing.call('/api/business-claims/dish-edit-details',body)).code,404);
+ const unavailable=harness(q=>q.includes('SELECT *')?[c]:[]);assert.equal((await unavailable.call('/api/business-claims/dish-edit-details',body)).code,503);assert.equal(unavailable.writes.length,2);
+});
