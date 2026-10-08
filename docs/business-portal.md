@@ -23,3 +23,7 @@ On claim-business.html, enter the claim reference and private code, then choose 
 ## Private submitted-contact lookup — 8 October 2026
 
 Pending listing and ownership-claim cards offer Show submitted contact details, requiring the private reviewer key. Read-only endpoints select name, email and phone for one pending/needs-information reference, not the whole queue. Submitted contacts remain unverified and must be compared with an independent official business source before confirming authority. No messages are sent, no contacts are made public, and no token hashes or reviewer notes are returned. Changing the reviewer key clears loaded cards and discards responses from the previous key; Hide removes the contact block. Real authenticated production contact retrieval remains unverified without the reviewer’s private key.
+
+## Official-source directory handoff — 8 October 2026
+
+Official-source directory cards now carry the stable sourceBusinessId to the new-business review form. The browser retrieves that exact catalog identity and offers Use selected outlet details. Only a deliberate click replaces name, city and address; missing facts stay blank. Prior category, profile, menu, dish, price, diet and consent are cleared, while owner contact inputs remain. No automatic submission, ownership approval, price or diet inference is performed. Official-only source records still use the new-business review route rather than the existing Neon-backed ownership-claim route.
