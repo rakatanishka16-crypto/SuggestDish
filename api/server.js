@@ -28,6 +28,8 @@ const ai = new GoogleGenAI({
 
 const PORT = process.env.PORT || 3000;
 
+app.get('/api/health', (req,res) => res.json({success:true,status:'ok'}));
+
 app.get('/api/db-test', async (req,res) => {
   try { const rows=await sql`SELECT COUNT(*)::int AS count FROM "Restaurant"`; res.json({success:true,restaurantCount:rows[0].count}); }
   catch {res.status(503).json({success:false,error:'Database diagnostics are temporarily unavailable.'});}
@@ -268,6 +270,11 @@ app.get("/api/ai-recommend", async (req, res) => {
     const excludedRaw = String(req.query.excludeDishIds || "");
     if (excludedRaw && !/^\d+(,\d+){0,19}$/.test(excludedRaw)) return res.status(400).json({success:false,error:"Invalid dish refinement list."});
     const excludedDishIds = new Set(excludedRaw ? excludedRaw.split(",").map(Number) : []);
+
+    const coordinateProvided = req.query.lat !== undefined || req.query.lon !== undefined;
+    if (coordinateProvided && [req.query.lat,req.query.lon].some(value => typeof value !== 'string' || !value.trim())) {
+      return res.status(400).json({success:false,error:'Provide a valid latitude and longitude together.'});
+    }
 
     const lat =
       req.query.lat !== undefined && req.query.lat !== ""
@@ -891,7 +898,7 @@ STRICT RULES:
 8. Use taste, cuisine and mood to choose relevant dishes.
 9. Prefer closer restaurants when distanceKm is available.
 10. Prefer candidates with stronger relevanceScore.
-11. Recommend a maximum of 3 dishes.
+11. Recommend exactly one best-matching dish from the eligible candidates.
 12. Each recommendation must use the exact database dishName and restaurant.
 13. Keep each reason short and natural.
 14. Return ONLY valid JSON.
@@ -923,7 +930,7 @@ Return exactly:
     }
 
     // A real, filtered dish remains available when Gemini is overloaded.
-    const fallbackRecommendations = candidateDishes.slice(0, 3).map((dish) => ({
+    const fallbackRecommendations = candidateDishes.slice(0, 1).map((dish) => ({
       dishId: Number(dish.id),
       sourceCheckedAt: dish.sourceCheckedAt || null,
       ownerVerified: dish.ownerVerified === true,
@@ -951,7 +958,7 @@ Return exactly:
         radiusKm: hasLocation ? maxDistanceKm : null
       },
       recommendations: fallbackRecommendations,
-      summary: "These available dishes match your preferences."
+      summary: "This listed menu dish matches your preferences. Confirm preparation, current availability and price with the restaurant."
     });
 
     if (!process.env.GEMINI_API_KEY) return fallbackResponse();
@@ -1005,7 +1012,7 @@ Return exactly:
     const recommendations =
       Array.isArray(parsed.recommendations)
         ? parsed.recommendations
-            .slice(0, 3)
+            .slice(0, 1)
             .map((recommendation) => {
 
               const candidate =
@@ -1067,7 +1074,7 @@ Return exactly:
             .filter(Boolean).filter((r,i,all)=>all.findIndex(x=>x.restaurant===r.restaurant && x.address===r.address)===i)
         : [];
     for (const item of fallbackRecommendations) {
-      if (recommendations.length >= 3) break;
+      if (recommendations.length >= 1) break;
       if (!recommendations.some(r=>r.restaurant===item.restaurant && r.address===item.address)) recommendations.push(item);
     }
 
