@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-06",
+  "updated_on": "2026-10-08",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -36,7 +36,8 @@
       ],
       "batch_ids": [
         "maharashtra-2026-10-06",
-        "maharashtra-mall-menus-2026-10-06"
+        "maharashtra-mall-menus-2026-10-06",
+        "maharashtra-local-official-2026-10-08"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -48,6 +49,78 @@
         "published_prices": 1448,
         "complete_mall_tenant_census": false,
         "pending_branch_menus": 34
+      },
+      "latest_bounded_batch": {
+        "state": "Maharashtra",
+        "city_counts": {
+          "Chhatrapati Sambhajinagar": 5
+        },
+        "new_outlets": 5,
+        "menu_entries": 20,
+        "published_prices": 5,
+        "source_pages": [
+          {
+            "url": "https://copperchilli.com/",
+            "sha256": "1cc0c7a64a4d073c1df63c953a569207b8888d54967fcdb635ede2d3770c74d5",
+            "checked_on": "2026-10-08",
+            "access_method": "anonymous_public_page",
+            "robots_respected": true
+          },
+          {
+            "url": "https://chul.in/",
+            "sha256": "b439c689888fda9332d19dc34d47056ac25f77caf6857ee8b399d085b0af3632",
+            "checked_on": "2026-10-08",
+            "access_method": "anonymous_public_page",
+            "robots_respected": true
+          },
+          {
+            "url": "https://esspressoh.com/menu/",
+            "sha256": "68c0c22c40ae577fe2a158b62db2a3f94e9d9f6f87efa6be94c622475766629d",
+            "checked_on": "2026-10-08",
+            "access_method": "anonymous_public_page",
+            "robots_respected": true
+          },
+          {
+            "url": "https://thebasilkitchen.com/",
+            "sha256": "41e332d551f28600edd94d2df134d584c666d8908ee5eb38911ab47f3ddd6dd3",
+            "checked_on": "2026-10-08",
+            "access_method": "anonymous_public_page",
+            "robots_respected": true
+          },
+          {
+            "url": "https://hotelgrandmadhuram.com/the-restaurant/",
+            "sha256": "cc24c6ce5919653f0c0cebd48a2cc0412c7a9f560aa2d610fc0c0c862654d25d",
+            "checked_on": "2026-10-08",
+            "access_method": "anonymous_public_page",
+            "robots_respected": true
+          }
+        ],
+        "failed_or_held_sources": [
+          {
+            "url": "https://saawariyarasoi.com/",
+            "status": "held",
+            "reason": "JavaScript shell; no visible verified branch address"
+          },
+          {
+            "url": "https://senoritacafe.com/",
+            "status": "held",
+            "reason": "Unmodified template menu, USD prices and placeholder contact; branch identity held"
+          }
+        ],
+        "complete_city_census": false,
+        "complete_state_census": false,
+        "brand_counts": {
+          "Copper Chilli": 1,
+          "Hotel Chul": 1,
+          "EssPressOh Café": 1,
+          "The Basil Kitchen": 1,
+          "Grand Madhuram Restaurant": 1
+        },
+        "gaps": [
+          "Branch menus for EssPressOh and Grand Madhuram",
+          "Jalna independent restaurant addresses need accessible corroboration",
+          "Street vendors/carts and remaining district towns not yet broadly covered"
+        ]
       }
     },
     {
@@ -140,16 +213,52 @@
       "reason": "Count and address differences from the state locator; avoid duplicate branches"
     },
     {
-      "source": "Cafe Coffee Day Maharashtra",
+      "source": "Starbucks official locator",
       "status": "retry_pending",
       "reason": "Source fetch failed; no records published from failed fetch"
     },
     {
-      "source": "Starbucks official locator",
-      "status": "retry_pending",
-      "reason": "Source fetch failed; no records published from failed fetch"
+      "source": "Copper Chilli",
+      "url": "https://copperchilli.com/",
+      "status": "source_observed",
+      "checked_on": "2026-10-08"
+    },
+    {
+      "source": "Hotel Chul",
+      "url": "https://chul.in/",
+      "status": "source_observed",
+      "checked_on": "2026-10-08"
+    },
+    {
+      "source": "EssPressOh Café",
+      "url": "https://esspressoh.com/menu/",
+      "status": "source_observed",
+      "checked_on": "2026-10-08"
+    },
+    {
+      "source": "The Basil Kitchen",
+      "url": "https://thebasilkitchen.com/",
+      "status": "source_observed",
+      "checked_on": "2026-10-08"
+    },
+    {
+      "source": "Grand Madhuram Restaurant",
+      "url": "https://hotelgrandmadhuram.com/the-restaurant/",
+      "status": "source_observed",
+      "checked_on": "2026-10-08"
+    },
+    {
+      "url": "https://saawariyarasoi.com/",
+      "status": "held",
+      "reason": "JavaScript shell; no visible verified branch address"
+    },
+    {
+      "url": "https://senoritacafe.com/",
+      "status": "held",
+      "reason": "Unmodified template menu, USD prices and placeholder contact; branch identity held"
     }
   ],
   "complete_state_census": false,
-  "notice": "Progress tracks this expansion, not all historical records. Official-source observations do not confirm current operation, food quality, food licences or menu availability. A city or state is never marked complete from a single brand locator."
+  "notice": "Progress tracks this expansion, not all historical records. Official-source observations do not confirm current operation, food quality, food licences or menu availability. A city or state is never marked complete from a single brand locator.",
+  "broad_source_pass_complete": false
 }
