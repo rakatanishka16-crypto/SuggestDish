@@ -30,3 +30,18 @@ test('social profile corrections still require owner credentials and independent
 test('invalid ownership profile is rejected before database work',async()=>{
  const h=harness([]);const r=await h.call('/api/business-claims/correction',{...input,city:'Mumbai',address:'Full address',profileUrl:'https://owner:secret@example.com/',ownershipEvidence:'Updated official contact for independent review.'});assert.equal(r.code,400);assert.equal(h.writes.length,0);
 });
+
+test('saved correction details require owner authentication and expose only an explicit whitelist',async()=>{
+ const code='e'.repeat(64),c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status:'needs_information',businessName:'Example Cafe',city:'Mumbai',address:'Exact branch',profileUrl:'https://www.instagram.com/example/',ownershipEvidence:'Official contact evidence',email:'private@example.com',phone:'9999999999',reviewNotes:'Private reviewer notes'};
+ const dish={name:'Poha',price:65,isVeg:true,menuUrl:'https://example.com/menu',popularityBasis:'signature',popularityEvidence:'Owner supplied evidence',reviewNotes:'Private dish notes'};
+ const h=harness(q=>q.includes('SELECT *')?[c]:[dish]);const r=await h.call('/api/business-claims/edit-details',{claimId:c.id,accessCode:code});assert.equal(r.code,200);assert.equal(r.data.details.dish.diet,'vegetarian');assert.equal(r.data.details.dish.dishPrice,65);assert.equal(r.data.details.ownershipEvidence,c.ownershipEvidence);
+ for(const secret of [c.tokenHash,c.email,c.phone,c.reviewNotes,dish.reviewNotes])assert.ok(!JSON.stringify(r.data).includes(secret));assert.ok(h.writes.every(w=>w.query.trim().startsWith('SELECT')));
+ const denied=harness([c]);assert.equal((await denied.call('/api/business-claims/edit-details',{claimId:c.id,accessCode:'f'.repeat(64)})).code,403);assert.equal(denied.writes.length,1);
+ const empty=harness([]);assert.equal((await empty.call('/api/business-claims/edit-details',{})).code,403);assert.equal(empty.writes.length,0);
+});
+test('approved and rejected owners cannot restore pending ownership corrections',async()=>{
+ const code='e'.repeat(64);for(const status of ['approved','rejected']){const c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status};const h=harness([c]);const r=await h.call('/api/business-claims/edit-details',{claimId:c.id,accessCode:code});assert.equal(r.code,409);assert.equal(h.writes.length,1);assert.equal(r.data.details,undefined);}
+});
+test('saved details preserve unknown diet and unavailable dish without fabricating facts',async()=>{
+ const code='e'.repeat(64),c={id:'11111111-1111-1111-1111-111111111111',tokenHash:crypto.createHash('sha256').update(code).digest('hex'),status:'pending'};for(const rows of [[],[{name:'Unknown diet dish',price:100,isVeg:null}]]){const h=harness(q=>q.includes('SELECT *')?[c]:rows);const r=await h.call('/api/business-claims/edit-details',{claimId:c.id,accessCode:code});assert.equal(r.code,200);assert.equal(rows.length?r.data.details.dish.diet:r.data.details.dish,null);}
+});
