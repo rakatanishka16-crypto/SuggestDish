@@ -12,7 +12,7 @@ Paid checkout is paused by default in the billing module, even if Razorpay crede
 
 ## Ownership evidence options — 8 October 2026
 
-Directory ownership claims and pending-claim corrections accept HTTPS official business websites and public business profiles, including Google, Zomato, Instagram and Facebook. URLs are stored for private manual review, not fetched or treated as ownership proof. Public GST registration details may be cited in the existing private ownership-evidence text; no GST verification service or document upload is implemented. Never submit passwords or identity documents. Identity, branch address and submitter authority still require independent review. This does not broaden the separate new-business listing form or its approval evidence rules.
+Directory ownership claims and pending-claim corrections accept HTTPS official business websites and public business profiles, including Google, Zomato, Instagram and Facebook. URLs are stored for private manual review, not fetched or treated as ownership proof. Public GST registration details may be cited in the existing private ownership-evidence text; no GST verification service or document upload is implemented. Never submit passwords or identity documents. Identity, branch address and submitter authority still require independent review. The new-business listing and reviewer evidence URL fields now accept the same HTTPS website/profile formats, as documented below.
 
 The existing production spelling BUSINESS_REVEIW_KEY is supported as a compatibility fallback. BUSINESS_REVIEW_KEY takes precedence, even when empty; both require at least 32 characters. No key value is returned to clients.
 
@@ -27,3 +27,7 @@ Pending listing and ownership-claim cards offer Show submitted contact details, 
 ## Official-source directory handoff — 8 October 2026
 
 Official-source directory cards now carry the stable sourceBusinessId to the new-business review form. The browser retrieves that exact catalog identity and offers Use selected outlet details. Only a deliberate click replaces name, city and address; missing facts stay blank. Prior category, profile, menu, dish, price, diet and consent are cleared, while owner contact inputs remain. No automatic submission, ownership approval, price or diet inference is performed. Official-only source records still use the new-business review route rather than the existing Neon-backed ownership-claim route.
+
+## Consistent new-business evidence — 8 October 2026
+
+New-business submissions, pending dish corrections and private approval evidence now use the same bounded HTTPS URL validator as ownership claims. Official websites and Instagram/Facebook business profiles can be submitted alongside Google/Zomato profiles. URL syntax is validated, not business identity or ownership. URLs are not fetched automatically. Review still requires independent owner, exact branch, menu-price and dietary checks, explicit reviewer confirmation and private notes. No automatic approval or database migration is introduced.

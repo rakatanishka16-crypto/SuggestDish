@@ -28,3 +28,10 @@ test('accepts Google shared business links and rejects lookalike domains', () =>
 });
 
 test('business submissions preserve rupee decimals but reject boolean and structured prices',()=>{for(const dishPrice of [true,false,[100],{value:100},'1e2','100.001',1.001,null,'  '])assert.throws(()=>register.validate({...valid,dishPrice}));assert.equal(register.validate({...valid,dishPrice:'65.50'}).dishPrice,65.5);});
+
+test('new listings accept website and social evidence while storing only pending submissions',async()=>{
+ const calls=[],app=express();app.use(express.json());register(app,async(strings,...values)=>{calls.push({query:strings.join('?'),values});return [{id:values[0]}];});const server=app.listen(0),url=`http://127.0.0.1:${server.address().port}/api/business-listings`;
+ try{for(const profileUrl of ['https://example.com/','https://www.instagram.com/examplecafe/','https://www.facebook.com/examplecafe']){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...valid,profileUrl})});assert.equal(r.status,201);assert.equal((await r.json()).status,'pending');const q=calls.at(-1);assert.ok(q.values.includes(profileUrl));assert.doesNotMatch(q.query,/INSERT INTO public\."(Restaurant|Dish)"|approve_business/);}}
+ finally{server.close();}
+});
+test('new business evidence rejects non-public addresses, credentials and oversized input',()=>{for(const profileUrl of ['https://127.0.0.1/','https://[::1]/','https://localhost/','https://owner:secret@example.com/','https://example.com/'+ 'a'.repeat(2000)])assert.throws(()=>register.validate({...valid,profileUrl}));});
