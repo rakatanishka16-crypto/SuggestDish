@@ -1,0 +1,74 @@
+{
+  "node/13957289542": {
+    "category": "craft:caterer",
+    "evidence_tags": {
+      "craft": "caterer",
+      "name": "Bhayani Food And Catering",
+      "cuisine": "indian"
+    },
+    "retrieved_on": "2026-10-09T09:40:22.635965+00:00",
+    "source_url": "https://www.openstreetmap.org/node/13957289542",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright"
+  },
+  "node/2116516246": {
+    "category": "shop:bakery",
+    "evidence_tags": {
+      "shop": "bakery",
+      "name": "Mad Over Donuts",
+      "cuisine": "donut"
+    },
+    "retrieved_on": "2026-10-09T09:40:30.291736+00:00",
+    "source_url": "https://www.openstreetmap.org/node/2116516246",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright"
+  },
+  "node/3289544901": {
+    "category": "shop:bakery",
+    "evidence_tags": {
+      "shop": "bakery",
+      "name": "Zam Zam",
+      "cuisine": "regional"
+    },
+    "retrieved_on": "2026-10-09T09:40:30.291736+00:00",
+    "source_url": "https://www.openstreetmap.org/node/3289544901",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright"
+  },
+  "node/5245907847": {
+    "category": "shop:confectionery",
+    "evidence_tags": {
+      "shop": "confectionery",
+      "name": "Sweet Bengal",
+      "cuisine": "dessert"
+    },
+    "retrieved_on": "2026-10-09T09:40:30.291736+00:00",
+    "source_url": "https://www.openstreetmap.org/node/5245907847",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright"
+  },
+  "node/12912853126": {
+    "category": "craft:confectionery",
+    "evidence_tags": {
+      "craft": "confectionery",
+      "name": "Karachi Sweets",
+      "cuisine": "chaat;coffee_shop"
+    },
+    "retrieved_on": "2026-10-09T09:40:30.291736+00:00",
+    "source_url": "https://www.openstreetmap.org/node/12912853126",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright"
+  },
+  "node/12923020643": {
+    "category": "shop:pastry",
+    "evidence_tags": {
+      "shop": "pastry",
+      "name": "San Churro",
+      "cuisine": "churro"
+    },
+    "retrieved_on": "2026-10-09T09:40:30.291736+00:00",
+    "source_url": "https://www.openstreetmap.org/node/12923020643",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright"
+  }
+}
