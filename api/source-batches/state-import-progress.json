@@ -580,5 +580,40 @@
       "37 uncertain duplicate candidates and 83 unnamed/non-target objects held",
       "Street stalls without OSM listings and further food-business categories remain outside this pass"
     ]
+  },
+  "mumbai_beverage_stall_collection_pass": {
+    "checked_on": "2026-10-09",
+    "source": "OpenStreetMap Overpass",
+    "boundary_relations": [
+      7964376,
+      7964375
+    ],
+    "queries": [
+      "shop=beverages",
+      "amenity=juice_bar/food_stall/food_stand",
+      "cuisine=juice/juice_bar"
+    ],
+    "unique_observed_objects": 33,
+    "already_observed": 20,
+    "added_profiles": 10,
+    "new_food_stall_profiles": 0,
+    "held_wine_named_retail": 2,
+    "held_new_duplicate_candidates": 1,
+    "total_osm_profiles": 2003,
+    "total_osm_input_objects": 2126,
+    "total_held_records": 85,
+    "total_duplicate_candidates": 38,
+    "menus": 0,
+    "prices": 0,
+    "neon_inserts": 0,
+    "failures": [],
+    "source_pass_status": "PASS_FINISHED",
+    "complete_city_census": false,
+    "gaps": [
+      "OSM stall tags yielded no new profiles; this does not imply no street vendors exist",
+      "Beverage shops may be retail; food service and beverage types unconfirmed",
+      "Menus, prices, dietary preparation and operation unconfirmed",
+      "38 uncertain duplicate candidates remain held"
+    ]
   }
 }
