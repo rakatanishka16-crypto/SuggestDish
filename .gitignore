@@ -2,3 +2,6 @@
 .env.*
 node_modules/
 .DS_Store
+
+# Temporary YouTube API metadata; refresh/delete within retention limits
+youtube-temporary/
