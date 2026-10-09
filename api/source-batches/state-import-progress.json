@@ -545,5 +545,40 @@
       "28 uncertain cross-source matches remain held",
       "New OSM discovery pass needed for further additions beyond this snapshot"
     ]
+  },
+  "mumbai_food_shop_collection_pass": {
+    "checked_on": "2026-10-09",
+    "source": "OpenStreetMap Overpass",
+    "boundary_relations": [
+      7964376,
+      7964375
+    ],
+    "categories": [
+      "shop:bakery",
+      "shop:pastry",
+      "shop:confectionery",
+      "craft:caterer",
+      "craft:confectionery"
+    ],
+    "added_profiles": 187,
+    "already_observed": 13,
+    "held_new_unnamed_or_missing_coordinates": 9,
+    "held_new_duplicate_candidates": 9,
+    "new_unique_osm_objects": 205,
+    "total_open_data_profiles": 1993,
+    "total_osm_input_objects": 2113,
+    "total_held_records": 83,
+    "total_duplicate_candidates": 37,
+    "new_menus": 0,
+    "new_prices": 0,
+    "neon_inserts": 0,
+    "failures": [],
+    "source_pass_status": "PASS_FINISHED",
+    "complete_city_census": false,
+    "gaps": [
+      "Mumbai menus, prices, dietary preparation and operation remain unconfirmed",
+      "37 uncertain duplicate candidates and 83 unnamed/non-target objects held",
+      "Street stalls without OSM listings and further food-business categories remain outside this pass"
+    ]
   }
 }
