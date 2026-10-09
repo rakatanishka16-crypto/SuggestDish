@@ -13,7 +13,7 @@
   if(!id)return;
   const form=document.getElementById('businessListingForm'),status=document.getElementById('businessListingStatus');
   if(!form || !status)return;
-  if(!/^official:[A-Za-z0-9:_-]{1,111}$/.test(id)){status.textContent='Invalid selected outlet. Choose it again from the directory.';return;}
+  if(!/^(?:official:[A-Za-z0-9:_-]{1,111}|open:osm_(?:node|way)_\d+)$/.test(id)){status.textContent='Invalid selected outlet. Choose it again from the directory.';return;}
   try{
    const response=await fetch('/api/business-source?'+new URLSearchParams({businessId:id}),{signal:AbortSignal.timeout(15000)});
    const data=await response.json();

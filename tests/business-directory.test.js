@@ -10,3 +10,9 @@ test('directory returns optional straight-line distance without guessing missing
 test('city searches do not mistake a road name for the outlet city',async()=>{
  const r=await run({city:'Jalna'});assert.match(r.calls[0].q,/AND city ILIKE/);assert.doesNotMatch(r.calls[0].q,/city ILIKE \? OR COALESCE\(address/);assert.match(r.calls[0].q,/COALESCE\(s.city,e.city\) AS city/);
 });
+test('OSM profile metadata survives directory responses and canonical candidate identity is matched',async()=>{
+ const b=require('../lib/open-food-data').businesses[0];
+ const r=await run({city:'Mumbai'},[{id:b.existingBusinessId,name:b.name,sourceProfileId:b.sourceKey,matchCount:1,latitude:b.latitude,longitude:b.longitude}]);
+ assert.equal(r.body.businesses[0].sourceLicense,'ODbL-1.0');assert.match(r.body.businesses[0].attribution,/OpenStreetMap contributors/);
+ const bound=JSON.parse(r.calls[0].v[0]).find(row=>row.id===b.sourceKey);assert.equal(bound.existingBusinessId,b.existingBusinessId);
+});

@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-08",
+  "updated_on": "2026-10-09",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -39,7 +39,8 @@
         "maharashtra-mall-menus-2026-10-06",
         "maharashtra-local-official-2026-10-08",
         "maharashtra-kolhapur-official-2026-10-08",
-        "maharashtra-nashik-official-2026-10-08"
+        "maharashtra-nashik-official-2026-10-08",
+        "mumbai-open-data-2026-10-09"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -55,69 +56,33 @@
       "latest_bounded_batch": {
         "state": "Maharashtra",
         "city_counts": {
-          "Nashik": 1
+          "Mumbai": 1777
         },
-        "localities": [
-          "Mahatmanagar"
-        ],
-        "new_outlets": 1,
-        "menu_entries": 10,
+        "new_source_profiles": 1777,
+        "new_outlets_in_neon": null,
+        "menu_entries": 0,
         "published_prices": 0,
-        "source_pages": [
-          {
-            "url": "https://rajubhaidabeliwale.com/",
-            "sha256": "099a3d4a4f28790a96de0a1e052ae44b255ec9756bc4c14262b49341319ce302",
-            "checked_on": "2026-10-08",
-            "access_method": "anonymous_public_page",
-            "robots_respected": true,
-            "robots_url": "https://rajubhaidabeliwale.com/robots.txt",
-            "robots_status": 200,
-            "http_status": 200
-          }
-        ],
-        "duplicates_found": 0,
-        "conflicts_found": 0,
-        "failed_or_held_sources": [
-          {
-            "url": "https://dalchinicafe.com/",
-            "status": "held_source_restriction",
-            "reason": "Explicit content reuse restriction; no records or prices imported."
-          },
-          {
-            "url": "https://www.sadhanamisal.com/",
-            "status": "held_access_restriction",
-            "reason": "robots.txt returned 403 Forbidden; indexed menu observations not imported."
-          },
-          {
-            "url": "https://www.prathameshpavbhaji.com/",
-            "status": "held_insufficient_source",
-            "reason": "Public text view contains only identity/city; branch address not corroborated."
-          },
-          {
-            "url": "https://moderncafenashik.com/",
-            "status": "retry_pending",
-            "reason": "Public source fetch timed out; no records imported."
-          },
-          {
-            "url": "https://inayatcafe.com/",
-            "status": "retry_pending",
-            "reason": "Public source fetch timed out; no records imported."
-          },
-          {
-            "url": "https://tusharmisal.com/",
-            "status": "retry_pending",
-            "reason": "Public source fetch timed out; no records imported."
-          }
-        ],
+        "wikidata_vocabulary_items": 208,
+        "duplicate_candidates_held": 28,
+        "non_target_or_unnamed_held": 103,
+        "input_osm_objects": 1908,
         "complete_city_census": false,
         "complete_state_census": false,
-        "brand_counts": {
-          "Rajubhai Dabeliwale": 1
-        },
+        "scope": "Mumbai City + Mumbai Suburban district union; not MMR",
+        "checked_sources": [
+          "OpenStreetMap Overpass",
+          "Wikidata SPARQL"
+        ],
+        "failures": [
+          "Initial exact-name Mumbai relation discovery returned no objects; resolved administrative district QIDs",
+          "Overpass 504 retries resolved with lower-resource district queries",
+          "Public alternative instance returned 500 errors and a stale July snapshot, excluded"
+        ],
         "gaps": [
-          "Other Nashik localities, stalls and restaurant branches remain pending",
-          "Full Rajubhai menu, dish prices, coordinates and operation unconfirmed",
-          "Restricted sources require permitted access or owner-provided/licensed data"
+          "Menus, prices, dietary preparation and operation unconfirmed",
+          "66 input objects unnamed; non-target cuisine-only objects not published",
+          "28 fuzzy near-name existing profile matches held for review",
+          "Neon rows not inserted; existing OSM source keys deduplicated at directory query time"
         ]
       },
       "bounded_batch_history": [
@@ -268,6 +233,74 @@
             "All added dish prices and current availability remain unconfirmed",
             "Kolhapur street stalls, remaining hotel restaurants and smaller localities require a broad source pass",
             "Nashik sources discovered but not collected in this batch"
+          ]
+        },
+        {
+          "state": "Maharashtra",
+          "city_counts": {
+            "Nashik": 1
+          },
+          "localities": [
+            "Mahatmanagar"
+          ],
+          "new_outlets": 1,
+          "menu_entries": 10,
+          "published_prices": 0,
+          "source_pages": [
+            {
+              "url": "https://rajubhaidabeliwale.com/",
+              "sha256": "099a3d4a4f28790a96de0a1e052ae44b255ec9756bc4c14262b49341319ce302",
+              "checked_on": "2026-10-08",
+              "access_method": "anonymous_public_page",
+              "robots_respected": true,
+              "robots_url": "https://rajubhaidabeliwale.com/robots.txt",
+              "robots_status": 200,
+              "http_status": 200
+            }
+          ],
+          "duplicates_found": 0,
+          "conflicts_found": 0,
+          "failed_or_held_sources": [
+            {
+              "url": "https://dalchinicafe.com/",
+              "status": "held_source_restriction",
+              "reason": "Explicit content reuse restriction; no records or prices imported."
+            },
+            {
+              "url": "https://www.sadhanamisal.com/",
+              "status": "held_access_restriction",
+              "reason": "robots.txt returned 403 Forbidden; indexed menu observations not imported."
+            },
+            {
+              "url": "https://www.prathameshpavbhaji.com/",
+              "status": "held_insufficient_source",
+              "reason": "Public text view contains only identity/city; branch address not corroborated."
+            },
+            {
+              "url": "https://moderncafenashik.com/",
+              "status": "retry_pending",
+              "reason": "Public source fetch timed out; no records imported."
+            },
+            {
+              "url": "https://inayatcafe.com/",
+              "status": "retry_pending",
+              "reason": "Public source fetch timed out; no records imported."
+            },
+            {
+              "url": "https://tusharmisal.com/",
+              "status": "retry_pending",
+              "reason": "Public source fetch timed out; no records imported."
+            }
+          ],
+          "complete_city_census": false,
+          "complete_state_census": false,
+          "brand_counts": {
+            "Rajubhai Dabeliwale": 1
+          },
+          "gaps": [
+            "Other Nashik localities, stalls and restaurant branches remain pending",
+            "Full Rajubhai menu, dish prices, coordinates and operation unconfirmed",
+            "Restricted sources require permitted access or owner-provided/licensed data"
           ]
         }
       ]
