@@ -10,7 +10,7 @@ def meters(r,e):
  return 6371000*2*math.asin(math.sqrt(min(1,h)))
 businesses=[];held=[];duplicates=[]
 for r in csv.DictReader(open(restaurants,encoding='utf-8')):
- if not r['name'].strip() or r['amenity'] not in ('restaurant','cafe','fast_food','food_court'):
+ if not r['name'].strip() or r['amenity'] not in ('restaurant','cafe','fast_food','food_court','ice_cream'):
   held.append({'source_id':r['source_id'],'reason':'unnamed_or_cuisine_only_non_target_object'});continue
  matches=[]
  for e in existing:

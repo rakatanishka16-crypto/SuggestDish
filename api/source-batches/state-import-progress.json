@@ -501,5 +501,23 @@
   ],
   "complete_state_census": false,
   "notice": "Progress tracks this expansion, not all historical records. Official-source observations do not confirm current operation, food quality, food licences or menu availability. A city or state is never marked complete from a single brand locator.",
-  "broad_source_pass_complete": false
+  "broad_source_pass_complete": false,
+  "mumbai_open_data_followup": {
+    "checked_on": "2026-10-09",
+    "source": "OpenStreetMap cached retrievals 2026-10-09",
+    "added_profiles": 23,
+    "category": "amenity:ice_cream",
+    "total_open_data_profiles": 1800,
+    "held_unnamed_or_non_target": 80,
+    "duplicate_candidates_held": 28,
+    "new_menus": 0,
+    "new_prices": 0,
+    "new_vocabulary_items": 0,
+    "neon_inserts": 0,
+    "complete_city_census": false,
+    "gaps": [
+      "Outlet menus, prices, dietary preparation and operating status remain unconfirmed",
+      "28 uncertain duplicate candidates still held; two source postcode conflicts recorded in review report"
+    ]
+  }
 }
