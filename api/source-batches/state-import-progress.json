@@ -615,5 +615,50 @@
       "Menus, prices, dietary preparation and operation unconfirmed",
       "38 uncertain duplicate candidates remain held"
     ]
+  },
+  "mumbai_food_retail_collection_pass": {
+    "checked_on": "2026-10-09",
+    "source": "OpenStreetMap Overpass",
+    "boundary_relations": [
+      7964376,
+      7964375
+    ],
+    "queries": [
+      "amenity=ice_cream without cuisine requirement",
+      "shop=coffee/tea/deli/food/frozen_food/chocolate/dairy",
+      "amenity=fast_food + fast_food=food_truck"
+    ],
+    "unique_observed_objects": 152,
+    "already_observed": 26,
+    "added_profiles": 118,
+    "category_counts": {
+      "amenity:ice_cream": 56,
+      "shop:dairy": 28,
+      "shop:tea": 26,
+      "shop:chocolate": 3,
+      "shop:deli": 2,
+      "shop:coffee": 2,
+      "shop:food": 1
+    },
+    "new_food_truck_profiles": 0,
+    "held_new_incomplete_records": 6,
+    "held_new_duplicate_candidates": 2,
+    "total_osm_profiles": 2121,
+    "total_source_catalog_profiles": 7938,
+    "total_osm_input_objects": 2252,
+    "total_held_records": 91,
+    "total_duplicate_candidates": 40,
+    "menus": 0,
+    "prices": 0,
+    "neon_inserts": 0,
+    "failures": [],
+    "source_pass_status": "PASS_FINISHED",
+    "complete_city_census": false,
+    "gaps": [
+      "Retail shop tags do not establish restaurant or prepared-food service",
+      "No new mapped food trucks in this pass; unlisted street vendors remain outside coverage",
+      "Menus, prices, dietary preparation and operating status unconfirmed",
+      "40 uncertain duplicate candidates and 91 incomplete/non-target records held"
+    ]
   }
 }
