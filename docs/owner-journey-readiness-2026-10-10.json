@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-10T13:40:00+00:00",
+  "task": 7,
+  "status": "blocked_on_founder",
+  "scope": "Authorised real-owner submission, review and dish lifecycle",
+  "implementation_review": {
+    "owner_entrypoint": "/owner-dashboard.html",
+    "owner_authentication": "Business or claim reference plus its private access code",
+    "reviewer_authentication": "Founder-only BUSINESS_REVIEW_KEY; no multi-user reviewer login",
+    "publication_boundary": "Pending owner corrections remain in review and do not change live Dish records",
+    "payment_state": "Paid checkout remains paused"
+  },
+  "test_evidence": {
+    "passed": 50,
+    "failed_assertions": 0,
+    "groups": [
+      "24 business media, review, star, claim and owner-state assertions",
+      "26 owner status, claim restore, evidence, private-contact and reviewer authentication assertions"
+    ],
+    "environment_limit": "business-listings.test.js did not start because Express is not installed in this fresh checkout; this was a missing local dependency, not an assertion failure."
+  },
+  "production_actions": {
+    "submissions_created": 0,
+    "reviews_changed": 0,
+    "dishes_published": 0,
+    "reason": "No authorised real owner, matching business identity, private access code or consented test submission was available."
+  },
+  "required_to_unblock": [
+    "One real owner or authorised representative who consents to the test",
+    "The exact submission or ownership-claim reference and its private access code",
+    "Founder reviewer access configured and used privately",
+    "Permission to move that specific test record through needs-information or approval and verify the resulting dish lifecycle"
+  ],
+  "security_note": "Do not send a private access code in public comments or commit it to the repository."
+}

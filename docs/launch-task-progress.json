@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated_on": "2026-10-10",
   "audited_main_commit": "3eead37402ebd31be5173174a5e448e478cfb842",
-  "next_task": 6,
+  "next_task": 8,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -113,12 +113,16 @@
     {
       "number": 7,
       "title": "Verify authorised owner journey",
-      "status": "not_started",
+      "status": "blocked_on_founder",
       "acceptance": "Real authorised owner submission, review and dish lifecycle verified.",
       "blockers": [
         "Requires an authorised real owner and private access code."
       ],
-      "next_action": null
+      "next_action": "Run the production lifecycle only after one real owner consents and the exact private reference/access code plus founder reviewer access are available. Do not put credentials in GitHub or public messages.",
+      "evidence": [
+        "docs/owner-journey-readiness-2026-10-10.json"
+      ],
+      "updated_at": "2026-10-10T13:40:00+00:00"
     },
     {
       "number": 8,
@@ -267,6 +271,11 @@
       "date": "2026-10-10",
       "task": 6,
       "action": "Production deployment c951e9f is READY on the intended project. Live keyboard recommendation placed focus on the labelled result region. Phone-size and screen-reader acceptance remain pending."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 7,
+      "action": "Verified fail-closed owner/reviewer controls with 50 passing assertions. Production lifecycle is blocked on a consenting real owner, exact private reference/access code and founder reviewer access; no fake record was created. Advanced the independent queue to task 8."
     }
   ]
 }
