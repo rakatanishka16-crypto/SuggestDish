@@ -65,10 +65,16 @@
     {
       "number": 3,
       "title": "Audit recommendation-ready data",
-      "status": "not_started",
+      "status": "in_progress",
       "acceptance": "Branch references and unknown facts separated; uncertain duplicates held.",
-      "blockers": [],
-      "next_action": null
+      "blockers": [
+        "No local execution environment for runtime tests in this session.",
+        "Full production eligibility and duplicate enumeration remain pending."
+      ],
+      "next_action": "Test and fix DEDUP-001 missing-address matching; then obtain per-city candidate evidence and runtime eligibility breakdown.",
+      "evidence": [
+        "docs/recommendation-readiness-audit-2026-10-10.json"
+      ]
     },
     {
       "number": 4,
@@ -211,6 +217,11 @@
       "date": "2026-10-10",
       "task": 2,
       "action": "Prepared provisional Mumbai pilot and finite acceptance targets from inspected repository batches; live comparison pending. Proceed to task 3 data audit."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 3,
+      "action": "Completed static publication/recommendation-path audit; recorded missing-address matcher risk and priced-count limitations. Full runtime/data audit remains in progress."
     }
   ]
 }

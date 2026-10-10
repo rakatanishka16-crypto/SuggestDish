@@ -1,0 +1,86 @@
+{
+  "audited_on": "2026-10-10",
+  "main_commit": "e86a8a9a12c3bfa4de904dfa552c7e1d2f36fe49",
+  "scope": "Static recommendation and publication-path audit; not a full dataset census or production query.",
+  "findings": [
+    {
+      "id": "REC-001",
+      "severity": "informational",
+      "status": "confirmed_by_source",
+      "file": "api/server.js",
+      "finding": "Recommendation candidates are loaded from Neon Dish/Restaurant SQL, not source-catalog menu arrays.",
+      "implication": "Published source menus do not imply recommendation readiness; eligible city totals remain unmeasured."
+    },
+    {
+      "id": "REC-002",
+      "severity": "medium",
+      "status": "confirmed_by_source",
+      "file": "api/server.js",
+      "finding": "menu-coverage applies only non-null price and city; it does not reproduce star selection, coordinates, diet, budget or requested dish filters.",
+      "implication": "Keep endpoint label as priced records; do not use it as eligible launch supply.",
+      "next_action": "Add separately named eligibility breakdown with shared candidate gates and meaningful tests; retain existing count semantics."
+    },
+    {
+      "id": "DEDUP-001",
+      "severity": "medium",
+      "status": "static_risk_not_confirmed_record_corruption",
+      "file": "lib/acquisition-source-catalog.js",
+      "finding": "Exact matching compares normalised brands and addresses without requiring either address to be nonempty. Two missing addresses normalise to the same empty string.",
+      "implication": "Could incorrectly match same-brand outlets without addresses; actual affected records not yet enumerated.",
+      "next_action": "Require nonempty address identities for address matching, retain distinct source-URL matching, and test empty/ambiguous/exact cases before deployment."
+    },
+    {
+      "id": "REC-003",
+      "severity": "informational",
+      "status": "confirmed_by_source",
+      "file": "lib/source-catalog.js",
+      "finding": "OSM records receive no menu; fallback legacy menus have brand_reference scope.",
+      "implication": "Do not promote directory-only or brand-reference records automatically."
+    },
+    {
+      "id": "REC-004",
+      "severity": "informational",
+      "status": "confirmed_by_source",
+      "file": "lib/source-acquisition-import.js",
+      "finding": "Acquisition importer writes staging observations, not Restaurant/Dish recommendation tables.",
+      "implication": "Database-ready evidence import does not mean candidate publication."
+    },
+    {
+      "id": "REC-005",
+      "severity": "informational",
+      "status": "confirmed_by_source",
+      "file": "api/server.js",
+      "finding": "Strict Jain/vegan/allergen requests return no recommendations when preparation evidence is unavailable.",
+      "implication": "Unknown dietary preparation must remain unknown."
+    }
+  ],
+  "sample": {
+    "batch": "kanjurmarg-simbly-dakshin-2026-10-07",
+    "profiles": 1,
+    "priced_menu_entries": 33,
+    "profile_recommendation_eligible": false,
+    "menu_recommendation_eligible": false,
+    "branch_availability": "not_confirmed",
+    "coordinates": null,
+    "source": "Existing repository evidence only; not newly scraped or a recommendation-ready dish count."
+  },
+  "remaining": [
+    "Enumerate candidate supply and uncertain duplicates per locality from full snapshots/runtime.",
+    "Test and fix missing-address matching risk.",
+    "Measure production candidate gates and inspect eligible data provenance.",
+    "Complete task 2 locality comparison after eligibility counts exist."
+  ],
+  "validation": {
+    "static_files_reviewed": [
+      "api/server.js",
+      "lib/source-catalog.js",
+      "lib/acquisition-source-catalog.js",
+      "lib/dish-outlets.js",
+      "lib/source-acquisition-import.js"
+    ],
+    "runtime_tests_run": false,
+    "production_database_read": false,
+    "production_changes": false,
+    "limitation": "Local execution environment unavailable; Vercel protected-fetch connector previously denied alias access. No live eligibility or affected-record counts invented."
+  }
+}
