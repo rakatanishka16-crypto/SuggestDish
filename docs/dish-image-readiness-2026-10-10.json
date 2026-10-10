@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-10-10T15:47:00+00:00",
+  "task": 9,
+  "status": "completed_with_placeholders",
+  "scope": "Dish-photo permission, exact-match controls and production fallback",
+  "decision": "No image was added because no newly reviewed asset with documented reuse permission, exact dish identity and dietary evidence was available. The safe placeholder remains the launch behavior.",
+  "repository_evidence": {
+    "source_batch_image_urls_null": 1012,
+    "source_batch_permissions_not_obtained": 239,
+    "permission_granted_records_claimed": 0,
+    "note": "Counts are field occurrences in the checked-in source-batch files, not unique restaurants or dishes."
+  },
+  "implementation_review": {
+    "upload": "Only an approved owner can upload JPEG/PNG media for a dish belonging to the same verified restaurant; permission confirmation and evidence are mandatory.",
+    "pending_privacy": "Uploads stay pending and are not publicly retrievable before review.",
+    "approval": "Private reviewer authentication and explicit confirmation of exact dish identity, dietary identity and permission are required.",
+    "recommendation_display": "Only approved media bound to the same dish and restaurant with an exact normalized dish-name and dietary match is returned.",
+    "fallback": "Missing, mismatched or unavailable media returns photo=null and the customer UI keeps an explicit verified-photo-unavailable placeholder."
+  },
+  "test_evidence": {
+    "passed": 16,
+    "failed": 0,
+    "files": [
+      "tests/dish-photos.test.js",
+      "tests/business-media.test.js",
+      "tests/owner-media-state.test.js",
+      "tests/reviewer-config.test.js"
+    ],
+    "covered": [
+      "Exact dish and dietary match",
+      "Unsafe URL and unknown-diet rejection",
+      "Permission and owner authentication",
+      "Pending-media privacy",
+      "Reviewer authentication and confirmation",
+      "Cross-claim state isolation"
+    ]
+  },
+  "production_read_only_checks": [
+    {
+      "endpoint": "/api/dish-photo?dish=Vegetable%20Sandwich&vegetarian=true&dishId=1481",
+      "status": 200,
+      "result": "photo=null; No verified matching dish photo available."
+    },
+    {
+      "endpoint": "/api/business-media/queue",
+      "method": "POST",
+      "credentials": "none",
+      "status": 403,
+      "result": "Private reviewer access required."
+    }
+  ],
+  "production_mutations": 0,
+  "approved_image_inventory_claimed": null,
+  "approved_image_inventory_note": "The private reviewer queue and database were not accessed. This report does not claim that production has zero approved images; it verifies the observed recommendation fallback and access boundary.",
+  "future_asset_acceptance": [
+    "Restaurant or rights-holder reuse permission is documented.",
+    "The photo is tied to the exact outlet and dish record.",
+    "Dietary identity and ingredient evidence are independently checked.",
+    "A private reviewer approves the pending asset before publication."
+  ]
+}
