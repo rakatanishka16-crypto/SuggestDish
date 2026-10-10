@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated_on": "2026-10-10",
   "audited_main_commit": "3eead37402ebd31be5173174a5e448e478cfb842",
-  "next_task": 8,
+  "next_task": 9,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -127,10 +127,17 @@
     {
       "number": 8,
       "title": "Verify moderation and persistence",
-      "status": "not_started",
+      "status": "partially_verified",
       "acceptance": "Real authorised persistence and permissions checked without fabricated production records.",
-      "blockers": [],
-      "next_action": null
+      "blockers": [
+        "Real persistence transition requires an authorised pending record and private founder reviewer access.",
+        "No direct authorised read-only database connection is available in this execution environment."
+      ],
+      "next_action": "With an explicitly approved disposable pending record, verify one review transition, reread persistence and confirm a duplicate decision conflicts without changing data.",
+      "evidence": [
+        "docs/moderation-persistence-readiness-2026-10-10.json"
+      ],
+      "updated_at": "2026-10-10T14:44:00+00:00"
     },
     {
       "number": 9,
@@ -276,6 +283,11 @@
       "date": "2026-10-10",
       "task": 7,
       "action": "Verified fail-closed owner/reviewer controls with 50 passing assertions. Production lifecycle is blocked on a consenting real owner, exact private reference/access code and founder reviewer access; no fake record was created. Advanced the independent queue to task 8."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 8,
+      "action": "Verified moderation boundaries with 29 passing tests and two production no-credential checks returning 403. Real persistence remains blocked on an authorised pending record and private reviewer access; no rows were created or changed. Advanced the independent queue to task 9."
     }
   ]
 }

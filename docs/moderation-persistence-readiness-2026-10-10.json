@@ -1,0 +1,48 @@
+{
+  "checked_at": "2026-10-10T14:44:00+00:00",
+  "task": 8,
+  "status": "partially_verified",
+  "scope": "Moderation permissions and authorised persistence boundaries",
+  "implementation_review": {
+    "feedback": "Customer feedback is stored pending review and cannot directly change menus, ratings or recommendations.",
+    "business_review": "Decisions require private reviewer authentication, bounded decision values and independent verification fields.",
+    "owner_corrections": "Pending corrections stay pending and cannot mutate live Dish records.",
+    "media": "Uploads remain pending/private until an authenticated reviewer confirms dish identity, dietary match and permission.",
+    "database_writes": "Review updates are conditional on pending state, preventing repeated decisions from silently overwriting reviewed records."
+  },
+  "test_evidence": {
+    "passed": 29,
+    "failed": 0,
+    "covered": [
+      "Reviewer authentication fails closed",
+      "Private contacts and hashes are not exposed",
+      "Owner corrections do not edit live menus",
+      "Feedback validation, deduplication and rate limits",
+      "Media identity, permission and private pending state",
+      "Review races and repeated decisions fail safely"
+    ]
+  },
+  "production_read_only_checks": [
+    {
+      "endpoint": "/api/customer-feedback/queue",
+      "method": "POST",
+      "credentials": "none",
+      "status": 403,
+      "result": "Private reviewer access required."
+    },
+    {
+      "endpoint": "/api/business-review/queue",
+      "method": "POST",
+      "credentials": "none",
+      "status": 403,
+      "result": "Private reviewer access required."
+    }
+  ],
+  "production_mutations": 0,
+  "blockers": [
+    "An authorised pending feedback, business-review or media record is required to verify a real persistence transition.",
+    "Founder reviewer access must be used privately; it must not be retrieved, displayed or committed by the automation.",
+    "No direct authorised read-only database connection is available in this execution environment for table-level persistence checks."
+  ],
+  "next_authorised_check": "With founder reviewer access and a specifically approved disposable pending record, verify one decision transition, reread it, confirm reviewedAt/status persistence, and confirm a second decision returns conflict without changing the row."
+}
