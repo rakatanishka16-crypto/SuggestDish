@@ -21,9 +21,10 @@
     {
       "id": "A11Y-001",
       "finding": "Primary aiResult, aiLoading and aiError lack a live region; after asynchronous keyboard submit the active element becomes the document body. Result announcement/focus must be fixed and verified.",
-      "status": "implemented_locally",
+      "status": "production_verified",
       "implementation": "Loading uses a polite atomic status region; results are labelled focusable regions; errors are atomic alerts; success, empty and error outcomes receive programmatic focus.",
-      "test_evidence": "28 focused tests passed, including recommendation-accessibility.test.js. Production verification pending deployment."
+      "test_evidence": "28 focused tests passed, including recommendation-accessibility.test.js.",
+      "production_evidence": "Commit c951e9f9d4df064f2a1f0c7c0098c5cd718676e3 deployed READY as dpl_CnrZN4StQodK3JR22vSL5zDUmseT on project prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm. A live keyboard request for Mumbai, vegetarian, sandwich and INR200 returned Vegetable Sandwich at Thepla House Chandivali; document.activeElement was aiResult and the result region was visible."
     }
   ],
   "static_observations": [
@@ -39,5 +40,12 @@
     "Colour contrast measurements",
     "Complete keyboard tab order"
   ],
+  "deployment": {
+    "commit": "c951e9f9d4df064f2a1f0c7c0098c5cd718676e3",
+    "deployment_id": "dpl_CnrZN4StQodK3JR22vSL5zDUmseT",
+    "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
+    "state": "READY",
+    "production_aliases": ["suggestdish.com", "www.suggestdish.com"]
+  },
   "side_effects": "No owner submission, feedback, payment, or database edits."
 }
