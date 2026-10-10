@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-10-10T07:51:25.896455+00:00",
+  "audited_commit": "db44174a50b241bb0c4fecfc52030db7fdfc74e0",
+  "url": "https://www.suggestdish.com/",
+  "task": 6,
+  "status": "partially_verified",
+  "browser_observations": {
+    "viewport": {
+      "width": 1363,
+      "height": 936,
+      "document_scroll_width": 1348
+    },
+    "horizontal_overflow": false,
+    "optional_analytics": "rejected",
+    "city_keyboard_enter": "Mumbai selected; city-wide search, distance unavailable",
+    "recommendation_keyboard_enter": "Vegetable Sandwich, Thepla House Chandivali, listed INR93, vegetarian, within INR200",
+    "result_caveats_visible": true,
+    "controls_have_accessible_names": true
+  },
+  "issues": [
+    {
+      "id": "A11Y-001",
+      "finding": "Primary aiResult, aiLoading and aiError lack a live region; after asynchronous keyboard submit the active element becomes the document body. Result announcement/focus must be fixed and verified.",
+      "status": "open"
+    }
+  ],
+  "static_observations": [
+    "Responsive CSS breakpoints at 900px/600px; not a substitute for phone visual testing.",
+    "Visible focus outline CSS exists.",
+    "City selection has role=status and aria-live=polite."
+  ],
+  "not_tested": [
+    "Actual phone viewport/touch/zoom",
+    "Screen-reader announcement",
+    "Geolocation permission",
+    "Colour contrast measurements",
+    "Complete keyboard tab order"
+  ],
+  "side_effects": "No owner submission, feedback, payment, or database edits."
+}

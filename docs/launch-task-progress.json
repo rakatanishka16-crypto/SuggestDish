@@ -99,10 +99,16 @@
     {
       "number": 6,
       "title": "Verify mobile and accessibility",
-      "status": "not_started",
+      "status": "in_progress",
       "acceptance": "Phone-size flow, keyboard/focus, forms and overflow checked.",
-      "blockers": [],
-      "next_action": null
+      "blockers": [
+        "Phone viewport testing unavailable in the current documented browser control API."
+      ],
+      "next_action": "Add accessible announcements and focus recovery for recommendation loading/results, then verify. Phone-size and screen-reader acceptance remain pending.",
+      "evidence": [
+        "docs/accessibility-browser-checks-2026-10-10.json"
+      ],
+      "updated_at": "2026-10-10T07:51:25.896455+00:00"
     },
     {
       "number": 7,
@@ -246,6 +252,11 @@
       "date": "2026-10-10",
       "task": 5,
       "action": "Six live HTTP constraint checks passed, exercising Gemini and database fallback; 27 local tests passed. Browser verification remains pending."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 6,
+      "action": "Verified real desktop keyboard city selection and recommendation; identified missing primary-result live announcement and focus loss after disabled submit. Mobile visual acceptance remains untested."
     }
   ]
 }
