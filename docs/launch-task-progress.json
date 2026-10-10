@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "updated_on": "2026-10-10",
-  "audited_main_commit": "a052cec3ec42ee9d8eac827895a8d8924cad410a",
-  "next_task": 10,
+  "audited_main_commit": "68627713c17e62697b25c4eda66c85f02b53b8ff",
+  "next_task": 11,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -154,12 +154,18 @@
     {
       "number": 10,
       "title": "Confirm commercial and support details",
-      "status": "not_started",
+      "status": "prepared_blocked_on_founder",
       "acceptance": "Founder provides legal operator/support facts and approves commercial wording.",
       "blockers": [
-        "Founder-provided legal and commercial facts required."
+        "Legal operator name and publishable address are not founder-confirmed.",
+        "Durable support and privacy/grievance contact details are not founder-confirmed.",
+        "Plan structure, tax/invoice treatment, cancellation/refund rules and merchant descriptor are not founder-approved."
       ],
-      "next_action": null
+      "next_action": "Founder completes and approves the factual decision register in docs/commercial-support-readiness-2026-10-10.json; then update Terms, Privacy, pricing and checkout together. Keep checkout paused until Tasks 11-13 pass.",
+      "evidence": [
+        "docs/commercial-support-readiness-2026-10-10.json"
+      ],
+      "updated_at": "2026-10-10T16:45:00+00:00"
     },
     {
       "number": 11,
@@ -297,6 +303,11 @@
       "date": "2026-10-10",
       "task": 9,
       "action": "Verified exact dish/diet, permission, pending privacy and reviewer gates with 16 passing tests. Production returned an explicit safe placeholder for a live recommendation dish and kept the media queue private. Added no unlicensed image and advanced to task 10."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 10,
+      "action": "Audited production commercial/support wording and confirmed checkout is unavailable. Prepared an exact founder decision register without inventing legal, tax or refund terms. Task 10 is blocked on founder facts; advanced the independent queue to task 11."
     }
   ]
 }

@@ -1,0 +1,96 @@
+{
+  "checked_at": "2026-10-10T16:45:00+00:00",
+  "task": 10,
+  "status": "prepared_blocked_on_founder",
+  "scope": "Commercial claims, support channel and policy facts required before accepting payment",
+  "confirmed_current_state": {
+    "customer_discovery_price": "Free",
+    "business_free_plan": "One approved dish",
+    "displayed_paid_options": [
+      {
+        "price_inr": 499,
+        "period": "month",
+        "dish_slots": 3
+      },
+      {
+        "price_inr": 4999,
+        "period": "year",
+        "dish_slots": 2
+      }
+    ],
+    "renewal_claim": "No automatic renewal",
+    "placement_claim": "Paid dish slots do not guarantee traffic, orders, recommendations or placement.",
+    "support_channel": "https://www.instagram.com/suggestdish.ai/",
+    "checkout": "Paused/unconfigured"
+  },
+  "production_read_only_checks": [
+    {
+      "url": "https://www.suggestdish.com/terms.html",
+      "status": 200,
+      "observed": [
+        "Paid plans and checkout are currently paused.",
+        "Support points to @suggestdish.ai on Instagram."
+      ]
+    },
+    {
+      "url": "https://www.suggestdish.com/privacy.html",
+      "status": 200,
+      "observed": [
+        "Paid checkout is currently paused.",
+        "Privacy and deletion requests point to @suggestdish.ai on Instagram."
+      ]
+    },
+    {
+      "url": "https://www.suggestdish.com/api/billing/config",
+      "status": 200,
+      "observed": "available=false; mode=unconfigured"
+    }
+  ],
+  "founder_decisions_required": [
+    {
+      "field": "legal_operator",
+      "needed": "Exact individual or registered entity name that operates SuggestDish."
+    },
+    {
+      "field": "operator_address",
+      "needed": "Business/registered correspondence address that may legally be published."
+    },
+    {
+      "field": "support_contact",
+      "needed": "Durable support email and, if offered, phone/WhatsApp details and support hours. Instagram may remain an additional channel."
+    },
+    {
+      "field": "grievance_privacy_contact",
+      "needed": "Founder-approved contact identity and channel for privacy, grievance and removal requests, after applicable legal review."
+    },
+    {
+      "field": "plan_contract",
+      "needed": "Confirm or revise prices, dish-slot counts, period start/end rules, eligibility, upgrades and what happens after expiry. The displayed annual option currently provides fewer slots than monthly and requires an intentional decision."
+    },
+    {
+      "field": "tax_and_invoice",
+      "needed": "Whether displayed prices include applicable taxes, who issues invoices/receipts and what business/tax details appear on them."
+    },
+    {
+      "field": "cancellation_refund_failure_policy",
+      "needed": "Founder-approved rules for cancellation, duplicate/failed charges, refunds, processing timing and plan deactivation."
+    },
+    {
+      "field": "policy_effective_date_and_jurisdiction",
+      "needed": "Effective date and legally reviewed governing-law/dispute wording, if used."
+    },
+    {
+      "field": "merchant_descriptor",
+      "needed": "Customer-facing Razorpay/statement descriptor and merchant identity must match the approved operator."
+    }
+  ],
+  "publication_gate": [
+    "Founder supplies and approves each missing factual field.",
+    "Commercial wording is checked against the implemented plan behavior.",
+    "Terms, privacy, pricing, checkout and support wording are updated consistently.",
+    "Razorpay remains test-only until Tasks 11-13 and explicit go-live approval are complete."
+  ],
+  "changes_to_public_policy": 0,
+  "payments_or_messages_sent": 0,
+  "next_independent_task": 11
+}
