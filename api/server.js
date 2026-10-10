@@ -13,6 +13,7 @@ const sql = neon(process.env.DATABASE_URL);
 require("../lib/business-listings")(app, sql);
 require("../lib/business-directory")(app, sql);
 require("../lib/source-catalog")(app);
+require("../lib/recommendation-coverage")(app, sql);
 require("../lib/dish-photos")(app, {sql});
 require("../lib/customer-feedback")(app, sql);
 const ownerMetrics = require("../lib/dish-events")(app, sql);

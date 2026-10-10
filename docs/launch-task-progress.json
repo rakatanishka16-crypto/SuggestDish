@@ -70,7 +70,7 @@
       "blockers": [
         "Full production eligibility and duplicate enumeration remain pending."
       ],
-      "next_action": "Obtain per-city candidate evidence and runtime eligibility breakdown; missing-address guard fixed and tested.",
+      "next_action": "Read recommendation-coverage for Mumbai and Jalna; finish locality supply audit.",
       "evidence": [
         "docs/recommendation-readiness-audit-2026-10-10.json"
       ]
@@ -226,6 +226,11 @@
       "date": "2026-10-10",
       "task": 3,
       "action": "Fixed missing-address exact matching; 5 regression cases and 19 relevant tests pass. Existing 224 acquisition identities and 7,943 source profiles remain stable."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 3,
+      "action": "Added read-only candidate coverage with star-selection, finite nonnegative prices and coordinate presence; 27 endpoint/customer-flow tests passed before publishing."
     }
   ]
 }
