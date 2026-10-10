@@ -1,0 +1,99 @@
+{
+  "checked_at": "2026-10-11T05:20:00+05:30",
+  "task": 17,
+  "decision": "NO_GO_PUBLIC_OR_COMMERCIAL_LAUNCH",
+  "permitted_scope": "Founder-internal or explicitly invited read-only demonstration with payments disabled and coverage limitations stated.",
+  "production": {
+    "commit": "8ad4f9614cc4a947c8e90c6793aa33817d93ddd1",
+    "project": "suggest-dish",
+    "deployment": "READY",
+    "aliases": [
+      "suggestdish.com",
+      "www.suggestdish.com"
+    ],
+    "verified": [
+      "Home, Privacy, Terms, claim and owner dashboard pages return HTTP 200.",
+      "Unknown page returns branded HTTP 404.",
+      "API responses carry no-store and security headers.",
+      "Health endpoint returns success.",
+      "Mumbai vegetarian recommendation under INR 200 returns one constrained database dish.",
+      "Billing reports available=false and mode=unconfigured."
+    ]
+  },
+  "test_suite": {
+    "command": "npm test",
+    "passed": 191,
+    "failed": 0
+  },
+  "mumbai_candidate_snapshot": {
+    "observed_at": "2026-10-11T05:18:00+05:30",
+    "priced_records": 1295,
+    "candidate_records": 1248,
+    "candidate_restaurants": 10,
+    "mapped_candidates": 1134,
+    "mapped_restaurants": 8,
+    "vegetarian_candidates": 1120,
+    "nonvegetarian_candidates": 128,
+    "location_accuracy_verified": false,
+    "current_availability_verified": false,
+    "dietary_preparation_verified": false,
+    "comparison": "The provisional pilot target is 20 exact outlets across 2-3 selected Mumbai localities. Current runtime reports 10 candidate restaurants city-wide, so the target is not met. Dish records are not unique recipes or proof of coverage."
+  },
+  "release_gates": [
+    {
+      "gate": "Focused scope approved",
+      "status": "blocked",
+      "reason": "Founder has not approved final Mumbai localities or the finite pilot gate."
+    },
+    {
+      "gate": "Recommendation supply target",
+      "status": "failed",
+      "reason": "10 candidate restaurants versus provisional target of 20 exact outlets; locality-level readiness is not established."
+    },
+    {
+      "gate": "Location confidence",
+      "status": "failed",
+      "reason": "Coordinates are present for many records but not independently verified; only 8 candidate restaurants have mapped candidates."
+    },
+    {
+      "gate": "Customer flow and safety constraints",
+      "status": "passed_with_limits",
+      "reason": "Automated suite and production smoke checks pass; provider-outage handling is local-test evidence."
+    },
+    {
+      "gate": "Mobile and accessibility acceptance",
+      "status": "blocked",
+      "reason": "Real phone touch/zoom and screen-reader testing remain incomplete."
+    },
+    {
+      "gate": "Authorised customer pilot",
+      "status": "blocked",
+      "reason": "No five-person consented pilot or triaged observation set exists."
+    },
+    {
+      "gate": "Owner and moderation lifecycle",
+      "status": "blocked",
+      "reason": "Real authorised persistence was not tested with an owner and founder reviewer access."
+    },
+    {
+      "gate": "Commercial and payment launch",
+      "status": "blocked_and_disabled",
+      "reason": "Legal/commercial facts, database readiness, Razorpay sandbox acceptance, merchant activation and explicit founder approval are incomplete; checkout remains disabled."
+    },
+    {
+      "gate": "Operations and recovery",
+      "status": "blocked",
+      "reason": "No assigned incident owner, automated alerts, approved retention, distributed limiter or verified Neon restore drill."
+    }
+  ],
+  "founder_handoff": [
+    "Approve or revise the Mumbai pilot localities and 20-outlet/100-dish finite gate.",
+    "Provide founder-confirmed legal operator, support, tax, invoice and refund facts before any commercial launch.",
+    "Authorise and complete a five-person consented pilot using the prepared protocol.",
+    "Provide authorised reviewer/owner test access for the real ownership and moderation lifecycle.",
+    "Assign an incident owner, approve retention periods and verify Neon backup/PITR with a separate-branch restore drill.",
+    "Keep live payments disabled until schema and Razorpay sandbox acceptance, merchant activation and an explicit final go-live instruction."
+  ],
+  "ongoing_data_work": "Geographic and dish expansion remains assigned to the separate outlet-data workflow. It must not claim complete Mumbai, Maharashtra or India coverage.",
+  "production_mutations": 0
+}
