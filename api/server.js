@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const { neon } = require("@neondatabase/serverless");
 const { GoogleGenAI } = require("@google/genai");
+const operationalErrors = require("../lib/operational-errors");
 
 const app = express();
 
@@ -65,7 +66,7 @@ app.get("/api/location-search", async (req, res) => {
     }
     return res.json({ success: true, city: null, label: place.formatted || query, latitude: place.lat, longitude: place.lon });
   } catch (error) {
-    console.error("Location search unavailable:", error.name);
+    operationalErrors.log("Location search unavailable", error);
     return res.status(503).json({ success: false, error: "Unable to find that location right now. Please try again." });
   }
 });
@@ -171,7 +172,7 @@ app.get("/api/geocode-restaurants", async (req, res) => {
       results
     });
   } catch (error) {
-    console.error("Geocoding error:", error);
+    operationalErrors.log("Geocoding unavailable", error);
 
     res.status(500).json({
       success: false,
@@ -187,11 +188,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/ai-test", async (req, res) => {
-  console.log(
-    "GEMINI_API_KEY exists:",
-    Boolean(process.env.GEMINI_API_KEY)
-  );
-
   if (!process.env.GEMINI_API_KEY) {
     return res.status(500).json({
       success: false,
@@ -211,7 +207,7 @@ app.get("/api/ai-test", async (req, res) => {
     });
 
   } catch (error) {
-    console.error("AI test error:", error);
+    operationalErrors.log("AI diagnostics unavailable", error);
 
     res.status(500).json({
       success: false,
@@ -230,11 +226,6 @@ app.get("/api/menu-coverage", async (req,res) => {
 });
 
 app.get("/api/ai-recommend", async (req, res) => {
-  console.log(
-    "GEMINI_API_KEY exists:",
-    Boolean(process.env.GEMINI_API_KEY)
-  );
-
   try {
     // --------------------------------------------------
     // 1. READ USER PREFERENCES
@@ -973,7 +964,7 @@ Return exactly:
       });
       text = response.text || "";
     } catch (error) {
-      console.error("Gemini recommendation unavailable:", error.status || error.code || error.name);
+      operationalErrors.log("Gemini recommendation unavailable", error);
       return fallbackResponse();
     }
 
@@ -993,7 +984,7 @@ Return exactly:
       parsed = JSON.parse(cleaned);
 
     } catch (parseError) {
-      console.error("Gemini returned invalid recommendation JSON:", parseError.message);
+      operationalErrors.log("Gemini returned invalid recommendation JSON", parseError);
       return fallbackResponse();
     }
 
@@ -1116,10 +1107,7 @@ Return exactly:
     });
 
   } catch (error) {
-    console.error(
-      "AI recommendation error:",
-      error
-    );
+    operationalErrors.log("AI recommendation unavailable", error);
 
     res.status(500).json({
       success: false,

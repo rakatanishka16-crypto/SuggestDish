@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "updated_on": "2026-10-11",
-  "audited_main_commit": "5927882d3e6fe9959708dc585b9ae03972639d33",
-  "next_task": 15,
+  "audited_main_commit": "9a8e2f69ccce0f2139e73d2b9c666b035c2f22b4",
+  "next_task": 16,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -238,10 +238,22 @@
     {
       "number": 15,
       "title": "Verify monitoring and recovery readiness",
-      "status": "not_started",
+      "status": "partially_ready_blocked_on_provider_and_policy_evidence",
       "acceptance": "Errors, retention, rate limits and backup/recovery evidence recorded.",
-      "blockers": [],
-      "next_action": null
+      "blockers": [
+        "No verified automated uptime/error alert or assigned incident owner.",
+        "Retention periods and deletion ownership are not founder-approved.",
+        "The intended Neon backup/PITR configuration and an isolated restore drill are unverified.",
+        "Application rate limits are per-instance rather than globally distributed."
+      ],
+      "next_action": "Founder must identify the incident owner and approve retention periods. With authorised Neon access, record backup/PITR coverage and restore to a separate branch for a non-destructive recovery drill. Choose a shared limiter before higher-risk traffic or payment launch.",
+      "evidence": [
+        "docs/operations-readiness-2026-10-11.json",
+        "lib/operational-errors.js",
+        "tests/operational-errors.test.js",
+        "tests/launch-security.test.js"
+      ],
+      "updated_at": "2026-10-11T03:20:00+05:30"
     },
     {
       "number": 16,
@@ -360,6 +372,11 @@
       "date": "2026-10-11",
       "task": 14,
       "action": "Tightened analytics persistence acknowledgement so unknown dish identities cannot report success; verified opt-in and browser privacy controls plus paid/star constraint behavior with 48 passing tests. Production persistence remains blocked on a real consented event and authorised read-only aggregate verification. Sponsorship is not implemented or enabled. Advanced to task 15."
+    },
+    {
+      "date": "2026-10-11",
+      "task": 15,
+      "action": "Sanitised operational logs to bounded error codes and removed API-key-presence logging; all 191 tests passed. Recorded the current per-instance rate limits, missing alerting, undecided retention and unverified Neon backup/PITR and restore drill. No records were deleted or changed. Advanced to task 16."
     }
   ]
 }

@@ -21,6 +21,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
     require(name) {
       // Middleware has its own HTTP integration tests; this harness exercises route data flow.
       if (name === '../lib/launch-security') return () => {};
+      if (name === '../lib/operational-errors') return require('../lib/operational-errors');
       if (name === '../lib/razorpay-payments') return require('../lib/razorpay-payments');
       if (name === '../lib/dish-events') return require('../lib/dish-events');
       if (name === '../lib/business-media') return require('../lib/business-media');

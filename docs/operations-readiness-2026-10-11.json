@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-10-11T03:20:00+05:30",
+  "task": 15,
+  "status": "partially_ready_blocked_on_provider_and_policy_evidence",
+  "monitoring": {
+    "available": [
+      "Public /api/health reachability response",
+      "Vercel deployment status and runtime logs",
+      "Generic customer-safe failure responses",
+      "Bounded operational error codes without serialising exception objects or secrets"
+    ],
+    "not_verified": [
+      "Automated uptime alert",
+      "Database availability alert",
+      "Error-rate threshold and escalation owner",
+      "Gemini or Geoapify degradation alert",
+      "Documented incident acknowledgement target"
+    ],
+    "limitation": "The public health endpoint proves process reachability only; it does not certify database or provider availability."
+  },
+  "rate_limits": {
+    "discovery": "30 requests per minute per provider-derived client key and server instance",
+    "writes": "60 requests per minute per provider-derived client key and server instance",
+    "reads": "180 requests per minute per provider-derived client key and server instance",
+    "customer_feedback": "30 attempts per 15 minutes per application instance",
+    "dish_events": "120 attempts per minute per application instance",
+    "verified_behavior": "Limits expire, return 429 and Retry-After where implemented; Razorpay webhook bypasses visitor throttling but retains signature verification.",
+    "limitation": "Counters are in memory and are not a distributed global cap across Vercel instances. A shared edge or durable limiter remains required before higher-risk scale."
+  },
+  "retention": {
+    "current": "Browser-saved preferences remain until removed locally. Business submissions, feedback and aggregate dish/day events have no automatic expiry. Temporary in-memory abuse counters expire after one or fifteen minutes depending on the route.",
+    "action_taken": "No production records were deleted and no retention schedule was invented.",
+    "blocked_on": [
+      "Founder-approved retention periods by record category",
+      "Legal operator and privacy policy decisions",
+      "Deletion-request owner and audit procedure",
+      "Authorised database migration and scheduled-job mechanism"
+    ]
+  },
+  "backup_and_recovery": {
+    "code_rollback": "GitHub main commit and Vercel deployment IDs provide a recoverable code history; rollback must target the intended suggest-dish project and then be production-verified.",
+    "database": "Neon backup/PITR configuration and retention were not accessible or verified. No restore drill was performed.",
+    "safe_recovery_sequence": [
+      "Pause write-heavy or payment workflows if data integrity is uncertain.",
+      "Record incident time, affected endpoint and last known healthy deployment without copying secrets into tickets or logs.",
+      "Rollback application code only when the failure is code-related; verify /api/health and one read-only recommendation.",
+      "For database recovery, identify the intended Neon project and branch, confirm backup/PITR coverage, restore to a separate branch first, compare critical counts and constraints, then obtain founder approval before any production cutover.",
+      "Never overwrite or reset the production database as a test."
+    ]
+  },
+  "verification": {
+    "command": "npm test",
+    "passed": 191,
+    "failed": 0,
+    "production_mutations": 0
+  },
+  "code_change": "Server monitoring logs now emit a bounded error code instead of full exception objects; diagnostic API-key-presence logging was removed.",
+  "blockers": [
+    "No verified automated uptime/error alert and no assigned incident owner.",
+    "No approved retention periods or automated deletion mechanism.",
+    "No evidence of the intended Neon backup/PITR configuration or a successful isolated restore drill.",
+    "Rate limits are per-instance rather than globally distributed."
+  ],
+  "next_task": 16
+}
