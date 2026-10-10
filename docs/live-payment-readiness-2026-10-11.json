@@ -1,0 +1,89 @@
+{
+  "checked_at": "2026-10-11T01:10:00+05:30",
+  "task": 13,
+  "status": "prepared_live_charging_paused",
+  "scope": "Live-payment launch gate and rollback preparation",
+  "current_state": {
+    "live_charging": false,
+    "production_config": "available=false; mode=unconfigured",
+    "server_registration": "api/server.js registers lib/razorpay-payments without overriding paymentsPaused, so the default true hard-pauses live checkout.",
+    "direct_order_probe": "POST /api/billing/orders returned HTTP 503 before any valid business credentials or gateway action.",
+    "public_wording": "Paid plans are paused/coming soon; free listing remains available.",
+    "automatic_renewal": false
+  },
+  "verification": {
+    "razorpay_control_tests_passed": 14,
+    "razorpay_control_tests_failed": 0,
+    "production_get_billing_config_status": 200,
+    "production_post_order_without_credentials_status": 503,
+    "gateway_orders_created": 0,
+    "payments_attempted": 0,
+    "database_mutations": 0
+  },
+  "mandatory_go_live_gates": [
+    {
+      "gate": "Founder authorisation",
+      "status": "blocked",
+      "requirement": "Explicit written approval to accept real charges, naming the intended launch date/environment and approved plans."
+    },
+    {
+      "gate": "Commercial and legal facts",
+      "status": "blocked",
+      "requirement": "Task 10 decisions completed and consistently published: operator, support, plan terms, taxes/invoices, cancellation/refund rules and merchant identity."
+    },
+    {
+      "gate": "Production schema",
+      "status": "blocked",
+      "requirement": "Task 11 returns schemaReady=true on the identified Neon production database and required permissions/constraints are separately verified."
+    },
+    {
+      "gate": "Razorpay sandbox",
+      "status": "blocked",
+      "requirement": "All eight Task 12 cases pass with test credentials, real test webhook delivery and an authorised approved business test record."
+    },
+    {
+      "gate": "Merchant activation",
+      "status": "blocked",
+      "requirement": "Founder confirms Razorpay merchant/KYC activation, settlement bank, customer-facing merchant name/descriptor and live webhook ownership."
+    },
+    {
+      "gate": "Operations",
+      "status": "blocked",
+      "requirement": "Named support owner, failed/duplicate payment procedure, refund procedure, reconciliation cadence, alerting and incident rollback are approved."
+    },
+    {
+      "gate": "Controlled code enablement",
+      "status": "blocked",
+      "requirement": "After every prior gate passes, review a minimal change that explicitly opts the production registration out of paymentsPaused, test it in a protected release, and obtain final founder approval before production promotion."
+    }
+  ],
+  "credential_rules": [
+    "Test and live credentials remain separate.",
+    "Secrets are entered directly in provider settings, never chat, browser code, GitHub or logs.",
+    "The live webhook secret must match the separately configured Razorpay live webhook.",
+    "A credential-presence check is not payment acceptance evidence."
+  ],
+  "release_sequence": [
+    "Complete Tasks 10-12.",
+    "Confirm merchant activation and operating runbook.",
+    "Deploy a reviewed release with live credentials still unable to charge.",
+    "Run read-only configuration and policy checks.",
+    "Obtain explicit founder go-live authorisation.",
+    "Apply the minimal hard-pause opt-out and deploy.",
+    "Verify /api/billing/config reports mode=live without creating an order.",
+    "Run one separately authorised controlled real-payment acceptance case only if the founder explicitly approves that charge.",
+    "Monitor and retain the ability to restore paymentsPaused immediately."
+  ],
+  "rollback": {
+    "action": "Restore the hard pause in server registration and redeploy; remove/disable live checkout configuration in Vercel/Razorpay as appropriate.",
+    "data_rule": "Do not delete payment ledger rows during rollback; reconcile existing orders and refunds through the approved operations process."
+  },
+  "explicitly_not_done": [
+    "No live credentials retrieved or configured",
+    "No merchant activation claimed",
+    "No hard pause removed",
+    "No real order, charge or refund",
+    "No legal or refund policy invented"
+  ],
+  "next_task": 14
+}

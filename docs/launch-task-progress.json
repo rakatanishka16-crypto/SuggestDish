@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "updated_on": "2026-10-11",
-  "audited_main_commit": "0a95f2ef744a3b02f4f08b3b38bbb43c170b63d1",
-  "next_task": 13,
+  "audited_main_commit": "66ddb457f037e47222f34420a47027eda4d7ebbc",
+  "next_task": 14,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -202,12 +202,19 @@
     {
       "number": 13,
       "title": "Prepare live-payment readiness",
-      "status": "not_started",
+      "status": "prepared_blocked_on_prerequisites",
       "acceptance": "Merchant and policy prerequisites complete; no real charges enabled without explicit founder approval.",
       "blockers": [
-        "Explicit live-payment go-live approval required."
+        "Explicit founder live-payment go-live approval is required.",
+        "Tasks 10-12 are not accepted: commercial facts, production schema and real sandbox tests remain incomplete.",
+        "Razorpay merchant/KYC activation, settlement identity and live webhook ownership are not verified.",
+        "Payment support, reconciliation, refund and incident runbooks lack an approved owner."
       ],
-      "next_action": null
+      "next_action": "Complete the gates in docs/live-payment-readiness-2026-10-11.json. Only then review a minimal paymentsPaused opt-out; keep production charging disabled until final explicit founder authorisation.",
+      "evidence": [
+        "docs/live-payment-readiness-2026-10-11.json"
+      ],
+      "updated_at": "2026-10-11T01:10:00+05:30"
     },
     {
       "number": 14,
@@ -231,107 +238,3 @@
       "status": "not_started",
       "acceptance": "Real consenting participants tested; issues triaged.",
       "blockers": [
-        "Actual consenting pilot participants required."
-      ],
-      "next_action": null
-    },
-    {
-      "number": 17,
-      "title": "Verify focused release readiness",
-      "status": "not_started",
-      "acceptance": "Focused production checks pass and coverage limits explicit.",
-      "blockers": [],
-      "next_action": null
-    },
-    {
-      "number": 18,
-      "title": "Continue geographic expansion",
-      "status": "separate_ongoing_automation",
-      "acceptance": "Separate existing daily data automation; not a finite launch gate.",
-      "blockers": [],
-      "next_action": null
-    }
-  ],
-  "change_log": [
-    {
-      "date": "2026-10-10",
-      "task": 1,
-      "action": "Reconciled stale deployment notes; recorded current production deployment and scoped verification gaps."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 2,
-      "action": "Prepared provisional Mumbai pilot and finite acceptance targets from inspected repository batches; live comparison pending. Proceed to task 3 data audit."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 3,
-      "action": "Completed static publication/recommendation-path audit; recorded missing-address matcher risk and priced-count limitations. Full runtime/data audit remains in progress."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 3,
-      "action": "Fixed missing-address exact matching; 5 regression cases and 19 relevant tests pass. Existing 224 acquisition identities and 7,943 source profiles remain stable."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 3,
-      "action": "Added read-only candidate coverage with star-selection, finite nonnegative prices and coordinate presence; 27 endpoint/customer-flow tests passed before publishing."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 3,
-      "action": "Enumerated all Jalna directory pages, saved prioritised coordinate review queue and rechecked two official Mumbai dish/price observations. No database coordinates or timestamps changed."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 5,
-      "action": "Six live HTTP constraint checks passed, exercising Gemini and database fallback; 27 local tests passed. Browser verification remains pending."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 6,
-      "action": "Verified real desktop keyboard city selection and recommendation; identified missing primary-result live announcement and focus loss after disabled submit. Mobile visual acceptance remains untested."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 6,
-      "action": "Implemented accessible loading/result/error semantics and focus recovery; 28 focused tests passed. Production verification pending deployment."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 6,
-      "action": "Production deployment c951e9f is READY on the intended project. Live keyboard recommendation placed focus on the labelled result region. Phone-size and screen-reader acceptance remain pending."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 7,
-      "action": "Verified fail-closed owner/reviewer controls with 50 passing assertions. Production lifecycle is blocked on a consenting real owner, exact private reference/access code and founder reviewer access; no fake record was created. Advanced the independent queue to task 8."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 8,
-      "action": "Verified moderation boundaries with 29 passing tests and two production no-credential checks returning 403. Real persistence remains blocked on an authorised pending record and private reviewer access; no rows were created or changed. Advanced the independent queue to task 9."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 9,
-      "action": "Verified exact dish/diet, permission, pending privacy and reviewer gates with 16 passing tests. Production returned an explicit safe placeholder for a live recommendation dish and kept the media queue private. Added no unlicensed image and advanced to task 10."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 10,
-      "action": "Audited production commercial/support wording and confirmed checkout is unavailable. Prepared an exact founder decision register without inventing legal, tax or refund terms. Task 10 is blocked on founder facts; advanced the independent queue to task 11."
-    },
-    {
-      "date": "2026-10-10",
-      "task": 11,
-      "action": "Verified the read-only schema checker's three metadata cases and confirmed production diagnostics fail closed. Actual Neon schema readiness remains unverified because no authorised read-only connection is available; no query, migration or payment occurred. Advanced to task 12."
-    },
-    {
-      "date": "2026-10-11",
-      "task": 12,
-      "action": "Ran 17 mocked payment/schema safety checks successfully and confirmed production remains unconfigured. Real sandbox acceptance is blocked on schema readiness, dedicated test credentials, an authorised approved business and webhook delivery. No gateway order, payment, refund or database mutation occurred. Advanced to task 13."
-    }
-  ]
-}
