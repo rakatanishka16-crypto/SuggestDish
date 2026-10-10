@@ -1,0 +1,136 @@
+{
+  "prepared_at": "2026-10-11T04:20:00+05:30",
+  "task": 16,
+  "status": "prepared_not_run",
+  "scope": {
+    "product": "Public dish recommendation journey only",
+    "geography": "Mumbai pilot; Jalna may be a separate founder-led pilot after its location and provenance gaps are accepted",
+    "excluded": [
+      "Real or test payments",
+      "Business ownership submissions or approvals",
+      "Private reviewer tools",
+      "Restaurant outreach",
+      "Claims of complete city coverage"
+    ]
+  },
+  "participants": {
+    "minimum": 5,
+    "requirements": [
+      "Each participant knowingly agrees to test SuggestDish and to have de-identified observations recorded.",
+      "Use stable participant codes P01-P05; do not record names, phone numbers, precise home addresses or account credentials.",
+      "Include both vegetarian and non-vegetarian requests, at least one phone user and one desktop keyboard user.",
+      "At least three participants should be physically familiar with Mumbai food/locality context so obviously wrong addresses or locality expectations can be identified."
+    ],
+    "not_authorised_yet": true
+  },
+  "consent_record": {
+    "required_fields": [
+      "participant_code",
+      "consent_obtained",
+      "consent_date",
+      "device_class",
+      "city_context"
+    ],
+    "statement": "I agree to test SuggestDish and allow de-identified observations about the test flow to be recorded. I will not enter private, health, payment or account information. I can stop at any time.",
+    "storage_rule": "Keep the pilot log private. Do not store participant contact details in the repository."
+  },
+  "test_cases": [
+    {
+      "id": "PILOT-01",
+      "journey": "Mumbai vegetarian dish within a chosen budget",
+      "pass": "One real database dish is returned at or below budget and labelled vegetarian; caveats remain visible."
+    },
+    {
+      "id": "PILOT-02",
+      "journey": "Mumbai non-vegetarian dish within a chosen budget",
+      "pass": "Returned dish is explicitly non-vegetarian and remains within budget."
+    },
+    {
+      "id": "PILOT-03",
+      "journey": "Specific dish request such as sandwich",
+      "pass": "The result stays in the requested dish family rather than substituting an unrelated dish."
+    },
+    {
+      "id": "PILOT-04",
+      "journey": "Strict Jain, vegan or preparation-sensitive request",
+      "pass": "No unsupported suitability is inferred; an honest no-result explanation is acceptable."
+    },
+    {
+      "id": "PILOT-05",
+      "journey": "Location/radius flow with browser permission chosen by participant",
+      "pass": "Denied permission remains recoverable; granted location never returns a result outside the selected radius or without confirmed coordinates."
+    },
+    {
+      "id": "PILOT-06",
+      "journey": "Cheaper, closer, different and reset refinements",
+      "pass": "Constraints persist and a refinement never changes dietary type silently."
+    },
+    {
+      "id": "PILOT-07",
+      "journey": "Directions, menu evidence, save and share actions",
+      "pass": "Actions are understandable, external links match the displayed outlet/dish evidence, and saved data stays on device."
+    },
+    {
+      "id": "PILOT-08",
+      "journey": "Phone touch/zoom or desktop keyboard flow",
+      "pass": "Core controls remain operable, results are readable and focus/announcements are understandable."
+    }
+  ],
+  "issue_triage": {
+    "stop_ship": [
+      "Vegetarian/non-vegetarian constraint violation",
+      "Price above the submitted budget",
+      "Wrong outlet identity or directions",
+      "Fabricated dish, price, rating, availability or source",
+      "Private data or credentials exposed",
+      "Payment or owner workflow unexpectedly enabled"
+    ],
+    "high": [
+      "Location radius violation",
+      "Specific dish request substituted with another family",
+      "Core flow unusable on a tested phone or keyboard"
+    ],
+    "medium": [
+      "Misleading evidence wording",
+      "Unrecoverable empty state",
+      "Broken non-critical action"
+    ],
+    "record": [
+      "issue_id",
+      "participant_code",
+      "test_case",
+      "device_class",
+      "expected",
+      "observed",
+      "severity",
+      "reproduction_steps",
+      "status"
+    ]
+  },
+  "pilot_acceptance": {
+    "required": [
+      "Five consent records and completed observation rows",
+      "All eight journeys attempted across the group",
+      "Zero unresolved stop-ship issues",
+      "All high-severity issues fixed and production-retested or explicitly held from launch",
+      "Coverage limitations reported separately from usability",
+      "No real payment, owner approval or fabricated production record"
+    ],
+    "not_satisfied": true
+  },
+  "technical_smoke_check": {
+    "checked_at": "2026-10-11T04:18:00+05:30",
+    "production_cases": 5,
+    "passed": 5,
+    "observations": [
+      "Mumbai vegetarian under INR 200 returned Masala Paniyaram at A Petal and Paniyaram.",
+      "Mumbai non-vegetarian under INR 300 returned Tambada / Pandhara Rassa — Chicken at Swad of Maharashtra - Bhandup.",
+      "Mumbai vegetarian sandwich under INR 200 returned Vegetable Sandwich at Thepla House by Tejal's Kitchen - Chandivali.",
+      "Strict Jain request returned no recommendation and did not infer preparation.",
+      "Invalid zero budget returned HTTP 400."
+    ],
+    "meaning": "Technical smoke checks passed; they are not participant pilot evidence or independent verification of menu currency."
+  },
+  "blocker": "No actual consenting pilot participants or completed observation records are available.",
+  "next_task": 17
+}

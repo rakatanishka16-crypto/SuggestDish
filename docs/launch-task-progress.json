@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "updated_on": "2026-10-11",
-  "audited_main_commit": "9a8e2f69ccce0f2139e73d2b9c666b035c2f22b4",
-  "next_task": 16,
+  "audited_main_commit": "56bf0ff94c9aa864f2eb074034bf45002a8edd57",
+  "next_task": 17,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -258,12 +258,16 @@
     {
       "number": 16,
       "title": "Prepare and run authorised pilot",
-      "status": "not_started",
+      "status": "prepared_blocked_on_participants",
       "acceptance": "Real consenting participants tested; issues triaged.",
       "blockers": [
-        "Actual consenting pilot participants required."
+        "Actual consenting pilot participants and completed de-identified observation records are required."
       ],
-      "next_action": null
+      "next_action": "Founder recruits at least five willing pilot participants and records consent using the fields in docs/authorised-pilot-plan-2026-10-11.json. Run the eight journeys, triage observations and stop launch for any unresolved stop-ship issue. Do not store participant contact details in GitHub.",
+      "evidence": [
+        "docs/authorised-pilot-plan-2026-10-11.json"
+      ],
+      "updated_at": "2026-10-11T04:20:00+05:30"
     },
     {
       "number": 17,
@@ -377,6 +381,11 @@
       "date": "2026-10-11",
       "task": 15,
       "action": "Sanitised operational logs to bounded error codes and removed API-key-presence logging; all 191 tests passed. Recorded the current per-instance rate limits, missing alerting, undecided retention and unverified Neon backup/PITR and restore drill. No records were deleted or changed. Advanced to task 16."
+    },
+    {
+      "date": "2026-10-11",
+      "task": 16,
+      "action": "Prepared a consent-minimising Mumbai pilot protocol with eight journeys, severity rules and finite acceptance criteria. Five production technical smoke cases passed, but no participant session was fabricated or claimed. Real pilot acceptance remains blocked on at least five consenting participants and completed de-identified observations. Advanced independent work to task 17."
     }
   ]
 }
