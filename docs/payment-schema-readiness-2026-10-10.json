@@ -1,0 +1,57 @@
+{
+  "checked_at": "2026-10-10T17:42:00+00:00",
+  "task": 11,
+  "status": "blocked_on_authorised_read_only_connection",
+  "intended_database": "The production Neon PostgreSQL database used by Vercel project suggest-dish and www.suggestdish.com.",
+  "identity_limit": "No credential or provider-internal database identifier was retrieved. The database must be confirmed in the founder's Neon/Vercel settings before running the check.",
+  "checker": {
+    "path": "scripts/check-payment-readiness.js",
+    "mode": "BEGIN READ ONLY followed by ROLLBACK",
+    "mutations": 0,
+    "metadata_checked_when_connected": [
+      "BusinessSubmission.id and checkoutTokenHash",
+      "Restaurant.id",
+      "BusinessPlanPayment required columns",
+      "confirm_business_payment(uuid,text,boolean)",
+      "reserve_business_payment(uuid,uuid,integer,text,integer,text)"
+    ],
+    "does_not_prove": [
+      "Constraints or execution permissions",
+      "Checkout behavior",
+      "Webhook idempotency",
+      "Refund behavior",
+      "Razorpay configuration"
+    ]
+  },
+  "test_evidence": {
+    "payment_readiness_tests_passed": 3,
+    "payment_readiness_tests_failed": 0,
+    "covered": [
+      "Complete metadata result",
+      "Missing checkoutTokenHash detection",
+      "Missing atomic database function detection"
+    ],
+    "razorpay_suite_result": "Not executed because this transient checkout has no installed node_modules; the failure was missing local express, not a product assertion."
+  },
+  "database_check": {
+    "database_url_available": false,
+    "schema_ready": null,
+    "missing_objects": null,
+    "reason": "No authorised read-only DATABASE_URL is available in this execution environment. No production schema query was attempted."
+  },
+  "production_read_only_checks": [
+    {
+      "endpoint": "/api/db-test",
+      "status": 403,
+      "result": "Private administrator access required; database diagnostics do not leak publicly."
+    },
+    {
+      "endpoint": "/api/billing/config",
+      "status": 200,
+      "result": "available=false; mode=unconfigured"
+    }
+  ],
+  "safe_next_action": "From a trusted private VS Code Terminal connected to the confirmed production Neon database, install repository dependencies and run node scripts/check-payment-readiness.js with DATABASE_URL configured privately. Do not paste the URL into chat or commit it. Apply no migration as part of the check.",
+  "acceptance_result": "Not met: the target is identified operationally, but its schema metadata was not queried through an authorised read-only connection.",
+  "next_task": 12
+}

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "updated_on": "2026-10-10",
-  "audited_main_commit": "68627713c17e62697b25c4eda66c85f02b53b8ff",
-  "next_task": 11,
+  "audited_main_commit": "aaff7f26bcea02af533b6a7ff166f1c0750c140b",
+  "next_task": 12,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -170,10 +170,17 @@
     {
       "number": 11,
       "title": "Check payment schema readiness",
-      "status": "not_started",
+      "status": "blocked_on_authorised_connection",
       "acceptance": "Read-only metadata check against identified database; missing prerequisites documented.",
-      "blockers": [],
-      "next_action": null
+      "blockers": [
+        "No authorised read-only DATABASE_URL for the confirmed production Neon database is available in this execution environment.",
+        "The transient checkout has no installed runtime dependencies; this does not establish production schema status."
+      ],
+      "next_action": "In a trusted private VS Code Terminal, confirm the production Neon database, install repository dependencies and run node scripts/check-payment-readiness.js with DATABASE_URL configured privately. Do not share the URL and do not apply a migration during the check.",
+      "evidence": [
+        "docs/payment-schema-readiness-2026-10-10.json"
+      ],
+      "updated_at": "2026-10-10T17:42:00+00:00"
     },
     {
       "number": 12,
@@ -308,6 +315,11 @@
       "date": "2026-10-10",
       "task": 10,
       "action": "Audited production commercial/support wording and confirmed checkout is unavailable. Prepared an exact founder decision register without inventing legal, tax or refund terms. Task 10 is blocked on founder facts; advanced the independent queue to task 11."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 11,
+      "action": "Verified the read-only schema checker's three metadata cases and confirmed production diagnostics fail closed. Actual Neon schema readiness remains unverified because no authorised read-only connection is available; no query, migration or payment occurred. Advanced to task 12."
     }
   ]
 }
