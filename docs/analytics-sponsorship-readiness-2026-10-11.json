@@ -1,0 +1,39 @@
+{
+  "checked_at": "2026-10-11T02:20:00+05:30",
+  "task": 14,
+  "status": "implemented_with_production_persistence_blocked",
+  "analytics": {
+    "events": [
+      "recommendation_shown",
+      "maps_click",
+      "menu_click",
+      "share_click"
+    ],
+    "consent": "Optional event transmission is disabled until explicit opt-in and is suppressed by Global Privacy Control or Do Not Track.",
+    "storage": "Aggregate totals are keyed by dish, day and event. No reviewer identity, IP address or user identifier is written to the aggregate table.",
+    "contract_fix": "The event endpoint now returns success only when at least one real Dish identity was inserted or incremented. An all-unknown dish payload returns 404.",
+    "production_persistence": "Not tested because that would create an artificial production analytics count without a real consenting user action or authorised read-only database access."
+  },
+  "sponsorship": {
+    "current_state": "No payment-based or sponsored ranking is implemented or enabled.",
+    "star_dish_scope": "Reviewed owner/source star evidence can add a small evidence preference, but eligibility filtering runs first.",
+    "hard_constraints_tested": [
+      "vegetarian and non-vegetarian selection",
+      "maximum per-dish budget",
+      "confirmed coordinates within selected radius"
+    ],
+    "label_rule": "Star or paid-slot evidence is not labelled Sponsored. A sponsored label remains reserved for a future explicit sponsored record.",
+    "future_gate": "Any future sponsored candidate must pass the same dietary, budget, distance, requested-dish and verified-availability filters before ranking, and must be explicitly labelled."
+  },
+  "verification": {
+    "command": "node --test tests/dish-events.test.js tests/privacy-controls.test.js tests/location-search.test.js tests/business-stars.test.js",
+    "passed": 48,
+    "failed": 0,
+    "production_mutations": 0
+  },
+  "blockers": [
+    "Production analytics persistence needs either a real consented user event with its aggregate verified by an authorised read-only database query, or founder-authorised controlled test data.",
+    "A production sponsorship acceptance test cannot exist until sponsorship records and placement are intentionally implemented and approved."
+  ],
+  "next_task": 15
+}

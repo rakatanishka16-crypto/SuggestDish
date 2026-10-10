@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "updated_on": "2026-10-11",
-  "audited_main_commit": "66ddb457f037e47222f34420a47027eda4d7ebbc",
-  "next_task": 14,
+  "audited_main_commit": "5927882d3e6fe9959708dc585b9ae03972639d33",
+  "next_task": 15,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -219,10 +219,21 @@
     {
       "number": 14,
       "title": "Verify analytics and sponsorship constraints",
-      "status": "not_started",
+      "status": "implemented_production_persistence_blocked",
       "acceptance": "Consent and event persistence checked; paid placement respects hard filters.",
-      "blockers": [],
-      "next_action": null
+      "blockers": [
+        "Production analytics persistence requires a real consented event plus authorised read-only aggregate verification, or founder-authorised controlled test data.",
+        "No sponsorship placement exists to production-test; paid ranking must remain disabled until explicitly designed and approved."
+      ],
+      "next_action": "With authorised read-only database access, reconcile one real consented event against its dish/day aggregate. Keep sponsorship disabled; if later implemented, require explicit labels and run every candidate through dietary, budget, distance and requested-dish constraints before ranking.",
+      "evidence": [
+        "docs/analytics-sponsorship-readiness-2026-10-11.json",
+        "tests/dish-events.test.js",
+        "tests/privacy-controls.test.js",
+        "tests/location-search.test.js",
+        "tests/business-stars.test.js"
+      ],
+      "updated_at": "2026-10-11T02:20:00+05:30"
     },
     {
       "number": 15,
@@ -238,3 +249,117 @@
       "status": "not_started",
       "acceptance": "Real consenting participants tested; issues triaged.",
       "blockers": [
+        "Actual consenting pilot participants required."
+      ],
+      "next_action": null
+    },
+    {
+      "number": 17,
+      "title": "Verify focused release readiness",
+      "status": "not_started",
+      "acceptance": "Focused production checks pass and coverage limits explicit.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 18,
+      "title": "Continue geographic expansion",
+      "status": "separate_ongoing_automation",
+      "acceptance": "Separate existing daily data automation; not a finite launch gate.",
+      "blockers": [],
+      "next_action": null
+    }
+  ],
+  "change_log": [
+    {
+      "date": "2026-10-10",
+      "task": 1,
+      "action": "Reconciled stale deployment notes; recorded current production deployment and scoped verification gaps."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 2,
+      "action": "Prepared provisional Mumbai pilot and finite acceptance targets from inspected repository batches; live comparison pending. Proceed to task 3 data audit."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 3,
+      "action": "Completed static publication/recommendation-path audit; recorded missing-address matcher risk and priced-count limitations. Full runtime/data audit remains in progress."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 3,
+      "action": "Fixed missing-address exact matching; 5 regression cases and 19 relevant tests pass. Existing 224 acquisition identities and 7,943 source profiles remain stable."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 3,
+      "action": "Added read-only candidate coverage with star-selection, finite nonnegative prices and coordinate presence; 27 endpoint/customer-flow tests passed before publishing."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 3,
+      "action": "Enumerated all Jalna directory pages, saved prioritised coordinate review queue and rechecked two official Mumbai dish/price observations. No database coordinates or timestamps changed."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 5,
+      "action": "Six live HTTP constraint checks passed, exercising Gemini and database fallback; 27 local tests passed. Browser verification remains pending."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 6,
+      "action": "Verified real desktop keyboard city selection and recommendation; identified missing primary-result live announcement and focus loss after disabled submit. Mobile visual acceptance remains untested."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 6,
+      "action": "Implemented accessible loading/result/error semantics and focus recovery; 28 focused tests passed. Production verification pending deployment."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 6,
+      "action": "Production deployment c951e9f is READY on the intended project. Live keyboard recommendation placed focus on the labelled result region. Phone-size and screen-reader acceptance remain pending."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 7,
+      "action": "Verified fail-closed owner/reviewer controls with 50 passing assertions. Production lifecycle is blocked on a consenting real owner, exact private reference/access code and founder reviewer access; no fake record was created. Advanced the independent queue to task 8."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 8,
+      "action": "Verified moderation boundaries with 29 passing tests and two production no-credential checks returning 403. Real persistence remains blocked on an authorised pending record and private reviewer access; no rows were created or changed. Advanced the independent queue to task 9."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 9,
+      "action": "Verified exact dish/diet, permission, pending privacy and reviewer gates with 16 passing tests. Production returned an explicit safe placeholder for a live recommendation dish and kept the media queue private. Added no unlicensed image and advanced to task 10."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 10,
+      "action": "Audited production commercial/support wording and confirmed checkout is unavailable. Prepared an exact founder decision register without inventing legal, tax or refund terms. Task 10 is blocked on founder facts; advanced the independent queue to task 11."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 11,
+      "action": "Verified the read-only schema checker's three metadata cases and confirmed production diagnostics fail closed. Actual Neon schema readiness remains unverified because no authorised read-only connection is available; no query, migration or payment occurred. Advanced to task 12."
+    },
+    {
+      "date": "2026-10-11",
+      "task": 12,
+      "action": "Ran 17 mocked payment/schema safety checks successfully and confirmed production remains unconfigured. Real sandbox acceptance is blocked on schema readiness, dedicated test credentials, an authorised approved business and webhook delivery. No gateway order, payment, refund or database mutation occurred. Advanced to task 13."
+    },
+    {
+      "date": "2026-10-11",
+      "task": 13,
+      "action": "Prepared the live-payment gate and rollback sequence. Fourteen payment-control tests passed; production config remained unavailable and an order probe failed closed with 503. Live charging, credentials and merchant activation were untouched. Advanced to task 14."
+    },
+    {
+      "date": "2026-10-11",
+      "task": 14,
+      "action": "Tightened analytics persistence acknowledgement so unknown dish identities cannot report success; verified opt-in and browser privacy controls plus paid/star constraint behavior with 48 passing tests. Production persistence remains blocked on a real consented event and authorised read-only aggregate verification. Sponsorship is not implemented or enabled. Advanced to task 15."
+    }
+  ]
+}
