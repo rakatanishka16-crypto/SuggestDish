@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated_on": "2026-10-10",
   "audited_main_commit": "3eead37402ebd31be5173174a5e448e478cfb842",
-  "next_task": 2,
+  "next_task": 3,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -51,10 +51,16 @@
     {
       "number": 2,
       "title": "Prepare focused launch scope",
-      "status": "not_started",
+      "status": "in_progress",
       "acceptance": "Proposal based on priced outlet-menu coverage, with founder approval needed for final scope.",
-      "blockers": [],
-      "next_action": "Inspect per-city priced outlet-linked dish coverage; prepare a proposal, do not silently change launch positioning."
+      "blockers": [
+        "Full per-city production recommendation-ready coverage not retrieved; Vercel fetch alias access denied HTTP 403.",
+        "Founder acceptance of final localities and pilot gate pending."
+      ],
+      "next_action": "Complete coverage comparison after task 3 audit; keep Mumbai pilot provisional.",
+      "evidence": [
+        "docs/focused-launch-proposal.md"
+      ]
     },
     {
       "number": 3,
@@ -200,6 +206,11 @@
       "date": "2026-10-10",
       "task": 1,
       "action": "Reconciled stale deployment notes; recorded current production deployment and scoped verification gaps."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 2,
+      "action": "Prepared provisional Mumbai pilot and finite acceptance targets from inspected repository batches; live comparison pending. Proceed to task 3 data audit."
     }
   ]
 }
