@@ -1,3 +1,9 @@
+# Current verification note — 10 October 2026
+
+The deployment failures described in the historical 4 October notes below no longer describe current production. Main `3eead37402ebd31be5173174a5e448e478cfb842` is confirmed READY on the production `suggest-dish` project. This does not convert the original audit's Partial/Data needed items into completed production journeys. The ordered current work and evidence are in [launch-task-progress.json](launch-task-progress.json); the original 45-item audit remains historical implementation detail.
+
+---
+
 # Foodie improvements — 4 October 2026
 
 All customer-facing content remains English. Preserve the existing visual identity. Never infer ingredients, dietary suitability, popularity, opening hours, prices or restaurant photos without evidence.

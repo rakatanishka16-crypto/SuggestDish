@@ -1,3 +1,18 @@
+# Current launch status — 10 October 2026
+
+This section supersedes historical deployment statements below. The historical notes remain as dated evidence, not current launch status.
+
+- Audited main: `3eead37402ebd31be5173174a5e448e478cfb842`.
+- Vercel project `suggest-dish`, production deployment `dpl_3ZxMA2Q9UAWuYd8FdCPM8LegUNTk`: READY, with `www.suggestdish.com` and `suggestdish.com` aliases confirmed on 10 October.
+- Current runtime includes launch security, owner/review, feedback, media, analytics and Razorpay modules. Deployment confirms code delivery, not real owner, database or gateway acceptance.
+- Earlier 10 October production API checks recorded 7,943 source profiles, 13,684 menu entries and 5,962 published price entries. These are source-catalog counts, not a restaurant census or a count of recommendation-ready dishes.
+- Live charging remains paused by default in the server registration. Configured keys alone are not evidence that sandbox or live checkout passed.
+- Outstanding: full production customer/mobile checks, authorised owner and moderation persistence, permitted reviewed images, legal/commercial facts, payment schema/sandbox acceptance, analytics persistence, monitoring/recovery and pilot testing.
+- Authoritative ordered queue: [launch-task-progress.json](launch-task-progress.json). Task 1 completed; task 2 is next. State data coverage remains separately tracked in `api/source-batches/state-import-progress.json`.
+- No runtime tests were rerun for this documentation-only reconciliation. No customer/owner submissions, payment, secret retrieval or database mutation was performed.
+
+---
+
 # Launch checklist — 4 October 2026
 
 The checklist is implemented in the repository. This is not a claim that the updated version is live or that every provider integration has been verified.

@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "updated_on": "2026-10-10",
+  "audited_main_commit": "3eead37402ebd31be5173174a5e448e478cfb842",
+  "next_task": 2,
+  "status_definitions": {
+    "implemented": "Source code exists; not proof of production acceptance.",
+    "deployed": "Target commit is READY and aliased to production.",
+    "production_verified": "Specific actual production workflow passed with recorded evidence."
+  },
+  "evidence": {
+    "production": {
+      "deployment_id": "dpl_3ZxMA2Q9UAWuYd8FdCPM8LegUNTk",
+      "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
+      "commit": "3eead37402ebd31be5173174a5e448e478cfb842",
+      "status": "READY",
+      "aliases": [
+        "www.suggestdish.com",
+        "suggestdish.com"
+      ],
+      "checked_on": "2026-10-10"
+    },
+    "catalog": {
+      "source_profiles": 7943,
+      "menu_entries": 13684,
+      "published_price_entries": 5962,
+      "evidence_origin": "Earlier 10 October acquisition run actual production API checks; not re-requested during this documentation audit.",
+      "not_claimed": [
+        "Unique operating restaurant census",
+        "Owner verification",
+        "All entries are branch menus",
+        "All entries are recommendation eligible"
+      ]
+    },
+    "source_entrypoint": {
+      "npm_start": "node api/server.js",
+      "vercel_api": "api/index.js -> api/server.js",
+      "database": "Neon SQL in runtime server; Prisma schema is not a complete runtime schema audit"
+    },
+    "tests_this_task": "Documentation and JSON integrity only; runtime tests were not rerun for this documentation-only change."
+  },
+  "tasks": [
+    {
+      "number": 1,
+      "title": "Reconcile launch checklist",
+      "status": "completed",
+      "acceptance": "Current source and deployment evidence recorded; stale historical notes clearly superseded.",
+      "blockers": [],
+      "next_action": "Use this tracker for subsequent work."
+    },
+    {
+      "number": 2,
+      "title": "Prepare focused launch scope",
+      "status": "not_started",
+      "acceptance": "Proposal based on priced outlet-menu coverage, with founder approval needed for final scope.",
+      "blockers": [],
+      "next_action": "Inspect per-city priced outlet-linked dish coverage; prepare a proposal, do not silently change launch positioning."
+    },
+    {
+      "number": 3,
+      "title": "Audit recommendation-ready data",
+      "status": "not_started",
+      "acceptance": "Branch references and unknown facts separated; uncertain duplicates held.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 4,
+      "title": "Fill finite launch-area dish gaps",
+      "status": "not_started",
+      "acceptance": "Document a finite target of usable outlet-linked dishes for chosen scope, then collect to that target.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 5,
+      "title": "Verify customer recommendation journey",
+      "status": "not_started",
+      "acceptance": "Diet/budget/dish/location and provider-error paths pass production checks.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 6,
+      "title": "Verify mobile and accessibility",
+      "status": "not_started",
+      "acceptance": "Phone-size flow, keyboard/focus, forms and overflow checked.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 7,
+      "title": "Verify authorised owner journey",
+      "status": "not_started",
+      "acceptance": "Real authorised owner submission, review and dish lifecycle verified.",
+      "blockers": [
+        "Requires an authorised real owner and private access code."
+      ],
+      "next_action": null
+    },
+    {
+      "number": 8,
+      "title": "Verify moderation and persistence",
+      "status": "not_started",
+      "acceptance": "Real authorised persistence and permissions checked without fabricated production records.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 9,
+      "title": "Acquire reviewed permitted dish images",
+      "status": "not_started",
+      "acceptance": "Permission and exact dish/diet match documented or safe placeholder retained.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 10,
+      "title": "Confirm commercial and support details",
+      "status": "not_started",
+      "acceptance": "Founder provides legal operator/support facts and approves commercial wording.",
+      "blockers": [
+        "Founder-provided legal and commercial facts required."
+      ],
+      "next_action": null
+    },
+    {
+      "number": 11,
+      "title": "Check payment schema readiness",
+      "status": "not_started",
+      "acceptance": "Read-only metadata check against identified database; missing prerequisites documented.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 12,
+      "title": "Complete Razorpay sandbox acceptance",
+      "status": "not_started",
+      "acceptance": "Captured/pending/recovery/webhook/duplicate/refund cases verified with test credentials.",
+      "blockers": [
+        "Sandbox credentials, schema readiness and approved authorised business required."
+      ],
+      "next_action": null
+    },
+    {
+      "number": 13,
+      "title": "Prepare live-payment readiness",
+      "status": "not_started",
+      "acceptance": "Merchant and policy prerequisites complete; no real charges enabled without explicit founder approval.",
+      "blockers": [
+        "Explicit live-payment go-live approval required."
+      ],
+      "next_action": null
+    },
+    {
+      "number": 14,
+      "title": "Verify analytics and sponsorship constraints",
+      "status": "not_started",
+      "acceptance": "Consent and event persistence checked; paid placement respects hard filters.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 15,
+      "title": "Verify monitoring and recovery readiness",
+      "status": "not_started",
+      "acceptance": "Errors, retention, rate limits and backup/recovery evidence recorded.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 16,
+      "title": "Prepare and run authorised pilot",
+      "status": "not_started",
+      "acceptance": "Real consenting participants tested; issues triaged.",
+      "blockers": [
+        "Actual consenting pilot participants required."
+      ],
+      "next_action": null
+    },
+    {
+      "number": 17,
+      "title": "Verify focused release readiness",
+      "status": "not_started",
+      "acceptance": "Focused production checks pass and coverage limits explicit.",
+      "blockers": [],
+      "next_action": null
+    },
+    {
+      "number": 18,
+      "title": "Continue geographic expansion",
+      "status": "separate_ongoing_automation",
+      "acceptance": "Separate existing daily data automation; not a finite launch gate.",
+      "blockers": [],
+      "next_action": null
+    }
+  ],
+  "change_log": [
+    {
+      "date": "2026-10-10",
+      "task": 1,
+      "action": "Reconciled stale deployment notes; recorded current production deployment and scoped verification gaps."
+    }
+  ]
+}
