@@ -1,0 +1,211 @@
+{
+  "checked_on": "2026-10-10",
+  "audited_commit": "87789ead129531a6a646aa316e4e73ac6a0c28aa",
+  "production_http_cases": [
+    {
+      "case": "invalid_budget",
+      "http_status": 400,
+      "params": {
+        "city": "Mumbai",
+        "budget": "0"
+      },
+      "response": {
+        "success": false,
+        "error": "Enter a maximum dish budget between \u20b90.01 and \u20b9100,000."
+      },
+      "url": "https://www.suggestdish.com/api/ai-recommend?city=Mumbai&budget=0",
+      "observed_on": "2026-10-10T07:32:33.476774+00:00",
+      "passed": true
+    },
+    {
+      "case": "incomplete_location",
+      "http_status": 400,
+      "params": {
+        "city": "Jalna",
+        "lat": "19.8347"
+      },
+      "response": {
+        "success": false,
+        "error": "Provide a valid latitude and longitude together."
+      },
+      "url": "https://www.suggestdish.com/api/ai-recommend?city=Jalna&lat=19.8347",
+      "observed_on": "2026-10-10T07:32:33.870038+00:00",
+      "passed": true
+    },
+    {
+      "case": "jain_unknown",
+      "http_status": 200,
+      "params": {
+        "city": "Jalna",
+        "diet": "jain",
+        "budget": "300"
+      },
+      "response": {
+        "success": true,
+        "source": "database",
+        "recommendations": [],
+        "summary": "Verified ingredient and preparation information is not available for this request. We cannot confirm Jain, vegan, allergen exclusions or onion/garlic exclusions from vegetarian status alone. Ask the restaurant to confirm preparation; change the request only if you choose to relax it."
+      },
+      "url": "https://www.suggestdish.com/api/ai-recommend?city=Jalna&diet=jain&budget=300",
+      "observed_on": "2026-10-10T07:32:39.821734+00:00",
+      "passed": true
+    },
+    {
+      "case": "veg_budget",
+      "http_status": 200,
+      "params": {
+        "city": "Mumbai",
+        "diet": "vegetarian",
+        "budget": "200"
+      },
+      "response": {
+        "success": true,
+        "source": "database",
+        "preferences": {
+          "taste": "any",
+          "cuisine": "any",
+          "mood": "any",
+          "customPreferences": "",
+          "budget": 200,
+          "vegetarian": true,
+          "latitude": null,
+          "longitude": null,
+          "radiusKm": null
+        },
+        "recommendations": [
+          {
+            "dishId": 1099,
+            "sourceCheckedAt": "2026-10-03T21:44:57.637Z",
+            "ownerVerified": false,
+            "dishName": "Masala Paniyaram",
+            "restaurant": "A Petal and Paniyaram",
+            "price": 130,
+            "vegetarian": true,
+            "address": "Shop No. 24/25 & 26/27, Ekta Tripolis Lane, near Siddharth Nagar Bus Stand, Goregaon West, Mumbai 400104",
+            "city": "Mumbai",
+            "distanceKm": null,
+            "starConfirmed": true,
+            "popularityBasis": "signature",
+            "popularityVerified": false,
+            "starOrigin": "published_menu",
+            "starSourceUrl": "https://www.petalandpaniyaram.in/menu/",
+            "reason": "Restaurant-listed signature dish \u2014 based on its published menu. Listed as vegetarian at \u20b9130, within your \u20b9200 per-dish budget."
+          }
+        ],
+        "summary": "This listed menu dish matches your preferences. Confirm preparation, current availability and price with the restaurant."
+      },
+      "url": "https://www.suggestdish.com/api/ai-recommend?city=Mumbai&diet=vegetarian&budget=200",
+      "observed_on": "2026-10-10T07:32:44.279421+00:00",
+      "passed": true
+    },
+    {
+      "case": "nonveg_budget",
+      "http_status": 200,
+      "params": {
+        "city": "Jalna",
+        "diet": "nonvegetarian",
+        "budget": "300"
+      },
+      "response": {
+        "success": true,
+        "source": "gemini",
+        "preferences": {
+          "taste": "any",
+          "cuisine": "any",
+          "mood": "any",
+          "budget": 300,
+          "vegetarian": false,
+          "latitude": null,
+          "longitude": null,
+          "radiusKm": null
+        },
+        "recommendations": [
+          {
+            "dishId": 56,
+            "sourceCheckedAt": null,
+            "ownerVerified": false,
+            "dishName": "Chicken Curry",
+            "restaurant": "7 Spices",
+            "price": 180,
+            "vegetarian": false,
+            "address": "Railway Station Road, Opposite Jindal Capital, Nariman Nagar, Jalna, Maharashtra 431203",
+            "city": "Jalna",
+            "distanceKm": null,
+            "starConfirmed": false,
+            "popularityBasis": null,
+            "popularityVerified": false,
+            "starOrigin": null,
+            "starSourceUrl": null,
+            "reason": "Menu suggestion \u2014 star dish not yet confirmed. Listed as non-vegetarian at \u20b9180, within your \u20b9300 per-dish budget."
+          }
+        ],
+        "summary": "These menu dishes match the selected dietary and budget constraints. Preference keywords are matched to menu names; preparation, prices and availability should be confirmed with the restaurant."
+      },
+      "url": "https://www.suggestdish.com/api/ai-recommend?city=Jalna&diet=nonvegetarian&budget=300",
+      "observed_on": "2026-10-10T07:32:49.345928+00:00",
+      "passed": true
+    },
+    {
+      "case": "specific_sandwich",
+      "http_status": 200,
+      "params": {
+        "city": "Mumbai",
+        "diet": "vegetarian",
+        "budget": "200",
+        "customPreferences": "sandwich"
+      },
+      "response": {
+        "success": true,
+        "source": "gemini",
+        "preferences": {
+          "taste": "any",
+          "cuisine": "any",
+          "mood": "any",
+          "budget": 200,
+          "vegetarian": true,
+          "latitude": null,
+          "longitude": null,
+          "radiusKm": null
+        },
+        "recommendations": [
+          {
+            "dishId": 1481,
+            "sourceCheckedAt": null,
+            "ownerVerified": false,
+            "dishName": "Vegetable Sandwich",
+            "restaurant": "Thepla House by Tejal's Kitchen - Chandivali",
+            "price": 93,
+            "vegetarian": true,
+            "address": "Gala No 6, Haria Shree Guppy Industrial Estate, Saki Vihar Rd, Ganesh Nagar, Chandivali, Andheri East, Mumbai, Maharashtra 400072",
+            "city": "Mumbai",
+            "distanceKm": null,
+            "starConfirmed": false,
+            "popularityBasis": null,
+            "popularityVerified": false,
+            "starOrigin": null,
+            "starSourceUrl": null,
+            "reason": "Menu suggestion \u2014 star dish not yet confirmed. Listed as vegetarian at \u20b993, within your \u20b9200 per-dish budget. Your dish search terms occur in this menu item."
+          }
+        ],
+        "summary": "These menu dishes match the selected dietary and budget constraints. Preference keywords are matched to menu names; preparation, prices and availability should be confirmed with the restaurant."
+      },
+      "url": "https://www.suggestdish.com/api/ai-recommend?city=Mumbai&diet=vegetarian&budget=200&customPreferences=sandwich",
+      "observed_on": "2026-10-10T07:32:49.095690+00:00",
+      "passed": true
+    }
+  ],
+  "passed": 6,
+  "failed": 0,
+  "local_tests": {
+    "passed": 27,
+    "failed": 0
+  },
+  "database_mutations": false,
+  "remaining": [
+    "Mobile/desktop visual workflow and geolocation permission checks",
+    "Production radius/refinement and empty-result checks",
+    "Provider outage behavior is tested locally, not forced against live providers",
+    "Returned unconfirmed dishes still require provenance review; passing constraints does not verify menu facts"
+  ],
+  "task_status": "partially_verified"
+}

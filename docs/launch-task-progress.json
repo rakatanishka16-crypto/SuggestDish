@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated_on": "2026-10-10",
   "audited_main_commit": "3eead37402ebd31be5173174a5e448e478cfb842",
-  "next_task": 3,
+  "next_task": 6,
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -88,10 +88,13 @@
     {
       "number": 5,
       "title": "Verify customer recommendation journey",
-      "status": "not_started",
+      "status": "in_progress",
       "acceptance": "Diet/budget/dish/location and provider-error paths pass production checks.",
       "blockers": [],
-      "next_action": null
+      "next_action": "Complete browser/location/radius and no-results checks; keep unconfirmed menu provenance separate.",
+      "evidence": [
+        "docs/customer-production-checks-2026-10-10.json"
+      ]
     },
     {
       "number": 6,
@@ -238,6 +241,11 @@
       "date": "2026-10-10",
       "task": 3,
       "action": "Enumerated all Jalna directory pages, saved prioritised coordinate review queue and rechecked two official Mumbai dish/price observations. No database coordinates or timestamps changed."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 5,
+      "action": "Six live HTTP constraint checks passed, exercising Gemini and database fallback; 27 local tests passed. Browser verification remains pending."
     }
   ]
 }
