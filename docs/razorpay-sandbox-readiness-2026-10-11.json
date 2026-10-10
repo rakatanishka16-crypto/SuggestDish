@@ -1,0 +1,96 @@
+{
+  "checked_at": "2026-10-11T00:13:00+05:30",
+  "task": 12,
+  "status": "blocked_on_sandbox_prerequisites",
+  "scope": "Razorpay sandbox acceptance without real charges or fabricated business data",
+  "local_mock_evidence": {
+    "tests_passed": 17,
+    "tests_failed": 0,
+    "payment_schema_tests": 3,
+    "razorpay_control_tests": 14,
+    "covered": [
+      "Checkout fails closed without keys",
+      "Only an approved owner can create an order",
+      "Incorrect owner access code is rejected",
+      "Server fixes monthly amount at 49900 paise despite client input",
+      "Forged checkout signatures cannot activate a plan",
+      "Wrong gateway amount is rejected",
+      "Authorised but uncaptured payment stays pending",
+      "Captured test payment calls atomic database confirmation",
+      "Webhook HMAC uses the exact raw body",
+      "Refund confirmation requests plan revocation",
+      "Monthly and annual plan constants are exact",
+      "Founder pause blocks live checkout",
+      "Sandbox uses separate test-only credentials",
+      "Retry rejects mismatched gateway amount or currency"
+    ],
+    "limit": "Mocked tests validate code paths only. They are not Razorpay, webhook-delivery or Neon acceptance evidence."
+  },
+  "production_read_only_check": {
+    "endpoint": "/api/billing/config",
+    "status": 200,
+    "result": "available=false; mode=unconfigured"
+  },
+  "credential_presence_in_execution_environment": {
+    "RAZORPAY_TEST_ENABLED": false,
+    "RAZORPAY_TEST_KEY_ID": false,
+    "RAZORPAY_TEST_KEY_SECRET": false,
+    "RAZORPAY_TEST_WEBHOOK_SECRET": false,
+    "DATABASE_URL": false,
+    "note": "Presence only was checked; no secret value was retrieved or displayed."
+  },
+  "acceptance_cases": [
+    {
+      "case": "Correct monthly and annual amount",
+      "mocked": true,
+      "sandbox": false
+    },
+    {
+      "case": "Owner approval and access-code enforcement",
+      "mocked": true,
+      "sandbox": false
+    },
+    {
+      "case": "Captured payment verification",
+      "mocked": true,
+      "sandbox": false
+    },
+    {
+      "case": "Authorised/uncaptured pending flow",
+      "mocked": true,
+      "sandbox": false
+    },
+    {
+      "case": "Refresh/closed-checkout recovery",
+      "mocked": false,
+      "sandbox": false
+    },
+    {
+      "case": "Duplicate webhook database idempotency",
+      "mocked": false,
+      "sandbox": false
+    },
+    {
+      "case": "Processed refund deactivation",
+      "mocked": true,
+      "sandbox": false
+    },
+    {
+      "case": "Reused gateway-order amount/currency match",
+      "mocked": true,
+      "sandbox": false
+    }
+  ],
+  "blockers": [
+    "Task 11 has not confirmed the payment schema on the intended Neon database.",
+    "Dedicated Razorpay Test Mode credentials and webhook secret are not configured in the verified production environment.",
+    "No explicitly authorised approved business submission and private access code are available for the test.",
+    "Razorpay Test Mode webhook delivery has not been configured and observed."
+  ],
+  "production_mutations": 0,
+  "gateway_orders_created": 0,
+  "payments_attempted": 0,
+  "refunds_attempted": 0,
+  "safe_next_action": "After Task 11 reports schemaReady=true, configure the dedicated Razorpay test variables privately, use one founder-approved business test record, confirm /api/billing/config reports mode=test, and execute the eight acceptance cases in Razorpay Test Mode. Keep live credentials and charging disabled.",
+  "next_task": 13
+}
