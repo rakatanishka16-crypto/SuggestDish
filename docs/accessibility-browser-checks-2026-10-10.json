@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-10-10T07:51:25.896455+00:00",
-  "audited_commit": "db44174a50b241bb0c4fecfc52030db7fdfc74e0",
+  "checked_at": "2026-10-10T12:45:00+00:00",
+  "audited_commit": "ac25fe1526f4a1ef76ea7bfd1d35ae6a2b9541de",
   "url": "https://www.suggestdish.com/",
   "task": 6,
   "status": "partially_verified",
@@ -21,13 +21,16 @@
     {
       "id": "A11Y-001",
       "finding": "Primary aiResult, aiLoading and aiError lack a live region; after asynchronous keyboard submit the active element becomes the document body. Result announcement/focus must be fixed and verified.",
-      "status": "open"
+      "status": "implemented_locally",
+      "implementation": "Loading uses a polite atomic status region; results are labelled focusable regions; errors are atomic alerts; success, empty and error outcomes receive programmatic focus.",
+      "test_evidence": "28 focused tests passed, including recommendation-accessibility.test.js. Production verification pending deployment."
     }
   ],
   "static_observations": [
     "Responsive CSS breakpoints at 900px/600px; not a substitute for phone visual testing.",
     "Visible focus outline CSS exists.",
-    "City selection has role=status and aria-live=polite."
+    "City selection has role=status and aria-live=polite.",
+    "Async recommendation states now have explicit status, alert or labelled-region semantics and focus recovery."
   ],
   "not_tested": [
     "Actual phone viewport/touch/zoom",

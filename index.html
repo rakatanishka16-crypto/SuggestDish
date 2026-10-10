@@ -811,6 +811,9 @@
       <div
         id="aiLoading"
         class="card panel"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
         style="display:none; margin-top:16px;"
       >
         <strong>🤖 SuggestDish AI is thinking...</strong>
@@ -835,6 +838,9 @@
       <div
         id="aiResult"
         class="card panel"
+        role="region"
+        aria-labelledby="aiDishName"
+        tabindex="-1"
         style="display:none; margin-top:16px;"
       >
         <span class="badge" id="aiSourceBadge">
@@ -870,6 +876,9 @@
       <div
         id="aiError"
         class="card panel"
+        role="alert"
+        aria-atomic="true"
+        tabindex="-1"
         style="display:none; margin-top:16px;"
       >
         <strong id="aiStatusTitle">⚠️ Something went wrong</strong>
@@ -1950,7 +1959,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const budgetChoice = document.getElementById("aiBudget")?.value || "300";
         const budget = budgetChoice === "custom" ? document.getElementById("aiCustomBudget")?.value : budgetChoice;
-        if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0 || Number(budget) > 100000) { aiRecommendBtn.disabled = false; if (aiLoading) aiLoading.style.display = "none"; if (aiErrorText) aiErrorText.textContent = "Enter a maximum budget greater than ₹0 and no more than ₹100,000."; if (aiError) aiError.style.display = "block"; return; }
+        if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0 || Number(budget) > 100000) { aiRecommendBtn.disabled = false; if (aiLoading) aiLoading.style.display = "none"; if (aiErrorText) aiErrorText.textContent = "Enter a maximum budget greater than ₹0 and no more than ₹100,000."; if (aiError) { aiError.style.display = "block"; aiError.focus?.(); } return; }
 
         const diet = document.getElementById("aiDiet")?.value || "vegetarian";
         const vegetarian = diet === "vegetarian";
@@ -2101,7 +2110,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (aiStatusTitle) aiStatusTitle.textContent = "No matching dishes yet";
             if (aiErrorText) aiErrorText.textContent =
               data.summary || "No matching dishes were found.";
-            if (aiError) aiError.style.display = "block";
+            if (aiError) {
+              aiError.style.display = "block";
+              aiError.focus?.();
+            }
             return;
           }
 
@@ -2186,6 +2198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             aiResult.style.display =
               "block";
+            aiResult.focus?.();
           }
           const shownIds=recommendations.map(x=>x.dishId).filter(x=>Number.isSafeInteger(x)&&x>0).slice(0,3);
           if(shownIds.length)window.SuggestDishPrivacy?.record("recommendation_shown",shownIds);
@@ -2215,6 +2228,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             aiError.style.display =
               "block";
+            aiError.focus?.();
           }
 
 

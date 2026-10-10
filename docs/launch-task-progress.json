@@ -104,11 +104,11 @@
       "blockers": [
         "Phone viewport testing unavailable in the current documented browser control API."
       ],
-      "next_action": "Add accessible announcements and focus recovery for recommendation loading/results, then verify. Phone-size and screen-reader acceptance remain pending.",
+      "next_action": "Verify result focus and announcement semantics in production after deployment. Phone-size and screen-reader acceptance remain pending.",
       "evidence": [
         "docs/accessibility-browser-checks-2026-10-10.json"
       ],
-      "updated_at": "2026-10-10T07:51:25.896455+00:00"
+      "updated_at": "2026-10-10T12:45:00+00:00"
     },
     {
       "number": 7,
@@ -257,6 +257,11 @@
       "date": "2026-10-10",
       "task": 6,
       "action": "Verified real desktop keyboard city selection and recommendation; identified missing primary-result live announcement and focus loss after disabled submit. Mobile visual acceptance remains untested."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 6,
+      "action": "Implemented accessible loading/result/error semantics and focus recovery; 28 focused tests passed. Production verification pending deployment."
     }
   ]
 }
