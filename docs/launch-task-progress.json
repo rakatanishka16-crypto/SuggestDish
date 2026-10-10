@@ -68,10 +68,9 @@
       "status": "in_progress",
       "acceptance": "Branch references and unknown facts separated; uncertain duplicates held.",
       "blockers": [
-        "No local execution environment for runtime tests in this session.",
         "Full production eligibility and duplicate enumeration remain pending."
       ],
-      "next_action": "Test and fix DEDUP-001 missing-address matching; then obtain per-city candidate evidence and runtime eligibility breakdown.",
+      "next_action": "Obtain per-city candidate evidence and runtime eligibility breakdown; missing-address guard fixed and tested.",
       "evidence": [
         "docs/recommendation-readiness-audit-2026-10-10.json"
       ]
@@ -222,6 +221,11 @@
       "date": "2026-10-10",
       "task": 3,
       "action": "Completed static publication/recommendation-path audit; recorded missing-address matcher risk and priced-count limitations. Full runtime/data audit remains in progress."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 3,
+      "action": "Fixed missing-address exact matching; 5 regression cases and 19 relevant tests pass. Existing 224 acquisition identities and 7,943 source profiles remain stable."
     }
   ]
 }

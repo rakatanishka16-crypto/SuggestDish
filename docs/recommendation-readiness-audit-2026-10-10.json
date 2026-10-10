@@ -23,11 +23,13 @@
     {
       "id": "DEDUP-001",
       "severity": "medium",
-      "status": "static_risk_not_confirmed_record_corruption",
+      "status": "fixed_and_tested_locally",
       "file": "lib/acquisition-source-catalog.js",
       "finding": "Exact matching compares normalised brands and addresses without requiring either address to be nonempty. Two missing addresses normalise to the same empty string.",
       "implication": "Could incorrectly match same-brand outlets without addresses; actual affected records not yet enumerated.",
-      "next_action": "Require nonempty address identities for address matching, retain distinct source-URL matching, and test empty/ambiguous/exact cases before deployment."
+      "next_action": "Require nonempty address identities for address matching, retain distinct source-URL matching, and test empty/ambiguous/exact cases before deployment.",
+      "resolution": "Require nonempty normalized brand and address for exact address matches; retain distinct URL matches and hold ambiguous matches.",
+      "tests": "5 regression cases; 19 acquisition/catalog/directory tests pass."
     },
     {
       "id": "REC-003",
@@ -78,9 +80,13 @@
       "lib/dish-outlets.js",
       "lib/source-acquisition-import.js"
     ],
-    "runtime_tests_run": false,
+    "runtime_tests_run": true,
     "production_database_read": false,
-    "production_changes": false,
-    "limitation": "Local execution environment unavailable; Vercel protected-fetch connector previously denied alias access. No live eligibility or affected-record counts invented."
+    "production_changes": "Pending deployment verification",
+    "limitation": "Local execution environment unavailable; Vercel protected-fetch connector previously denied alias access. No live eligibility or affected-record counts invented.",
+    "test_results": {
+      "passed": 19,
+      "failed": 0
+    }
   }
 }
