@@ -68,11 +68,13 @@
       "status": "in_progress",
       "acceptance": "Branch references and unknown facts separated; uncertain duplicates held.",
       "blockers": [
-        "Full production eligibility and duplicate enumeration remain pending."
+        "No local DATABASE_URL configured for authorised row updates.",
+        "42 Jalna directory records need coordinates, including 8 missing addresses."
       ],
-      "next_action": "Read recommendation-coverage for Mumbai and Jalna; finish locality supply audit.",
+      "next_action": "Resolve 42 Jalna coordinate gaps with source evidence; prioritise menu-bearing outlets. Independently verify existing coordinates and remaining dish provenance.",
       "evidence": [
-        "docs/recommendation-readiness-audit-2026-10-10.json"
+        "docs/recommendation-readiness-audit-2026-10-10.json",
+        "docs/jalna-location-review-2026-10-10.json"
       ]
     },
     {
@@ -231,6 +233,11 @@
       "date": "2026-10-10",
       "task": 3,
       "action": "Added read-only candidate coverage with star-selection, finite nonnegative prices and coordinate presence; 27 endpoint/customer-flow tests passed before publishing."
+    },
+    {
+      "date": "2026-10-10",
+      "task": 3,
+      "action": "Enumerated all Jalna directory pages, saved prioritised coordinate review queue and rechecked two official Mumbai dish/price observations. No database coordinates or timestamps changed."
     }
   ]
 }
