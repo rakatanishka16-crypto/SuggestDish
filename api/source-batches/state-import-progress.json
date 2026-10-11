@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-10",
+  "updated_on": "2026-10-11",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -326,7 +326,65 @@
           ]
         }
       ],
-      "broad_source_pass_complete": false
+      "broad_source_pass_complete": false,
+      "latest_source_attempt": {
+        "run_id": "maharashtra-source-retry-2026-10-11",
+        "checked_on": "2026-10-11",
+        "timestamp": "2026-10-11T02:39:37.232993+00:00",
+        "state": "Maharashtra",
+        "cities_checked": [
+          "Nashik",
+          "Jalna leads",
+          "Chhatrapati Sambhajinagar boundary discovery"
+        ],
+        "new_outlets": 0,
+        "new_menus": 0,
+        "new_prices": 0,
+        "duplicates_found": 0,
+        "conflicts_found": 0,
+        "status": "retry_pending_no_records_published",
+        "checked_sources": [
+          {
+            "url": "https://moderncafenashik.com/robots.txt",
+            "status": "retry_pending",
+            "result": "HTTP 502"
+          },
+          {
+            "url": "https://inayatcafe.com/robots.txt",
+            "status": "retry_pending",
+            "result": "HTTP 502"
+          },
+          {
+            "url": "https://tusharmisal.com/robots.txt",
+            "status": "retry_pending",
+            "result": "HTTP 502"
+          },
+          {
+            "url": "https://overpass-api.de/api/interpreter",
+            "status": "retry_pending",
+            "result": "POST HTTP 406; bounded boundary-discovery GET HTTP 504"
+          },
+          {
+            "url": "https://overpass.kumi.systems/api/interpreter",
+            "status": "retry_pending",
+            "result": "HTTP 500"
+          },
+          {
+            "url": "https://rajputresturant.in/terms-and-conditions",
+            "status": "held_source_restriction",
+            "result": "Terms limit reuse; no outlet/menu content imported. Homepage city wording also differs from contact address locality."
+          }
+        ],
+        "next_action": "Retry licensed OSM administrative-boundary discovery for Chhatrapati Sambhajinagar; continue accessible official sources. Do not advance state until broad source pass is documented.",
+        "remaining_gaps": [
+          "Nashik official-source retries unresolved",
+          "Jalna independent official-source pass pending",
+          "Chhatrapati Sambhajinagar OSM boundary discovery incomplete",
+          "Street stalls, mall tenants, hotel restaurants and remaining franchise branches still partial"
+        ],
+        "complete_city_census": false,
+        "complete_state_census": false
+      }
     },
     {
       "state": "Karnataka",
@@ -737,5 +795,123 @@
         "date": "2026-10-10"
       }
     ]
+  },
+  "collection_run_history": [
+    {
+      "run_id": "maharashtra-source-retry-2026-10-11",
+      "checked_on": "2026-10-11",
+      "timestamp": "2026-10-11T02:39:37.232993+00:00",
+      "state": "Maharashtra",
+      "cities_checked": [
+        "Nashik",
+        "Jalna leads",
+        "Chhatrapati Sambhajinagar boundary discovery"
+      ],
+      "new_outlets": 0,
+      "new_menus": 0,
+      "new_prices": 0,
+      "duplicates_found": 0,
+      "conflicts_found": 0,
+      "status": "retry_pending_no_records_published",
+      "checked_sources": [
+        {
+          "url": "https://moderncafenashik.com/robots.txt",
+          "status": "retry_pending",
+          "result": "HTTP 502"
+        },
+        {
+          "url": "https://inayatcafe.com/robots.txt",
+          "status": "retry_pending",
+          "result": "HTTP 502"
+        },
+        {
+          "url": "https://tusharmisal.com/robots.txt",
+          "status": "retry_pending",
+          "result": "HTTP 502"
+        },
+        {
+          "url": "https://overpass-api.de/api/interpreter",
+          "status": "retry_pending",
+          "result": "POST HTTP 406; bounded boundary-discovery GET HTTP 504"
+        },
+        {
+          "url": "https://overpass.kumi.systems/api/interpreter",
+          "status": "retry_pending",
+          "result": "HTTP 500"
+        },
+        {
+          "url": "https://rajputresturant.in/terms-and-conditions",
+          "status": "held_source_restriction",
+          "result": "Terms limit reuse; no outlet/menu content imported. Homepage city wording also differs from contact address locality."
+        }
+      ],
+      "next_action": "Retry licensed OSM administrative-boundary discovery for Chhatrapati Sambhajinagar; continue accessible official sources. Do not advance state until broad source pass is documented.",
+      "remaining_gaps": [
+        "Nashik official-source retries unresolved",
+        "Jalna independent official-source pass pending",
+        "Chhatrapati Sambhajinagar OSM boundary discovery incomplete",
+        "Street stalls, mall tenants, hotel restaurants and remaining franchise branches still partial"
+      ],
+      "complete_city_census": false,
+      "complete_state_census": false
+    }
+  ],
+  "last_collection_run": {
+    "run_id": "maharashtra-source-retry-2026-10-11",
+    "checked_on": "2026-10-11",
+    "timestamp": "2026-10-11T02:39:37.232993+00:00",
+    "state": "Maharashtra",
+    "cities_checked": [
+      "Nashik",
+      "Jalna leads",
+      "Chhatrapati Sambhajinagar boundary discovery"
+    ],
+    "new_outlets": 0,
+    "new_menus": 0,
+    "new_prices": 0,
+    "duplicates_found": 0,
+    "conflicts_found": 0,
+    "status": "retry_pending_no_records_published",
+    "checked_sources": [
+      {
+        "url": "https://moderncafenashik.com/robots.txt",
+        "status": "retry_pending",
+        "result": "HTTP 502"
+      },
+      {
+        "url": "https://inayatcafe.com/robots.txt",
+        "status": "retry_pending",
+        "result": "HTTP 502"
+      },
+      {
+        "url": "https://tusharmisal.com/robots.txt",
+        "status": "retry_pending",
+        "result": "HTTP 502"
+      },
+      {
+        "url": "https://overpass-api.de/api/interpreter",
+        "status": "retry_pending",
+        "result": "POST HTTP 406; bounded boundary-discovery GET HTTP 504"
+      },
+      {
+        "url": "https://overpass.kumi.systems/api/interpreter",
+        "status": "retry_pending",
+        "result": "HTTP 500"
+      },
+      {
+        "url": "https://rajputresturant.in/terms-and-conditions",
+        "status": "held_source_restriction",
+        "result": "Terms limit reuse; no outlet/menu content imported. Homepage city wording also differs from contact address locality."
+      }
+    ],
+    "next_action": "Retry licensed OSM administrative-boundary discovery for Chhatrapati Sambhajinagar; continue accessible official sources. Do not advance state until broad source pass is documented.",
+    "remaining_gaps": [
+      "Nashik official-source retries unresolved",
+      "Jalna independent official-source pass pending",
+      "Chhatrapati Sambhajinagar OSM boundary discovery incomplete",
+      "Street stalls, mall tenants, hotel restaurants and remaining franchise branches still partial"
+    ],
+    "complete_city_census": false,
+    "complete_state_census": false
   }
 }
