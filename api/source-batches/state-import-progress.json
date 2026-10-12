@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-11",
+  "updated_on": "2026-10-12",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -40,7 +40,8 @@
         "maharashtra-local-official-2026-10-08",
         "maharashtra-kolhapur-official-2026-10-08",
         "maharashtra-nashik-official-2026-10-08",
-        "mumbai-open-data-2026-10-09"
+        "mumbai-open-data-2026-10-09",
+        "chhatrapati-sambhajinagar-open-data-2026-10-12"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -796,6 +797,37 @@
       }
     ]
   },
+  "chhatrapati_sambhajinagar_osm_pass_2026_10_12": {
+    "batch_id": "chhatrapati-sambhajinagar-open-data-2026-10-12",
+    "checked_on": "2026-10-12",
+    "state": "Maharashtra",
+    "district": "Chhatrapati Sambhajinagar",
+    "city": "Chhatrapati Sambhajinagar",
+    "new_outlets": 50,
+    "new_menus": 0,
+    "new_prices": 0,
+    "input_records": 109,
+    "named_records": 87,
+    "held_records": 24,
+    "duplicate_candidates": 2,
+    "deferred_records": 33,
+    "conflicts_found": 0,
+    "status": "partially_covered",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "source_relation_id": 10344404,
+    "source_snapshot": "2026-10-12T03:18:32Z",
+    "source_license": "ODbL-1.0",
+    "directions_from_source_coordinates": 50,
+    "complete_city_census": false,
+    "complete_state_census": false,
+    "remaining_gaps": [
+      "33 named source records deferred to the next bounded batch",
+      "24 unnamed or place-name-like records held for review",
+      "2 likely cross-source duplicates held without merging",
+      "Menus, prices, operation, quality, licence validity and dietary preparation remain unconfirmed",
+      "Street vendors absent from OSM and other official/accessible sources remain pending"
+    ]
+  },
   "collection_run_history": [
     {
       "run_id": "maharashtra-source-retry-2026-10-11",
@@ -857,61 +889,34 @@
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-source-retry-2026-10-11",
-    "checked_on": "2026-10-11",
-    "timestamp": "2026-10-11T02:39:37.232993+00:00",
+    "run_id": "chhatrapati-sambhajinagar-open-data-2026-10-12",
+    "checked_on": "2026-10-12",
     "state": "Maharashtra",
-    "cities_checked": [
-      "Nashik",
-      "Jalna leads",
-      "Chhatrapati Sambhajinagar boundary discovery"
-    ],
-    "new_outlets": 0,
+    "district": "Chhatrapati Sambhajinagar",
+    "city": "Chhatrapati Sambhajinagar",
+    "new_outlets": 50,
     "new_menus": 0,
     "new_prices": 0,
-    "duplicates_found": 0,
+    "input_records": 109,
+    "named_records": 87,
+    "held_records": 24,
+    "duplicate_candidates": 2,
+    "deferred_records": 33,
     "conflicts_found": 0,
-    "status": "retry_pending_no_records_published",
-    "checked_sources": [
-      {
-        "url": "https://moderncafenashik.com/robots.txt",
-        "status": "retry_pending",
-        "result": "HTTP 502"
-      },
-      {
-        "url": "https://inayatcafe.com/robots.txt",
-        "status": "retry_pending",
-        "result": "HTTP 502"
-      },
-      {
-        "url": "https://tusharmisal.com/robots.txt",
-        "status": "retry_pending",
-        "result": "HTTP 502"
-      },
-      {
-        "url": "https://overpass-api.de/api/interpreter",
-        "status": "retry_pending",
-        "result": "POST HTTP 406; bounded boundary-discovery GET HTTP 504"
-      },
-      {
-        "url": "https://overpass.kumi.systems/api/interpreter",
-        "status": "retry_pending",
-        "result": "HTTP 500"
-      },
-      {
-        "url": "https://rajputresturant.in/terms-and-conditions",
-        "status": "held_source_restriction",
-        "result": "Terms limit reuse; no outlet/menu content imported. Homepage city wording also differs from contact address locality."
-      }
-    ],
-    "next_action": "Retry licensed OSM administrative-boundary discovery for Chhatrapati Sambhajinagar; continue accessible official sources. Do not advance state until broad source pass is documented.",
-    "remaining_gaps": [
-      "Nashik official-source retries unresolved",
-      "Jalna independent official-source pass pending",
-      "Chhatrapati Sambhajinagar OSM boundary discovery incomplete",
-      "Street stalls, mall tenants, hotel restaurants and remaining franchise branches still partial"
-    ],
+    "status": "partially_covered",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "source_relation_id": 10344404,
+    "source_snapshot": "2026-10-12T03:18:32Z",
+    "source_license": "ODbL-1.0",
+    "directions_from_source_coordinates": 50,
     "complete_city_census": false,
-    "complete_state_census": false
+    "complete_state_census": false,
+    "remaining_gaps": [
+      "33 named source records deferred to the next bounded batch",
+      "24 unnamed or place-name-like records held for review",
+      "2 likely cross-source duplicates held without merging",
+      "Menus, prices, operation, quality, licence validity and dietary preparation remain unconfirmed",
+      "Street vendors absent from OSM and other official/accessible sources remain pending"
+    ]
   }
 }

@@ -30,3 +30,25 @@ test('state queue keeps Maharashtra incomplete and Chennai within Tamil Nadu',()
  assert.equal(result.complete_state_census,false);assert.equal(result.states[0].status,'in_progress');
  assert.ok(result.states.find(s=>s.state==='Tamil Nadu').city_priority.includes('Chennai'));
 });
+
+test('Chhatrapati Sambhajinagar open-data batch keeps source facts and uncertain records separate',()=>{
+ const cityBatch=JSON.parse(zlib.gunzipSync(fs.readFileSync(require('node:path').join(__dirname,'../api/source-batches/chhatrapati-sambhajinagar-open-data-2026-10-12.json.gz'))));
+ assert.equal(cityBatch.businesses.length,50);
+ assert.equal(cityBatch.menu_items.length,0);
+ assert.equal(cityBatch.complete_city_census,false);
+ assert.equal(cityBatch.duplicate_candidates.length,2);
+ assert.equal(cityBatch.deferred_source_ids.length,33);
+ assert.equal(new Set(cityBatch.businesses.map(b=>b.sourceKey)).size,50);
+ for(const b of cityBatch.businesses){
+  assert.equal(b.city,'Chhatrapati Sambhajinagar');
+  assert.equal(b.state,'Maharashtra');
+  assert.equal(b.source_license,'ODbL-1.0');
+  assert.equal(b.verification_status,'source_observed');
+  assert.equal(b.operating_status,null);
+  assert.equal(b.restaurant_rating,null);
+  assert.equal(b.review_count,null);
+  assert.equal(b.recommendation_eligible,false);
+  assert.ok(Number.isFinite(b.latitude)&&Number.isFinite(b.longitude));
+  assert.match(b.directions_url,/^https:\/\/www\.openstreetmap\.org\/directions\?/);
+ }
+});
