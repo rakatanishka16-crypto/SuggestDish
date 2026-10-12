@@ -50,41 +50,42 @@
         "maharashtra-mall-menu-followup-5-2026-10-13",
         "maharashtra-mall-menu-followup-6-2026-10-13",
         "maharashtra-mall-menu-followup-7-2026-10-13",
-        "maharashtra-mall-menu-followup-8-2026-10-13"
+        "maharashtra-mall-menu-followup-8-2026-10-13",
+        "maharashtra-mall-menu-followup-9-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 76,
-        "outlet_menus_observed": 50,
+        "checked_records": 77,
+        "outlet_menus_observed": 51,
         "new_outlet_rows": 0,
-        "menu_entries": 4363,
-        "published_prices": 1461,
+        "menu_entries": 4364,
+        "published_prices": 1462,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 21
+        "pending_branch_menus": 20
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-8-2026-10-13",
+        "batch_id": "maharashtra-mall-menu-followup-9-2026-10-13",
         "date": "2026-10-13",
-        "districts": ["Thane"],
-        "cities": ["Navi Mumbai"],
-        "localities": ["Sector 30A, Vashi"],
+        "districts": ["Pune"],
+        "cities": ["Pune"],
+        "localities": ["Amanora Park Township, Hadapsar"],
         "new_outlets": 0,
-        "new_menus": 53,
-        "new_prices": 0,
+        "new_menus": 1,
+        "new_prices": 1,
         "recommendation_eligible_items": 0,
         "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
-          "The official branch menu lists 53 items but publishes no explicit item prices in the observed text.",
-          "21 mall branch targets still lack an observed branch menu.",
-          "Navi Mumbai and Maharashtra remain only partially covered."
+          "The official exact-branch menu page displays a two-Regular-Pizza offer at ₹99 each; dietary type, checkout price and current availability remain unconfirmed.",
+          "20 mall branch targets still lack an observed branch menu.",
+          "Pune and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.dominos.co.in/store-location/navi-mumbai/inorbit-mall-vashi-mumbai/menu",
-            "result": "Official branch menu identifies the exact Inorbit Vashi outlet and lists 53 dishes without explicit item prices",
+            "url": "https://www.dominos.co.in/store-location/pune/amanora-mall/menu",
+            "result": "Official exact-branch menu page displays the two-Regular-Pizza offer at ₹99 each",
             "date": "2026-10-13"
           }
         ]
@@ -1101,34 +1102,54 @@
       "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue.",
       "complete_city_census": false,
       "complete_state_census": false
+    },
+    {
+      "run_id": "maharashtra-mall-menu-followup-9-2026-10-13",
+      "checked_on": "2026-10-13",
+      "state": "Maharashtra",
+      "cities_checked": ["Pune"],
+      "localities_checked": ["Amanora Park Township, Hadapsar"],
+      "new_outlets": 0,
+      "new_menus": 1,
+      "new_prices": 1,
+      "recommendation_eligible_items": 0,
+      "duplicates_found": 0,
+      "conflicts_found": 0,
+      "status": "official_branch_menu_offer_enriched",
+      "checked_sources": [
+        {"url":"https://www.dominos.co.in/store-location/pune/amanora-mall/menu","status":"official_branch_menu_offer_observed","result":"2 Regular Pizzas at ₹99 each; dietary type, final checkout price and current availability unconfirmed"}
+      ],
+      "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue; keep unconfirmed offers ineligible for recommendations.",
+      "complete_city_census": false,
+      "complete_state_census": false
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-8-2026-10-13",
+    "run_id": "maharashtra-mall-menu-followup-9-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Thane"],
-    "cities": ["Navi Mumbai"],
-    "localities": ["Sector 30A, Vashi"],
+    "districts": ["Pune"],
+    "cities": ["Pune"],
+    "localities": ["Amanora Park Township, Hadapsar"],
     "new_outlets": 0,
-    "new_menus": 53,
-    "new_prices": 0,
+    "new_menus": 1,
+    "new_prices": 1,
     "recommendation_eligible_items": 0,
     "duplicate_candidates": 0,
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://www.dominos.co.in/store-location/navi-mumbai/inorbit-mall-vashi-mumbai/menu"
+      "https://www.dominos.co.in/store-location/pune/amanora-mall/menu"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "The exact branch menu lists 53 items but no explicit item prices were present in the observed text",
-      "21 mall branch targets still lack an observed branch menu",
+      "The exact branch menu page displays a two-Regular-Pizza offer at ₹99 each, but final checkout price and current availability are unconfirmed",
+      "20 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
-      "Navi Mumbai and Maharashtra remain only partially covered"
+      "Pune and Maharashtra remain only partially covered"
     ]
   }
 }

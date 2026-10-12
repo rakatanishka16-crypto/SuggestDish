@@ -97,3 +97,11 @@ test('Dominos Inorbit Vashi menu remains attached only to its exact branch',()=>
  assert.ok(menu.menuItems.some(m=>m.name==='GARLIC BREADSTICKS'&&m.is_veg===null));
  for(const item of menu.menuItems){assert.equal(item.price_inr,null);assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
 });
+test('Dominos Amanora Mall offer remains branch-scoped and non-recommendable',()=>{
+ const sourceKey='official:sd-food-a6fd30b4929fa5097139';
+ const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);
+ const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);
+ const item=menu.menuItems[0];assert.equal(item.name,'2 Regular Pizzas');assert.equal(item.portion,'2 regular pizzas; ₹99 each');assert.equal(item.price_inr,99);
+ assert.equal(item.is_veg,null);assert.equal(item.branch_availability,'official_branch_menu_offer_observed');assert.equal(item.source_business_id,sourceKey);
+ assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);
+});
