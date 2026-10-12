@@ -88,3 +88,12 @@ test('Dominos Phoenix Marketcity offer remains branch-scoped and non-recommendab
  assert.equal(item.is_veg,null);assert.equal(item.branch_availability,'official_branch_menu_offer_observed');assert.equal(item.source_business_id,sourceKey);
  assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);
 });
+test('Dominos Inorbit Vashi menu remains attached only to its exact branch',()=>{
+ const sourceKey='official:sd-food-edbfc77c66961c46673c';
+ const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);
+ const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,53);
+ assert.ok(menu.menuItems.some(m=>m.name==='Veg Extravaganza'&&m.is_veg===true));
+ assert.ok(menu.menuItems.some(m=>m.name==='Chicken Dominator'&&m.is_veg===false));
+ assert.ok(menu.menuItems.some(m=>m.name==='GARLIC BREADSTICKS'&&m.is_veg===null));
+ for(const item of menu.menuItems){assert.equal(item.price_inr,null);assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
+});
