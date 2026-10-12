@@ -50,5 +50,12 @@
     "api/index.js": {
       "includeFiles": "api/source-batches/*.json.gz"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/lib/:path*",
+      "destination": "/404.html",
+      "permanent": false
+    }
+  ]
 }
