@@ -52,3 +52,22 @@ test('Chhatrapati Sambhajinagar open-data batch keeps source facts and uncertain
   assert.match(b.directions_url,/^https:\/\/www\.openstreetmap\.org\/directions\?/);
  }
 });
+
+test('deferred Sambhajinagar follow-up publishes unique identities and holds an uncertain chain match',()=>{
+ const followup=JSON.parse(zlib.gunzipSync(fs.readFileSync(require('node:path').join(__dirname,'../api/source-batches/chhatrapati-sambhajinagar-deferred-2026-10-12.json.gz'))));
+ assert.equal(followup.businesses.length,32);
+ assert.equal(followup.menu_items.length,0);
+ assert.equal(followup.held_records.length,0);
+ assert.equal(followup.duplicate_candidates.length,1);
+ assert.equal(followup.duplicate_candidates[0].source_id,'node/14089978918');
+ assert.equal(followup.duplicate_candidates[0].automatic_merge,false);
+ assert.equal(followup.deferred_source_ids.length,0);
+ assert.equal(new Set(followup.businesses.map(b=>b.sourceKey)).size,32);
+ assert.ok(!followup.businesses.some(b=>b.source_id==='node/14089978918'));
+ for(const b of followup.businesses){
+  assert.equal(b.source_license,'ODbL-1.0');
+  assert.equal(b.operating_status,null);
+  assert.equal(b.recommendation_eligible,false);
+  assert.ok(Number.isFinite(b.latitude)&&Number.isFinite(b.longitude));
+ }
+});

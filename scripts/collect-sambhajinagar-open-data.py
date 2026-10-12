@@ -32,6 +32,7 @@ def main():
     parser.add_argument("--existing", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--limit", type=int, default=50)
+    parser.add_argument("--batch-id", default="chhatrapati-sambhajinagar-open-data-2026-10-12")
     args = parser.parse_args()
 
     raw = json.loads(Path(args.raw).read_text())
@@ -68,11 +69,19 @@ def main():
         matches = []
         for row in city_existing:
             meters = distance_m(lat, lon, row.get("latitude"), row.get("longitude"))
+            source_name = normalize(name)
+            candidate_names = [normalize(row.get(key)) for key in ("name", "brand") if normalize(row.get(key))]
             similarity = max(
-                difflib.SequenceMatcher(None, normalize(name), normalize(row.get(key)), autojunk=False).ratio()
-                for key in ("name", "brand")
+                (difflib.SequenceMatcher(None, source_name, candidate, autojunk=False).ratio()
+                 for candidate in candidate_names),
+                default=0,
             )
-            if meters <= 100 and similarity >= 0.88:
+            expanded_same_name = any(
+                len(min((source_name, candidate), key=len)) >= 5
+                and (source_name.startswith(candidate + " ") or candidate.startswith(source_name + " "))
+                for candidate in candidate_names
+            )
+            if meters <= 100 and (similarity >= 0.88 or expanded_same_name):
                 matches.append({"profile_id": row["id"], "distance_m": round(meters, 1), "similarity": round(similarity, 3)})
         if matches:
             duplicates.append({"source_id": source_id, "candidate_profiles": matches, "automatic_merge": False})
@@ -132,7 +141,7 @@ def main():
         })
 
     output = {
-        "batch_id": "chhatrapati-sambhajinagar-open-data-2026-10-12",
+        "batch_id": args.batch_id,
         "retrieved_on": raw["retrieved_on"][:10],
         "businesses": businesses,
         "menu_items": [],

@@ -42,6 +42,7 @@
         "maharashtra-nashik-official-2026-10-08",
         "mumbai-open-data-2026-10-09",
         "chhatrapati-sambhajinagar-open-data-2026-10-12",
+        "chhatrapati-sambhajinagar-deferred-2026-10-12",
         "maharashtra-mall-menu-followup-2026-10-12",
         "maharashtra-mall-menu-followup-2-2026-10-12"
       ],
@@ -916,32 +917,57 @@
       "next_action": "Continue Mumbai/Jalna branch-menu gaps, then remaining mall queue; do not treat dated promotions as current recommendation eligibility.",
       "complete_city_census": false,
       "complete_state_census": false
+    },
+    {
+      "run_id": "chhatrapati-sambhajinagar-deferred-2026-10-12",
+      "checked_on": "2026-10-12",
+      "state": "Maharashtra",
+      "cities_checked": [
+        "Chhatrapati Sambhajinagar"
+      ],
+      "new_outlets": 32,
+      "new_menus": 0,
+      "new_prices": 0,
+      "recommendation_eligible_items": 0,
+      "duplicates_found": 1,
+      "conflicts_found": 0,
+      "status": "deferred_open_data_batch_published",
+      "checked_sources": [
+        {
+          "url": "https://api.openstreetmap.org/api/0.6/",
+          "status": "exact_deferred_id_pass",
+          "result": "33 deferred OSM identities checked; 32 published and one probable cross-source Domino's duplicate held without merging"
+        }
+      ],
+      "next_action": "Continue Jalna official/menu gaps and the remaining mall branch-menu queue; review held Sambhajinagar records without auto-merging uncertain identities.",
+      "complete_city_census": false,
+      "complete_state_census": false
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-2-2026-10-12",
+    "run_id": "chhatrapati-sambhajinagar-deferred-2026-10-12",
     "checked_on": "2026-10-12",
     "state": "Maharashtra",
-    "district": "Thane",
-    "city": "Thane",
-    "locality": "Shahid Mangal Pandey Road",
-    "new_outlets": 0,
-    "new_menus": 1,
-    "new_prices": 1,
+    "district": "Chhatrapati Sambhajinagar",
+    "city": "Chhatrapati Sambhajinagar",
+    "new_outlets": 32,
+    "new_menus": 0,
+    "new_prices": 0,
     "recommendation_eligible_items": 0,
-    "duplicate_candidates": 0,
+    "duplicate_candidates": 1,
     "conflicts_found": 0,
-    "status": "dated_branch_promotion_enriched",
-    "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-shahid-mangal-pandey-road-thane-179357/Home",
+    "status": "deferred_open_data_batch_published",
+    "source_url": "https://api.openstreetmap.org/api/0.6/",
+    "directions_from_source_coordinates": 32,
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "The ₹139 price is dated promotional evidence, not a current-price guarantee",
+      "24 unnamed or place-name-like Sambhajinagar records remain held for review",
+      "Three Sambhajinagar duplicate candidates are held across the two batches and have not been auto-merged",
       "32 mall branch targets still lack an observed branch menu",
-      "33 named Sambhajinagar source records remain deferred; queues overlap and are not summed",
       "Jalna official-source and branch-menu gaps remain",
-      "Thane and Maharashtra remain only partially covered"
+      "Sambhajinagar and Maharashtra remain only partially covered"
     ]
   }
 }
