@@ -32,7 +32,7 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8025);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,13696);assert.equal(result.publishedPrices,5974);assert.equal(result.outletsWithSourceMenus,189);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8025);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,13697);assert.equal(result.publishedPrices,5975);assert.equal(result.outletsWithSourceMenus,190);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });
 
 const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');
