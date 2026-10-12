@@ -23,6 +23,7 @@ require("../lib/business-stars")(app, sql);
 const { label: starEvidenceLabel } = require("../lib/star-evidence");
 require("../lib/business-review")(app, sql);
 require("../lib/razorpay-payments")(app, sql);
+require("../lib/featured-dishes")(app, sql);
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
