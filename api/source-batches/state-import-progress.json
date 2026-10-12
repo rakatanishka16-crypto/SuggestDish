@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-12",
+  "updated_on": "2026-10-13",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -46,52 +46,48 @@
         "maharashtra-mall-menu-followup-2026-10-12",
         "maharashtra-mall-menu-followup-2-2026-10-12",
         "maharashtra-mall-menu-followup-3-2026-10-12",
-        "maharashtra-mall-menu-followup-4-2026-10-12"
+        "maharashtra-mall-menu-followup-4-2026-10-12",
+        "maharashtra-mall-menu-followup-5-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 70,
-        "outlet_menus_observed": 44,
+        "checked_records": 72,
+        "outlet_menus_observed": 46,
         "new_outlet_rows": 0,
-        "menu_entries": 4305,
-        "published_prices": 1456,
+        "menu_entries": 4307,
+        "published_prices": 1458,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 27
+        "pending_branch_menus": 25
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-4-2026-10-12",
-        "date": "2026-10-12",
-        "districts": ["Chhatrapati Sambhajinagar", "Thane", "Navi Mumbai"],
-        "cities": ["Chhatrapati Sambhajinagar", "Thane", "Navi Mumbai"],
-        "localities": ["Chikalthana", "Subhash Nagar", "Sector 30A, Vashi"],
+        "batch_id": "maharashtra-mall-menu-followup-5-2026-10-13",
+        "date": "2026-10-13",
+        "districts": ["Amravati", "Pune"],
+        "cities": ["Amravati", "Pune"],
+        "localities": ["Saturna", "Magarpatta"],
         "new_outlets": 0,
-        "new_menus": 3,
-        "new_prices": 3,
+        "new_menus": 2,
+        "new_prices": 2,
         "recommendation_eligible_items": 0,
         "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
           "The ₹79 prices are dated promotional evidence, not current-price guarantees.",
-          "27 mall branch targets still lack an observed branch menu.",
-          "Chhatrapati Sambhajinagar, Thane, Navi Mumbai and Maharashtra remain only partially covered."
+          "25 mall branch targets still lack an observed branch menu.",
+          "Amravati, Pune and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-chikalthana-aurangabad-179369/Home",
+            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-saturna-amravati-270114/Home",
             "result": "One dated two-burger promotion with a displayed price on the official branch page",
-            "date": "2026-10-12"
+            "date": "2026-10-13"
           },
           {
-            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-subhash-nagar-thane-179292/Home",
+            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-magarpatta-pune-179378/Home",
             "result": "One dated two-burger promotion with a displayed price on the official branch page",
-            "date": "2026-10-12"
-          },
-          {
-            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-sector-30a-vashi-navi-mumbai-179350/Home",
-            "result": "One dated two-burger promotion with a displayed price on the official branch page",
-            "date": "2026-10-12"
+            "date": "2026-10-13"
           }
         ]
       },
@@ -1017,36 +1013,64 @@
       "next_action": "Continue Mumbai/Jalna recommendation-ready menu gaps and the remaining mall branch-menu queue; dated promotions remain ineligible for recommendations.",
       "complete_city_census": false,
       "complete_state_census": false
+    },
+    {
+      "run_id": "maharashtra-mall-menu-followup-5-2026-10-13",
+      "checked_on": "2026-10-13",
+      "state": "Maharashtra",
+      "cities_checked": ["Amravati", "Pune"],
+      "localities_checked": ["Saturna", "Magarpatta"],
+      "new_outlets": 0,
+      "new_menus": 2,
+      "new_prices": 2,
+      "recommendation_eligible_items": 0,
+      "duplicates_found": 0,
+      "conflicts_found": 0,
+      "status": "dated_branch_promotions_enriched",
+      "checked_sources": [
+        {
+          "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-saturna-amravati-270114/Home",
+          "status": "dated_outlet_promotion_observed",
+          "result": "2 Crispy Veg Burgers for ₹79, posted 2026-10-07"
+        },
+        {
+          "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-magarpatta-pune-179378/Home",
+          "status": "dated_outlet_promotion_observed",
+          "result": "2 Crispy Veg Burgers for ₹79, posted 2026-10-07"
+        }
+      ],
+      "next_action": "Continue Mumbai/Jalna recommendation-ready menu gaps and the remaining mall branch-menu queue; dated promotions remain ineligible for recommendations.",
+      "complete_city_census": false,
+      "complete_state_census": false
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-4-2026-10-12",
-    "checked_on": "2026-10-12",
+    "run_id": "maharashtra-mall-menu-followup-5-2026-10-13",
+    "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Chhatrapati Sambhajinagar", "Thane", "Navi Mumbai"],
-    "cities": ["Chhatrapati Sambhajinagar", "Thane", "Navi Mumbai"],
-    "localities": ["Chikalthana", "Subhash Nagar", "Sector 30A, Vashi"],
+    "districts": ["Amravati", "Pune"],
+    "cities": ["Amravati", "Pune"],
+    "localities": ["Saturna", "Magarpatta"],
     "new_outlets": 0,
-    "new_menus": 3,
-    "new_prices": 3,
+    "new_menus": 2,
+    "new_prices": 2,
     "recommendation_eligible_items": 0,
     "duplicate_candidates": 0,
     "conflicts_found": 0,
     "status": "dated_branch_promotions_enriched",
     "source_urls": [
-      "https://stores.burgerking.in/burger-king-fast-food-restaurant-chikalthana-aurangabad-179369/Home",
-      "https://stores.burgerking.in/burger-king-fast-food-restaurant-subhash-nagar-thane-179292/Home",
-      "https://stores.burgerking.in/burger-king-fast-food-restaurant-sector-30a-vashi-navi-mumbai-179350/Home"
+      "https://stores.burgerking.in/burger-king-fast-food-restaurant-saturna-amravati-270114/Home",
+      "https://stores.burgerking.in/burger-king-fast-food-restaurant-magarpatta-pune-179378/Home"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
       "The ₹79 prices are dated promotional evidence, not current-price guarantees",
-      "27 mall branch targets still lack an observed branch menu",
+      "25 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
-      "Chhatrapati Sambhajinagar, Thane, Navi Mumbai and Maharashtra remain only partially covered"
+      "Amravati, Pune and Maharashtra remain only partially covered"
     ]
   }
 }
