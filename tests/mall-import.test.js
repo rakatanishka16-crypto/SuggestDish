@@ -25,3 +25,11 @@ test('mall products keep published prices, unknown dietary markers and precise p
  assert.ok(batch.research_scope.source_checks.some(r=>r.brand==="Haldiram's" && r.status==='pending'));
  assert.ok(!batch.menu_associations.some(p=>p.brand==='Burger King' || p.brand==="Domino's Pizza"));
 });
+test('Burger King Kurla promotions remain branch-scoped and non-recommendable',()=>{
+ const sourceKey='official:sd-food-e66d16b463fe11b57fe7';
+ const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);
+ const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,2);
+ assert.deepEqual(menu.menuItems.map(m=>[m.name,m.price_inr]),[['Crispy Veg Meal',99],['Veg Whopper Deluxe Meal',149]]);
+ for(const item of menu.menuItems){assert.equal(item.source_business_id,sourceKey);assert.equal(item.is_veg,true);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
+ const other=chains.businesses.find(b=>b.brand==='Burger King'&&b.sourceKey!==sourceKey);assert.ok(other);assert.notEqual(other.outlet_menu_set_id,branch.outlet_menu_set_id);
+});
