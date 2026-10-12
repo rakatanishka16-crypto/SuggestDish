@@ -1,53 +1,61 @@
-# Razorpay connection
+# Razorpay Standard Checkout in SuggestDish
 
-The website integration is implemented, but no Razorpay account is connected until its API credentials are saved in Vercel. Never put key secrets in index.html, GitHub, or chat. Bank account details belong in Razorpay only. Razorpay settles captured payments to the linked settlement account according to the account's schedule and fees.
+## Existing integration
 
-## Vercel
+SuggestDish uses Node.js/Express with CommonJS, an HTML/JavaScript frontend, Neon PostgreSQL, and Vercel. The existing integration calls Razorpay's REST API with native fetch; no additional Razorpay SDK is required.
 
-Open the project serving www.suggestdish.com (suggest-dish) → Settings → Environment Variables. Save these server-side values for Production:
+- POST /api/billing/orders: creates a server-priced order for an approved business.
+- POST /api/billing/verify: validates the returned order ID, payment ID and HMAC-SHA256 signature using the stored order ID; fetches the payment to check amount, INR currency, merchant key and captured state.
+- POST /api/billing/status: reconciles interrupted confirmations.
+- POST /api/razorpay-webhook: verifies the signature over the exact raw request body and reconciles payment/refund events.
+- GET /api/billing/config: reports availability and test/live mode without exposing secrets.
 
-| Variable | Value |
+index.html already loads https://checkout.razorpay.com/v1/checkout.js on demand, opens the checkout modal with the server's order ID, sends all three returned proof fields to verification, and handles dismissal and payment.failed.
+
+Monthly: 49900 paise (₹499), capacity 3 dishes for one calendar month. Annual: 499900 paise (₹4,999), capacity 2 dishes for one calendar year. These are existing prices, not a new pricing decision. Amounts come from the server; client amounts are ignored. Each purchase is for a single period, with no automatic renewal.
+
+## Local setup — VS Code
+
+1. Open the actual SuggestDish project folder in VS Code.
+2. In VS Code's integrated Terminal, run npm install to install the project's existing dependencies.
+3. Copy .env.example to .env. Enter the correct private values in the .env editor, not an AI chat. Existing .env values should be retained; do not overwrite an existing file with the template.
+4. Local startup needs DATABASE_URL and GEMINI_API_KEY. Use a separate test database for payment testing.
+5. Set all four RAZORPAY_TEST_* variables, including RAZORPAY_TEST_ENABLED=true, only in the intended test environment.
+6. Run node scripts/check-payment-readiness.js. This reads database schema metadata without applying migrations or creating orders.
+7. Run npm start. Open http://localhost:3000 in a browser.
+8. Run node --test tests/razorpay-payments.test.js tests/payment-readiness.test.js for mocked API and readiness regression tests.
+
+.env and .env.* are ignored by Git; .env.example contains blank secrets and is deliberately tracked. Never copy credentials into index.html or frontend JavaScript. This project does not need NEXT_PUBLIC_, VITE_ or REACT_APP_ variables.
+
+## Hosted test setup — Vercel and Razorpay
+
+In Vercel → the project serving suggestdish.com → Settings → Environment Variables, save the following for the intended Preview deployment:
+
+| Name | Value |
 |---|---|
-| RAZORPAY_KEY_ID | Your account's API Key ID |
-| RAZORPAY_KEY_SECRET | Matching API Key Secret |
-| RAZORPAY_WEBHOOK_SECRET | A strong private secret matching the webhook configuration |
-| RAZORPAY_ENABLED | true |
+| RAZORPAY_TEST_ENABLED | true |
+| RAZORPAY_TEST_KEY_ID | Your Razorpay Test Mode key ID starting rzp_test_ |
+| RAZORPAY_TEST_KEY_SECRET | The matching Test Mode secret |
+| RAZORPAY_TEST_WEBHOOK_SECRET | A private webhook secret you choose |
 
-Use Test Mode credentials for an end-to-end test first. Test payments are explicitly labelled and do not enable live benefits. After testing, replace the Key ID and Key Secret with Live Mode credentials from the activated account, configure the live webhook, and redeploy. Set RAZORPAY_ENABLED=false to pause new checkout.
+Preview also needs its own DATABASE_URL and Gemini configuration. Do not copy the production database into Preview just to make a test pass. Verify which database the preview uses before preparing payment records.
 
-## Razorpay dashboard (complete these steps yourself)
+Redeploy the intended preview after changing variables. Its /api/billing/config should report available:true and mode:test. This confirms configuration presence and format only; it does not establish valid gateway credentials or database readiness.
 
-Account & Settings → API Keys: select Test Mode or Live Mode as appropriate and use the matching API keys. Keep the Key Secret private; paste it directly into Vercel's environment settings.
+In Razorpay Dashboard → Test Mode → Account & Settings → Webhooks, append /api/razorpay-webhook to the actual reachable HTTPS test deployment URL. Use the same test webhook secret and subscribe to payment.captured, order.paid and refund.processed. Deployment protection may prevent webhook delivery: have the developer establish an appropriate test endpoint before saving the webhook. Configure automatic capture.
 
-Account & Settings → Webhooks: configure this HTTPS URL:
+An approved authorised business submission and its private access code are required to open checkout. Missing references, secrets, database prerequisites or webhook reachability must be resolved before an actual test payment.
 
-https://www.suggestdish.com/api/razorpay-webhook
+## Acceptance checks
 
-Use the same private webhook secret as RAZORPAY_WEBHOOK_SECRET. Subscribe to payment.captured, order.paid, and refund.processed. Configure automatic payment capture; authorised but uncaptured payments do not activate a plan. Confirm the settlement bank account and account activation in Razorpay. Do not send a bank account number to SuggestDish.
+Test the checkout modal, cancellation, failure, captured payment, authorised-but-uncaptured payment, mismatched signature, amount/currency tampering, duplicate webhook delivery and refund handling. Verify duplicate/refund behavior against the real test database, not only mocked SQL. Test payments must not activate production dish allowances.
 
-Redeploy from Vercel → Deployments → latest production deployment → Redeploy after changing environment variables. Changing settings alone does not update an existing deployment.
+## Live activation remains a separate step
 
-## Checkout and review
+The server currently registers the payment module with paymentsPaused=true by default. Setting RAZORPAY_ENABLED=true alone does not enable live checkout. A reviewed code change to the server registration is required after sandbox acceptance, merchant activation and commercial-policy checks.
 
-Submit the business listing first and save its reference and private access code. The code is issued once and stored only as a SHA256 hash in Neon. The website keeps it in sessionStorage for the current browser session; owners must save it privately for later use.
+Live mode then uses RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET and RAZORPAY_ENABLED=true, with RAZORPAY_TEST_ENABLED=false. Configure the live webhook for https://www.suggestdish.com/api/razorpay-webhook and redeploy. Setting RAZORPAY_ENABLED=false pauses new live checkout after redeployment.
 
-A reviewer approves the business with the existing review process. Owners then open /#business-checkout and use their reference and access code to purchase the monthly or annual plan. Payments never approve an unverified business. There are no recurring mandates or automatic renewals.
+No real credentials, real charges, database migrations or live activation are included in this change.
 
-Monthly: INR 49,900 paise (₹499), capacity 3 dishes, one calendar month.
-Annual: INR 499,900 paise (₹4,999), capacity 2 dishes, one calendar year.
-
-Additional dishes still require source/menu review before being added. This integration records paid capacity; it does not invent extra dishes from the signature dish submission. Curated source menus imported earlier are not owner-submitted paid listings and are unchanged.
-
-New checkout is blocked while the same restaurant has an active paid plan. A pending order is reused for the same plan. If an owner needs to change a pending order's plan, handle it through review rather than accepting overlapping payments. A creating reservation times out after 30 minutes; an unpaid gateway order remains reusable.
-
-Razorpay order amounts are fixed by the server. Browser responses require HMAC verification against the stored order ID; the server fetches the gateway payment and checks order, amount, currency, merchant key and captured state before recording payment. Signed webhooks and status reconciliation recover interrupted browser confirmations. Duplicate confirmation does not extend the plan. Refund notifications revoke the corresponding paid record, including partial refunds.
-
-Review records in public."BusinessPlanPayment". Test records use rzp_test_ keys and must never count toward live capacity. Live capacity is 3 or 2 only when a matching captured live payment has endsAt in the future; otherwise default to the free allowance of 1 dish. No public endpoint lists contact details or payment history without the private access code.
-
-## Existing owners without an access code
-
-After independently verifying the owner through the business's official contact, a trusted reviewer may issue a fresh random 32-byte hex code, store only its SHA256 hash in BusinessSubmission.checkoutTokenHash, and give the code privately to the owner. Do not expose codes in public URLs, comments or logs. This invalidates any previous access code for that submission.
-
-## Verification completed
-
-Automated tests cover server pricing, ownership access, pending approval, invalid signatures, captured/authorised states, refund revocation, webhook signatures, disabled configuration and previous listing/location flows. Live Razorpay checkout and settlement remain untested until the account credentials are configured. No real payment is made by this setup.
+Official reference: https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/integration-steps/

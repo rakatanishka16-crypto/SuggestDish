@@ -2,7 +2,7 @@ const test=require('node:test');const assert=require('node:assert/strict');
 const express=require('express');const register=require('../lib/razorpay-payments');
 const sid='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';const pid='cccccccc-cccc-4ccc-8ccc-cccccccccccc';const accessCode='a'.repeat(64);
 const env={RAZORPAY_ENABLED:'true',RAZORPAY_KEY_ID:'rzp_test_example',RAZORPAY_KEY_SECRET:'test-only-secret',RAZORPAY_WEBHOOK_SECRET:'test-only-webhook-secret'};
-async function harness({approval='approved',payment={},configured=env,reusedOrder}={}) {
+async function harness({approval='approved',payment={},configured=env,reusedOrder,gatewayStatus=200}={}) {
  const calls=[];const gateway=[];let reserved=false;
  const stored={id:pid,submissionId:sid,restaurantId:12,plan:'monthly',amount:49900,currency:'INR',keyId:env.RAZORPAY_KEY_ID,orderId:'order_example',status:'created'};
  const sql=async(strings,...values)=>{const q=strings.join('?');calls.push({q,values});
@@ -11,7 +11,7 @@ async function harness({approval='approved',payment={},configured=env,reusedOrde
   if(q.includes('confirm_business_payment'))return[{...stored,status:values[2]?'refunded':'captured',endsAt:'2026-12-01T00:00:00Z'}];
   if(q.startsWith('UPDATE'))return[];
   return[{...stored}];};
- const fetchImpl=async(url,options)=>{gateway.push({url,options});return{ok:true,json:async()=>reusedOrder && url.includes('/orders/')?reusedOrder:options.method==='POST'?{id:'order_example',amount:49900,currency:'INR',status:'created'}:{id:'pay_example',order_id:'order_example',amount:49900,currency:'INR',status:'captured',amount_refunded:0,...payment}};};
+ const fetchImpl=async(url,options)=>{gateway.push({url,options});return{ok:gatewayStatus>=200 && gatewayStatus<300,status:gatewayStatus,json:async()=>reusedOrder && url.includes('/orders/')?reusedOrder:options.method==='POST'?{id:'order_example',amount:49900,currency:'INR',status:'created'}:{id:'pay_example',order_id:'order_example',amount:49900,currency:'INR',status:'captured',amount_refunded:0,...payment}};};
  const app=express();app.use(express.json({verify(req,res,buf){req.rawBody=Buffer.from(buf);}}));register(app,sql,{env:configured,fetchImpl,paymentsPaused:false});const server=app.listen(0);const base=`http://127.0.0.1:${server.address().port}`;
  return {calls,gateway,get reserved(){return reserved;},post:async(path,body,headers={})=>{const raw=typeof body==='string'?body:JSON.stringify(body);const res=await fetch(base+path,{method:'POST',headers:{'Content-Type':'application/json',...headers},body:raw});return{status:res.status,body:await res.json()};},close:()=>server.close()};
 }
@@ -41,5 +41,24 @@ test('test rollout uses separate test credentials while live checkout remains pa
 test('retry cannot reuse a gateway order with a different amount or currency',async()=>{
  for(const order of [{id:'order_example',amount:1,currency:'INR',status:'created'},{id:'order_example',amount:49900,currency:'USD',status:'created'}]){
   const h=await harness({reusedOrder:order});try{const r=await h.post('/api/billing/orders',{...owner,plan:'monthly'});assert.equal(r.status,503);assert.equal(r.body.orderId,undefined);}finally{h.close();}
+ }
+});
+
+test('missing or malformed payment proof returns 400 before database or gateway work',async()=>{
+ for(const change of [{razorpay_order_id:undefined},{razorpay_payment_id:undefined},{razorpay_signature:undefined},{razorpay_order_id:123},{razorpay_payment_id:'invalid'},{razorpay_signature:'not-a-signature'}]){
+  const h=await harness();try{const r=await h.post('/api/billing/verify',{...proof,...change});assert.equal(r.status,400);assert.equal(h.calls.length,0);assert.equal(h.gateway.length,0);}finally{h.close();}
+ }
+});
+test('prototype property names cannot be purchased as plans',async()=>{
+ for(const plan of ['__proto__','constructor','toString','invalid',null,{}]){
+  const h=await harness();try{assert.equal((await h.post('/api/billing/orders',{...owner,plan})).status,400);assert.equal(h.calls.length,0);assert.equal(h.gateway.length,0);}finally{h.close();}
+ }
+});
+test('gateway authentication and API failures return safe errors without secrets',async()=>{
+ for(const [gatewayStatus,expected] of [[401,401],[400,500],[500,500]]){
+  const h=await harness({gatewayStatus});try{
+   const r=await h.post('/api/billing/orders',{...owner,plan:'monthly'});assert.equal(r.status,expected);assert.equal(r.body.success,false);
+   assert.equal(JSON.stringify(r.body).includes(env.RAZORPAY_KEY_SECRET),false);assert.equal(h.calls.some(c=>c.q.startsWith('UPDATE') || c.q.includes('confirm_business_payment')),false);
+  }finally{h.close();}
  }
 });
