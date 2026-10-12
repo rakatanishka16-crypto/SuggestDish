@@ -75,3 +75,8 @@ test('dated Tapadia and Seasons Mall promotions remain branch-scoped',()=>{
  }
  assert.notEqual(chains.businesses.find(b=>b.sourceKey===keys[0]).outlet_menu_set_id,chains.businesses.find(b=>b.sourceKey===keys[1]).outlet_menu_set_id);
 });
+test('dated Amanora and Pavilion promotions remain branch-scoped',()=>{
+ const keys=['official:sd-food-b46d66290fd93220859b','official:sd-food-267e442f9937a8cdd2d3'];
+ for(const sourceKey of keys){const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);const item=menu.menuItems[0];assert.equal(item.name,'2 Crispy Veg Burgers');assert.equal(item.price_inr,79);assert.equal(item.observed_promotion_date,'2026-10-07');assert.equal(item.branch_availability,'historical_promotion_observed');assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
+ assert.notEqual(chains.businesses.find(b=>b.sourceKey===keys[0]).outlet_menu_set_id,chains.businesses.find(b=>b.sourceKey===keys[1]).outlet_menu_set_id);
+});
