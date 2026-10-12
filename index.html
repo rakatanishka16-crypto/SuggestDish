@@ -943,115 +943,19 @@
 
 
 <!-- TOP PICKS -->
-<section class="section" id="picks">
+<section class="section" id="featured-dishes" hidden>
   <div class="container">
-
-    <div class="section-head">
-      <div>
-        <h2>Top picks</h2>
-
-        <p class="sub">
-          Examples of how SuggestDish focuses on dishes rather than
-          generic restaurant recommendations.
-        </p>
-      </div>
-    </div>
-
-    <div class="picks-grid">
-
-      <article class="card dish-card">
-        <img
-          class="dish-image" width="800" height="520" loading="lazy" decoding="async"
-          src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=65"
-          alt="Illustrative vegetarian meal photo; not the actual Paneer Masala"
-        />
-
-        <div class="dish-content">
-          <span class="badge">Vegetarian</span>
-
-          <h3>Paneer Masala</h3>
-
-          <p>
-            Rich, comforting and suitable for a satisfying Indian
-            dinner.
-          </p>
-
-          <div class="dish-meta">
-            <span class="pill">🌶️ Medium</span>
-            <span class="pill">🥗 Veg</span>
-            <span class="pill">₹₹</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card dish-card">
-        <img
-          class="dish-image" width="800" height="520" loading="lazy" decoding="async"
-          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=65"
-          alt="Illustrative food photo; not a listed restaurant dish"
-        />
-
-        <div class="dish-content">
-          <span class="badge">Example</span>
-
-          <h3>Signature Dish</h3>
-
-          <p>
-            A carefully selected dish based on taste, occasion and
-            overall preference matching.
-          </p>
-
-          <div class="dish-meta">
-            <span class="pill">Illustrative example</span>
-            <span class="pill">🍽️ Dinner</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card dish-card">
-        <img
-          class="dish-image" width="800" height="520" loading="lazy" decoding="async"
-          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=65"
-          alt="Illustrative burger photo; not a listed restaurant dish"
-        />
-
-        <div class="dish-content">
-          <span class="badge">Quick pick</span>
-
-          <h3>Comfort Food</h3>
-
-          <p>
-            Discover a satisfying option when you want something
-            quick and comforting.
-          </p>
-
-          <div class="dish-meta">
-            <span class="pill">⚡ Quick</span>
-            <span class="pill">🍔 Comfort</span>
-          </div>
-        </div>
-      </article>
-
-    </div>
+    <div class="section-head"><div><h2>Featured dishes</h2><p class="sub">Reviewed dishes from businesses with an active paid listing plan. Featured placement is sponsored.</p></div></div>
+    <div id="featuredDishList" class="picks-grid"></div>
   </div>
 </section>
 
-<section class="section" id="popular-dishes" style="scroll-margin-top:180px">
- <div class="container">
-  <div class="section-head"><div><h2>Explore 100 loved dishes</h2><p class="sub">Find published menu matches and actual outlets. This is a curated shortlist, not a measured popularity ranking.</p><p class="small mute">A brand reference does not confirm that a branch serves the dish. Compare the published item name and confirm today’s price and availability.</p></div></div>
-  <form id="dishOutletForm" class="card panel"><div class="business-fields">
-   <label>Dish<select id="dishOutletSelect" name="dishId"><option value="">All 100 dishes</option></select></label>
-   <label>City<input name="city" maxlength="100" placeholder="Leave blank to explore all listed cities"></label>
-  </div><button class="btn btn-primary" type="submit" style="margin-top:20px">Find dish outlets</button></form>
-  <p id="dishOutletStatus" role="status" aria-live="polite" style="margin-top:20px"></p>
-  <div id="dishOutletResults" class="pricing-grid"></div><button id="dishOutletNext" class="btn btn-light" hidden>Next outlets</button>
- </div>
-</section>
+
 
 
 
 <section class="section" id="business-directory" style="scroll-margin-top:180px">
- <div class="container"><div class="section-head"><div><h2>Find a food business</h2><p class="sub">Search our growing India directory. Listing coverage is partial; source records and menus may still need verification.</p><p class="small mute" id="sourceCoverage"></p><p class="small mute"><a href="#popular-dishes" style="text-decoration:underline">Explore 100 loved dishes and their outlets</a>. Search chain outlets by city, then open “Business details &amp; menu” for the outlet’s source details and available menu information.</p></div></div>
+ <div class="container"><div class="section-head"><div><h2>Find a food business</h2><p class="sub">Search our growing India directory. Listing coverage is partial; source records and menus may still need verification.</p><p class="small mute" id="sourceCoverage"></p><p class="small mute">Search chain outlets by city, then open “Business details &amp; menu” for the outlet’s source details and available menu information.</p></div></div>
  <form id="businessDirectoryForm" class="card panel"><div class="business-fields">
   <label>Business name or address<input name="q" maxlength="100" placeholder="Search a restaurant, bakery or outlet"></label>
   <label>City<input name="city" maxlength="100" placeholder="Mumbai, Jalna, Bengaluru…"></label>
@@ -1567,7 +1471,7 @@
     <div class="footer-links" style="margin-top:15px;">
       <a href="#how-it-works">How it works</a>
       <a href="#ai-recommend">AI Recommend</a>
-      <a href="#picks">Top picks</a>
+      
       <a href="#pricing">Pricing</a>
     </div>
   </div>
@@ -2434,6 +2338,6 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
 <script src="/source-listing-prefill.js" defer></script><script src="/foodie-controls.js" defer></script><script src="/dish-feedback.js" defer></script>
 <script>
 document.addEventListener('click',event=>{const target=event.target.closest('[data-dish-event]');if(!target)return;const id=Number(target.dataset.dishId);if(!Number.isSafeInteger(id)||id<1)return;window.SuggestDishPrivacy?.record(target.dataset.dishEvent,[id]);});
-</script><script src="/dish-outlets.js" defer></script>
+</script><script src="/featured-dishes.js" defer></script>
 </body>
 </html>
