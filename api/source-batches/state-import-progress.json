@@ -42,41 +42,42 @@
         "maharashtra-nashik-official-2026-10-08",
         "mumbai-open-data-2026-10-09",
         "chhatrapati-sambhajinagar-open-data-2026-10-12",
-        "maharashtra-mall-menu-followup-2026-10-12"
+        "maharashtra-mall-menu-followup-2026-10-12",
+        "maharashtra-mall-menu-followup-2-2026-10-12"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
         "checked_records": 65,
-        "outlet_menus_observed": 38,
+        "outlet_menus_observed": 39,
         "new_outlet_rows": 0,
-        "menu_entries": 4299,
-        "published_prices": 1450,
+        "menu_entries": 4300,
+        "published_prices": 1451,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 33
+        "pending_branch_menus": 32
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-2026-10-12",
+        "batch_id": "maharashtra-mall-menu-followup-2-2026-10-12",
         "date": "2026-10-12",
-        "district": "Mumbai Suburban",
-        "city": "Mumbai",
-        "locality": "Kurla West",
+        "district": "Thane",
+        "city": "Thane",
+        "locality": "Shahid Mangal Pandey Road",
         "new_outlets": 0,
-        "new_menus": 2,
-        "new_prices": 2,
+        "new_menus": 1,
+        "new_prices": 1,
         "recommendation_eligible_items": 0,
         "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
-          "Current stock, tax treatment and recommendation eligibility are unconfirmed.",
-          "33 mall branch targets still lack an observed branch menu.",
-          "Mumbai and Maharashtra remain only partially covered."
+          "The ₹139 price is dated promotional evidence, not a current-price guarantee.",
+          "32 mall branch targets still lack an observed branch menu.",
+          "Thane and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-kurla-west-mumbai-179368/Home",
-            "result": "Two named promotions with displayed prices on the official branch page",
+            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-shahid-mangal-pandey-road-thane-179357/Home",
+            "result": "One dated app promotion with a displayed price on the official branch page",
             "date": "2026-10-12"
           }
         ]
@@ -887,32 +888,60 @@
       "next_action": "Continue the remaining mall branch-menu queue and Jalna official-source gaps; retain branch-only scope and do not mark the city complete.",
       "complete_city_census": false,
       "complete_state_census": false
+    },
+    {
+      "run_id": "maharashtra-mall-menu-followup-2-2026-10-12",
+      "checked_on": "2026-10-12",
+      "state": "Maharashtra",
+      "cities_checked": [
+        "Thane"
+      ],
+      "localities_checked": [
+        "Shahid Mangal Pandey Road"
+      ],
+      "new_outlets": 0,
+      "new_menus": 1,
+      "new_prices": 1,
+      "recommendation_eligible_items": 0,
+      "duplicates_found": 0,
+      "conflicts_found": 0,
+      "status": "dated_branch_promotion_enriched",
+      "checked_sources": [
+        {
+          "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-shahid-mangal-pandey-road-thane-179357/Home",
+          "status": "dated_outlet_promotion_observed",
+          "result": "Veg Whopper Deluxe app promotion at ₹139, posted 2026-08-29"
+        }
+      ],
+      "next_action": "Continue Mumbai/Jalna branch-menu gaps, then remaining mall queue; do not treat dated promotions as current recommendation eligibility.",
+      "complete_city_census": false,
+      "complete_state_census": false
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-2026-10-12",
+    "run_id": "maharashtra-mall-menu-followup-2-2026-10-12",
     "checked_on": "2026-10-12",
     "state": "Maharashtra",
-    "district": "Mumbai Suburban",
-    "city": "Mumbai",
-    "locality": "Kurla West",
+    "district": "Thane",
+    "city": "Thane",
+    "locality": "Shahid Mangal Pandey Road",
     "new_outlets": 0,
-    "new_menus": 2,
-    "new_prices": 2,
+    "new_menus": 1,
+    "new_prices": 1,
     "recommendation_eligible_items": 0,
     "duplicate_candidates": 0,
     "conflicts_found": 0,
-    "status": "branch_menu_enriched",
-    "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-kurla-west-mumbai-179368/Home",
+    "status": "dated_branch_promotion_enriched",
+    "source_url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-shahid-mangal-pandey-road-thane-179357/Home",
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "Current stock, tax treatment and recommendation eligibility are unconfirmed",
-      "33 mall branch targets still lack an observed branch menu",
+      "The ₹139 price is dated promotional evidence, not a current-price guarantee",
+      "32 mall branch targets still lack an observed branch menu",
       "33 named Sambhajinagar source records remain deferred; queues overlap and are not summed",
       "Jalna official-source and branch-menu gaps remain",
-      "Mumbai and Maharashtra remain only partially covered"
+      "Thane and Maharashtra remain only partially covered"
     ]
   }
 }

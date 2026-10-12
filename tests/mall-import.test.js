@@ -33,3 +33,12 @@ test('Burger King Kurla promotions remain branch-scoped and non-recommendable',(
  for(const item of menu.menuItems){assert.equal(item.source_business_id,sourceKey);assert.equal(item.is_veg,true);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
  const other=chains.businesses.find(b=>b.brand==='Burger King'&&b.sourceKey!==sourceKey);assert.ok(other);assert.notEqual(other.outlet_menu_set_id,branch.outlet_menu_set_id);
 });
+test('dated Korum Mall promotion remains branch-scoped and non-recommendable',()=>{
+ const sourceKey='official:sd-food-fff9c9d5c17382f409e1';
+ const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);
+ const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);
+ const item=menu.menuItems[0];assert.equal(item.name,'Veg Whopper Deluxe');assert.equal(item.price_inr,139);
+ assert.equal(item.branch_availability,'historical_promotion_observed');assert.equal(item.source_business_id,sourceKey);
+ assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);
+ const other=chains.businesses.find(b=>b.brand==='Burger King'&&b.sourceKey!==sourceKey);assert.ok(other);assert.notEqual(other.outlet_menu_set_id,branch.outlet_menu_set_id);
+});
