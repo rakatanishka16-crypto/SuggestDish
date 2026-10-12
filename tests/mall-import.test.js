@@ -42,3 +42,14 @@ test('dated Korum Mall promotion remains branch-scoped and non-recommendable',()
  assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);
  const other=chains.businesses.find(b=>b.brand==='Burger King'&&b.sourceKey!==sourceKey);assert.ok(other);assert.notEqual(other.outlet_menu_set_id,branch.outlet_menu_set_id);
 });
+test('dated Nashik and Pune promotions remain attached to their exact branches',()=>{
+ const keys=['official:sd-food-04cc6a3242c2959a7775','official:sd-food-e59d48d5290e37f03013'];
+ for(const sourceKey of keys){
+  const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);
+  const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);
+  const item=menu.menuItems[0];assert.equal(item.name,'2 Crispy Veg Burgers');assert.equal(item.portion,'2 burgers');assert.equal(item.price_inr,79);
+  assert.equal(item.observed_promotion_date,'2026-09-17');assert.equal(item.branch_availability,'historical_promotion_observed');
+  assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);
+ }
+ assert.notEqual(chains.businesses.find(b=>b.sourceKey===keys[0]).outlet_menu_set_id,chains.businesses.find(b=>b.sourceKey===keys[1]).outlet_menu_set_id);
+});

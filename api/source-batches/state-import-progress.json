@@ -44,41 +44,47 @@
         "chhatrapati-sambhajinagar-open-data-2026-10-12",
         "chhatrapati-sambhajinagar-deferred-2026-10-12",
         "maharashtra-mall-menu-followup-2026-10-12",
-        "maharashtra-mall-menu-followup-2-2026-10-12"
+        "maharashtra-mall-menu-followup-2-2026-10-12",
+        "maharashtra-mall-menu-followup-3-2026-10-12"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 65,
-        "outlet_menus_observed": 39,
+        "checked_records": 67,
+        "outlet_menus_observed": 41,
         "new_outlet_rows": 0,
-        "menu_entries": 4300,
-        "published_prices": 1451,
+        "menu_entries": 4302,
+        "published_prices": 1453,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 32
+        "pending_branch_menus": 30
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-2-2026-10-12",
+        "batch_id": "maharashtra-mall-menu-followup-3-2026-10-12",
         "date": "2026-10-12",
-        "district": "Thane",
-        "city": "Thane",
-        "locality": "Shahid Mangal Pandey Road",
+        "districts": ["Nashik", "Pune"],
+        "cities": ["Nashik", "Pune"],
+        "localities": ["Lavate Nagar", "Viman Nagar"],
         "new_outlets": 0,
-        "new_menus": 1,
-        "new_prices": 1,
+        "new_menus": 2,
+        "new_prices": 2,
         "recommendation_eligible_items": 0,
         "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
-          "The ₹139 price is dated promotional evidence, not a current-price guarantee.",
-          "32 mall branch targets still lack an observed branch menu.",
-          "Thane and Maharashtra remain only partially covered."
+          "The ₹79 prices are dated promotional evidence, not current-price guarantees.",
+          "30 mall branch targets still lack an observed branch menu.",
+          "Nashik, Pune and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-shahid-mangal-pandey-road-thane-179357/Home",
-            "result": "One dated app promotion with a displayed price on the official branch page",
+            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-lavate-nagar-nashik-305228/Home",
+            "result": "One dated two-burger promotion with a displayed price on the official branch page",
+            "date": "2026-10-12"
+          },
+          {
+            "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-viman-nagar-pune-179302/Home",
+            "result": "One dated two-burger promotion with a displayed price on the official branch page",
             "date": "2026-10-12"
           }
         ]
@@ -942,32 +948,64 @@
       "next_action": "Continue Jalna official/menu gaps and the remaining mall branch-menu queue; review held Sambhajinagar records without auto-merging uncertain identities.",
       "complete_city_census": false,
       "complete_state_census": false
+    },
+    {
+      "run_id": "maharashtra-mall-menu-followup-3-2026-10-12",
+      "checked_on": "2026-10-12",
+      "state": "Maharashtra",
+      "cities_checked": ["Nashik", "Pune"],
+      "localities_checked": ["Lavate Nagar", "Viman Nagar"],
+      "new_outlets": 0,
+      "new_menus": 2,
+      "new_prices": 2,
+      "recommendation_eligible_items": 0,
+      "duplicates_found": 0,
+      "conflicts_found": 0,
+      "status": "dated_branch_promotions_enriched",
+      "checked_sources": [
+        {
+          "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-lavate-nagar-nashik-305228/Home",
+          "status": "dated_outlet_promotion_observed",
+          "result": "2 Crispy Veg Burgers for ₹79, posted 2026-09-17"
+        },
+        {
+          "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-viman-nagar-pune-179302/Home",
+          "status": "dated_outlet_promotion_observed",
+          "result": "2 Crispy Veg Burgers for ₹79, posted 2026-09-17"
+        }
+      ],
+      "next_action": "Continue Jalna official/menu gaps and the remaining mall branch-menu queue; dated promotions remain ineligible for recommendations.",
+      "complete_city_census": false,
+      "complete_state_census": false
     }
   ],
   "last_collection_run": {
-    "run_id": "chhatrapati-sambhajinagar-deferred-2026-10-12",
+    "run_id": "maharashtra-mall-menu-followup-3-2026-10-12",
     "checked_on": "2026-10-12",
     "state": "Maharashtra",
-    "district": "Chhatrapati Sambhajinagar",
-    "city": "Chhatrapati Sambhajinagar",
-    "new_outlets": 32,
-    "new_menus": 0,
-    "new_prices": 0,
+    "districts": ["Nashik", "Pune"],
+    "cities": ["Nashik", "Pune"],
+    "localities": ["Lavate Nagar", "Viman Nagar"],
+    "new_outlets": 0,
+    "new_menus": 2,
+    "new_prices": 2,
     "recommendation_eligible_items": 0,
-    "duplicate_candidates": 1,
+    "duplicate_candidates": 0,
     "conflicts_found": 0,
-    "status": "deferred_open_data_batch_published",
-    "source_url": "https://api.openstreetmap.org/api/0.6/",
-    "directions_from_source_coordinates": 32,
+    "status": "dated_branch_promotions_enriched",
+    "source_urls": [
+      "https://stores.burgerking.in/burger-king-fast-food-restaurant-lavate-nagar-nashik-305228/Home",
+      "https://stores.burgerking.in/burger-king-fast-food-restaurant-viman-nagar-pune-179302/Home"
+    ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "24 unnamed or place-name-like Sambhajinagar records remain held for review",
-      "Three Sambhajinagar duplicate candidates are held across the two batches and have not been auto-merged",
-      "32 mall branch targets still lack an observed branch menu",
+      "The ₹79 prices are dated promotional evidence, not current-price guarantees",
+      "30 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
-      "Sambhajinagar and Maharashtra remain only partially covered"
+      "Held Sambhajinagar records and duplicate candidates remain unresolved",
+      "Nashik, Pune and Maharashtra remain only partially covered"
     ]
   }
 }
