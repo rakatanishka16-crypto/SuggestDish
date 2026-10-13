@@ -29,3 +29,6 @@ test('McDonald’s Jalna Road menu belongs to Aurangabad and never to Jalna',()=
  const {body}=request(b.sourceKey);assert.equal(body.menuScope,'outlet_page');assert.equal(body.menuItems.find(m=>m.name==='McChicken Burger Combo').price_inr,325);
  const other=chains.businesses.find(b=>b.brand==="McDonald's" && !b.outlet_menu_set_id);assert.deepEqual(chains.menuFor(other),{menuScope:'none',menuItems:[]});
 });
+test('Amravati Belgian Waffle locator enrichment adds directions without inventing a branch menu',()=>{
+ const b=chains.businesses.find(b=>b.sourceKey==='official:sd-food-b30f05452f994a4a3f53');assert.ok(b);assert.equal(b.city,'Amravati');assert.equal(b.latitude,20.90005765);assert.equal(b.longitude,77.74813718);assert.equal(b.source_store_id,'721');assert.match(b.directions_url,/destination=20\.90005765,77\.74813718/);assert.equal(b.recommendation_eligible,false);assert.match(b.service_note,/Current operation/);const menu=chains.menuFor(b);assert.equal(menu.menuScope,'brand_reference');assert.ok(menu.menuItems.every(i=>i.source_business_id===null&&i.branch_availability==='not_confirmed'&&i.recommendation_eligible===false));
+});

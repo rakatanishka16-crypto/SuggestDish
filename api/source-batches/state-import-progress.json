@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-13",
+  "updated_on": "2026-10-14",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -62,12 +62,13 @@
         "maharashtra-mall-menu-followup-17-2026-10-13",
         "mumbai-official-breakfast-tiffin-2026-10-13",
         "maharashtra-thane-official-followup-18-2026-10-13",
-        "mumbai-pizzahut-r-mall-menu-2026-10-13"
+        "mumbai-pizzahut-r-mall-menu-2026-10-13",
+        "amravati-belgian-waffle-locator-2026-10-14"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 91,
+        "checked_records": 92,
         "outlet_menus_observed": 65,
         "new_outlet_rows": 0,
         "menu_entries": 4562,
@@ -103,6 +104,25 @@
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "amravati-belgian-waffle-locator-2026-10-14",
+          "checked_on": "2026-10-14",
+          "city_counts": {"Amravati": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "source_pages": [{
+            "url": "https://thebelgianwaffle.co/store-locator",
+            "checked_on": "2026-10-14"
+          }],
+          "remaining_gaps": [
+            "No branch-specific menu or prices were published by the locator",
+            "6 mall branch targets still lack an observed branch menu",
+            "Amravati and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "mumbai-pizzahut-r-mall-menu-2026-10-13",
           "checked_on": "2026-10-13",
@@ -1272,24 +1292,24 @@
     ]
   },
   "last_source_check": {
-    "run_id": "maharashtra-amanora-pizzahut-retry-2026-10-14",
+    "run_id": "amravati-belgian-waffle-locator-2026-10-14",
     "checked_on": "2026-10-14",
     "state": "Maharashtra",
-    "city": "Pune",
-    "locality": "Amanora Mall, Hadapsar",
+    "city": "Amravati",
+    "locality": "Tapadia City Centre, Gopal Nagar",
     "new_outlets": 0,
     "new_menus": 0,
     "new_prices": 0,
     "recommendation_eligible_items": 0,
-    "status": "official_source_404_no_records_published",
+    "status": "official_locator_coordinates_enriched_no_branch_menu",
     "checked_sources": [
       {
-        "url": "https://restaurants.pizzahut.co.in/pizza-hut-ph-amanora-mall-pizzerias-hadapsar-pune-366885/Menu",
-        "http_status": 404,
-        "result": "The former official exact-branch menu URL now returns Pizza Hut's 404 page; no menu, price or operation claim was retained from this retry."
+        "url": "https://thebelgianwaffle.co/store-locator",
+        "http_status": 200,
+        "result": "The official locator supplied the exact Tapadia City Center branch identity, published address, phone and coordinates; it did not publish a branch menu or prices."
       }
     ],
-    "next_action": "Keep this branch pending until an accessible official exact-branch page or licensed source is found; continue the other five mall-menu targets and Mumbai/Jalna recommendation-ready gaps.",
+    "next_action": "Keep this branch in the menu-gap queue until an accessible official exact-branch menu or licensed source is found; continue the other mall-menu targets and Mumbai/Jalna recommendation-ready gaps.",
     "complete_city_census": false,
     "complete_state_census": false
   }
