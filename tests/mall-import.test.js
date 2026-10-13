@@ -133,3 +133,8 @@ test('Dominos Phoenix Marketcity Pune and Nexus Westend offers remain branch-sco
  for(const sourceKey of keys){const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);const item=menu.menuItems[0];assert.equal(item.name,'2 Regular Pizzas');assert.equal(item.price_inr,99);assert.equal(item.is_veg,null);assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
  assert.notEqual(chains.businesses.find(b=>b.sourceKey===keys[0]).outlet_menu_set_id,chains.businesses.find(b=>b.sourceKey===keys[1]).outlet_menu_set_id);
 });
+test('Three additional Dominos Maharashtra offers remain exact-branch scoped',()=>{
+ const keys=['official:sd-food-3c527de05a51a94de259','official:sd-food-66f0e4bc7c913a943b4d','official:sd-food-99fca9b511520248ebdc'];
+ for(const sourceKey of keys){const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);const item=menu.menuItems[0];assert.equal(item.name,'2 Regular Pizzas');assert.equal(item.price_inr,99);assert.equal(item.is_veg,null);assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
+ assert.equal(new Set(keys.map(k=>chains.businesses.find(b=>b.sourceKey===k).outlet_menu_set_id)).size,3);
+});

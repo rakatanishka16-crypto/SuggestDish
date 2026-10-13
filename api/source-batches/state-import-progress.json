@@ -55,41 +55,42 @@
         "maharashtra-mall-menu-followup-10-2026-10-13",
         "maharashtra-mall-menu-followup-11-2026-10-13",
         "maharashtra-mall-menu-followup-12-2026-10-13",
-        "maharashtra-mall-menu-followup-13-2026-10-13"
+        "maharashtra-mall-menu-followup-13-2026-10-13",
+        "maharashtra-mall-menu-followup-14-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 82,
-        "outlet_menus_observed": 56,
+        "checked_records": 85,
+        "outlet_menus_observed": 59,
         "new_outlet_rows": 0,
-        "menu_entries": 4419,
-        "published_prices": 1466,
+        "menu_entries": 4422,
+        "published_prices": 1469,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 15
+        "pending_branch_menus": 12
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-13-2026-10-13",
+        "batch_id": "maharashtra-mall-menu-followup-14-2026-10-13",
         "date": "2026-10-13",
-        "districts": ["Pune"],
-        "cities": ["Pune"],
-        "localities": ["Viman Nagar", "Aundh"],
+        "districts": ["Pune", "Thane"],
+        "cities": ["Pune", "Navi Mumbai"],
+        "localities": ["Phoenix Building", "Aundh", "Seawoods Nerul"],
         "new_outlets": 0,
-        "new_menus": 2,
-        "new_prices": 2,
+        "new_menus": 3,
+        "new_prices": 3,
         "recommendation_eligible_items": 0,
         "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
           "The official exact-branch menu URL displays a two-Regular-Pizza offer at ₹99 each; dietary type, checkout price and current availability remain unconfirmed.",
-          "15 mall branch targets still lack an observed branch menu.",
+          "12 mall branch targets still lack an observed branch menu.",
           "Pune and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.dominos.co.in/store-location/pune/phoenix-market-city-pune/menu",
-            "result": "Official exact-branch menu URLs for Phoenix Marketcity and Nexus Westend display the two-Regular-Pizza offer at ₹99 each",
+            "url": "https://www.dominos.co.in/store-location/pune/phoenix-building-pune-2/menu",
+            "result": "Three official exact-branch menu URLs display the two-Regular-Pizza offer at ₹99 each",
             "date": "2026-10-13"
           }
         ]
@@ -1189,29 +1190,30 @@
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-13-2026-10-13",
+    "run_id": "maharashtra-mall-menu-followup-14-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Pune"],
-    "cities": ["Pune"],
-    "localities": ["Viman Nagar", "Aundh"],
+    "districts": ["Pune", "Thane"],
+    "cities": ["Pune", "Navi Mumbai"],
+    "localities": ["Phoenix Building", "Aundh", "Seawoods Nerul"],
     "new_outlets": 0,
-    "new_menus": 2,
-    "new_prices": 2,
+    "new_menus": 3,
+    "new_prices": 3,
     "recommendation_eligible_items": 0,
     "duplicate_candidates": 0,
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://www.dominos.co.in/store-location/pune/phoenix-market-city-pune/menu",
-      "https://www.dominos.co.in/store-location/pune/nexus-westend-mall-pune-maharashtra/menu"
+      "https://www.dominos.co.in/store-location/pune/phoenix-building-pune-2/menu",
+      "https://www.dominos.co.in/store-location/pune/westend-it-park-aundh-pune/menu",
+      "https://www.dominos.co.in/store-location/navi-mumbai/seawoods-nerul-navi-mumbai/menu"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
       "The exact branch menu URL displays a two-Regular-Pizza offer at ₹99 each, but final checkout price and current availability are unconfirmed",
-      "15 mall branch targets still lack an observed branch menu",
+      "12 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
       "Pune and Maharashtra remain only partially covered"
