@@ -57,25 +57,26 @@
         "maharashtra-mall-menu-followup-12-2026-10-13",
         "maharashtra-mall-menu-followup-13-2026-10-13",
         "maharashtra-mall-menu-followup-14-2026-10-13",
-        "maharashtra-mall-menu-followup-15-2026-10-13"
+        "maharashtra-mall-menu-followup-15-2026-10-13",
+        "maharashtra-mall-menu-followup-16-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 87,
-        "outlet_menus_observed": 61,
+        "checked_records": 89,
+        "outlet_menus_observed": 63,
         "new_outlet_rows": 0,
-        "menu_entries": 4424,
-        "published_prices": 1471,
+        "menu_entries": 4426,
+        "published_prices": 1473,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 10
+        "pending_branch_menus": 8
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-15-2026-10-13",
+        "batch_id": "maharashtra-mall-menu-followup-16-2026-10-13",
         "date": "2026-10-13",
-        "districts": ["Pune", "Chhatrapati Sambhajinagar"],
-        "cities": ["Pune", "Aurangabad"],
-        "localities": ["Wakad", "Nirala Bazar"],
+        "districts": ["Mumbai Suburban", "Thane"],
+        "cities": ["Mumbai", "Thane"],
+        "localities": ["Ghatkopar West", "Korum Mall"],
         "new_outlets": 0,
         "new_menus": 2,
         "new_prices": 2,
@@ -85,12 +86,12 @@
         "status": "branch_menu_enriched",
         "remaining_gaps": [
           "The official exact-branch menu URL displays a two-Regular-Pizza offer at ₹99 each; dietary type, checkout price and current availability remain unconfirmed.",
-          "10 mall branch targets still lack an observed branch menu.",
-          "Pune and Maharashtra remain only partially covered."
+          "8 mall branch targets still lack an observed branch menu.",
+          "Mumbai, Thane and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.dominos.co.in/store-location/pune/phoenix-millennium-wakad-pune/menu",
+            "url": "https://www.dominos.co.in/store-location/mumbai/r-city-ghatkopar-west/menu",
             "result": "Two official exact-branch menu URLs display the two-Regular-Pizza offer at ₹99 each",
             "date": "2026-10-13"
           }
@@ -1191,12 +1192,12 @@
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-15-2026-10-13",
+    "run_id": "maharashtra-mall-menu-followup-16-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Pune", "Chhatrapati Sambhajinagar"],
-    "cities": ["Pune", "Aurangabad"],
-    "localities": ["Wakad", "Nirala Bazar"],
+    "districts": ["Mumbai Suburban", "Thane"],
+    "cities": ["Mumbai", "Thane"],
+    "localities": ["Ghatkopar West", "Korum Mall"],
     "new_outlets": 0,
     "new_menus": 2,
     "new_prices": 2,
@@ -1205,18 +1206,18 @@
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://www.dominos.co.in/store-location/pune/phoenix-millennium-wakad-pune/menu",
-      "https://www.dominos.co.in/store-location/aurangabad/tapadia-plaza-nirala-bazar/menu"
+      "https://www.dominos.co.in/store-location/mumbai/r-city-ghatkopar-west/menu",
+      "https://www.dominos.co.in/store-location/thane/korum-mall-thane-mumbai-maharashtra/menu"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
       "The exact branch menu URL displays a two-Regular-Pizza offer at ₹99 each, but final checkout price and current availability are unconfirmed",
-      "10 mall branch targets still lack an observed branch menu",
+      "8 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
-      "Pune and Maharashtra remain only partially covered"
+      "Mumbai, Thane and Maharashtra remain only partially covered"
     ]
   }
 }
