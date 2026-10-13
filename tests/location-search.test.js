@@ -294,3 +294,13 @@ test('natural-language sweet request uses the same constraint and permits explic
   const {body}=await h.request('/api/ai-recommend',{customPreferences:'something sweet',budget:'200'});
   assert.equal(body.recommendations[0].dishName,'Sweet Rice');
 });
+
+
+test('sweet plus an explicit savoury rice bowl request returns no substitution', async () => {
+  const h=serverHarness({rows:[
+    {id:1,name:'Rajma Rice Bowl',price:150,isVeg:true,restaurantName:'A'},
+    {id:2,name:'Brownie',price:150,isVeg:true,restaurantName:'B'}
+  ]});
+  const {body}=await h.request('/api/ai-recommend',{taste:'sweet',customPreferences:'rajma rice bowl',budget:'500'});
+  assert.equal(body.recommendations.length,0);
+});
