@@ -63,12 +63,13 @@
         "mumbai-official-breakfast-tiffin-2026-10-13",
         "maharashtra-thane-official-followup-18-2026-10-13",
         "mumbai-pizzahut-r-mall-menu-2026-10-13",
-        "amravati-belgian-waffle-locator-2026-10-14"
+        "amravati-belgian-waffle-locator-2026-10-14",
+        "vashi-haldirams-duplicate-reconciliation-2026-10-14"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 92,
+        "checked_records": 93,
         "outlet_menus_observed": 65,
         "new_outlet_rows": 0,
         "menu_entries": 4562,
@@ -77,33 +78,52 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "mumbai-pizzahut-r-mall-menu-2026-10-13",
-        "date": "2026-10-13",
-        "districts": ["Mumbai Suburban"],
-        "cities": ["Mumbai"],
-        "localities": ["R Mall, Mulund West"],
+        "batch_id": "vashi-haldirams-duplicate-reconciliation-2026-10-14",
+        "date": "2026-10-14",
+        "districts": ["Thane"],
+        "cities": ["Navi Mumbai"],
+        "localities": ["Inorbit Mall, Vashi"],
         "new_outlets": 0,
-        "new_menus": 135,
+        "new_menus": 0,
         "new_prices": 0,
         "recommendation_eligible_items": 0,
-        "duplicate_candidates": 0,
+        "duplicate_candidates": 1,
         "conflicts": 0,
-        "status": "branch_menu_enriched",
+        "status": "confirmed_duplicate_reconciled",
         "remaining_gaps": [
-          "The exact branch menu publishes no prices, so all 135 items remain ineligible for recommendations.",
+          "The official locator publishes no branch menu or prices.",
           "6 mall branch targets still lack an observed branch menu.",
-          "A separate Infiniti Mall Domino's record remains held as a distinct store identity and was not merged.",
-          "Mumbai and Maharashtra remain only partially covered."
+          "Navi Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://restaurants.pizzahut.co.in/pizza-hut-mulund-west-pizza-restaurant-mulund-west-mumbai-1135/Menu",
-            "result": "Exact R Mall Mulund branch page with 135 distinct menu items, sections and explicit dietary icons where supplied; no prices published",
-            "date": "2026-10-13"
+            "url": "https://haldirams.com/store-locator",
+            "result": "Official locator repeats the same Inorbit Vashi unit and phone; one duplicate spelling variant reconciled into the canonical Navi Mumbai profile",
+            "date": "2026-10-14"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "vashi-haldirams-duplicate-reconciliation-2026-10-14",
+          "checked_on": "2026-10-14",
+          "city_counts": {"Navi Mumbai": 1},
+          "new_outlets": 0,
+          "duplicates_resolved": 1,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "source_pages": [{
+            "url": "https://haldirams.com/store-locator",
+            "checked_on": "2026-10-14"
+          }],
+          "remaining_gaps": [
+            "No branch-specific menu or prices were published by the locator",
+            "6 mall branch targets still lack an observed branch menu",
+            "Navi Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "amravati-belgian-waffle-locator-2026-10-14",
           "checked_on": "2026-10-14",
@@ -1292,21 +1312,21 @@
     ]
   },
   "last_source_check": {
-    "run_id": "amravati-belgian-waffle-locator-2026-10-14",
+    "run_id": "vashi-haldirams-duplicate-reconciliation-2026-10-14",
     "checked_on": "2026-10-14",
     "state": "Maharashtra",
-    "city": "Amravati",
-    "locality": "Tapadia City Centre, Gopal Nagar",
+    "city": "Navi Mumbai",
+    "locality": "Inorbit Mall, Vashi",
     "new_outlets": 0,
     "new_menus": 0,
     "new_prices": 0,
     "recommendation_eligible_items": 0,
-    "status": "official_locator_coordinates_enriched_no_branch_menu",
+    "status": "official_locator_duplicate_reconciled_no_branch_menu",
     "checked_sources": [
       {
-        "url": "https://thebelgianwaffle.co/store-locator",
+        "url": "https://haldirams.com/store-locator",
         "http_status": 200,
-        "result": "The official locator supplied the exact Tapadia City Center branch identity, published address, phone and coordinates; it did not publish a branch menu or prices."
+        "result": "The official locator repeats the same Inorbit Vashi unit numbers and phone under two spelling variants; the duplicate catalog profile was removed in favour of one canonical Navi Mumbai profile. No branch menu or prices were published."
       }
     ],
     "next_action": "Keep this branch in the menu-gap queue until an accessible official exact-branch menu or licensed source is found; continue the other mall-menu targets and Mumbai/Jalna recommendation-ready gaps.",
