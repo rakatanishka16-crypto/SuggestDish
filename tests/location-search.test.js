@@ -5,7 +5,7 @@ const vm = require('node:vm');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
 
-function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, env = {} } = {}) {
+function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, env = {}, aiReply } = {}) {
   const routes = new Map();
   const queries = [];
   const app = { use() {}, post() {}, get(route, handler) { routes.set(route, handler); }, listen() {} };
@@ -40,7 +40,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
       if (name === 'express') return express;
       if (name === 'cors') return () => () => {};
       if (name === '@neondatabase/serverless') return { neon: () => sql };
-      if (name === '@google/genai') return { GoogleGenAI: class {} };
+      if (name === '@google/genai') return { GoogleGenAI: class { constructor() { if (aiReply) this.models = { generateContent: async params => ({ text: JSON.stringify(await aiReply(params)) }) }; } } };
       throw new Error(name);
     },
     module: { exports: {} }, process: { env: { VERCEL: '1', ...env } }, console,
@@ -303,4 +303,70 @@ test('sweet plus an explicit savoury rice bowl request returns no substitution',
   ]});
   const {body}=await h.request('/api/ai-recommend',{taste:'sweet',customPreferences:'rajma rice bowl',budget:'500'});
   assert.equal(body.recommendations.length,0);
+});
+
+
+const tasteCases = [
+  ['spicy', 'Spicy Schezwan Noodles', ['Rice Bowl', 'Masala Idli', 'Hot Chocolate', 'Mild Chilli Paneer']],
+  ['sweet', 'Gulab Jamun', ['Rice Bowl', 'Sweet Corn Soup', 'Mango Salad']],
+  ['rich', 'Paneer Butter Masala', ['Plain Rice', 'Buttermilk', 'Fat Free Cream Soup']],
+  ['light', 'Steamed Idli', ['Fried Idli', 'Creamy Salad', 'Cheese Sandwich', 'Rice Bowl']],
+  ['tangy', 'Tangy Lemon Rice', ['Plain Rice', 'Mango Rice Bowl', 'No Lemon Soup']],
+  ['crispy', 'Crispy Veg', ['Steamed Momos', 'Crispy Veg Gravy', 'Soft Crispy Roll']]
+];
+for (const [taste, matching, rejected] of tasteCases) {
+  test(`${taste} eligibility uses dish names and rejects unrelated or contradictory dishes`, async () => {
+    const base={isVeg:true,restaurantCity:'Mumbai',latitude:19.2,longitude:72.85};
+    const h=serverHarness({rows:[
+      ...rejected.map((name,i)=>({...base,id:i+1,name,price:40,restaurantName:`${taste} ${matching} Kitchen`,restaurantAddress:`${matching} Road`,starConfirmed:true})),
+      {...base,id:100,name:matching,price:120,restaurantName:'Matching Outlet'}
+    ]});
+    const {body}=await h.request('/api/ai-recommend',{taste,budget:'200',diet:'vegetarian',lat:'19.2',lon:'72.85',radiusKm:'5'});
+    assert.equal(body.recommendations[0].dishName,matching);
+  });
+  test(`${taste} returns no match when its candidates fail budget, diet, radius or refinement`, async () => {
+    const base={name:matching,isVeg:true,restaurantCity:'Mumbai',latitude:19.2,longitude:72.85};
+    const h=serverHarness({rows:[
+      {...base,id:1,price:300,restaurantName:'Over Budget'},
+      {...base,id:2,price:80,isVeg:false,restaurantName:'Wrong Diet'},
+      {...base,id:3,price:80,latitude:18.9,restaurantName:'Too Far'},
+      {...base,id:4,price:80,restaurantName:'Already Shown'},
+      {...base,id:5,name:'Plain Rice',price:80,restaurantName:'Unrelated'}
+    ]});
+    const {body}=await h.request('/api/ai-recommend',{taste,budget:'200',diet:'vegetarian',lat:'19.2',lon:'72.85',radiusKm:'5',excludeDishIds:'4'});
+    assert.equal(body.recommendations.length,0);
+  });
+}
+
+test('taste filters constrain Gemini inputs and reject its unrelated output', async () => {
+  let prompt;
+  const h=serverHarness({env:{GEMINI_API_KEY:'test'},aiReply: async params=>{
+    prompt=params.contents;
+    return {recommendations:[{id:1,dishName:'Rice Bowl',restaurant:'A'}]};
+  },rows:[
+    {id:1,name:'Rice Bowl',price:80,isVeg:true,restaurantName:'A'},
+    {id:2,name:'Crispy Veg',price:100,isVeg:true,restaurantName:'B'}
+  ]});
+  const {body}=await h.request('/api/ai-recommend',{taste:'crispy',budget:'200'});
+  assert.equal(prompt.includes('Rice Bowl'),false);
+  assert.ok(prompt.includes('Crispy Veg'));
+  assert.equal(body.recommendations[0].dishName,'Crispy Veg');
+});
+
+test('multiple requested tastes are combined rather than silently relaxed',async()=>{
+ const rows=[{id:1,name:'Spicy Noodles',price:90,isVeg:true,restaurantName:'A'},{id:2,name:'Crispy Veg',price:90,isVeg:true,restaurantName:'B'}];
+ let h=serverHarness({rows});
+ let {body}=await h.request('/api/ai-recommend',{taste:'spicy',customPreferences:'something crispy',budget:'200'});
+ assert.equal(body.recommendations.length,0);
+ h=serverHarness({rows:[...rows,{id:3,name:'Spicy Crispy Veg',price:120,isVeg:true,restaurantName:'C'}]});
+ ({body}=await h.request('/api/ai-recommend',{taste:'spicy',customPreferences:'something crispy',budget:'200'}));
+ assert.equal(body.recommendations[0].dishName,'Spicy Crispy Veg');
+});
+
+test('unknown taste is rejected before querying and Anything retains unrestricted discovery',async()=>{
+ const h=serverHarness({rows:[{id:1,name:'Rice Bowl',price:80,isVeg:true,restaurantName:'A'}]});
+ assert.equal((await h.request('/api/ai-recommend',{taste:'unknown'})).status,400);
+ assert.equal(h.queries.length,0);
+ const {body}=await h.request('/api/ai-recommend',{taste:'any',budget:'200'});
+ assert.equal(body.recommendations[0].dishName,'Rice Bowl');
 });
