@@ -51,41 +51,42 @@
         "maharashtra-mall-menu-followup-6-2026-10-13",
         "maharashtra-mall-menu-followup-7-2026-10-13",
         "maharashtra-mall-menu-followup-8-2026-10-13",
-        "maharashtra-mall-menu-followup-9-2026-10-13"
+        "maharashtra-mall-menu-followup-9-2026-10-13",
+        "maharashtra-mall-menu-followup-10-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 77,
-        "outlet_menus_observed": 51,
+        "checked_records": 78,
+        "outlet_menus_observed": 52,
         "new_outlet_rows": 0,
-        "menu_entries": 4364,
+        "menu_entries": 4415,
         "published_prices": 1462,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 20
+        "pending_branch_menus": 19
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-9-2026-10-13",
+        "batch_id": "maharashtra-mall-menu-followup-10-2026-10-13",
         "date": "2026-10-13",
-        "districts": ["Pune"],
-        "cities": ["Pune"],
-        "localities": ["Amanora Park Township, Hadapsar"],
+        "districts": ["Chhatrapati Sambhajinagar"],
+        "cities": ["Chhatrapati Sambhajinagar"],
+        "localities": ["Chikalthana Industrial Estate"],
         "new_outlets": 0,
-        "new_menus": 1,
-        "new_prices": 1,
+        "new_menus": 51,
+        "new_prices": 0,
         "recommendation_eligible_items": 0,
         "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
-          "The official exact-branch menu page displays a two-Regular-Pizza offer at ₹99 each; dietary type, checkout price and current availability remain unconfirmed.",
-          "20 mall branch targets still lack an observed branch menu.",
-          "Pune and Maharashtra remain only partially covered."
+          "The official exact-branch page lists 51 unique menu names but publishes no explicit item prices.",
+          "19 mall branch targets still lack an observed branch menu.",
+          "Chhatrapati Sambhajinagar and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.dominos.co.in/store-location/pune/amanora-mall/menu",
-            "result": "Official exact-branch menu page displays the two-Regular-Pizza offer at ₹99 each",
+            "url": "https://www.dominos.co.in/store-locations/aurangabad/prozone-mall-aurangabad/menu",
+            "result": "Official exact-branch page identifies the Prozone Mall outlet and lists 51 unique menu names without explicit item prices",
             "date": "2026-10-13"
           }
         ]
@@ -1122,34 +1123,54 @@
       "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue; keep unconfirmed offers ineligible for recommendations.",
       "complete_city_census": false,
       "complete_state_census": false
+    },
+    {
+      "run_id": "maharashtra-mall-menu-followup-10-2026-10-13",
+      "checked_on": "2026-10-13",
+      "state": "Maharashtra",
+      "cities_checked": ["Chhatrapati Sambhajinagar"],
+      "localities_checked": ["Chikalthana Industrial Estate"],
+      "new_outlets": 0,
+      "new_menus": 51,
+      "new_prices": 0,
+      "recommendation_eligible_items": 0,
+      "duplicates_found": 0,
+      "conflicts_found": 0,
+      "status": "official_branch_menu_enriched",
+      "checked_sources": [
+        {"url":"https://www.dominos.co.in/store-locations/aurangabad/prozone-mall-aurangabad/menu","status":"official_branch_menu_observed","result":"Exact Prozone Mall branch page lists 51 unique menu names; no explicit item prices were published"}
+      ],
+      "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue.",
+      "complete_city_census": false,
+      "complete_state_census": false
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-9-2026-10-13",
+    "run_id": "maharashtra-mall-menu-followup-10-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Pune"],
-    "cities": ["Pune"],
-    "localities": ["Amanora Park Township, Hadapsar"],
+    "districts": ["Chhatrapati Sambhajinagar"],
+    "cities": ["Chhatrapati Sambhajinagar"],
+    "localities": ["Chikalthana Industrial Estate"],
     "new_outlets": 0,
-    "new_menus": 1,
-    "new_prices": 1,
+    "new_menus": 51,
+    "new_prices": 0,
     "recommendation_eligible_items": 0,
     "duplicate_candidates": 0,
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://www.dominos.co.in/store-location/pune/amanora-mall/menu"
+      "https://www.dominos.co.in/store-locations/aurangabad/prozone-mall-aurangabad/menu"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "The exact branch menu page displays a two-Regular-Pizza offer at ₹99 each, but final checkout price and current availability are unconfirmed",
-      "20 mall branch targets still lack an observed branch menu",
+      "The exact Prozone Mall branch page lists 51 unique menu names but publishes no explicit item prices",
+      "19 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
-      "Pune and Maharashtra remain only partially covered"
+      "Chhatrapati Sambhajinagar and Maharashtra remain only partially covered"
     ]
   }
 }
