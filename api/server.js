@@ -717,7 +717,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     // Explicit dish families and proteins are constraints, not soft suggestions.
     const requestedText = normalize(customPreferences);
     if (!/\b(without|avoid|no|not|allerg)\b/i.test(customPreferences)) {
-      const families = ["sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "pohe", "upma", "misal", "sheera", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav", "pani puri", "khichadi"];
+      const families = ["rice bowl", "sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "pohe", "upma", "misal", "sheera", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav", "pani puri", "khichadi"];
       const proteins = ["chicken", "mutton", "fish", "prawn", "egg", "paneer"];
       const requestedFamilies = families.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
       const requestedProteins = proteins.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
