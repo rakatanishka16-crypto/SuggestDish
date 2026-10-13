@@ -334,6 +334,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       WHERE (sd."dishId" IS NOT NULL OR cs."dishId" IS NOT NULL OR
         (NOT EXISTS (SELECT 1 FROM "RestaurantStarDish" current_star WHERE current_star."restaurantId"=r.id)
          AND NOT EXISTS (SELECT 1 FROM "SourceStarDish" current_source WHERE current_source."restaurantId"=r.id AND current_source."expiresAt">NOW())))
+        AND LOWER(r.name) !~ '(^|[^a-z])tejal[''’]?s?[[:space:]]+kitchen([^a-z]|$)'
         AND d.price IS NOT NULL
         AND d.price <= ${budget}
         AND (${city} = '' OR LOWER(TRIM(r.city)) = LOWER(${city}))
