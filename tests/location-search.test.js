@@ -454,3 +454,80 @@ test('unknown mood fails before querying, while case and the legacy comfort alia
    assert.equal(body.recommendations[0].dishName,'Dal Khichdi');
  }
 });
+
+const cuisineCases = [
+  ['Indian', 'Dal Tadka', ['Classic Cheese Pizza','Plain Rice Bowl']],
+  ['North Indian', 'Paneer Butter Masala', ['Paneer Pizza','Paneer Puff']],
+  ['South Indian', 'Masala Idli', ['Vada Pav','Schezwan Dosa']],
+  ['Maharashtrian', 'Ukadiche Modak', ['Hakka Noodles','Misal Pizza']],
+  ['Chinese', 'Hakka Noodles', ['Crispy Potato','Schezwan Dosa']],
+  ['Italian', 'Margherita Pizza', ['Paneer Pizza','Schezwan Pasta']],
+  ['Continental', 'Grilled Vegetables', ['Plain Rice','Paneer Sandwich']]
+];
+for(const [cuisine,matching,rejected] of cuisineCases){
+ test(`${cuisine} uses dish families, rejects clear fusion and ignores outlet/address cues`,async()=>{
+  const base={isVeg:true,restaurantCity:'Mumbai'};
+  const h=serverHarness({rows:[
+   ...rejected.map((name,i)=>({...base,id:i+1,name,price:40,starConfirmed:true,restaurantName:`${cuisine} ${matching} Restaurant`,restaurantAddress:`${matching} Road`})),
+   {...base,id:100,name:matching,price:150,restaurantName:'Matching Outlet'}
+  ]});
+  const {body}=await h.request('/api/ai-recommend',{cuisine,budget:'200',diet:'vegetarian'});
+  assert.equal(body.recommendations[0].dishName,matching);
+  assert.match(body.recommendations[0].reason,/Cuisine match is based on the menu dish name/);
+ });
+ test(`${cuisine} cannot override budget, diet, radius or refinement constraints`,async()=>{
+  const base={name:matching,isVeg:true,restaurantCity:'Mumbai',latitude:19.2,longitude:72.85};
+  const h=serverHarness({rows:[
+   {...base,id:1,price:300,restaurantName:'Over Budget'},
+   {...base,id:2,price:80,isVeg:false,restaurantName:'Wrong Diet'},
+   {...base,id:3,price:80,latitude:18.9,restaurantName:'Too Far'},
+   {...base,id:4,price:80,restaurantName:'Already Shown'},
+   {...base,id:5,name:'Mineral Water',price:10,restaurantName:cuisine}
+  ]});
+  const {body}=await h.request('/api/ai-recommend',{cuisine,budget:'200',diet:'vegetarian',lat:'19.2',lon:'72.85',radiusKm:'5',excludeDishIds:'4'});
+  assert.equal(body.recommendations.length,0);
+ });
+}
+
+test('every displayed cuisine has a tested rule; Any cuisine remains unrestricted',async()=>{
+ const block=fs.readFileSync(path.join(root,'index.html'),'utf8').match(/<select id="aiCuisine"[\s\S]*?<\/select>/)[0];
+ const values=[...block.matchAll(/value="([^"]+)"/g)].map(m=>m[1]).filter(v=>v!=='any');
+ assert.deepEqual(values,cuisineCases.map(c=>c[0]));
+ const h=serverHarness({rows:[{id:1,name:'Mystery Rice Bowl',price:80,isVeg:true,restaurantName:'A'}]});
+ const {body}=await h.request('/api/ai-recommend',{cuisine:'any',budget:'200'});
+ assert.equal(body.recommendations[0].dishName,'Mystery Rice Bowl');
+});
+
+test('cuisine, taste and occasion must all match the same dish',async()=>{
+ const h=serverHarness({rows:[
+  {id:1,name:'Margherita Pizza',price:80,isVeg:true,restaurantName:'A'},
+  {id:2,name:'Brownie',price:90,isVeg:true,restaurantName:'B'},
+  {id:3,name:'Tiramisu',price:120,isVeg:true,restaurantName:'C'}
+ ]});
+ const {body}=await h.request('/api/ai-recommend',{cuisine:'Italian',taste:'sweet',mood:'date night',budget:'200'});
+ assert.equal(body.recommendations[0].dishName,'Tiramisu');
+ const other=await h.request('/api/ai-recommend',{cuisine:'Chinese',customPreferences:'idli',budget:'200'});
+ assert.equal(other.body.recommendations.length,0);
+});
+
+test('Gemini receives only cuisine-eligible dishes and cannot restore a rejected one',async()=>{
+ let prompt;
+ const h=serverHarness({env:{GEMINI_API_KEY:'test'},aiReply:async params=>{
+  prompt=params.contents;
+  return {recommendations:[{id:1,dishName:'Paneer Pizza',restaurant:'A'}]};
+ },rows:[
+  {id:1,name:'Paneer Pizza',price:80,isVeg:true,restaurantName:'A'},
+  {id:2,name:'Paneer Butter Masala',price:120,isVeg:true,restaurantName:'B'}
+ ]});
+ const {body}=await h.request('/api/ai-recommend',{cuisine:'North Indian',budget:'200'});
+ assert.equal(prompt.includes('Paneer Pizza'),false);
+ assert.equal(body.recommendations[0].dishName,'Paneer Butter Masala');
+});
+
+test('unknown cuisine fails before querying and the legacy south alias works',async()=>{
+ const h=serverHarness({rows:[{id:1,name:'Idli Sambar',price:80,isVeg:true,restaurantName:'A'}]});
+ assert.equal((await h.request('/api/ai-recommend',{cuisine:'unknown'})).status,400);
+ assert.equal(h.queries.length,0);
+ const {body}=await h.request('/api/ai-recommend',{cuisine:'south',budget:'200'});
+ assert.equal(body.recommendations[0].dishName,'Idli Sambar');
+});
