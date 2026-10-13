@@ -21,6 +21,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
     require(name) {
       // Middleware has its own HTTP integration tests; this harness exercises route data flow.
       if (name === '../lib/launch-security') return () => {};
+      if (name === '../lib/featured-dishes') return require('../lib/featured-dishes');
       if (name === '../lib/operational-errors') return require('../lib/operational-errors');
       if (name === '../lib/razorpay-payments') return require('../lib/razorpay-payments');
       if (name === '../lib/dish-events') return require('../lib/dish-events');
@@ -226,4 +227,13 @@ test('timed-out location search releases the location button and can be retried'
  const h=frontendHarness(async(url,options)=>{assert.ok(options.signal);throw Object.assign(new Error('timed out'),{name:'TimeoutError'});});
  await h.element('enterLocation').click();assert.equal(h.element('enterLocation').disabled,false);
  await h.element('enterLocation').click();assert.equal(h.calls.length,2);
+});
+
+
+test('general Jalna breakfast can return idli while an explicit poha request remains empty', async () => {
+  const h = serverHarness({ rows: [{ id: 137, name: '2 Idli With Sambar', price: 90, isVeg: true, restaurantName: 'Fixture breakfast outlet', restaurantCity: 'Jalna', restaurantAddress: 'Fixture address', latitude: null, longitude: null }] });
+  const general = await h.request('/api/ai-recommend', { city: 'Jalna', mood: 'breakfast', customPreferences: '', diet: 'vegetarian', budget: '200' });
+  assert.equal(general.body.recommendations[0].dishName, '2 Idli With Sambar');
+  const explicit = await h.request('/api/ai-recommend', { city: 'Jalna', mood: 'breakfast', customPreferences: 'poha', diet: 'vegetarian', budget: '200' });
+  assert.equal(explicit.body.recommendations.length, 0);
 });

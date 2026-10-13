@@ -1,0 +1,33 @@
+{
+  "checked_on": "2026-10-13",
+  "base_commit": "c619d363590cde8618bd2b665cd71b3f9dbc080c",
+  "production_deployment": "dpl_2kDytX5PRbhd6TfSAFJXuYD3nGAP",
+  "production_state": "READY",
+  "diagnosis": "Breakfast shortcut sets customPreferences=poha, which applies the explicit dish-family constraint. General breakfast can use existing idli data.",
+  "live_checks": [
+    {
+      "url": "https://www.suggestdish.com/api/ai-recommend?city=Jalna&mood=breakfast&vegetarian=true&budget=200",
+      "status": 200,
+      "result": "2 Idli With Sambar, Mohan's Chat N Dosa, dishId 137, INR 90; source database; ownerVerified false; sourceCheckedAt null"
+    },
+    {
+      "url": "https://www.suggestdish.com/api/ai-recommend?city=Jalna&mood=breakfast&customPreferences=poha&diet=vegetarian&budget=200",
+      "status": 200,
+      "result": "Empty recommendations; explicit poha unavailable within request filters"
+    }
+  ],
+  "change": "Breakfast shortcut now sets occasion=breakfast and an empty dish request. Button wording and style unchanged.",
+  "tests": {
+    "command": "node --test tests/foodie-controls.test.js tests/location-search.test.js tests/recommendation-accessibility.test.js",
+    "passed": 32,
+    "failed": 0,
+    "limits": "Mocked DOM and SQL tests; actual production API reads before change. No phone viewport, geolocation permission, deployed shortcut or real Gemini acceptance claimed."
+  },
+  "coordination": "Separate daily outlet acquisition and weekly marketing remain unchanged. No source batches or database rows modified. Existing open PRs 2,34,35,36 do not change this shortcut.",
+  "release_status": "prepared_pending_specific_approval",
+  "next_actions": [
+    "Approve this specific PR before merging and production deployment.",
+    "After approved deployment, verify Breakfast click and Jalna recommendation on deployed page.",
+    "Continue source-backed Jalna breakfast data acquisition in existing data workflow; do not invent poha prices or availability."
+  ]
+}
