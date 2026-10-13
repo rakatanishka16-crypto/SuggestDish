@@ -487,17 +487,15 @@ app.get("/api/ai-recommend", async (req, res) => {
       ],
 
       sweet: [
-        "sweet",
-        "chocolate",
-        "waffle",
-        "mango",
-        "strawberry",
-        "milkshake",
-        "mastani",
-        "dessert",
-        "gulab",
-        "ice cream",
-        "brownie"
+        "gulab jamun", "rasgulla", "rasmalai", "ras malai", "jalebi",
+        "halwa", "sheera", "kheer", "payasam", "phirni", "firni",
+        "modak", "puran poli", "shrikhand", "amrakhand", "basundi",
+        "barfi", "burfi", "ladoo", "laddu", "peda", "mithai",
+        "ice cream", "icecream", "kulfi", "falooda", "brownie",
+        "waffle", "pancake", "cake", "pastry", "cheesecake",
+        "chocolate", "dessert", "pudding", "sundae", "milkshake",
+        "mastani", "donut", "doughnut", "sweet lassi", "mango lassi",
+        "sweet rice", "sweet pongal", "chakkara pongal", "sakkarai pongal"
       ],
 
       savory: [
@@ -733,6 +731,24 @@ app.get("/api/ai-recommend", async (req, res) => {
       filteredDishes = filteredDishes.filter(dish => selectedMoodKeywords.some(keyword => normalize(dish.name).includes(keyword)));
       if (!filteredDishes.length) return res.json({success:true,source:"database",recommendations:[],summary:"No listed breakfast dishes match your selected city, dietary preference, budget and distance. Breakfast menu coverage is still being expanded."});
     }
+    // Sweet is an eligibility constraint for both AI and fallback, not a bonus.
+    // Match menu names only: fruit, sweet corn, outlet names and addresses
+    // do not establish a sweet dish. Mixed savoury meals stay ineligible.
+    const wantsSweet = normalize(taste) === "sweet" ||
+      (!/\b(without|avoid|no|not)\b/i.test(customPreferences) &&
+       /\b(sweet|dessert|mithai)\b/i.test(customPreferences));
+    if (wantsSweet) {
+      const hasPhrase = (name, phrase) => (" " + name + " ").includes(" " + phrase + " ");
+      filteredDishes = filteredDishes.filter(dish => {
+        const name = normalize(dish.name);
+        const savouryMeal = /\b(rice bowl|fried rice|biryani|thali|meal|combo|chicken|mutton|fish|prawn|noodles|sandwich|burger|pizza|pasta|wrap|roll|paneer|savory|savoury|schezwan|masala|garlic|peri peri|chilli|chili|sweet corn|sweet potato)\b/.test(name);
+        return !savouryMeal && tasteKeywords.sweet.some(phrase => hasPhrase(name, phrase));
+      });
+      if (!filteredDishes.length) return res.json({
+        success: true, source: "database", recommendations: [],
+        summary: "No named sweet dishes or desserts match your selected filters. Try another area or budget."
+      });
+    }
     const scoredDishes = filteredDishes.map((dish) => {
       const dishText = textForDish(dish);
 
@@ -740,7 +756,7 @@ app.get("/api/ai-recommend", async (req, res) => {
 
       // Taste relevance
       for (const keyword of selectedTasteKeywords) {
-        if (dishText.includes(keyword)) {
+        if (normalize(dish.name).includes(keyword)) {
           score += 8;
         }
       }
