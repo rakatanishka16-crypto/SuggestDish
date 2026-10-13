@@ -61,47 +61,67 @@
         "maharashtra-mall-menu-followup-16-2026-10-13",
         "maharashtra-mall-menu-followup-17-2026-10-13",
         "mumbai-official-breakfast-tiffin-2026-10-13",
-        "maharashtra-thane-official-followup-18-2026-10-13"
+        "maharashtra-thane-official-followup-18-2026-10-13",
+        "mumbai-pizzahut-r-mall-menu-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 90,
-        "outlet_menus_observed": 64,
+        "checked_records": 91,
+        "outlet_menus_observed": 65,
         "new_outlet_rows": 0,
-        "menu_entries": 4427,
+        "menu_entries": 4562,
         "published_prices": 1474,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 7
+        "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-thane-official-followup-18-2026-10-13",
+        "batch_id": "mumbai-pizzahut-r-mall-menu-2026-10-13",
         "date": "2026-10-13",
-        "districts": ["Thane"],
-        "cities": ["Thane"],
-        "localities": ["Gajbandhan Patharli, Dombivli East"],
-        "new_outlets": 1,
-        "new_menus": 4,
-        "new_prices": 4,
+        "districts": ["Mumbai Suburban"],
+        "cities": ["Mumbai"],
+        "localities": ["R Mall, Mulund West"],
+        "new_outlets": 0,
+        "new_menus": 135,
+        "new_prices": 0,
         "recommendation_eligible_items": 0,
         "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
-          "Four published prices are historical offers dated 2017-06-14 through 2017-12-31 and are not current recommendation prices.",
-          "7 mall branch targets still lack an observed branch menu.",
+          "The exact branch menu publishes no prices, so all 135 items remain ineligible for recommendations.",
+          "6 mall branch targets still lack an observed branch menu.",
           "A separate Infiniti Mall Domino's record remains held as a distinct store identity and was not merged.",
           "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.dominos.co.in/store-location/thane/gajbandhan-patharli-kalyan",
-            "result": "Exact branch identity, address, directions coordinates and four dated historical offer prices observed",
+            "url": "https://restaurants.pizzahut.co.in/pizza-hut-mulund-west-pizza-restaurant-mulund-west-mumbai-1135/Menu",
+            "result": "Exact R Mall Mulund branch page with 135 distinct menu items, sections and explicit dietary icons where supplied; no prices published",
             "date": "2026-10-13"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-pizzahut-r-mall-menu-2026-10-13",
+          "checked_on": "2026-10-13",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 135,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "source_pages": [{
+            "url": "https://restaurants.pizzahut.co.in/pizza-hut-mulund-west-pizza-restaurant-mulund-west-mumbai-1135/Menu",
+            "checked_on": "2026-10-13"
+          }],
+          "remaining_gaps": [
+            "No branch menu prices are published",
+            "6 mall branch targets still lack an observed branch menu",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "mumbai-official-breakfast-tiffin-2026-10-13",
           "checked_on": "2026-10-13",
@@ -1224,29 +1244,28 @@
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-thane-official-followup-18-2026-10-13",
+    "run_id": "mumbai-pizzahut-r-mall-menu-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Thane"],
-    "cities": ["Thane"],
-    "localities": ["Gajbandhan Patharli, Dombivli East"],
-    "new_outlets": 1,
-    "new_menus": 4,
-    "new_prices": 4,
+    "districts": ["Mumbai Suburban"],
+    "cities": ["Mumbai"],
+    "localities": ["R Mall, Mulund West"],
+    "new_outlets": 0,
+    "new_menus": 135,
+    "new_prices": 0,
     "recommendation_eligible_items": 0,
     "duplicate_candidates": 0,
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://www.dominos.co.in/store-location/thane/gajbandhan-patharli-kalyan",
-      "https://www.google.com/maps/dir/?api=1&destination=19.20780992016984,73.09453913608242"
+      "https://restaurants.pizzahut.co.in/pizza-hut-mulund-west-pizza-restaurant-mulund-west-mumbai-1135/Menu"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "The four explicit prices are historical 2017 offers and must not be treated as current recommendation prices",
-      "7 mall branch targets still lack an observed branch menu",
+      "The exact branch page publishes no prices, so all 135 items remain ineligible for recommendations",
+      "6 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
       "Mumbai and Maharashtra remain only partially covered"
