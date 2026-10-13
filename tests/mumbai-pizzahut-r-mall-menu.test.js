@@ -5,6 +5,7 @@ const file=path.join(__dirname,'../api/source-batches/mumbai-pizzahut-r-mall-men
 const data=JSON.parse(zlib.gunzipSync(fs.readFileSync(file)));
 const items=Object.values(data.menu_sets).flatMap(set=>set.items);
 const sourceKey='official:sd-food-cd832e85898cd156a795';
+const source=require('../lib/source-catalog');
 
 test('R Mall Mulund keeps 135 exact official branch-menu entries',()=>{
   assert.equal(data.businesses.length,0);
@@ -24,4 +25,14 @@ test('R Mall menu attaches only to the existing exact branch identity',()=>{
   assert.ok(menu.menuItems.every(item=>item.source_business_id===sourceKey));
   assert.equal(menu.menuItems.find(item=>item.name==='My Box Pasta Veg').is_veg,true);
   assert.equal(menu.menuItems.find(item=>item.name==='My Box Pasta Non Veg').is_veg,false);
+});
+
+test('public source API selects the newer exact branch menu',()=>{
+  let handler,result;
+  source({get(route,fn){if(route==='/api/business-source')handler=fn;}});
+  handler({query:{businessId:sourceKey}},{set(){},json(value){result=value;}});
+  assert.equal(result.menuScope,'outlet_page');
+  assert.equal(result.menuItems.length,135);
+  assert.ok(result.menuItems.every(item=>item.source_business_id===sourceKey));
+  assert.ok(result.menuItems.every(item=>item.price_inr===null&&item.recommendation_eligible===false));
 });
