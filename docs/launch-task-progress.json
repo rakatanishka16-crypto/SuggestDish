@@ -44,7 +44,18 @@
       "document": "docs/jalna-breakfast-shortcut-2026-10-13.json",
       "production_deployment": "dpl_2kDytX5PRbhd6TfSAFJXuYD3nGAP",
       "tests_passed": 32,
-      "release_status": "not_merged_or_deployed"
+      "release_status": "not_merged_or_deployed",
+      "preview": {
+        "commit": "006d75c3efff3f14a9fb51721ef69e0a3f2b93a4",
+        "deployment": "dpl_1eGQWzS47hXBzK9geZxPLqMiwdmF",
+        "state": "READY",
+        "page_status": 200,
+        "breakfast_markup_verified": true,
+        "health_status": 500,
+        "error": "FUNCTION_INVOCATION_FAILED",
+        "limit": "Preview recommendation acceptance blocked; static shortcut verified. No production change.",
+        "pr": "https://github.com/rakatanishka16-crypto/SuggestDish/pull/57"
+      }
     }
   },
   "tasks": [
@@ -101,8 +112,10 @@
       "title": "Verify customer recommendation journey",
       "status": "regression_fix_prepared_release_approval_pending",
       "acceptance": "Diet/budget/dish/location and provider-error paths pass production checks.",
-      "blockers": [],
-      "next_action": "Review and approve the Breakfast shortcut PR, then verify the deployed click path. Explicit poha stays a strict request.",
+      "blockers": [
+        "Preview health returns HTTP 500 FUNCTION_INVOCATION_FAILED; deployed recommendation acceptance blocked."
+      ],
+      "next_action": "Resolve preview initialization and verify recommendation path, then obtain specific PR #57 merge/deployment approval.",
       "evidence": [
         "docs/customer-production-checks-2026-10-10.json",
         "docs/jalna-breakfast-shortcut-2026-10-13.json"
