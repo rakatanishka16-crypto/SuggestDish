@@ -254,3 +254,43 @@ test('breakfast cannot substitute an unrelated main course when coverage is empt
  const {body}=await h.request('/api/ai-recommend',{city:'Jalna',mood:'breakfast',budget:'200',diet:'vegetarian'});
  assert.equal(body.recommendations.length,0);assert.match(body.summary,/breakfast menu coverage/i);
 });
+
+test('sweet search excludes savoury rice bowls even at a nearby dessert-named outlet', async () => {
+  const base={isVeg:true,restaurantCity:'Mumbai',latitude:19.2,longitude:72.85};
+  const h=serverHarness({rows:[
+    {...base,id:1,name:'Rajma Rice Bowl',price:80,restaurantName:'Chocolate Dessert Kitchen',restaurantAddress:'Sweet Mango Road'},
+    {...base,id:2,name:'Mango Rice Bowl',price:90,restaurantName:'B'},
+    {...base,id:3,name:'Gulab Jamun',price:120,restaurantName:'C'}
+  ]});
+  const {body}=await h.request('/api/ai-recommend',{city:'Mumbai',taste:'sweet',budget:'200',diet:'vegetarian',lat:'19.2',lon:'72.85',radiusKm:'5'});
+  assert.equal(body.recommendations[0].dishName,'Gulab Jamun');
+});
+
+test('sweet search returns empty rather than savoury or ambiguous replacements', async () => {
+  for(const name of ['Rajma Rice Bowl','Sweet Corn Soup','Sweet Potato Fries','Mango Salad','Rice Bowl + Gulab Jamun Combo','Chocolate Pizza','Paneer Waffle']){
+    const h=serverHarness({rows:[{id:1,name,price:80,isVeg:true,restaurantName:'Chocolate Dessert Kitchen'}]});
+    const {body}=await h.request('/api/ai-recommend',{taste:'sweet',budget:'200'});
+    assert.equal(body.recommendations.length,0,name);
+    assert.match(body.summary,/No named sweet dishes/);
+  }
+});
+
+test('sweet filter preserves budget, diet and dish refinement exclusions', async () => {
+  const h=serverHarness({rows:[
+    {id:1,name:'Brownie',price:300,isVeg:true,restaurantName:'A'},
+    {id:2,name:'Cake',price:80,isVeg:false,restaurantName:'B'},
+    {id:3,name:'Kulfi',price:80,isVeg:true,restaurantName:'C'},
+    {id:4,name:'Rice Bowl',price:80,isVeg:true,restaurantName:'D'}
+  ]});
+  const {body}=await h.request('/api/ai-recommend',{taste:'sweet',budget:'200',diet:'vegetarian',excludeDishIds:'3'});
+  assert.equal(body.recommendations.length,0);
+});
+
+test('natural-language sweet request uses the same constraint and permits explicitly sweet rice', async () => {
+  const h=serverHarness({rows:[
+    {id:1,name:'Rice Bowl',price:80,isVeg:true,restaurantName:'A'},
+    {id:2,name:'Sweet Rice',price:90,isVeg:true,restaurantName:'B'}
+  ]});
+  const {body}=await h.request('/api/ai-recommend',{customPreferences:'something sweet',budget:'200'});
+  assert.equal(body.recommendations[0].dishName,'Sweet Rice');
+});
