@@ -457,7 +457,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       String(value || "")
         .toLowerCase()
         .replace(/गोलगप्पा|पानी पूरी|पानीपुरी|\bgolgappas?\b|\bpanipuri\b|\bpuchka\b/g, "pani puri")
-        .replace(/पोहा/g, "poha").replace(/डोसा/g, "dosa")
+        .replace(/पोहा|पोहे|\bpohe\b/g, "poha").replace(/डोसा/g, "dosa")
         .replace(/\bkhichdi\b/g, "khichadi")
         .replace(/[^a-z0-9\s]/g, " ")
         .replace(/\s+/g, " ")
@@ -637,6 +637,13 @@ app.get("/api/ai-recommend", async (req, res) => {
         "idli",
         "dosa",
         "poha",
+        "pohe",
+        "upma",
+        "misal",
+        "sheera",
+        "sabudana khich",
+        "puri bhaji",
+        "poori bhaji",
         "paratha",
         "sandwich",
         "vada",
@@ -710,7 +717,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     // Explicit dish families and proteins are constraints, not soft suggestions.
     const requestedText = normalize(customPreferences);
     if (!/\b(without|avoid|no|not|allerg)\b/i.test(customPreferences)) {
-      const families = ["sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav", "pani puri", "khichadi"];
+      const families = ["sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "pohe", "upma", "misal", "sheera", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav", "pani puri", "khichadi"];
       const proteins = ["chicken", "mutton", "fish", "prawn", "egg", "paneer"];
       const requestedFamilies = families.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
       const requestedProteins = proteins.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
@@ -719,6 +726,10 @@ app.get("/api/ai-recommend", async (req, res) => {
         return (!requestedFamilies.length || requestedFamilies.some(word => name.includes(" " + word + " "))) && (!requestedProteins.length || requestedProteins.some(word => name.includes(" " + word + " ")));
       });
       if (!filteredDishes.length) return res.json({success:true,source:"database",recommendations:[],summary:"No matching dishes were found for your specific request within the selected dietary preference, budget and distance. Change your request or filters to see other options."});
+    }
+    if (normalize(mood) === "breakfast") {
+      filteredDishes = filteredDishes.filter(dish => selectedMoodKeywords.some(keyword => normalize(dish.name).includes(keyword)));
+      if (!filteredDishes.length) return res.json({success:true,source:"database",recommendations:[],summary:"No listed breakfast dishes match your selected city, dietary preference, budget and distance. Breakfast menu coverage is still being expanded."});
     }
     const scoredDishes = filteredDishes.map((dish) => {
       const dishText = textForDish(dish);
