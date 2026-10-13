@@ -235,7 +235,10 @@ app.get("/api/ai-recommend", async (req, res) => {
 
     const diningMode = String(req.query.diningMode || "any");
     if (!["any","delivery","dine-in","takeaway"].includes(diningMode)) return res.status(400).json({success:false,error:"Choose a valid dining mode."});
-    const taste = String(req.query.taste || "any").trim();
+    const taste = String(req.query.taste || "any").trim().toLowerCase();
+    if (!["any", "all", "none", "spicy", "sweet", "rich", "light", "tangy", "crispy", "savory", "savoury"].includes(taste)) {
+      return res.status(400).json({success:false,error:"Choose a listed taste preference."});
+    }
     const cuisine = String(req.query.cuisine || "any").trim();
     const mood = String(req.query.mood || "any").trim();
     if ([taste,cuisine,mood].some(value=>value.length>80)) return res.status(400).json({success:false,error:'Keep taste, cuisine and mood within 80 characters.'});
@@ -473,18 +476,7 @@ app.get("/api/ai-recommend", async (req, res) => {
 
 
     const tasteKeywords = {
-      spicy: [
-        "spicy",
-        "chilli",
-        "chili",
-        "schezwan",
-        "manchurian",
-        "tikka",
-        "masala",
-        "peri peri",
-        "dragon",
-        "hot"
-      ],
+      spicy: ["spicy", "chilli", "chili", "schezwan", "szechuan", "sichuan", "peri peri", "fiery", "hot and spicy", "hot garlic"],
 
       sweet: [
         "gulab jamun", "rasgulla", "rasmalai", "ras malai", "jalebi",
@@ -511,26 +503,10 @@ app.get("/api/ai-recommend", async (req, res) => {
         "rice"
       ],
 
-      light: [
-        "salad",
-        "soup",
-        "idli",
-        "juice",
-        "buttermilk",
-        "lassi",
-        "sandwich"
-      ],
-
-      rich: [
-        "butter",
-        "cheese",
-        "paneer",
-        "cream",
-        "alfredo",
-        "malai",
-        "korma",
-        "biryani"
-      ]
+      light: ["light", "salad", "clear soup", "broth", "steamed", "idli"],
+      rich: ["rich", "butter", "cheese", "cheesy", "cream", "creamy", "alfredo", "malai", "makhani", "korma"],
+      tangy: ["tangy", "sour", "khatta", "achari", "achaari", "pickle", "tamarind", "imli", "lemon", "lime", "amchur", "chatpata", "chaat", "bhel", "sev puri", "dahi puri", "pani puri"],
+      crispy: ["crispy", "crisp", "crunchy", "kurkure", "tempura"]
     };
 
 
@@ -695,7 +671,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         return [];
       }
 
-      return dictionary[key] || [];
+      return dictionary[key === "savoury" ? "savory" : key] || [];
     };
 
 
@@ -731,22 +707,37 @@ app.get("/api/ai-recommend", async (req, res) => {
       filteredDishes = filteredDishes.filter(dish => selectedMoodKeywords.some(keyword => normalize(dish.name).includes(keyword)));
       if (!filteredDishes.length) return res.json({success:true,source:"database",recommendations:[],summary:"No listed breakfast dishes match your selected city, dietary preference, budget and distance. Breakfast menu coverage is still being expanded."});
     }
-    // Sweet is an eligibility constraint for both AI and fallback, not a bonus.
-    // Match menu names only: fruit, sweet corn, outlet names and addresses
-    // do not establish a sweet dish. Mixed savoury meals stay ineligible.
-    const wantsSweet = normalize(taste) === "sweet" ||
-      (!/\b(without|avoid|no|not)\b/i.test(customPreferences) &&
-       /\b(sweet|dessert|mithai)\b/i.test(customPreferences));
-    if (wantsSweet) {
-      const hasPhrase = (name, phrase) => (" " + name + " ").includes(" " + phrase + " ");
-      filteredDishes = filteredDishes.filter(dish => {
-        const name = normalize(dish.name);
-        const savouryMeal = /\b(rice bowl|fried rice|biryani|thali|meal|combo|chicken|mutton|fish|prawn|noodles|sandwich|burger|pizza|pasta|wrap|roll|paneer|savory|savoury|schezwan|masala|garlic|peri peri|chilli|chili|sweet corn|sweet potato)\b/.test(name);
-        return !savouryMeal && tasteKeywords.sweet.some(phrase => hasPhrase(name, phrase));
-      });
+    // Taste eligibility runs before either AI or fallback candidate selection.
+    // Only menu-name cues count; an outlet name/address never proves a taste.
+    const hasPhrase = (name, phrase) => (" " + name + " ").includes(" " + phrase + " ");
+    const requestedTastes = new Set(selectedTasteKeywords.length ? [taste === "savoury" ? "savory" : taste] : []);
+    if (!/\b(without|avoid|no|not)\b/i.test(customPreferences)) {
+      for (const key of ["spicy", "sweet", "rich", "light", "tangy", "crispy"]) {
+        if (hasPhrase(requestedText, key)) requestedTastes.add(key);
+      }
+      if (/\b(dessert|mithai)\b/i.test(customPreferences)) requestedTastes.add("sweet");
+    }
+    const matchesTaste = (dish, key) => {
+      const name = normalize(dish.name);
+      if (/\b(extra|add on|addon|combo|thali|meal)\b/.test(name)) return false;
+      if (!tasteKeywords[key].some(phrase => hasPhrase(name, phrase))) return false;
+      if (key === "sweet") {
+        return !/\b(rice bowl|fried rice|biryani|chicken|mutton|fish|prawn|noodles|sandwich|burger|pizza|pasta|wrap|roll|paneer|savory|savoury|schezwan|masala|garlic|peri peri|chilli|chili|sweet corn|sweet potato)\b/.test(name);
+      }
+      if (key === "spicy") return !/\b(mild|non spicy|not spicy|no chilli|no chili|without chilli|without chili)\b/.test(name);
+      if (key === "light") return !/\b(fried|fry|crispy|tempura|butter|cheese|cheesy|cream|creamy|malai|makhani|loaded|mayonnaise|mayo|alfredo)\b/.test(name);
+      if (key === "rich") return !/\b(low fat|fat free|without butter|without cheese|without cream|no butter|no cheese|no cream)\b/.test(name);
+      if (key === "tangy") return !/\b(non tangy|not tangy|no sour|without lemon|without lime|no lemon|no lime)\b/.test(name);
+      if (key === "crispy") return !/\b(non crispy|not crispy|soft|steamed|gravy|soup)\b/.test(name);
+      return true;
+    };
+    if (requestedTastes.size) {
+      filteredDishes = filteredDishes.filter(dish => [...requestedTastes].every(key => matchesTaste(dish, key)));
       if (!filteredDishes.length) return res.json({
         success: true, source: "database", recommendations: [],
-        summary: "No named sweet dishes or desserts match your selected filters. Try another area or budget."
+        summary: requestedTastes.size === 1 && requestedTastes.has("sweet")
+          ? "No named sweet dishes or desserts match your selected filters. Try another area or budget."
+          : `No menu-name matches for ${[...requestedTastes].join(" and ")} fit all your selected filters. Try another area or adjust your preferences.`
       });
     }
     const scoredDishes = filteredDishes.map((dish) => {
@@ -756,7 +747,7 @@ app.get("/api/ai-recommend", async (req, res) => {
 
       // Taste relevance
       for (const keyword of selectedTasteKeywords) {
-        if (normalize(dish.name).includes(keyword)) {
+        if (hasPhrase(normalize(dish.name), keyword)) {
           score += 8;
         }
       }
