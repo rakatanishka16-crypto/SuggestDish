@@ -54,7 +54,8 @@
         "maharashtra-mall-menu-followup-9-2026-10-13",
         "maharashtra-mall-menu-followup-10-2026-10-13",
         "maharashtra-mall-menu-followup-11-2026-10-13",
-        "maharashtra-mall-menu-followup-12-2026-10-13"
+        "maharashtra-mall-menu-followup-12-2026-10-13",
+        "sambhajinagar-chul-priced-menu-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -68,29 +69,35 @@
         "pending_branch_menus": 17
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-12-2026-10-13",
-        "date": "2026-10-13",
-        "districts": ["Amravati"],
-        "cities": ["Amravati"],
-        "localities": ["Saturna, Gopal Nagar"],
         "new_outlets": 0,
-        "new_menus": 1,
-        "new_prices": 1,
-        "recommendation_eligible_items": 0,
-        "duplicate_candidates": 0,
-        "conflicts": 0,
-        "status": "branch_menu_enriched",
-        "remaining_gaps": [
-          "The official exact-branch menu URL displays a two-Regular-Pizza offer at ₹99 each; dietary type, checkout price and current availability remain unconfirmed.",
-          "17 mall branch targets still lack an observed branch menu.",
-          "Amravati and Maharashtra remain only partially covered."
-        ],
-        "checked_sources": [
+        "enriched_outlets": 1,
+        "menu_entries": 153,
+        "distinct_dish_names": 134,
+        "published_prices": 153,
+        "explicitly_vegetarian_entries": 88,
+        "unknown_dietary_entries": 65,
+        "conflicts_found": 1,
+        "conflict_entries": 2,
+        "source_checks": [
           {
-            "url": "https://www.dominos.co.in/store-location/amravati/tapadia-city-centre-amravati/menu",
-            "result": "Official exact-branch menu URL displays the two-Regular-Pizza offer at ₹99 each",
-            "date": "2026-10-13"
+            "url": "https://chul.in/menu",
+            "checked_on": "2026-10-13",
+            "sha256": "88cf839798d1e07be9693ba5287ed909716202e5637acc233aefd73b1832a51b",
+            "access_method": "anonymous_public_page",
+            "robots_url": "https://chul.in/robots.txt",
+            "robots_status": "User-Agent: *; Allow: /"
           }
+        ],
+        "complete_city_census": false,
+        "complete_state_census": false,
+        "recommendation_eligible_items": 0,
+        "neon_inserts": 0,
+        "excluded_beverages": 3,
+        "remaining_gaps": [
+          "Current availability and licences unconfirmed",
+          "Shevga Handi signature/table price conflict requires owner confirmation",
+          "OmnivorousDiet does not establish nonveg or egg classification",
+          "Existing five homepage observations retained as dated historical records"
         ]
       },
       "bounded_batch_history": [
@@ -957,8 +964,14 @@
       "run_id": "maharashtra-mall-menu-followup-3-2026-10-12",
       "checked_on": "2026-10-12",
       "state": "Maharashtra",
-      "cities_checked": ["Nashik", "Pune"],
-      "localities_checked": ["Lavate Nagar", "Viman Nagar"],
+      "cities_checked": [
+        "Nashik",
+        "Pune"
+      ],
+      "localities_checked": [
+        "Lavate Nagar",
+        "Viman Nagar"
+      ],
       "new_outlets": 0,
       "new_menus": 2,
       "new_prices": 2,
@@ -986,8 +999,16 @@
       "run_id": "maharashtra-mall-menu-followup-4-2026-10-12",
       "checked_on": "2026-10-12",
       "state": "Maharashtra",
-      "cities_checked": ["Chhatrapati Sambhajinagar", "Thane", "Navi Mumbai"],
-      "localities_checked": ["Chikalthana", "Subhash Nagar", "Sector 30A, Vashi"],
+      "cities_checked": [
+        "Chhatrapati Sambhajinagar",
+        "Thane",
+        "Navi Mumbai"
+      ],
+      "localities_checked": [
+        "Chikalthana",
+        "Subhash Nagar",
+        "Sector 30A, Vashi"
+      ],
       "new_outlets": 0,
       "new_menus": 3,
       "new_prices": 3,
@@ -1020,8 +1041,14 @@
       "run_id": "maharashtra-mall-menu-followup-5-2026-10-13",
       "checked_on": "2026-10-13",
       "state": "Maharashtra",
-      "cities_checked": ["Amravati", "Pune"],
-      "localities_checked": ["Saturna", "Magarpatta"],
+      "cities_checked": [
+        "Amravati",
+        "Pune"
+      ],
+      "localities_checked": [
+        "Saturna",
+        "Magarpatta"
+      ],
       "new_outlets": 0,
       "new_menus": 2,
       "new_prices": 2,
@@ -1049,8 +1076,13 @@
       "run_id": "maharashtra-mall-menu-followup-6-2026-10-13",
       "checked_on": "2026-10-13",
       "state": "Maharashtra",
-      "cities_checked": ["Pune"],
-      "localities_checked": ["Amanora Town Centre", "Shivaji Nagar"],
+      "cities_checked": [
+        "Pune"
+      ],
+      "localities_checked": [
+        "Amanora Town Centre",
+        "Shivaji Nagar"
+      ],
       "new_outlets": 0,
       "new_menus": 2,
       "new_prices": 2,
@@ -1059,8 +1091,16 @@
       "conflicts_found": 0,
       "status": "dated_branch_promotions_enriched",
       "checked_sources": [
-        {"url":"https://stores.burgerking.in/burger-king-fast-food-restaurant-amanora-town-centre-pune-179328/Home","status":"dated_outlet_promotion_observed","result":"2 Crispy Veg Burgers for ₹79, posted 2026-10-07"},
-        {"url":"https://stores.burgerking.in/burger-king-fast-food-restaurant-shivaji-nagar-pune-179306/Home","status":"dated_outlet_promotion_observed","result":"2 Crispy Veg Burgers for ₹79, posted 2026-10-07"}
+        {
+          "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-amanora-town-centre-pune-179328/Home",
+          "status": "dated_outlet_promotion_observed",
+          "result": "2 Crispy Veg Burgers for ₹79, posted 2026-10-07"
+        },
+        {
+          "url": "https://stores.burgerking.in/burger-king-fast-food-restaurant-shivaji-nagar-pune-179306/Home",
+          "status": "dated_outlet_promotion_observed",
+          "result": "2 Crispy Veg Burgers for ₹79, posted 2026-10-07"
+        }
       ],
       "next_action": "Continue Mumbai/Jalna recommendation-ready menu gaps and the remaining mall branch-menu queue; retry inaccessible Pizza Hut Amanora without inferring menu content.",
       "complete_city_census": false,
@@ -1070,8 +1110,12 @@
       "run_id": "maharashtra-mall-menu-followup-7-2026-10-13",
       "checked_on": "2026-10-13",
       "state": "Maharashtra",
-      "cities_checked": ["Mumbai"],
-      "localities_checked": ["Kurla West"],
+      "cities_checked": [
+        "Mumbai"
+      ],
+      "localities_checked": [
+        "Kurla West"
+      ],
       "new_outlets": 0,
       "new_menus": 1,
       "new_prices": 1,
@@ -1080,7 +1124,11 @@
       "conflicts_found": 0,
       "status": "official_branch_menu_offer_enriched",
       "checked_sources": [
-        {"url":"https://www.dominos.co.in/store-location/mumbai/phoenix-market-city-kurla/menu","status":"official_branch_menu_offer_observed","result":"2 Regular Pizzas at ₹99 each; dietary type and final checkout availability unconfirmed"}
+        {
+          "url": "https://www.dominos.co.in/store-location/mumbai/phoenix-market-city-kurla/menu",
+          "status": "official_branch_menu_offer_observed",
+          "result": "2 Regular Pizzas at ₹99 each; dietary type and final checkout availability unconfirmed"
+        }
       ],
       "next_action": "Continue Mumbai/Jalna recommendation-ready menu gaps and the remaining mall branch-menu queue; keep unconfirmed offers ineligible for recommendations.",
       "complete_city_census": false,
@@ -1090,8 +1138,12 @@
       "run_id": "maharashtra-mall-menu-followup-8-2026-10-13",
       "checked_on": "2026-10-13",
       "state": "Maharashtra",
-      "cities_checked": ["Navi Mumbai"],
-      "localities_checked": ["Sector 30A, Vashi"],
+      "cities_checked": [
+        "Navi Mumbai"
+      ],
+      "localities_checked": [
+        "Sector 30A, Vashi"
+      ],
       "new_outlets": 0,
       "new_menus": 53,
       "new_prices": 0,
@@ -1100,7 +1152,11 @@
       "conflicts_found": 0,
       "status": "official_branch_menu_enriched",
       "checked_sources": [
-        {"url":"https://www.dominos.co.in/store-location/navi-mumbai/inorbit-mall-vashi-mumbai/menu","status":"official_branch_menu_observed","result":"Exact branch page lists 53 dishes; no explicit item prices were present in the observed text"}
+        {
+          "url": "https://www.dominos.co.in/store-location/navi-mumbai/inorbit-mall-vashi-mumbai/menu",
+          "status": "official_branch_menu_observed",
+          "result": "Exact branch page lists 53 dishes; no explicit item prices were present in the observed text"
+        }
       ],
       "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue.",
       "complete_city_census": false,
@@ -1110,8 +1166,12 @@
       "run_id": "maharashtra-mall-menu-followup-9-2026-10-13",
       "checked_on": "2026-10-13",
       "state": "Maharashtra",
-      "cities_checked": ["Pune"],
-      "localities_checked": ["Amanora Park Township, Hadapsar"],
+      "cities_checked": [
+        "Pune"
+      ],
+      "localities_checked": [
+        "Amanora Park Township, Hadapsar"
+      ],
       "new_outlets": 0,
       "new_menus": 1,
       "new_prices": 1,
@@ -1120,7 +1180,11 @@
       "conflicts_found": 0,
       "status": "official_branch_menu_offer_enriched",
       "checked_sources": [
-        {"url":"https://www.dominos.co.in/store-location/pune/amanora-mall/menu","status":"official_branch_menu_offer_observed","result":"2 Regular Pizzas at ₹99 each; dietary type, final checkout price and current availability unconfirmed"}
+        {
+          "url": "https://www.dominos.co.in/store-location/pune/amanora-mall/menu",
+          "status": "official_branch_menu_offer_observed",
+          "result": "2 Regular Pizzas at ₹99 each; dietary type, final checkout price and current availability unconfirmed"
+        }
       ],
       "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue; keep unconfirmed offers ineligible for recommendations.",
       "complete_city_census": false,
@@ -1130,8 +1194,12 @@
       "run_id": "maharashtra-mall-menu-followup-10-2026-10-13",
       "checked_on": "2026-10-13",
       "state": "Maharashtra",
-      "cities_checked": ["Chhatrapati Sambhajinagar"],
-      "localities_checked": ["Chikalthana Industrial Estate"],
+      "cities_checked": [
+        "Chhatrapati Sambhajinagar"
+      ],
+      "localities_checked": [
+        "Chikalthana Industrial Estate"
+      ],
       "new_outlets": 0,
       "new_menus": 51,
       "new_prices": 0,
@@ -1140,7 +1208,11 @@
       "conflicts_found": 0,
       "status": "official_branch_menu_enriched",
       "checked_sources": [
-        {"url":"https://www.dominos.co.in/store-locations/aurangabad/prozone-mall-aurangabad/menu","status":"official_branch_menu_observed","result":"Exact Prozone Mall branch page lists 51 unique menu names; no explicit item prices were published"}
+        {
+          "url": "https://www.dominos.co.in/store-locations/aurangabad/prozone-mall-aurangabad/menu",
+          "status": "official_branch_menu_observed",
+          "result": "Exact Prozone Mall branch page lists 51 unique menu names; no explicit item prices were published"
+        }
       ],
       "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue.",
       "complete_city_census": false,
@@ -1150,8 +1222,12 @@
       "run_id": "maharashtra-mall-menu-followup-11-2026-10-13",
       "checked_on": "2026-10-13",
       "state": "Maharashtra",
-      "cities_checked": ["Nashik"],
-      "localities_checked": ["Lawate Nagar, Untwadi Road"],
+      "cities_checked": [
+        "Nashik"
+      ],
+      "localities_checked": [
+        "Lawate Nagar, Untwadi Road"
+      ],
       "new_outlets": 0,
       "new_menus": 1,
       "new_prices": 1,
@@ -1160,7 +1236,11 @@
       "conflicts_found": 0,
       "status": "official_branch_menu_offer_enriched",
       "checked_sources": [
-        {"url":"https://www.dominos.co.in/store-location/nashik/city-center-mall-nashik-maharashtra/menu","status":"official_branch_menu_offer_observed","result":"2 Regular Pizzas at ₹99 each; dietary type, final checkout price and current availability unconfirmed"}
+        {
+          "url": "https://www.dominos.co.in/store-location/nashik/city-center-mall-nashik-maharashtra/menu",
+          "status": "official_branch_menu_offer_observed",
+          "result": "2 Regular Pizzas at ₹99 each; dietary type, final checkout price and current availability unconfirmed"
+        }
       ],
       "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue; keep unconfirmed offers ineligible for recommendations.",
       "complete_city_census": false,
@@ -1170,8 +1250,12 @@
       "run_id": "maharashtra-mall-menu-followup-12-2026-10-13",
       "checked_on": "2026-10-13",
       "state": "Maharashtra",
-      "cities_checked": ["Amravati"],
-      "localities_checked": ["Saturna, Gopal Nagar"],
+      "cities_checked": [
+        "Amravati"
+      ],
+      "localities_checked": [
+        "Saturna, Gopal Nagar"
+      ],
       "new_outlets": 0,
       "new_menus": 1,
       "new_prices": 1,
@@ -1180,39 +1264,97 @@
       "conflicts_found": 0,
       "status": "official_branch_menu_offer_enriched",
       "checked_sources": [
-        {"url":"https://www.dominos.co.in/store-location/amravati/tapadia-city-centre-amravati/menu","status":"official_branch_menu_offer_observed","result":"2 Regular Pizzas at ₹99 each; dietary type, final checkout price and current availability unconfirmed"}
+        {
+          "url": "https://www.dominos.co.in/store-location/amravati/tapadia-city-centre-amravati/menu",
+          "status": "official_branch_menu_offer_observed",
+          "result": "2 Regular Pizzas at ₹99 each; dietary type, final checkout price and current availability unconfirmed"
+        }
       ],
       "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue; keep unconfirmed offers ineligible for recommendations.",
+      "complete_city_census": false,
+      "complete_state_census": false
+    },
+    {
+      "run_id": "sambhajinagar-chul-priced-menu-2026-10-13",
+      "checked_on": "2026-10-13",
+      "state": "Maharashtra",
+      "cities_checked": [
+        "Chhatrapati Sambhajinagar"
+      ],
+      "localities_checked": [
+        "Jalna Road, near Cambridge School"
+      ],
+      "new_outlets": 0,
+      "enriched_outlets": 1,
+      "new_menus": 153,
+      "new_prices": 153,
+      "distinct_dish_names": 134,
+      "recommendation_eligible_items": 0,
+      "duplicates_found": 0,
+      "conflicts_found": 1,
+      "status": "official_priced_outlet_menu_enriched",
+      "checked_sources": [
+        {
+          "url": "https://chul.in/menu",
+          "checked_on": "2026-10-13",
+          "sha256": "88cf839798d1e07be9693ba5287ed909716202e5637acc233aefd73b1832a51b",
+          "access_method": "anonymous_public_page",
+          "robots_url": "https://chul.in/robots.txt",
+          "robots_status": "User-Agent: *; Allow: /"
+        }
+      ],
+      "next_action": "Continue Mumbai/Jalna priced menu gaps; confirm source conflicts before recommendation import.",
       "complete_city_census": false,
       "complete_state_census": false
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-12-2026-10-13",
+    "run_id": "sambhajinagar-chul-priced-menu-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Amravati"],
-    "cities": ["Amravati"],
-    "localities": ["Saturna, Gopal Nagar"],
-    "new_outlets": 0,
-    "new_menus": 1,
-    "new_prices": 1,
-    "recommendation_eligible_items": 0,
-    "duplicate_candidates": 0,
-    "conflicts_found": 0,
-    "status": "official_branch_menu_enriched",
-    "source_urls": [
-      "https://www.dominos.co.in/store-location/amravati/tapadia-city-centre-amravati/menu"
+    "cities_checked": [
+      "Chhatrapati Sambhajinagar"
     ],
-    "neon_inserts": 0,
+    "localities_checked": [
+      "Jalna Road, near Cambridge School"
+    ],
+    "new_outlets": 0,
+    "enriched_outlets": 1,
+    "new_menus": 153,
+    "new_prices": 153,
+    "distinct_dish_names": 134,
+    "recommendation_eligible_items": 0,
+    "duplicates_found": 0,
+    "conflicts_found": 1,
+    "status": "official_priced_outlet_menu_enriched",
+    "checked_sources": [
+      {
+        "url": "https://chul.in/menu",
+        "checked_on": "2026-10-13",
+        "sha256": "88cf839798d1e07be9693ba5287ed909716202e5637acc233aefd73b1832a51b",
+        "access_method": "anonymous_public_page",
+        "robots_url": "https://chul.in/robots.txt",
+        "robots_status": "User-Agent: *; Allow: /"
+      }
+    ],
+    "next_action": "Continue Mumbai/Jalna priced menu gaps; confirm source conflicts before recommendation import.",
     "complete_city_census": false,
     "complete_state_census": false,
+    "cities": [
+      "Chhatrapati Sambhajinagar"
+    ],
+    "localities": [
+      "Jalna Road, near Cambridge School"
+    ],
+    "source_urls": [
+      "https://chul.in/menu"
+    ],
+    "neon_inserts": 0,
     "remaining_gaps": [
-      "The exact branch menu URL displays a two-Regular-Pizza offer at ₹99 each, but final checkout price and current availability are unconfirmed",
-      "17 mall branch targets still lack an observed branch menu",
-      "Jalna official-source and branch-menu gaps remain",
-      "Held Sambhajinagar records and duplicate candidates remain unresolved",
-      "Amravati and Maharashtra remain only partially covered"
+      "Current availability and licences unconfirmed",
+      "Shevga Handi signature/table price conflict requires owner confirmation",
+      "OmnivorousDiet does not establish nonveg or egg classification",
+      "Existing five homepage observations retained as dated historical records"
     ]
   }
 }
