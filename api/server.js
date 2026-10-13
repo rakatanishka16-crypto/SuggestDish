@@ -240,7 +240,10 @@ app.get("/api/ai-recommend", async (req, res) => {
       return res.status(400).json({success:false,error:"Choose a listed taste preference."});
     }
     const cuisine = String(req.query.cuisine || "any").trim();
-    const mood = String(req.query.mood || "any").trim();
+    const mood = String(req.query.mood || "any").trim().toLowerCase();
+    if (!["any", "all", "none", "breakfast", "brunch", "lunch", "dinner", "quick meal", "comfort food", "comfort", "date night", "family meal", "friends outing", "snack", "celebration"].includes(mood)) {
+      return res.status(400).json({success:false,error:"Choose a listed occasion or mood."});
+    }
     if ([taste,cuisine,mood].some(value=>value.length>80)) return res.status(400).json({success:false,error:'Keep taste, cuisine and mood within 80 characters.'});
     const city = String(req.query.city || "").trim();
     if (city.length > 120) {
@@ -580,82 +583,23 @@ app.get("/api/ai-recommend", async (req, res) => {
     };
 
 
+    // These describe dish types, not verified service times, group portions
+    // or restaurant atmosphere. Every displayed occasion has an explicit rule.
+    const breakfastDishes = ["idli", "dosa", "poha", "upma", "misal", "sheera", "sabudana khichadi", "puri bhaji", "poori bhaji", "paratha", "sandwich", "medu vada", "vada pav", "uttapam", "pancake", "waffle", "toast", "croissant"];
+    const mainDishes = ["biryani", "thali", "rice bowl", "fried rice", "dal", "curry", "khichadi", "paneer curry", "paneer butter masala", "paneer tikka masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "paneer lababdar", "shahi paneer", "matar paneer", "rajma", "chole", "pasta", "pizza", "noodles", "risotto", "paratha"];
+    const snackDishes = ["sandwich", "fries", "vada pav", "pav bhaji", "chaat", "bhel", "pani puri", "sev puri", "dahi puri", "momos", "pakora", "pakoda", "bhajiya", "fritters", "samosa", "kachori", "puff", "roll", "wrap", "waffle"];
     const moodKeywords = {
-      brunch: ["idli", "dosa", "poha", "paratha", "sandwich", "uttapam"],
-      "quick meal": ["sandwich", "roll", "wrap", "idli", "poha"],
-      "comfort food": ["dal", "khichadi", "pav bhaji", "paneer"],
-      "date night": ["pasta", "pizza", "dessert", "brownie"],
-      "family meal": ["thali", "biryani", "paneer", "dal"],
-      "friends outing": ["pizza", "momos", "chaat", "fries", "pasta"],
-      dinner: [
-        "biryani",
-        "thali",
-        "paneer",
-        "naan",
-        "roti",
-        "rice",
-        "dal",
-        "curry"
-      ],
-
-      lunch: [
-        "thali",
-        "rice",
-        "dal",
-        "roti",
-        "naan",
-        "paratha",
-        "biryani",
-        "khichadi"
-      ],
-
-      breakfast: [
-        "idli",
-        "dosa",
-        "poha",
-        "pohe",
-        "upma",
-        "misal",
-        "sheera",
-        "sabudana khich",
-        "puri bhaji",
-        "poori bhaji",
-        "paratha",
-        "sandwich",
-        "vada",
-        "uttapam"
-      ],
-
-      comfort: [
-        "pav bhaji",
-        "pizza",
-        "paneer",
-        "dal",
-        "khichadi",
-        "noodles",
-        "fries",
-        "sandwich"
-      ],
-
-      celebration: [
-        "pizza",
-        "biryani",
-        "paneer",
-        "waffle",
-        "dessert",
-        "cheese",
-        "special"
-      ],
-
-      snack: [
-        "sandwich",
-        "fries",
-        "pav",
-        "vada",
-        "chaat",
-        "waffle",
-        "momos"
-      ]
+      breakfast: breakfastDishes,
+      brunch: [...breakfastDishes, "pasta", "salad", "pav bhaji"],
+      lunch: mainDishes,
+      dinner: mainDishes,
+      "quick meal": ["sandwich", "roll", "wrap", "idli", "poha", "upma", "burger", "rice bowl"],
+      "comfort food": ["dal", "khichadi", "pav bhaji", "rajma", "chole", "soup", "pasta", "pizza", "paneer butter masala", "palak paneer", ...tasteKeywords.sweet],
+      "date night": ["pasta", "pizza", "risotto", "salad", "soup", ...tasteKeywords.sweet],
+      "family meal": [...mainDishes, "pav bhaji"],
+      "friends outing": ["pizza", "momos", "chaat", "bhel", "fries", "pasta", "nachos", "burger", "pav bhaji", ...tasteKeywords.sweet],
+      snack: snackDishes,
+      celebration: ["pizza", "biryani", "pasta", "thali", "paneer tikka", ...tasteKeywords.sweet]
     };
 
 
@@ -671,7 +615,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         return [];
       }
 
-      return dictionary[key === "savoury" ? "savory" : key] || [];
+      return dictionary[key === "savoury" ? "savory" : key === "comfort" ? "comfort food" : key] || [];
     };
 
 
@@ -703,13 +647,22 @@ app.get("/api/ai-recommend", async (req, res) => {
       });
       if (!filteredDishes.length) return res.json({success:true,source:"database",recommendations:[],summary:"No matching dishes were found for your specific request within the selected dietary preference, budget and distance. Change your request or filters to see other options."});
     }
-    if (normalize(mood) === "breakfast") {
-      filteredDishes = filteredDishes.filter(dish => selectedMoodKeywords.some(keyword => normalize(dish.name).includes(keyword)));
-      if (!filteredDishes.length) return res.json({success:true,source:"database",recommendations:[],summary:"No listed breakfast dishes match your selected city, dietary preference, budget and distance. Breakfast menu coverage is still being expanded."});
+    const hasPhrase = (name, phrase) => (" " + name + " ").includes(" " + phrase + " ");
+    if (selectedMoodKeywords.length) {
+      filteredDishes = filteredDishes.filter(dish => {
+        const name = normalize(dish.name);
+        return !/\b(extra|add on|addon)\b/.test(name) &&
+          selectedMoodKeywords.some(keyword => hasPhrase(name, normalize(keyword)));
+      });
+      if (!filteredDishes.length) return res.json({
+        success:true, source:"database", recommendations:[],
+        summary: mood === "breakfast"
+          ? "No listed breakfast dishes match your selected city, dietary preference, budget and distance. Breakfast menu coverage is still being expanded."
+          : `No matching dish types for ${mood} fit all your selected filters. Try another area or adjust your preferences.`
+      });
     }
     // Taste eligibility runs before either AI or fallback candidate selection.
     // Only menu-name cues count; an outlet name/address never proves a taste.
-    const hasPhrase = (name, phrase) => (" " + name + " ").includes(" " + phrase + " ");
     const requestedTastes = new Set(selectedTasteKeywords.length ? [taste === "savoury" ? "savory" : taste] : []);
     if (!/\b(without|avoid|no|not)\b/i.test(customPreferences)) {
       for (const key of ["spicy", "sweet", "rich", "light", "tangy", "crispy"]) {
@@ -761,7 +714,7 @@ app.get("/api/ai-recommend", async (req, res) => {
 
       // Mood relevance
       for (const keyword of selectedMoodKeywords) {
-        if (dishText.includes(keyword)) {
+        if (hasPhrase(normalize(dish.name), normalize(keyword))) {
           score += 5;
         }
       }
@@ -939,6 +892,7 @@ Return exactly:
       const matched=[...selectedCuisineKeywords,...selectedTasteKeywords,...selectedMoodKeywords].filter(word=>normalize(dish.name).includes(word));
       if(matched.length) parts.push(`Menu-name keywords matching your preferences: ${[...new Set(matched)].slice(0,3).join(", ")}.`);
       if(customWords.some(word=>normalize(dish.name).split(" ").includes(word)))parts.push("Your dish search terms occur in this menu item.");
+      if (selectedMoodKeywords.length) parts.push("Occasion match uses the menu dish type; service time, group portions and venue atmosphere are unverified.");
       return starEvidenceLabel(dish)+parts.join(" ");
     }
 

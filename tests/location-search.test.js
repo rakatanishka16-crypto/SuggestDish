@@ -370,3 +370,87 @@ test('unknown taste is rejected before querying and Anything retains unrestricte
  const {body}=await h.request('/api/ai-recommend',{taste:'any',budget:'200'});
  assert.equal(body.recommendations[0].dishName,'Rice Bowl');
 });
+
+const moodCases = [
+  ['breakfast', 'Idli Sambar', 'Paneer Butter Masala'],
+  ['brunch', 'Poha', 'Dal Tadka'],
+  ['lunch', 'Dal Tadka', 'Chocolate Brownie'],
+  ['dinner', 'Paneer Butter Masala', 'Paneer Puff'],
+  ['quick meal', 'Veg Wrap', 'Veg Biryani'],
+  ['comfort food', 'Dal Khichdi', 'Mineral Water'],
+  ['date night', 'Alfredo Pasta', 'Plain Rice'],
+  ['family meal', 'Veg Thali', 'Paneer Puff'],
+  ['friends outing', 'Veg Momos', 'Plain Roti'],
+  ['snack', 'Samosa', 'Dal Tadka'],
+  ['celebration', 'Chocolate Cake', 'Extra Cheese']
+];
+for (const [mood, matching, unrelated] of moodCases) {
+  test(`${mood} filters by dish type rather than outlet name, price or proximity`, async () => {
+    const base={isVeg:true,restaurantCity:'Mumbai',latitude:19.2,longitude:72.85};
+    const h=serverHarness({rows:[
+      {...base,id:1,name:unrelated,price:20,starConfirmed:true,restaurantName:`${mood} ${matching} Kitchen`,restaurantAddress:`${matching} Road`},
+      {...base,id:2,name:matching,price:150,restaurantName:'Matching Outlet'}
+    ]});
+    const {body}=await h.request('/api/ai-recommend',{mood,budget:'200',diet:'vegetarian',lat:'19.2',lon:'72.85',radiusKm:'5'});
+    assert.equal(body.recommendations[0].dishName,matching);
+    assert.match(body.recommendations[0].reason,/Occasion match uses the menu dish type/);
+  });
+  test(`${mood} preserves budget, diet, distance and refinement instead of padding results`, async () => {
+    const base={name:matching,isVeg:true,restaurantCity:'Mumbai',latitude:19.2,longitude:72.85};
+    const h=serverHarness({rows:[
+      {...base,id:1,price:300,restaurantName:'Over Budget'},
+      {...base,id:2,price:80,isVeg:false,restaurantName:'Wrong Diet'},
+      {...base,id:3,price:80,latitude:18.9,restaurantName:'Too Far'},
+      {...base,id:4,price:80,restaurantName:'Already Shown'},
+      {...base,id:5,name:'Mineral Water',price:10,restaurantName:'Unrelated'}
+    ]});
+    const {body}=await h.request('/api/ai-recommend',{mood,budget:'200',diet:'vegetarian',lat:'19.2',lon:'72.85',radiusKm:'5',excludeDishIds:'4'});
+    assert.equal(body.recommendations.length,0);
+  });
+}
+
+test('every displayed mood has a tested rule; Any occasion stays unrestricted', async () => {
+  const block=fs.readFileSync(path.join(root, "index.html"), "utf8").match(/<select id="aiMood"[\s\S]*?<\/select>/)[0];
+  const values=[...block.matchAll(/value="([^"]+)"/g)].map(m=>m[1]).filter(v=>v!=='any');
+  assert.deepEqual(values,moodCases.map(c=>c[0]));
+  const h=serverHarness({rows:[{id:1,name:'Plain Rice',price:80,isVeg:true,restaurantName:'A'}]});
+  const {body}=await h.request('/api/ai-recommend',{mood:'any',budget:'200'});
+  assert.equal(body.recommendations[0].dishName,'Plain Rice');
+});
+
+test('mood and taste plus an explicit dish request are intersected', async () => {
+  const rows=[
+    {id:1,name:'Idli Sambar',price:90,isVeg:true,restaurantName:'A'},
+    {id:2,name:'Gulab Jamun',price:90,isVeg:true,restaurantName:'B'},
+    {id:3,name:'Sheera',price:90,isVeg:true,restaurantName:'C'}
+  ];
+  const h=serverHarness({rows});
+  let result=await h.request('/api/ai-recommend',{mood:'breakfast',taste:'sweet',budget:'200'});
+  assert.equal(result.body.recommendations[0].dishName,'Sheera');
+  result=await h.request('/api/ai-recommend',{mood:'breakfast',taste:'sweet',customPreferences:'idli',budget:'200'});
+  assert.equal(result.body.recommendations.length,0);
+});
+
+test('Gemini cannot restore a dish rejected by the mood filter', async () => {
+  let prompt;
+  const h=serverHarness({env:{GEMINI_API_KEY:'test'},aiReply: async params=>{
+    prompt=params.contents;
+    return {recommendations:[{id:1,dishName:'Plain Rice',restaurant:'A'}]};
+  },rows:[
+    {id:1,name:'Plain Rice',price:80,isVeg:true,restaurantName:'A'},
+    {id:2,name:'Chocolate Brownie',price:120,isVeg:true,restaurantName:'B'}
+  ]});
+  const {body}=await h.request('/api/ai-recommend',{mood:'date night',budget:'200'});
+  assert.equal(prompt.includes('Plain Rice'),false);
+  assert.equal(body.recommendations[0].dishName,'Chocolate Brownie');
+});
+
+test('unknown mood fails before querying, while case and the legacy comfort alias work',async()=>{
+ const h=serverHarness({rows:[{id:1,name:'Dal Khichdi',price:80,isVeg:true,restaurantName:'A'}]});
+ assert.equal((await h.request('/api/ai-recommend',{mood:'unknown'})).status,400);
+ assert.equal(h.queries.length,0);
+ for(const mood of ['Comfort Food','comfort']){
+   const {body}=await h.request('/api/ai-recommend',{mood,budget:'200'});
+   assert.equal(body.recommendations[0].dishName,'Dal Khichdi');
+ }
+});
