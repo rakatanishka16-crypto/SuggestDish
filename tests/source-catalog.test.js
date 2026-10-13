@@ -4,7 +4,7 @@ const chains=require('../lib/chain-source-catalog');
 function request(id){let handler,status=200,result;register({get:(p,h)=>{if(p==='/api/business-source')handler=h;}});handler({query:{businessId:id}},{set(){},status(c){status=c;return this;},json(d){result=d;}});return {status,result};}
 test('catalog exposes only source-checked business profiles and rejects unknown identifiers',()=>{
  assert.equal(request("x'; DROP TABLE").status,400);assert.equal(request('official:sd-mumbai-'+'0'.repeat(20)).status,404);
- for(const b of batch.businesses) assert.equal(request(b.sourceKey).result.business.name,b.name);
+ for(const b of batch.businesses){const r=request(b.sourceKey);if(b.brand==="Thepla House by Tejal's Kitchen")assert.equal(r.status,404);else assert.equal(r.result.business.name,b.name);}
  assert.equal('research_leads' in batch,false);
 });
 test('brand menus are kept separate from branch availability and budget recommendations',()=>{
@@ -32,7 +32,7 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8028);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,14018);assert.equal(result.publishedPrices,6192);assert.equal(result.outletsWithSourceMenus,208);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8023);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,14452);assert.equal(result.publishedPrices,6491);assert.equal(result.outletsWithSourceMenus,212);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });
 
 const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');

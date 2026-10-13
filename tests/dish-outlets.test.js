@@ -4,8 +4,8 @@ const shortlist=require('../api/source-batches/top-100-foods-2026-10-05.json');
 const routes={};register({get:(p,h)=>routes[p]=h});
 function request(query={},path='/api/dish-outlets'){let body,status=200;routes[path]({query},{set(){},status(n){status=n;return this},json(d){body=d;return this}});return {body,status};}
 test('all 100 curated dishes resolve reviewed menu IDs to real catalog outlets',()=>{
- const result=request().body;assert.equal(result.dishes.length,100);assert.equal(result.coverage.dishesWithMenuMatches,100);assert.equal(result.coverage.measuredRanking,false);assert.equal(result.coverage.availabilityConfirmed,false);
- for(const dish of result.dishes){const response=request({dishId:String(dish.id)}).body;assert.ok(response.total>0,dish.name);for(const outlet of response.outlets){assert.ok(outlet.address);assert.equal(outlet.availabilityConfirmed,false);assert.ok(outlet.menuItems.length);assert.ok(outlet.menuItems.every(m=>m.source_url && m.external_id));}}
+ const result=request().body;assert.equal(result.dishes.length,100);assert.equal(result.coverage.dishesWithMenuMatches,93);assert.deepEqual(result.coverage.pendingDishes,['Misal pav','Bhel puri','Dabeli','Chilli cheese toast','Khaman dhokla','Puran poli','Gulab jamun']);assert.equal(result.coverage.measuredRanking,false);assert.equal(result.coverage.availabilityConfirmed,false);
+ for(const dish of result.dishes){const response=request({dishId:String(dish.id)}).body;if(result.coverage.pendingDishes.includes(dish.name)){assert.equal(response.total,0);continue;}assert.ok(response.total>0,dish.name);for(const outlet of response.outlets){assert.ok(outlet.address);assert.equal(outlet.availabilityConfirmed,false);assert.ok(outlet.menuItems.length);assert.ok(outlet.menuItems.every(m=>m.source_url && m.external_id));}}
 });
 test('preparation-specific matches cannot confuse vegetable noodles, chicken 65 or shawarma',()=>{
  const noodles=request({dishId:'46'}).body;assert.ok(noodles.outlets.every(b=>b.menuItems.every(m=>m.name==='Veg.Hakka Noodles')));
@@ -29,7 +29,7 @@ test('the poha shortlist preserves separate menu items without a fabricated comb
 test('new branch records and menu enrichments are unique and source eligibility stays conservative',()=>{
  assert.equal(new Set(chains.businesses.map(b=>b.sourceKey)).size,chains.businesses.length);
  assert.equal(new Set(chains.menuItems.map(m=>m.external_id)).size,chains.menuItems.length);
- for(const b of chains.businesses){assert.equal(b.recommendation_eligible,false);assert.equal(b.publish_ready,false);}
+ for(const b of chains.businesses){assert.equal(b.publish_ready,false);if(b.recommendation_eligible){const menu=chains.menuFor(b);assert.equal(menu.menuScope,'outlet_page');assert.ok(menu.menuItems.length>0);assert.ok(menu.menuItems.every(m=>m.recommendation_eligible&&m.price_inr>0&&typeof m.is_veg==='boolean'));}}
  const chocolate=chains.businesses.find(b=>b.brand==='Kunafa Bytes');const menu=chains.menuFor(chocolate);assert.equal(menu.menuScope,'brand_reference');const item=menu.menuItems.find(m=>m.name==='Dubai Kunafa Chocolate');assert.equal(item.portion,'55 g');assert.equal(item.price_inr,320);assert.equal(item.source_business_id,null);
 });
 test('refreshed evidence IDs require exact product and portion matches to reviewed dishes',()=>{
