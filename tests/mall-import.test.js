@@ -138,3 +138,7 @@ test('Three additional Dominos Maharashtra offers remain exact-branch scoped',()
  for(const sourceKey of keys){const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);const item=menu.menuItems[0];assert.equal(item.name,'2 Regular Pizzas');assert.equal(item.price_inr,99);assert.equal(item.is_veg,null);assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
  assert.equal(new Set(keys.map(k=>chains.businesses.find(b=>b.sourceKey===k).outlet_menu_set_id)).size,3);
 });
+test('Dominos Phoenix Millennium and Tapadia Plaza offers remain exact-branch scoped',()=>{
+ const keys=['official:sd-food-fb58ab484605c353f91f','official:sd-food-98239d19446756b9524e'];
+ for(const sourceKey of keys){const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);const item=menu.menuItems[0];assert.equal(item.name,'2 Regular Pizzas');assert.equal(item.price_inr,99);assert.equal(item.is_veg,null);assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
+});
