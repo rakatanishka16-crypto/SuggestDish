@@ -52,41 +52,42 @@
         "maharashtra-mall-menu-followup-7-2026-10-13",
         "maharashtra-mall-menu-followup-8-2026-10-13",
         "maharashtra-mall-menu-followup-9-2026-10-13",
-        "maharashtra-mall-menu-followup-10-2026-10-13"
+        "maharashtra-mall-menu-followup-10-2026-10-13",
+        "maharashtra-mall-menu-followup-11-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 78,
-        "outlet_menus_observed": 52,
+        "checked_records": 79,
+        "outlet_menus_observed": 53,
         "new_outlet_rows": 0,
-        "menu_entries": 4415,
-        "published_prices": 1462,
+        "menu_entries": 4416,
+        "published_prices": 1463,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 19
+        "pending_branch_menus": 18
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-10-2026-10-13",
+        "batch_id": "maharashtra-mall-menu-followup-11-2026-10-13",
         "date": "2026-10-13",
-        "districts": ["Chhatrapati Sambhajinagar"],
-        "cities": ["Chhatrapati Sambhajinagar"],
-        "localities": ["Chikalthana Industrial Estate"],
+        "districts": ["Nashik"],
+        "cities": ["Nashik"],
+        "localities": ["Lawate Nagar, Untwadi Road"],
         "new_outlets": 0,
-        "new_menus": 51,
-        "new_prices": 0,
+        "new_menus": 1,
+        "new_prices": 1,
         "recommendation_eligible_items": 0,
         "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
-          "The official exact-branch page lists 51 unique menu names but publishes no explicit item prices.",
-          "19 mall branch targets still lack an observed branch menu.",
-          "Chhatrapati Sambhajinagar and Maharashtra remain only partially covered."
+          "The official exact-branch menu URL displays a two-Regular-Pizza offer at ₹99 each; dietary type, checkout price and current availability remain unconfirmed.",
+          "18 mall branch targets still lack an observed branch menu.",
+          "Nashik and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.dominos.co.in/store-locations/aurangabad/prozone-mall-aurangabad/menu",
-            "result": "Official exact-branch page identifies the Prozone Mall outlet and lists 51 unique menu names without explicit item prices",
+            "url": "https://www.dominos.co.in/store-location/nashik/city-center-mall-nashik-maharashtra/menu",
+            "result": "Official exact-branch menu URL displays the two-Regular-Pizza offer at ₹99 each",
             "date": "2026-10-13"
           }
         ]
@@ -1143,34 +1144,54 @@
       "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue.",
       "complete_city_census": false,
       "complete_state_census": false
+    },
+    {
+      "run_id": "maharashtra-mall-menu-followup-11-2026-10-13",
+      "checked_on": "2026-10-13",
+      "state": "Maharashtra",
+      "cities_checked": ["Nashik"],
+      "localities_checked": ["Lawate Nagar, Untwadi Road"],
+      "new_outlets": 0,
+      "new_menus": 1,
+      "new_prices": 1,
+      "recommendation_eligible_items": 0,
+      "duplicates_found": 0,
+      "conflicts_found": 0,
+      "status": "official_branch_menu_offer_enriched",
+      "checked_sources": [
+        {"url":"https://www.dominos.co.in/store-location/nashik/city-center-mall-nashik-maharashtra/menu","status":"official_branch_menu_offer_observed","result":"2 Regular Pizzas at ₹99 each; dietary type, final checkout price and current availability unconfirmed"}
+      ],
+      "next_action": "Continue Mumbai/Jalna priced and recommendation-ready menu gaps and the remaining mall branch-menu queue; keep unconfirmed offers ineligible for recommendations.",
+      "complete_city_census": false,
+      "complete_state_census": false
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-10-2026-10-13",
+    "run_id": "maharashtra-mall-menu-followup-11-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Chhatrapati Sambhajinagar"],
-    "cities": ["Chhatrapati Sambhajinagar"],
-    "localities": ["Chikalthana Industrial Estate"],
+    "districts": ["Nashik"],
+    "cities": ["Nashik"],
+    "localities": ["Lawate Nagar, Untwadi Road"],
     "new_outlets": 0,
-    "new_menus": 51,
-    "new_prices": 0,
+    "new_menus": 1,
+    "new_prices": 1,
     "recommendation_eligible_items": 0,
     "duplicate_candidates": 0,
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://www.dominos.co.in/store-locations/aurangabad/prozone-mall-aurangabad/menu"
+      "https://www.dominos.co.in/store-location/nashik/city-center-mall-nashik-maharashtra/menu"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "The exact Prozone Mall branch page lists 51 unique menu names but publishes no explicit item prices",
-      "19 mall branch targets still lack an observed branch menu",
+      "The exact branch menu URL displays a two-Regular-Pizza offer at ₹99 each, but final checkout price and current availability are unconfirmed",
+      "18 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
-      "Chhatrapati Sambhajinagar and Maharashtra remain only partially covered"
+      "Nashik and Maharashtra remain only partially covered"
     ]
   }
 }
