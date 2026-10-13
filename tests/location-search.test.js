@@ -31,6 +31,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
       if (name === '../lib/business-stars') return require('../lib/business-stars');
       if (name === '../lib/business-directory') return require('../lib/business-directory');
       if (name === '../lib/recommendation-coverage') return require('../lib/recommendation-coverage');
+      if (name === '../lib/featured-dishes') return require('../lib/featured-dishes');
       if (name === '../lib/source-catalog') return require('../lib/source-catalog');
       if (name === '../lib/business-review') return require('../lib/business-review');
       if (name === '../lib/business-listings') return require('../lib/business-listings');
@@ -226,4 +227,29 @@ test('timed-out location search releases the location button and can be retried'
  const h=frontendHarness(async(url,options)=>{assert.ok(options.signal);throw Object.assign(new Error('timed out'),{name:'TimeoutError'});});
  await h.element('enterLocation').click();assert.equal(h.element('enterLocation').disabled,false);
  await h.element('enterLocation').click();assert.equal(h.calls.length,2);
+});
+
+test('Jalna breakfast without a specific craving uses existing idli data',async()=>{
+ const base={isVeg:true,restaurantCity:'Jalna'};
+ const h=serverHarness({rows:[{...base,id:1,name:'Paneer Curry',price:100,restaurantName:'A'},{...base,id:2,name:'2 Idli With Sambar',price:90,restaurantName:'B'}]});
+ const {body}=await h.request('/api/ai-recommend',{city:'Jalna',mood:'breakfast',budget:'200',diet:'vegetarian',customPreferences:''});
+ assert.equal(body.recommendations[0].dishName,'2 Idli With Sambar');
+});
+test('specific misal and upma requests do not substitute idli',async()=>{
+ for(const dish of ['misal','upma']){
+  const h=serverHarness({rows:[{id:1,name:'2 Idli With Sambar',price:90,isVeg:true,restaurantName:'A',restaurantCity:'Jalna'}]});
+  const {body}=await h.request('/api/ai-recommend',{city:'Jalna',mood:'breakfast',customPreferences:dish,budget:'200',diet:'vegetarian'});
+  assert.equal(body.recommendations.length,0);
+ }
+});
+test('breakfast vocabulary ranks a priced upma over unrelated curry',async()=>{
+ const base={isVeg:true,restaurantCity:'Jalna'};
+ const h=serverHarness({rows:[{...base,id:1,name:'Paneer Curry',price:40,restaurantName:'A'},{...base,id:2,name:'Upma',price:70,restaurantName:'B'}]});
+ const {body}=await h.request('/api/ai-recommend',{city:'Jalna',mood:'breakfast',budget:'200',diet:'vegetarian'});
+ assert.equal(body.recommendations[0].dishName,'Upma');
+});
+test('breakfast cannot substitute an unrelated main course when coverage is empty',async()=>{
+ const h=serverHarness({rows:[{id:1,name:'Paneer Curry',price:90,isVeg:true,restaurantName:'A',restaurantCity:'Jalna'}]});
+ const {body}=await h.request('/api/ai-recommend',{city:'Jalna',mood:'breakfast',budget:'200',diet:'vegetarian'});
+ assert.equal(body.recommendations.length,0);assert.match(body.summary,/breakfast menu coverage/i);
 });
