@@ -1270,5 +1270,27 @@
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
       "Mumbai and Maharashtra remain only partially covered"
     ]
+  },
+  "last_source_check": {
+    "run_id": "maharashtra-amanora-pizzahut-retry-2026-10-14",
+    "checked_on": "2026-10-14",
+    "state": "Maharashtra",
+    "city": "Pune",
+    "locality": "Amanora Mall, Hadapsar",
+    "new_outlets": 0,
+    "new_menus": 0,
+    "new_prices": 0,
+    "recommendation_eligible_items": 0,
+    "status": "official_source_404_no_records_published",
+    "checked_sources": [
+      {
+        "url": "https://restaurants.pizzahut.co.in/pizza-hut-ph-amanora-mall-pizzerias-hadapsar-pune-366885/Menu",
+        "http_status": 404,
+        "result": "The former official exact-branch menu URL now returns Pizza Hut's 404 page; no menu, price or operation claim was retained from this retry."
+      }
+    ],
+    "next_action": "Keep this branch pending until an accessible official exact-branch page or licensed source is found; continue the other five mall-menu targets and Mumbai/Jalna recommendation-ready gaps.",
+    "complete_city_census": false,
+    "complete_state_census": false
   }
 }
