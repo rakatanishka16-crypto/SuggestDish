@@ -147,3 +147,9 @@ test('Dominos R City and Korum Mall offers remain exact-branch scoped',()=>{
  for(const sourceKey of keys){const branch=chains.businesses.find(b=>b.sourceKey===sourceKey);assert.ok(branch);const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);const item=menu.menuItems[0];assert.equal(item.name,'2 Regular Pizzas');assert.equal(item.price_inr,99);assert.equal(item.is_veg,null);assert.equal(item.source_business_id,sourceKey);assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);}
  assert.notEqual(chains.businesses.find(b=>b.sourceKey===keys[0]).outlet_menu_set_id,chains.businesses.find(b=>b.sourceKey===keys[1]).outlet_menu_set_id);
 });
+test('Dominos Infiniti Mall Malad offer attaches only to the exact official branch identity',()=>{
+ const sourceKey='official:sd-food-fa04671b2f35783ff36c',otherKey='official:sd-food-86d899de459faddee76b';
+ const branch=chains.businesses.find(b=>b.sourceKey===sourceKey),other=chains.businesses.find(b=>b.sourceKey===otherKey);assert.ok(branch);assert.ok(other);
+ const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);assert.equal(menu.menuItems[0].name,'2 Regular Pizzas');assert.equal(menu.menuItems[0].price_inr,99);assert.equal(menu.menuItems[0].is_veg,null);assert.equal(menu.menuItems[0].source_business_id,sourceKey);assert.equal(menu.menuItems[0].recommendation_eligible,false);
+ assert.equal(chains.menuFor(other).menuScope,'brand_reference');assert.notEqual(other.source_store_id,branch.source_store_id);
+});

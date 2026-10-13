@@ -58,41 +58,43 @@
         "maharashtra-mall-menu-followup-13-2026-10-13",
         "maharashtra-mall-menu-followup-14-2026-10-13",
         "maharashtra-mall-menu-followup-15-2026-10-13",
-        "maharashtra-mall-menu-followup-16-2026-10-13"
+        "maharashtra-mall-menu-followup-16-2026-10-13",
+        "maharashtra-mall-menu-followup-17-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
         "target_records": 71,
-        "checked_records": 89,
-        "outlet_menus_observed": 63,
+        "checked_records": 90,
+        "outlet_menus_observed": 64,
         "new_outlet_rows": 0,
-        "menu_entries": 4426,
-        "published_prices": 1473,
+        "menu_entries": 4427,
+        "published_prices": 1474,
         "complete_mall_tenant_census": false,
-        "pending_branch_menus": 8
+        "pending_branch_menus": 7
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-16-2026-10-13",
+        "batch_id": "maharashtra-mall-menu-followup-17-2026-10-13",
         "date": "2026-10-13",
-        "districts": ["Mumbai Suburban", "Thane"],
-        "cities": ["Mumbai", "Thane"],
-        "localities": ["Ghatkopar West", "Korum Mall"],
+        "districts": ["Mumbai Suburban"],
+        "cities": ["Mumbai"],
+        "localities": ["Infiniti Mall, Malad West"],
         "new_outlets": 0,
-        "new_menus": 2,
-        "new_prices": 2,
+        "new_menus": 1,
+        "new_prices": 1,
         "recommendation_eligible_items": 0,
-        "duplicate_candidates": 0,
+        "duplicate_candidates": 1,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
           "The official exact-branch menu URL displays a two-Regular-Pizza offer at ₹99 each; dietary type, checkout price and current availability remain unconfirmed.",
-          "8 mall branch targets still lack an observed branch menu.",
-          "Mumbai, Thane and Maharashtra remain only partially covered."
+          "7 mall branch targets still lack an observed branch menu.",
+          "A separate Infiniti Mall Domino's record remains held as a distinct store identity and was not merged.",
+          "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.dominos.co.in/store-location/mumbai/r-city-ghatkopar-west/menu",
-            "result": "Two official exact-branch menu URLs display the two-Regular-Pizza offer at ₹99 each",
+            "url": "https://www.dominos.co.in/store-location/mumbai/infinity-mall-malad-mumbai-maharashtra",
+            "result": "The exact official branch page title displays the two-Regular-Pizza offer at ₹99 each",
             "date": "2026-10-13"
           }
         ]
@@ -1192,32 +1194,32 @@
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-16-2026-10-13",
+    "run_id": "maharashtra-mall-menu-followup-17-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Mumbai Suburban", "Thane"],
-    "cities": ["Mumbai", "Thane"],
-    "localities": ["Ghatkopar West", "Korum Mall"],
+    "districts": ["Mumbai Suburban"],
+    "cities": ["Mumbai"],
+    "localities": ["Infiniti Mall, Malad West"],
     "new_outlets": 0,
-    "new_menus": 2,
-    "new_prices": 2,
+    "new_menus": 1,
+    "new_prices": 1,
     "recommendation_eligible_items": 0,
-    "duplicate_candidates": 0,
+    "duplicate_candidates": 1,
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://www.dominos.co.in/store-location/mumbai/r-city-ghatkopar-west/menu",
-      "https://www.dominos.co.in/store-location/thane/korum-mall-thane-mumbai-maharashtra/menu"
+      "https://www.dominos.co.in/store-location/mumbai/infinity-mall-malad-mumbai-maharashtra"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
       "The exact branch menu URL displays a two-Regular-Pizza offer at ₹99 each, but final checkout price and current availability are unconfirmed",
-      "8 mall branch targets still lack an observed branch menu",
+      "7 mall branch targets still lack an observed branch menu",
+      "A separate Infiniti Mall Domino's record remains held as a distinct store identity and was not merged",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
-      "Mumbai, Thane and Maharashtra remain only partially covered"
+      "Mumbai and Maharashtra remain only partially covered"
     ]
   }
 }
