@@ -59,7 +59,8 @@
         "maharashtra-mall-menu-followup-14-2026-10-13",
         "maharashtra-mall-menu-followup-15-2026-10-13",
         "maharashtra-mall-menu-followup-16-2026-10-13",
-        "maharashtra-mall-menu-followup-17-2026-10-13"
+        "maharashtra-mall-menu-followup-17-2026-10-13",
+        "mumbai-official-breakfast-tiffin-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -100,6 +101,34 @@
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-official-breakfast-tiffin-2026-10-13",
+          "checked_on": "2026-10-13",
+          "city_counts": {
+            "Mumbai": 2
+          },
+          "new_outlets": 2,
+          "menu_entries": 47,
+          "published_prices": 47,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "source_pages": [
+            {
+              "url": "https://thebreakfastkitchen.com/",
+              "checked_on": "2026-10-13"
+            },
+            {
+              "url": "https://www.suhanitiffins.com/",
+              "checked_on": "2026-10-13"
+            }
+          ],
+          "remaining_gaps": [
+            "Jalna priced breakfast menu still needed",
+            "Dietary labels unknown",
+            "Current prices and availability unconfirmed",
+            "Oyster Mushroom portions need clarification"
+          ]
+        },
         {
           "state": "Maharashtra",
           "city_counts": {
