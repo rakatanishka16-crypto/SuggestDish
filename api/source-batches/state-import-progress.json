@@ -1312,24 +1312,24 @@
     ]
   },
   "last_source_check": {
-    "run_id": "vashi-haldirams-duplicate-reconciliation-2026-10-14",
+    "run_id": "malad-haldirams-locator-2026-10-14",
     "checked_on": "2026-10-14",
     "state": "Maharashtra",
-    "city": "Navi Mumbai",
-    "locality": "Inorbit Mall, Vashi",
+    "city": "Mumbai",
+    "locality": "Infiniti Mall, Malad West",
     "new_outlets": 0,
     "new_menus": 0,
     "new_prices": 0,
     "recommendation_eligible_items": 0,
-    "status": "official_locator_duplicate_reconciled_no_branch_menu",
+    "status": "official_locator_verified_no_branch_menu",
     "checked_sources": [
       {
         "url": "https://haldirams.com/store-locator",
         "http_status": 200,
-        "result": "The official locator repeats the same Inorbit Vashi unit numbers and phone under two spelling variants; the duplicate catalog profile was removed in favour of one canonical Navi Mumbai profile. No branch menu or prices were published."
+        "result": "The official locator confirms the Infinity Mall Malad identity, Unit TF327 address and phone. The profile gained locality and address-based directions; no branch menu or prices were published."
       }
     ],
-    "next_action": "Keep this branch in the menu-gap queue until an accessible official exact-branch menu or licensed source is found; continue the other mall-menu targets and Mumbai/Jalna recommendation-ready gaps.",
+    "next_action": "Keep this branch in the menu-gap queue until an accessible official exact-branch menu or licensed source is found; continue the remaining mall-menu targets and Mumbai/Jalna recommendation-ready gaps.",
     "complete_city_census": false,
     "complete_state_census": false
   }

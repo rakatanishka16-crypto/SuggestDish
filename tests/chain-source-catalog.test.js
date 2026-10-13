@@ -35,3 +35,6 @@ test('Amravati Belgian Waffle locator enrichment adds directions without inventi
 test('duplicate Haldirams Inorbit Vashi locator rows reconcile to one Navi Mumbai profile',()=>{
  const canonical=chains.businesses.find(b=>b.sourceKey==='official:sd-food-41dcd5d616ad37183d95');assert.ok(canonical);assert.equal(canonical.city,'Navi Mumbai');assert.equal(canonical.locality,'Inorbit Mall, Vashi');assert.match(canonical.address,/S-26, 27, 28/);assert.match(canonical.directions_url,/destination=/);assert.equal(canonical.recommendation_eligible,false);assert.equal(chains.businesses.some(b=>b.sourceKey==='official:sd-food-19ac1b9ea5412bf2453f'),false);const menu=chains.menuFor(canonical);assert.ok(!menu||menu.menuScope!=='outlet_page');
 });
+test('Haldirams Infinity Mall Malad locator enrichment adds directions without inventing menu evidence',()=>{
+ const b=chains.businesses.find(b=>b.sourceKey==='official:sd-food-14ca9d26fb4ebe596e47');assert.ok(b);assert.equal(b.city,'Mumbai');assert.equal(b.locality,'Infiniti Mall, Malad West');assert.match(b.address,/Unit TF327/);assert.match(b.directions_url,/destination=Unit%20TF327/);assert.equal(b.recommendation_eligible,false);assert.match(b.service_note,/Current operation/);const menu=chains.menuFor(b);assert.ok(!menu||menu.menuScope!=='outlet_page');
+});
