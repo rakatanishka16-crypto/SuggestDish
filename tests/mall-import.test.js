@@ -153,3 +153,8 @@ test('Dominos Infiniti Mall Malad offer attaches only to the exact official bran
  const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,1);assert.equal(menu.menuItems[0].name,'2 Regular Pizzas');assert.equal(menu.menuItems[0].price_inr,99);assert.equal(menu.menuItems[0].is_veg,null);assert.equal(menu.menuItems[0].source_business_id,sourceKey);assert.equal(menu.menuItems[0].recommendation_eligible,false);
  assert.equal(chains.menuFor(other).menuScope,'brand_reference');assert.notEqual(other.source_store_id,branch.source_store_id);
 });
+test('Gajbandhan Patharli official branch keeps dated prices historical and non-recommendable',()=>{
+ const branch=chains.businesses.find(b=>b.name==="Domino's Pizza - GAJBANDHAN PATHARLI - KALYAN");assert.ok(branch);assert.equal(branch.latitude,19.20780992016984);assert.equal(branch.longitude,73.09453913608242);assert.match(branch.directions_url,/destination=19\.20780992016984,73\.09453913608242/);
+ const menu=chains.menuFor(branch);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,4);assert.deepEqual(menu.menuItems.map(x=>x.price_inr),[199,299,249,399]);
+ for(const item of menu.menuItems){assert.equal(item.branch_availability,'historical_promotion_observed');assert.equal(item.observed_promotion_date,'2017-06-14');assert.equal(item.offer_end_date,'2017-12-31');assert.equal(item.recommendation_eligible,false);assert.equal(item.publish_ready,false);assert.equal(item.is_veg,null);}
+});

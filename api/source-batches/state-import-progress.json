@@ -60,7 +60,8 @@
         "maharashtra-mall-menu-followup-15-2026-10-13",
         "maharashtra-mall-menu-followup-16-2026-10-13",
         "maharashtra-mall-menu-followup-17-2026-10-13",
-        "mumbai-official-breakfast-tiffin-2026-10-13"
+        "mumbai-official-breakfast-tiffin-2026-10-13",
+        "maharashtra-thane-official-followup-18-2026-10-13"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -74,28 +75,28 @@
         "pending_branch_menus": 7
       },
       "latest_bounded_batch": {
-        "batch_id": "maharashtra-mall-menu-followup-17-2026-10-13",
+        "batch_id": "maharashtra-thane-official-followup-18-2026-10-13",
         "date": "2026-10-13",
-        "districts": ["Mumbai Suburban"],
-        "cities": ["Mumbai"],
-        "localities": ["Infiniti Mall, Malad West"],
-        "new_outlets": 0,
-        "new_menus": 1,
-        "new_prices": 1,
+        "districts": ["Thane"],
+        "cities": ["Thane"],
+        "localities": ["Gajbandhan Patharli, Dombivli East"],
+        "new_outlets": 1,
+        "new_menus": 4,
+        "new_prices": 4,
         "recommendation_eligible_items": 0,
-        "duplicate_candidates": 1,
+        "duplicate_candidates": 0,
         "conflicts": 0,
         "status": "branch_menu_enriched",
         "remaining_gaps": [
-          "The official exact-branch menu URL displays a two-Regular-Pizza offer at ₹99 each; dietary type, checkout price and current availability remain unconfirmed.",
+          "Four published prices are historical offers dated 2017-06-14 through 2017-12-31 and are not current recommendation prices.",
           "7 mall branch targets still lack an observed branch menu.",
           "A separate Infiniti Mall Domino's record remains held as a distinct store identity and was not merged.",
           "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.dominos.co.in/store-location/mumbai/infinity-mall-malad-mumbai-maharashtra",
-            "result": "The exact official branch page title displays the two-Regular-Pizza offer at ₹99 each",
+            "url": "https://www.dominos.co.in/store-location/thane/gajbandhan-patharli-kalyan",
+            "result": "Exact branch identity, address, directions coordinates and four dated historical offer prices observed",
             "date": "2026-10-13"
           }
         ]
@@ -1223,29 +1224,29 @@
     }
   ],
   "last_collection_run": {
-    "run_id": "maharashtra-mall-menu-followup-17-2026-10-13",
+    "run_id": "maharashtra-thane-official-followup-18-2026-10-13",
     "checked_on": "2026-10-13",
     "state": "Maharashtra",
-    "districts": ["Mumbai Suburban"],
-    "cities": ["Mumbai"],
-    "localities": ["Infiniti Mall, Malad West"],
-    "new_outlets": 0,
-    "new_menus": 1,
-    "new_prices": 1,
+    "districts": ["Thane"],
+    "cities": ["Thane"],
+    "localities": ["Gajbandhan Patharli, Dombivli East"],
+    "new_outlets": 1,
+    "new_menus": 4,
+    "new_prices": 4,
     "recommendation_eligible_items": 0,
-    "duplicate_candidates": 1,
+    "duplicate_candidates": 0,
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://www.dominos.co.in/store-location/mumbai/infinity-mall-malad-mumbai-maharashtra"
+      "https://www.dominos.co.in/store-location/thane/gajbandhan-patharli-kalyan",
+      "https://www.google.com/maps/dir/?api=1&destination=19.20780992016984,73.09453913608242"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "The exact branch menu URL displays a two-Regular-Pizza offer at ₹99 each, but final checkout price and current availability are unconfirmed",
+      "The four explicit prices are historical 2017 offers and must not be treated as current recommendation prices",
       "7 mall branch targets still lack an observed branch menu",
-      "A separate Infiniti Mall Domino's record remains held as a distinct store identity and was not merged",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
       "Mumbai and Maharashtra remain only partially covered"
