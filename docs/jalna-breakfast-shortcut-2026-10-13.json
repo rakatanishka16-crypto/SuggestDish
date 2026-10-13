@@ -26,8 +26,20 @@
   "coordination": "Separate daily outlet acquisition and weekly marketing remain unchanged. No source batches or database rows modified. Existing open PRs 2,34,35,36 do not change this shortcut.",
   "release_status": "prepared_pending_specific_approval",
   "next_actions": [
+    "Resolve preview API initialization failure without retrieving secrets, then verify deployed recommendation flow.",
     "Approve this specific PR before merging and production deployment.",
     "After approved deployment, verify Breakfast click and Jalna recommendation on deployed page.",
     "Continue source-backed Jalna breakfast data acquisition in existing data workflow; do not invent poha prices or availability."
-  ]
+  ],
+  "preview": {
+    "commit": "006d75c3efff3f14a9fb51721ef69e0a3f2b93a4",
+    "deployment": "dpl_1eGQWzS47hXBzK9geZxPLqMiwdmF",
+    "state": "READY",
+    "page_status": 200,
+    "breakfast_markup_verified": true,
+    "health_status": 500,
+    "error": "FUNCTION_INVOCATION_FAILED",
+    "limit": "Preview recommendation acceptance blocked; static shortcut verified. No production change.",
+    "pr": "https://github.com/rakatanishka16-crypto/SuggestDish/pull/57"
+  }
 }
