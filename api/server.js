@@ -385,7 +385,12 @@ app.get("/api/ai-recommend", async (req, res) => {
       : diet === "nonvegetarian" ? dishes.filter(dish => dish.isVeg === false) : dishes;
 
 
-    filteredDishes = filteredDishes.filter(dish => dish.price != null && Number.isFinite(Number(dish.price)) && Number(dish.price) <= budget && !excludedDishIds.has(Number(dish.id)) && (!explicitlyVeg || dish.isVeg === true) && (!explicitlyNonVeg || dish.isVeg === false));
+    // Database numerics may arrive as strings; blank or nonnumeric values are not ₹0.
+    // Validate before ranking or constructing either provider or fallback candidates.
+    const validMenuPrice = (price) =>
+      (typeof price === "number" || (typeof price === "string" && price.trim() !== "")) &&
+      Number.isFinite(Number(price)) && Number(price) >= 0;
+    filteredDishes = filteredDishes.filter(dish => validMenuPrice(dish.price) && Number(dish.price) <= budget && !excludedDishIds.has(Number(dish.id)) && (!explicitlyVeg || dish.isVeg === true) && (!explicitlyNonVeg || dish.isVeg === false));
     if (filteredDishes.length === 0) {
       return res.json({
         success: true,
@@ -1065,3 +1070,4 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
