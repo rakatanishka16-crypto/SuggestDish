@@ -44,3 +44,6 @@ test('duplicate Haldirams Seasons Mall locator rows reconcile to one detailed Pu
 test('Pizza Hut Phoenix Market City Kurla menu stays attached to its exact Mumbai branch',()=>{
  const b=chains.businesses.find(b=>b.sourceKey==='official:sd-food-583755cbec328a2285f5');assert.ok(b);assert.equal(b.city,'Mumbai');assert.match(b.address,/Phoenix Market City/);const menu=chains.menuFor(b);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,135);assert.ok(menu.menuItems.some(i=>i.name==='Margherita'));assert.ok(menu.menuItems.every(i=>i.source_business_id===b.sourceKey&&i.source_url.endsWith('1178/Menu')&&i.price_inr===null&&i.recommendation_eligible===false));
 });
+test('Jumboking Seawoods locator enrichment adds exact mall directions without inventing a menu',()=>{
+ const b=chains.businesses.find(b=>b.sourceKey==='official:sd-food-47f6219100346563b1be');assert.ok(b);assert.equal(b.city,'Navi Mumbai');assert.equal(b.state,'Maharashtra');assert.equal(b.locality,'Seawoods Grand Central Mall');assert.match(b.address,/114 - Lower Ground Floor/);assert.match(b.directions_url,/destination=114%2C/);assert.equal(b.recommendation_eligible,false);assert.deepEqual(chains.menuFor(b),{menuScope:'none',menuItems:[]});
+});
