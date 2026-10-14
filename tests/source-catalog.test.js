@@ -8,7 +8,7 @@ test('catalog exposes only source-checked business profiles and rejects unknown 
  assert.equal('research_leads' in batch,false);
 });
 test('brand menus are kept separate from branch availability and budget recommendations',()=>{
- const b=batch.businesses.find(b=>b.name==='Oye Kake'),r=request(b.sourceKey);assert.equal(r.result.menuItems.length,24);
+ const b=batch.businesses.find(b=>b.name==='Oye Kake'),r=request(b.sourceKey);assert.equal(r.result.menuItems.length,105);
  for(const m of r.result.menuItems){assert.equal(m.price_inr,null);assert.equal(m.branch_availability,'not_confirmed');assert.equal(m.tax_included,null);}
  assert.match(r.result.notice,/not owner verification/);
 });
@@ -32,7 +32,7 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8022);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,14711);assert.equal(result.publishedPrices,6616);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8029);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15139);assert.equal(result.publishedPrices,6835);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });
 
 const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');

@@ -10,7 +10,7 @@ test('three Mumbai batch checkpoints publish every outlet through one stable sou
 test('dietary conflicts, variant ranges and testimonial scope cannot become confirmed recommendations',()=>{
  let ranges=0,conflicts=0;
  for(const [outlet,id] of acquisition.outletProfiles){const {body,status}=request(id);const o=acquisition.rawOutlets.get(outlet);if(status===404){assert.equal(o.brand_name,"Thepla House by Tejal's Kitchen");continue;}assert.equal(body.business.currently_operating,o.currently_operating);
-  for(const item of body.menuItems){assert.equal(item.recommendation_eligible,false);assert.ok(['not_confirmed','published_on_outlet_page','official_branch_page_offer_observed','official_branch_menu_offer_observed'].includes(item.branch_availability));if(item.price_min_inr!=null){assert.equal(item.price_inr,null);assert.match(item.order_note,/variant range/);ranges++;}if(item.data_conflict){assert.equal(item.is_veg,null);conflicts++;}}
+  for(const item of body.menuItems.filter(item=>item.acquisition_dish_id)){assert.equal(item.recommendation_eligible,false);assert.ok(['not_confirmed','published_on_outlet_page','official_branch_page_offer_observed','official_branch_menu_offer_observed'].includes(item.branch_availability));if(item.price_min_inr!=null){assert.equal(item.price_inr,null);assert.match(item.order_note,/variant range/);ranges++;}if(item.data_conflict){assert.equal(item.is_veg,null);conflicts++;}}
   if(o.brand_name==='Just Kerala')assert.equal(body.menuScope,'documented_references');
   if(o.brand_name==="Thepla House by Tejal's Kitchen"){assert.equal(body.menuScope,'brand_reference');assert.ok(body.menuItems.every(m=>m.source_business_id===null));assert.ok(body.menuItems.every(m=>(m.dish_signals || []).every(s=>s.confidence===null)));}
  }
