@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-11",
-  "audited_main_commit": "8ad4f9614cc4a947c8e90c6793aa33817d93ddd1",
-  "next_task": null,
-  "finite_workflow_status": "independent_work_complete_or_blocked_on_founder_authorised_evidence",
+  "updated_on": "2026-10-14",
+  "audited_main_commit": "f80acdc30c6c107fc6000a0854ab638a34c42604",
+  "next_task": "Review price-validity PR for specific release approval; continue independent work without duplicating PR 57.",
+  "finite_workflow_status": "price_validity_fix_tested_release_approval_pending",
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -11,15 +11,15 @@
   },
   "evidence": {
     "production": {
-      "deployment_id": "dpl_3ZxMA2Q9UAWuYd8FdCPM8LegUNTk",
+      "deployment_id": "dpl_J9iRAehgmp7iogQ7d51jVNBHVFfr",
       "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
-      "commit": "3eead37402ebd31be5173174a5e448e478cfb842",
+      "commit": "f80acdc30c6c107fc6000a0854ab638a34c42604",
       "status": "READY",
       "aliases": [
-        "www.suggestdish.com",
-        "suggestdish.com"
+        "suggestdish.com",
+        "www.suggestdish.com"
       ],
-      "checked_on": "2026-10-10"
+      "checked_on": "2026-10-14"
     },
     "catalog": {
       "source_profiles": 7943,
@@ -38,7 +38,25 @@
       "vercel_api": "api/index.js -> api/server.js",
       "database": "Neon SQL in runtime server; Prisma schema is not a complete runtime schema audit"
     },
-    "tests_this_task": "Documentation and JSON integrity only; runtime tests were not rerun for this documentation-only change."
+    "tests_this_task": {
+      "command": "node --test tests/menu-price-validity.test.js",
+      "passed": 22,
+      "failed": 0,
+      "syntax": "node --check api/server.js passed",
+      "limits": [
+        "Unrelated module registration stubbed",
+        "Full repository suite not run: authenticated clone unavailable; only inspected files materialized",
+        "No live Gemini call, database mutation or invalid production record test",
+        "No visual or mobile changes"
+      ]
+    },
+    "latest_mumbai_menu_coverage": {
+      "http": 200,
+      "restaurants": 28,
+      "dishes": 2075,
+      "response_date_utc": "2026-10-14T02:43:30Z",
+      "limits": "Priced menu records, not eligible outlet counts or verified current coverage"
+    }
   },
   "tasks": [
     {
@@ -56,7 +74,7 @@
       "acceptance": "Proposal based on priced outlet-menu coverage, with founder approval needed for final scope.",
       "blockers": [
         "Founder acceptance of final Mumbai localities and pilot gate pending.",
-        "Current production has 10 Mumbai candidate restaurants, below the provisional 20-outlet gate."
+        "Historical 10-outlet observation is superseded by 14 October menu coverage (28 restaurants, 2,075 priced records); current recommendation-eligible and locality-specific outlet gate remains unverified."
       ],
       "next_action": "Founder approves or revises the Mumbai localities and finite pilot gate; keep the scope provisional until then.",
       "evidence": [
@@ -84,7 +102,7 @@
       "status": "delegated_to_data_automation_below_acceptance_target",
       "acceptance": "Document a finite target of usable outlet-linked dishes for chosen scope, then collect to that target.",
       "blockers": [
-        "Production reports 10 Mumbai candidate restaurants versus the provisional 20 exact-outlet target.",
+        "Historical 10-outlet observation is superseded by 14 October menu coverage (28 restaurants, 2,075 priced records); current recommendation-eligible and locality-specific outlet gate remains unverified.",
         "Final locality scope still needs founder approval."
       ],
       "next_action": "The separate outlet-data workflow should add legally sourced, branch-scoped, mapped menu evidence until the approved finite gate is met; do not wait for nationwide completeness."
@@ -280,7 +298,7 @@
       "acceptance": "Focused production checks pass and coverage limits explicit.",
       "blockers": [
         "Focused Mumbai scope and gate are not founder-approved.",
-        "Runtime has 10 candidate restaurants, below the provisional 20-outlet target; location accuracy is not independently verified.",
+        "Historical 10-outlet observation is superseded by 14 October menu coverage (28 restaurants, 2,075 priced records); current recommendation-eligible and locality-specific outlet gate remains unverified.",
         "Phone/screen-reader acceptance and the consented five-person pilot are incomplete.",
         "Owner/moderation persistence, commercial facts, payment acceptance and operational recovery prerequisites remain blocked."
       ],
@@ -297,6 +315,20 @@
       "acceptance": "Separate existing daily data automation; not a finite launch gate.",
       "blockers": [],
       "next_action": null
+    },
+    {
+      "number": 19,
+      "title": "Reject invalid menu prices in recommendations",
+      "status": "implemented_tested_release_approval_pending",
+      "acceptance": "Negative, blank, nonfinite and nonnumeric prices excluded before AI or fallback selection; genuine zero retained.",
+      "blockers": [
+        "Specific release approval required"
+      ],
+      "next_action": "Approve this PR for merge and production deployment, then verify live search.",
+      "evidence": [
+        "docs/menu-price-validity-2026-10-14.json",
+        "tests/menu-price-validity.test.js"
+      ]
     }
   ],
   "change_log": [
@@ -404,6 +436,11 @@
       "date": "2026-10-11",
       "task": 17,
       "action": "Ran the 191-test suite and a production release matrix. Core pages, custom 404, health, constrained Mumbai recommendation and disabled billing passed. Release remains NO-GO: 10 Mumbai candidate restaurants are below the provisional 20-outlet gate, location accuracy and phone/pilot evidence are incomplete, and founder/access/commercial/operations prerequisites remain. All independently actionable finite launch work is now completed or explicitly blocked; ongoing data expansion stays separate."
+    },
+    {
+      "date": "2026-10-14",
+      "task": 19,
+      "action": "Reproduced 9 failing price-validity cases; all 22 tests pass after guard. Production main f80acdc READY, health 200 and Mumbai priced coverage 28/2075 observed. PR 57 shortcut and separate outlet-data/marketing work left untouched. Billing config read blocked by auto-review; no payment readiness claimed. Fix awaits specific release approval."
     }
   ]
 }
