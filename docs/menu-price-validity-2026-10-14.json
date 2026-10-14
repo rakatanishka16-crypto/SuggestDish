@@ -1,0 +1,63 @@
+{
+  "checked_on": "2026-10-14",
+  "task": "Reject invalid menu prices before recommendation ranking",
+  "source_base_commit": "f80acdc30c6c107fc6000a0854ab638a34c42604",
+  "reproduction": {
+    "method": "Actual api/server.js handler in VM with SQL and provider mocked",
+    "before": {
+      "passed": 13,
+      "failed": 9,
+      "total": 22
+    },
+    "finding": "Negative/blank prices and coercible nonnumeric values could enter recommendation candidates. No production invalid row was asserted or inserted."
+  },
+  "implementation": "Only finite nonnegative numbers or nonblank numeric strings enter ranking, AI prompts and fallback. Explicit zero remains allowed.",
+  "verification": {
+    "command": "node --test tests/menu-price-validity.test.js",
+    "passed": 22,
+    "failed": 0,
+    "syntax": "node --check api/server.js passed",
+    "limits": [
+      "Unrelated module registration stubbed",
+      "Full repository suite not run: authenticated clone unavailable; only inspected files materialized",
+      "No live Gemini call, database mutation or invalid production record test",
+      "No visual or mobile changes"
+    ]
+  },
+  "production": {
+    "deployment_id": "dpl_J9iRAehgmp7iogQ7d51jVNBHVFfr",
+    "commit": "f80acdc30c6c107fc6000a0854ab638a34c42604",
+    "status": "READY",
+    "aliases": [
+      "suggestdish.com",
+      "www.suggestdish.com"
+    ],
+    "health": {
+      "http": 200,
+      "success": true,
+      "status": "ok",
+      "response_date_utc": "2026-10-14T02:43:18Z"
+    },
+    "mumbai_priced_records": {
+      "http": 200,
+      "restaurants": 28,
+      "dishes": 2075,
+      "response_date_utc": "2026-10-14T02:43:30Z",
+      "limits": "Priced menu records, not eligible outlet counts or verified current coverage"
+    },
+    "billing_check": "Auto-review rejected billing/config fetch for potential sensitive payment settings; not retried. Current payment readiness not inferred."
+  },
+  "coordination": {
+    "open_prs_reviewed": [
+      57,
+      36,
+      35,
+      34,
+      2
+    ],
+    "avoided": "PR 57 breakfast shortcut and PR 36 malformed AI response changes",
+    "outlet_data": "Latest main commit adds Pizza Hut Phoenix Kurla branch menu. Separate acquisition work remains untouched; repository menu changes are not assumed imported.",
+    "marketing": "No marketing task changed"
+  },
+  "release": "PR only; specific founder approval required before merge or deployment"
+}
