@@ -21,6 +21,7 @@ test('Nagpur menu source belongs to its branch and absent prices remain unknown'
  const mallBatch=JSON.parse(zlib.gunzipSync(fs.readFileSync(require('node:path').join(__dirname,'../api/source-batches/maharashtra-mall-menus-2026-10-06.json.gz'))));
  const enriched=new Set(mallBatch.menu_associations.map(p=>p.sourceKey));
  enriched.add('official:sd-food-cd832e85898cd156a795');
+ enriched.add('official:sd-food-583755cbec328a2285f5');
  for(const other of chains.businesses.filter(x=>batch.businesses.some(y=>y.sourceKey===x.sourceKey) && x.sourceKey!==b.sourceKey && !enriched.has(x.sourceKey)))assert.deepEqual(chains.menuFor(other),{menuScope:'none',menuItems:[]});
 });
 test('state queue keeps Maharashtra incomplete and Chennai within Tamil Nadu',()=>{

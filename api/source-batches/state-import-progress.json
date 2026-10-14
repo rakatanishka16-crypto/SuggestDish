@@ -1284,12 +1284,12 @@
     }
   ],
   "last_collection_run": {
-    "run_id": "mumbai-pizzahut-r-mall-menu-2026-10-13",
-    "checked_on": "2026-10-13",
+    "run_id": "mumbai-pizzahut-phoenix-kurla-menu-2026-10-14",
+    "checked_on": "2026-10-14",
     "state": "Maharashtra",
     "districts": ["Mumbai Suburban"],
     "cities": ["Mumbai"],
-    "localities": ["R Mall, Mulund West"],
+    "localities": ["Phoenix Market City, Kurla West"],
     "new_outlets": 0,
     "new_menus": 135,
     "new_prices": 0,
@@ -1298,38 +1298,38 @@
     "conflicts_found": 0,
     "status": "official_branch_menu_enriched",
     "source_urls": [
-      "https://restaurants.pizzahut.co.in/pizza-hut-mulund-west-pizza-restaurant-mulund-west-mumbai-1135/Menu"
+      "https://restaurants.pizzahut.co.in/pizza-hut-kurla-west-pizza-restaurant-kurla-west-mumbai-1178/Menu"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
       "The exact branch page publishes no prices, so all 135 items remain ineligible for recommendations",
-      "6 mall branch targets still lack an observed branch menu",
+      "5 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
       "Mumbai and Maharashtra remain only partially covered"
     ]
   },
   "last_source_check": {
-    "run_id": "pune-haldirams-seasons-duplicate-reconciliation-2026-10-14",
+    "run_id": "mumbai-pizzahut-phoenix-kurla-menu-2026-10-14",
     "checked_on": "2026-10-14",
     "state": "Maharashtra",
-    "city": "Pune",
-    "locality": "Seasons Mall, Hadapsar",
+    "city": "Mumbai",
+    "locality": "Phoenix Market City, Kurla West",
     "new_outlets": 0,
-    "new_menus": 0,
+    "new_menus": 135,
     "new_prices": 0,
     "recommendation_eligible_items": 0,
-    "status": "official_locator_duplicate_reconciled_no_branch_menu",
+    "status": "official_branch_menu_enriched",
     "checked_sources": [
       {
-        "url": "https://haldirams.com/store-locator",
+        "url": "https://restaurants.pizzahut.co.in/pizza-hut-kurla-west-pizza-restaurant-kurla-west-mumbai-1178/Menu",
         "http_status": 200,
-        "result": "The official locator repeats the Seasons Mall branch with the same phone under generic variants. One catalog duplicate was removed in favour of the Unit T-20F profile; no branch menu or prices were published."
+        "result": "The exact official Phoenix Market City Kurla branch page publishes 135 unique food menu names and dietary markers. No explicit prices are published, so every item remains recommendation-ineligible."
       }
     ],
-    "next_action": "Keep this branch in the menu-gap queue until an accessible official exact-branch menu or licensed source is found; continue the remaining mall-menu targets and Mumbai/Jalna recommendation-ready gaps.",
+    "next_action": "Continue the five remaining mall-menu targets and Mumbai/Jalna priced recommendation-ready gaps; do not infer prices from the order flow.",
     "complete_city_census": false,
     "complete_state_census": false
   }
