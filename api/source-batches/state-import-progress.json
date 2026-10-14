@@ -1312,11 +1312,11 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-pizzahut-phoenix-kurla-menu-2026-10-14",
+    "run_id": "pune-jumboking-seasons-locator-2026-10-14",
     "checked_on": "2026-10-14",
     "state": "Maharashtra",
-    "city": "Navi Mumbai",
-    "locality": "Seawoods Grand Central Mall",
+    "city": "Pune",
+    "locality": "Seasons Mall, Hadapsar",
     "new_outlets": 0,
     "new_menus": 0,
     "new_prices": 0,
@@ -1324,9 +1324,9 @@
     "status": "official_locator_verified_no_branch_menu",
     "checked_sources": [
       {
-        "url": "https://www.jumboking.co.in/store-locator/?location=Navi+Mumbai",
+        "url": "https://www.jumboking.co.in/store-locator/?location=Pune",
         "http_status": 200,
-        "result": "The official locator confirms Jumboking Unit 114 on the lower ground floor of Seawoods Grand Central Mall and its published hours. The existing profile gained locality, state and address-based directions; no branch menu, prices or coordinates were published."
+        "result": "The official locator confirms Jumboking Unit T1A on the third floor of Seasons Mall and its published hours. The existing profile gained locality, state and address-based directions; no branch menu, prices or coordinates were published."
       }
     ],
     "next_action": "Keep this outlet in the five-item menu-gap queue until an accessible exact-branch menu or licensed source is found; continue Mumbai/Jalna priced recommendation-ready gaps.",
