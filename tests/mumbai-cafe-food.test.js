@@ -22,7 +22,7 @@ test('Celebration food rows exclude beverages and preserve menu prices',()=>{
  assert.equal(data.research_scope.excluded_beverages,19);
 });
 test('new menus produce 299 eligible import candidates without conflicts',()=>{
- const p=require('../lib/catalogue-import').plan({businesses:data.businesses,menuItems:items,menuFor:b=>chains.menuFor(b)});
+ const p=require('../lib/catalogue-import').plan({businesses:data.businesses,menuItems:items,menuFor:b=>({menuScope:'outlet_page',menuItems:data.menu_sets[b.outlet_menu_set_id].items})});
  assert.equal(p.summary.promotionOutlets,3);assert.equal(p.summary.promotionDishes,299);assert.equal(p.summary.heldAssociations.duplicate_or_conflicting_dish,0);
  assert.equal(p.outlets.find(o=>o.business.brand==='Hopleaf Restobar & Lounge').dishes.length,36);
 });
