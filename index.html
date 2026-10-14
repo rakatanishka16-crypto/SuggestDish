@@ -1511,10 +1511,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let userLatitude = null;
   let userLongitude = null;
   let selectedCity = "";
+  let appliedLocationQuery = "";
   let excludedDishIds = [];
   let lastRecommendations = [];
   const updateLocationLabel = text => { const label = document.getElementById("selectedLocation"); if (label) label.textContent = text; };
-  document.getElementById("clearLocation")?.addEventListener("click", () => { if (locationPending) return; userLatitude = null; userLongitude = null; selectedCity = ""; updateLocationLabel("No location selected. Distance filtering requires a location."); const coverage=document.getElementById("menuCoverage"); if(coverage)coverage.textContent=""; });
+  document.getElementById("clearLocation")?.addEventListener("click", () => { if (locationPending) return; userLatitude = null; userLongitude = null; selectedCity = ""; appliedLocationQuery = ""; const input = document.getElementById("locationQuery"); if(input)input.value=""; updateLocationLabel("No location selected. Distance filtering requires a location."); const coverage=document.getElementById("menuCoverage"); if(coverage)coverage.textContent=""; });
   let locationPending = false;
 
 
@@ -1600,6 +1601,10 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedCity = "";
             updateLocationLabel("Location: your current GPS position");
 
+            appliedLocationQuery = "";
+            const locationInput = document.getElementById("locationQuery");
+            if (locationInput) locationInput.value = "";
+            excludedDishIds = [];
             userLatitude =
               position.coords.latitude;
 
@@ -1670,17 +1675,13 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   document.getElementById("locationQuery")?.addEventListener("keydown", event => { if (event.key === "Enter") { event.preventDefault(); enterLocation?.click?.(); } });
-  if (enterLocation) {
-
-    enterLocation.addEventListener(
-      "click",
-      async () => {
+  async function resolveEnteredLocation() {
 
         const locationField = document.getElementById("locationQuery");
         const loc = locationField?.value?.trim() || "";
         if (!loc) { toast("Enter a city or locality in the location field."); locationField?.focus?.(); return; }
 
-        if (!loc || !loc.trim() || locationPending) return;
+        if (!loc || !loc.trim() || locationPending) return false;
         locationPending = true;
         enterLocation.disabled = true;
         toast("Finding your chosen location...");
@@ -1693,22 +1694,25 @@ document.addEventListener("DOMContentLoaded", () => {
           const hasCoordinates = Number.isFinite(data.latitude) && Number.isFinite(data.longitude);
           if (!city && !hasCoordinates) throw new Error("Location not found. Try entering Mumbai or Jalna.");
           selectedCity = city;
+          appliedLocationQuery = loc.toLowerCase();
+          excludedDishIds = [];
           userLatitude = hasCoordinates ? data.latitude : null;
           userLongitude = hasCoordinates ? data.longitude : null;
           updateLocationLabel(`Location: ${data.label}` + (hasCoordinates ? "" : " — city-wide search; distance unavailable"));
           const coverage=document.getElementById("menuCoverage");
-          if (coverage && city) { coverage.textContent="Checking menu coverage…"; try { const r=await fetch("/api/menu-coverage?"+new URLSearchParams({city}),{signal:AbortSignal.timeout(10000)}); const counts=await r.json(); if(!r.ok || !counts.success)throw Error(); coverage.textContent=`${city}: ${counts.restaurants} restaurants with ${counts.dishes} priced menu records. Current prices and availability may differ; directory listings are separate.`; }catch{coverage.textContent="Menu coverage could not be checked. Directory listings do not confirm available menus.";} }
+          if (coverage && city) { coverage.textContent="Checking menu coverage…"; try { const r=await fetch("/api/recommendation-coverage?"+new URLSearchParams({city}),{signal:AbortSignal.timeout(10000)}); const counts=await r.json(); if(!r.ok || !counts.success)throw Error(); coverage.textContent=`${city}: ${counts.counts.candidate_restaurants} restaurants with ${counts.counts.candidate_records} searchable priced dishes before your preference filters. Current prices and availability may differ; directory listings are separate.`; }catch{coverage.textContent="Menu coverage could not be checked. Directory listings do not confirm available menus.";} }
           else if(coverage)coverage.textContent="Locality-level coverage counts are not available. Results use menu records within your selected radius when coordinates are available.";
           toast(`Location set to ${data.label}. Choose your preferences and tap Recommend My Dish.`);
+          return true;
         } catch (error) {
           toast(error.name === "TimeoutError" ? "Location search took too long. Please try again." : error.message);
+          return false;
         } finally {
           locationPending = false;
           enterLocation.disabled = false;
         }
-      }
-    );
   }
+  if (enterLocation) enterLocation.addEventListener("click", resolveEnteredLocation);
 
 
   /* =========================
@@ -1817,6 +1821,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (locationPending) {
           toast("Please wait while your chosen location is found.");
           return;
+        }
+
+        const typedLocation = document.getElementById("locationQuery")?.value.trim() || "";
+        if (typedLocation && typedLocation.toLowerCase() !== appliedLocationQuery) {
+          if (!await resolveEnteredLocation()) return;
         }
 
         console.log(
@@ -2341,3 +2350,4 @@ document.addEventListener('click',event=>{const target=event.target.closest('[da
 </script><script src="/featured-dishes.js" defer></script>
 </body>
 </html>
+
