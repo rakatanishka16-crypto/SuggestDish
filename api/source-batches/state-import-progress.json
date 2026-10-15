@@ -68,7 +68,8 @@
         "mumbai-baglami-official-reconciliation-2026-10-15",
         "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
         "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
-        "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15"
+        "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
+        "mumbai-olive-khar-dinner-menu-2026-10-15"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -82,43 +83,61 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
+        "batch_id": "mumbai-olive-khar-dinner-menu-2026-10-15",
         "date": "2026-10-15",
         "districts": ["Mumbai Suburban"],
         "cities": ["Mumbai"],
-        "localities": ["Powai"],
+        "localities": ["Khar West"],
         "new_outlets": 0,
-        "new_menus": 0,
-        "new_prices": 0,
+        "new_menus": 10,
+        "new_prices": 10,
         "recommendation_eligible_items": 0,
         "reconciled_research_leads": 1,
         "conflicts": 0,
-        "status": "official_profile_reconciled_shared_menu_held",
+        "status": "official_profile_and_exact_branch_prices_published_dietary_unknown",
         "remaining_gaps": [
-          "The official 2026 menu is shared across Powai and Vikhroli, so no items or prices were attached to the Powai branch.",
-          "Official pages conflict on closing time; hours remain unknown, while owner claim, licence and current operation remain unverified.",
-          "108 research leads remain pending official-profile reconciliation.",
+          "Only the first dinner-menu image was transcribed in this bounded batch; remaining official Olive Mumbai menu images require review.",
+          "Dietary types are not labelled on the observed image, so all ten items remain recommendation-ineligible.",
+          "Owner claim, licence validity, coordinates and current operation remain unverified.",
+          "107 research leads remain pending official-profile reconciliation.",
           "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://themiacucina.com/",
-            "result": "Official site identifies Mia Cucina in Hiranandani Powai and Vikhroli and publishes a Powai phone number; homepage hours conflict with the contact page",
+            "url": "https://www.olivebarandkitchen.com/obkmumbai.php",
+            "result": "Official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set",
             "date": "2026-10-15"
           },
           {
-            "url": "https://themiacucina.com/contact-us",
-            "result": "Official contact page corroborates the Powai Lake Boulevard location and phone, but not the existing profile's exact unit address",
-            "date": "2026-10-15"
-          },
-          {
-            "url": "https://themiacucina.com/menu",
-            "result": "Official 2026 menu is not labelled for Powai alone and was held as shared brand evidence",
+            "url": "https://www.olivebarandkitchen.com/menus/mumbai/dinner/1.jpg",
+            "result": "First official dinner-menu image publishes ten Charcoal items with explicit prices and states that government taxes are excluded; dietary labels are absent",
             "date": "2026-10-15"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-olive-khar-dinner-menu-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 10,
+          "published_prices": 10,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [
+            {"url": "https://www.olivebarandkitchen.com/obkmumbai.php", "checked_on": "2026-10-15"},
+            {"url": "https://www.olivebarandkitchen.com/menus/mumbai/dinner/1.jpg", "checked_on": "2026-10-15"}
+          ],
+          "remaining_gaps": [
+            "Remaining official Olive Mumbai menu images require review",
+            "Dietary types are unlabelled, so all ten items remain recommendation-ineligible",
+            "Owner claim, licence validity, coordinates and current operation remain unverified",
+            "107 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
           "checked_on": "2026-10-15",
@@ -1417,34 +1436,29 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
+    "run_id": "mumbai-olive-khar-dinner-menu-2026-10-15",
     "checked_on": "2026-10-15",
     "state": "Maharashtra",
     "city": "Mumbai",
-    "locality": "Powai",
+    "locality": "Khar West",
     "new_outlets": 0,
-    "new_menus": 0,
-    "new_prices": 0,
+    "new_menus": 10,
+    "new_prices": 10,
     "recommendation_eligible_items": 0,
-    "status": "official_profile_reconciled_shared_menu_held",
+    "status": "official_profile_and_exact_branch_prices_published_dietary_unknown",
     "checked_sources": [
       {
-        "url": "https://themiacucina.com/",
+        "url": "https://www.olivebarandkitchen.com/obkmumbai.php",
         "http_status": 200,
-        "result": "The official site identifies Mia Cucina in Hiranandani Powai and Vikhroli and publishes a Powai phone number; homepage hours conflict with the contact page."
+        "result": "The official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set."
       },
       {
-        "url": "https://themiacucina.com/contact-us",
+        "url": "https://www.olivebarandkitchen.com/menus/mumbai/dinner/1.jpg",
         "http_status": 200,
-        "result": "The official contact page corroborates the Powai Lake Boulevard location and phone, but not the existing profile's exact unit address."
-      },
-      {
-        "url": "https://themiacucina.com/menu",
-        "http_status": 200,
-        "result": "The official 2026 menu is shared across the brand's Powai and Vikhroli locations and was not attached to Powai."
+        "result": "The first official dinner-menu image publishes ten Charcoal items with explicit prices and states that government taxes are excluded; dietary labels are absent."
       }
     ],
-    "next_action": "Continue the remaining 108 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps without assigning Mia Cucina's shared menu to Powai.",
+    "next_action": "Continue the remaining official Olive Mumbai menu images, 107 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps while leaving unlabelled dietary types unknown.",
     "complete_city_census": false,
     "complete_state_census": false
   }
