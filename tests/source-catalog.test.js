@@ -32,7 +32,13 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8029);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15139);assert.equal(result.publishedPrices,6835);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8032);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15350);assert.equal(result.publishedPrices,6943);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.researchLeadsPending,111);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+});
+
+test('Baglami BKC keeps directory address provenance while adding official profile corroboration',()=>{
+ const r=request('listing:sd-mumbai-baglami-bandra-kurla-complex-20261007');assert.equal(r.status,200);
+ const b=r.result.business;assert.equal(b.source_urls[0],'https://www.baglami.com/');assert.deepEqual(b.source_types,['business_website','restaurant_directory']);assert.match(b.directions_url,/destination=BKC%207%2C%20INS%20Tower/);assert.equal(b.recommendation_eligible,false);
+ assert.equal(r.result.menuScope,'brand_reference');assert.ok(r.result.menuItems.every(m=>m.recommendation_eligible===false));
 });
 
 const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');
