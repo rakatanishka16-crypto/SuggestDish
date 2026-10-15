@@ -1436,16 +1436,16 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-olive-khar-dinner-menu-2026-10-15",
+    "run_id": "mumbai-olive-khar-all-day-menu-page-8-2026-10-15",
     "checked_on": "2026-10-15",
     "state": "Maharashtra",
     "city": "Mumbai",
     "locality": "Khar West",
     "new_outlets": 0,
-    "new_menus": 10,
-    "new_prices": 10,
-    "recommendation_eligible_items": 0,
-    "status": "official_profile_and_exact_branch_prices_published_dietary_unknown",
+    "new_menus": 9,
+    "new_prices": 9,
+    "recommendation_eligible_items": 9,
+    "status": "official_exact_branch_prices_and_dietary_labels_published",
     "checked_sources": [
       {
         "url": "https://www.olivebarandkitchen.com/obkmumbai.php",
@@ -1453,12 +1453,12 @@
         "result": "The official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set."
       },
       {
-        "url": "https://www.olivebarandkitchen.com/menus/mumbai/dinner/1.jpg",
+        "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg",
         "http_status": 200,
-        "result": "The first official dinner-menu image publishes ten Charcoal items with explicit prices and states that government taxes are excluded; dietary labels are absent."
+        "result": "The official all-day menu page publishes nine small plates with explicit prices, portions and vegetarian or non-vegetarian icons; government taxes are excluded."
       }
     ],
-    "next_action": "Continue the remaining official Olive Mumbai menu images, 107 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps while leaving unlabelled dietary types unknown.",
+    "next_action": "Continue the remaining official Olive Mumbai menu images, 107 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps while preserving page-level branch evidence.",
     "complete_city_census": false,
     "complete_state_census": false
   }
