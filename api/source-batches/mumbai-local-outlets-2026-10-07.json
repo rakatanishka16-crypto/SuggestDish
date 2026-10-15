@@ -909,30 +909,33 @@
       "business_type": "restaurant",
       "category": "amenity:restaurant",
       "address": "Shop 3, Ground Floor, Gasper Enclave, Dr Ambedkar Road, Pali Hill, Bandra West, Mumbai, Maharashtra 400050",
-      "phone": null,
+      "phone": "9892201112",
       "email": null,
-      "opening_hours": null,
+      "opening_hours": "Monday-Sunday 09:00-23:00",
       "latitude": null,
       "longitude": null,
       "restaurant_rating": null,
       "review_count": null,
-      "fssai_license_number": null,
+      "fssai_license_number": "11521006000592",
       "license_status": "not_checked",
-      "service_note": "Public source listing observed 2026-10-07. Current operation, owner identity, licensing, hours and coordinates have not been independently verified.",
+      "service_note": "The official Good Flippin' Burgers locator confirms this branch's name, address and phone, publishes daily hours, and displays FSSAI number 11521006000592. Current operation, licence validity, owner identity and coordinates have not been independently verified.",
       "image_url": null,
       "image_usage_permission": "not_obtained",
       "source_urls": [
+        "https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai",
         "https://order.goodflippin.com/order/good-flippin-burgers-bandra-mumbai"
       ],
       "source_types": [
+        "business_locator",
         "business_website"
       ],
-      "retrieved_on": "2026-10-07",
+      "retrieved_on": "2026-10-15",
       "verification_status": "source_observed",
       "review_status": "source_observed",
       "directory_publish_ready": true,
       "publish_ready": false,
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "directions_url": "https://www.google.com/maps/dir/?api=1&destination=Shop%203%2C%20Ground%20Floor%2C%20Gasper%20Enclave%2C%20Dr%20Ambedkar%20Road%2C%20Pali%20Hill%2C%20Bandra%20West%2C%20Mumbai%2C%20Maharashtra%20400050"
     },
     {
       "external_id": "sd-mumbai-mia-cucina-powai-20261007",

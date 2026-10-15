@@ -66,7 +66,8 @@
         "amravati-belgian-waffle-locator-2026-10-14",
         "vashi-haldirams-duplicate-reconciliation-2026-10-14",
         "mumbai-baglami-official-reconciliation-2026-10-15",
-        "mumbai-cincin-bkc-profile-reconciliation-2026-10-15"
+        "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
+        "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -80,33 +81,59 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
+        "batch_id": "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
         "date": "2026-10-15",
         "districts": ["Mumbai Suburban"],
         "cities": ["Mumbai"],
-        "localities": ["Bandra Kurla Complex"],
+        "localities": ["Pali Hill, Bandra West"],
         "new_outlets": 0,
         "new_menus": 0,
         "new_prices": 0,
         "recommendation_eligible_items": 0,
         "reconciled_research_leads": 1,
         "conflicts": 0,
-        "status": "official_profile_reconciled_no_current_menu",
+        "status": "official_profile_reconciled_no_accessible_item_data",
         "remaining_gaps": [
-          "The linked food menu is explicitly for Golf Course Road and was not attached to BKC.",
-          "Owner claim, licence and current operation remain unverified.",
-          "110 research leads remain pending official-profile reconciliation.",
+          "The exact branch order page exposes a menu interface but not accessible item names or prices, so no menu was attached.",
+          "The published FSSAI number is recorded without inferring licence validity; owner claim and current operation remain unverified.",
+          "109 research leads remain pending official-profile reconciliation.",
           "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://linktr.ee/cincinindia",
-            "result": "CinCin business-linked profile identifies the BKC branch at Raheja Tower, matching the existing profile and address; its linked food menu is labelled for Golf Course Road and was not attached to BKC",
+            "url": "https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai",
+            "result": "Official locator confirms the exact Bandra branch name, address, phone, published daily hours and displayed FSSAI number",
+            "date": "2026-10-15"
+          },
+          {
+            "url": "https://order.goodflippin.com/order/good-flippin-burgers-bandra-mumbai",
+            "result": "Exact branch order page confirms the profile but exposes no accessible item names or prices for safe menu publication",
             "date": "2026-10-15"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [
+            {"url": "https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai", "checked_on": "2026-10-15"},
+            {"url": "https://order.goodflippin.com/order/good-flippin-burgers-bandra-mumbai", "checked_on": "2026-10-15"}
+          ],
+          "remaining_gaps": [
+            "The exact branch order page exposes no accessible item names or prices",
+            "Published FSSAI number recorded without inferring licence validity; owner claim and current operation remain unverified",
+            "109 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
           "checked_on": "2026-10-15",
@@ -1362,24 +1389,29 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
+    "run_id": "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
     "checked_on": "2026-10-15",
     "state": "Maharashtra",
     "city": "Mumbai",
-    "locality": "Bandra Kurla Complex",
+    "locality": "Pali Hill, Bandra West",
     "new_outlets": 0,
     "new_menus": 0,
     "new_prices": 0,
     "recommendation_eligible_items": 0,
-    "status": "official_profile_reconciled_no_current_menu",
+    "status": "official_profile_reconciled_no_accessible_item_data",
     "checked_sources": [
       {
-        "url": "https://linktr.ee/cincinindia",
+        "url": "https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai",
         "http_status": 200,
-        "result": "The CinCin business-linked profile identifies CinCin BKC at Raheja Tower, G Block BKC, matching the existing profile and address. Its linked food menu is explicitly for Golf Course Road and was not attached to BKC."
+        "result": "The official locator confirms the exact Bandra branch name, address, phone, published daily hours and displays FSSAI number 11521006000592; licence validity was not inferred."
+      },
+      {
+        "url": "https://order.goodflippin.com/order/good-flippin-burgers-bandra-mumbai",
+        "http_status": 200,
+        "result": "The exact branch order page confirms the profile but exposes no accessible item names or prices for safe menu publication."
       }
     ],
-    "next_action": "Continue the remaining 110 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps without attaching the Golf Course Road menu to BKC.",
+    "next_action": "Continue the remaining 109 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps without inferring branch menu items, licence validity or current operation.",
     "complete_city_census": false,
     "complete_state_census": false
   }
