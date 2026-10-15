@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-14",
+  "updated_on": "2026-10-15",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -64,7 +64,8 @@
         "maharashtra-thane-official-followup-18-2026-10-13",
         "mumbai-pizzahut-r-mall-menu-2026-10-13",
         "amravati-belgian-waffle-locator-2026-10-14",
-        "vashi-haldirams-duplicate-reconciliation-2026-10-14"
+        "vashi-haldirams-duplicate-reconciliation-2026-10-14",
+        "mumbai-baglami-official-reconciliation-2026-10-15"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -78,32 +79,54 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "vashi-haldirams-duplicate-reconciliation-2026-10-14",
-        "date": "2026-10-14",
-        "districts": ["Thane"],
-        "cities": ["Navi Mumbai"],
-        "localities": ["Inorbit Mall, Vashi"],
+        "batch_id": "mumbai-baglami-official-reconciliation-2026-10-15",
+        "date": "2026-10-15",
+        "districts": ["Mumbai Suburban"],
+        "cities": ["Mumbai"],
+        "localities": ["Bandra Kurla Complex"],
         "new_outlets": 0,
         "new_menus": 0,
         "new_prices": 0,
         "recommendation_eligible_items": 0,
-        "duplicate_candidates": 1,
+        "reconciled_research_leads": 1,
         "conflicts": 0,
-        "status": "confirmed_duplicate_reconciled",
+        "status": "official_profile_reconciled_no_current_menu",
         "remaining_gaps": [
-          "The official locator publishes no branch menu or prices.",
-          "6 mall branch targets still lack an observed branch menu.",
-          "Navi Mumbai and Maharashtra remain only partially covered."
+          "Current branch menu and prices are not published in accessible page text.",
+          "Owner claim, licence and current operation remain unverified.",
+          "111 research leads remain pending official-profile reconciliation.",
+          "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://haldirams.com/store-locator",
-            "result": "Official locator repeats the same Inorbit Vashi unit and phone; one duplicate spelling variant reconciled into the canonical Navi Mumbai profile",
-            "date": "2026-10-14"
+            "url": "https://www.baglami.com/",
+            "result": "Official website identifies Bağlami Bombay in BKC, matching the existing BKC profile; no current branch menu, prices, exact address or coordinates were available in accessible page text",
+            "date": "2026-10-15"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-baglami-official-reconciliation-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [{
+            "url": "https://www.baglami.com/",
+            "checked_on": "2026-10-15"
+          }],
+          "remaining_gaps": [
+            "Current branch menu and prices are not published in accessible page text",
+            "Owner claim, licence and current operation remain unverified",
+            "111 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "vashi-haldirams-duplicate-reconciliation-2026-10-14",
           "checked_on": "2026-10-14",
@@ -1317,24 +1340,24 @@
     ]
   },
   "last_source_check": {
-    "run_id": "pune-jumboking-seasons-locator-2026-10-14",
-    "checked_on": "2026-10-14",
+    "run_id": "mumbai-baglami-official-reconciliation-2026-10-15",
+    "checked_on": "2026-10-15",
     "state": "Maharashtra",
-    "city": "Pune",
-    "locality": "Seasons Mall, Hadapsar",
+    "city": "Mumbai",
+    "locality": "Bandra Kurla Complex",
     "new_outlets": 0,
     "new_menus": 0,
     "new_prices": 0,
     "recommendation_eligible_items": 0,
-    "status": "official_locator_verified_no_branch_menu",
+    "status": "official_profile_reconciled_no_current_menu",
     "checked_sources": [
       {
-        "url": "https://www.jumboking.co.in/store-locator/?location=Pune",
+        "url": "https://www.baglami.com/",
         "http_status": 200,
-        "result": "The official locator confirms Jumboking Unit T1A on the third floor of Seasons Mall and its published hours. The existing profile gained locality, state and address-based directions; no branch menu, prices or coordinates were published."
+        "result": "The official website identifies Bağlami Bombay in BKC, matching the existing BKC profile. The exact street address remains sourced to the dated public listing; no current branch menu, prices or coordinates were available in accessible page text."
       }
     ],
-    "next_action": "Keep this outlet in the five-item menu-gap queue until an accessible exact-branch menu or licensed source is found; continue Mumbai/Jalna priced recommendation-ready gaps.",
+    "next_action": "Continue the remaining 111 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps without treating this profile reconciliation as a new outlet.",
     "complete_city_census": false,
     "complete_state_census": false
   }
