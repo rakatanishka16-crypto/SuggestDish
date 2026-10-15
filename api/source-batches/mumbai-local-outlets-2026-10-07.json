@@ -2491,16 +2491,19 @@
       "review_count": null,
       "fssai_license_number": null,
       "license_status": "not_checked",
-      "service_note": "Public listing observed on 2026-10-07. Branch operation, owner identity, licensing, hours and coordinates have not been independently verified; owner claim is pending.",
+      "service_note": "The official Bağlami website identifies its Mumbai restaurant in BKC. The exact street address is retained from the dated public listing. Current operation, owner identity, licensing, hours, menu availability and coordinates remain unverified; owner claim is pending.",
       "image_url": null,
       "image_usage_permission": "not_obtained",
       "source_urls": [
+        "https://www.baglami.com/",
         "https://www.zomato.com/mumbai/baglami-bandra-kurla-complex"
       ],
       "source_types": [
+        "business_website",
         "restaurant_directory"
       ],
-      "retrieved_on": "2026-10-07",
+      "retrieved_on": "2026-10-15",
+      "directions_url": "https://www.google.com/maps/dir/?api=1&destination=BKC%207%2C%20INS%20Tower%2C%20opposite%20NMACC%2C%20Bandra%20Kurla%20Complex%2C%20Mumbai%20400051",
       "verification_status": "source_observed",
       "review_status": "source_observed",
       "directory_publish_ready": true,
