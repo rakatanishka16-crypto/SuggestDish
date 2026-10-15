@@ -949,7 +949,7 @@
       "business_type": "restaurant",
       "category": "amenity:restaurant",
       "address": "G3, Transocean House, Lake Boulevard Street, Hiranandani Business Park, Powai, Mumbai, Maharashtra 400076",
-      "phone": null,
+      "phone": "+91-9595000200",
       "email": null,
       "opening_hours": null,
       "latitude": null,
@@ -958,10 +958,11 @@
       "review_count": null,
       "fssai_license_number": null,
       "license_status": "not_checked",
-      "service_note": "Public source listing observed 2026-10-07. Current operation, owner identity, licensing, hours and coordinates have not been independently verified.",
+      "service_note": "The official Mia Cucina website identifies its Powai location on Lake Boulevard Road in Hiranandani Gardens and publishes phone +91-9595000200. The exact unit address remains directory-sourced. Official pages conflict on closing time, so opening hours remain unknown. The published 2026 menu is shared across Powai and Vikhroli and was not attached to this branch. Current operation, owner identity, licensing and coordinates have not been independently verified.",
       "image_url": null,
       "image_usage_permission": "not_obtained",
       "source_urls": [
+        "https://themiacucina.com/",
         "https://themiacucina.com/contact-us",
         "https://www.zomato.com/mumbai/mia-cucina-powai"
       ],
@@ -969,12 +970,13 @@
         "business_website",
         "restaurant_directory"
       ],
-      "retrieved_on": "2026-10-07",
+      "retrieved_on": "2026-10-15",
       "verification_status": "source_observed",
       "review_status": "source_observed",
       "directory_publish_ready": true,
       "publish_ready": false,
-      "recommendation_eligible": false
+      "recommendation_eligible": false,
+      "directions_url": "https://www.google.com/maps/dir/?api=1&destination=G3%2C%20Transocean%20House%2C%20Lake%20Boulevard%20Street%2C%20Hiranandani%20Business%20Park%2C%20Powai%2C%20Mumbai%2C%20Maharashtra%20400076"
     },
     {
       "external_id": "sd-mumbai-delux-kerala-restaurant-fort-20261007",

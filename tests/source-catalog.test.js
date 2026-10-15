@@ -32,7 +32,7 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8032);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15350);assert.equal(result.publishedPrices,6943);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.researchLeadsPending,109);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8032);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15350);assert.equal(result.publishedPrices,6943);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.researchLeadsPending,108);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });
 
 test('Baglami BKC keeps directory address provenance while adding official profile corroboration',()=>{
@@ -51,6 +51,11 @@ test('Good Flippin Bandra preserves official branch facts without inventing menu
  const r=request('listing:sd-mumbai-good-flippin-burgers-pali-hill-bandra-west-20261007');assert.equal(r.status,200);
  const b=r.result.business;assert.equal(b.source_urls[0],'https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai');assert.equal(b.phone,'9892201112');assert.equal(b.opening_hours,'Monday-Sunday 09:00-23:00');
  assert.equal(b.fssai_license_number,'11521006000592');assert.equal(b.license_status,'not_checked');assert.match(b.directions_url,/destination=Shop%203%2C%20Ground%20Floor/);assert.equal(b.recommendation_eligible,false);assert.equal(r.result.menuItems.length,0);
+});
+
+test('Mia Cucina Powai keeps conflicting hours and shared-menu availability unknown',()=>{
+ const r=request('listing:sd-mumbai-mia-cucina-powai-20261007');assert.equal(r.status,200);
+ const b=r.result.business;assert.equal(b.source_urls[0],'https://themiacucina.com/');assert.equal(b.phone,'+91-9595000200');assert.equal(b.opening_hours,null);assert.match(b.directions_url,/destination=G3%2C%20Transocean%20House/);assert.equal(b.recommendation_eligible,false);assert.equal(r.result.menuItems.length,0);
 });
 
 const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');
