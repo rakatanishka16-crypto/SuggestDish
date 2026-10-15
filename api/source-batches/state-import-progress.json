@@ -67,7 +67,8 @@
         "vashi-haldirams-duplicate-reconciliation-2026-10-14",
         "mumbai-baglami-official-reconciliation-2026-10-15",
         "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
-        "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15"
+        "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
+        "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -81,38 +82,65 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
+        "batch_id": "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
         "date": "2026-10-15",
         "districts": ["Mumbai Suburban"],
         "cities": ["Mumbai"],
-        "localities": ["Pali Hill, Bandra West"],
+        "localities": ["Powai"],
         "new_outlets": 0,
         "new_menus": 0,
         "new_prices": 0,
         "recommendation_eligible_items": 0,
         "reconciled_research_leads": 1,
         "conflicts": 0,
-        "status": "official_profile_reconciled_no_accessible_item_data",
+        "status": "official_profile_reconciled_shared_menu_held",
         "remaining_gaps": [
-          "The exact branch order page exposes a menu interface but not accessible item names or prices, so no menu was attached.",
-          "The published FSSAI number is recorded without inferring licence validity; owner claim and current operation remain unverified.",
-          "109 research leads remain pending official-profile reconciliation.",
+          "The official 2026 menu is shared across Powai and Vikhroli, so no items or prices were attached to the Powai branch.",
+          "Official pages conflict on closing time; hours remain unknown, while owner claim, licence and current operation remain unverified.",
+          "108 research leads remain pending official-profile reconciliation.",
           "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai",
-            "result": "Official locator confirms the exact Bandra branch name, address, phone, published daily hours and displayed FSSAI number",
+            "url": "https://themiacucina.com/",
+            "result": "Official site identifies Mia Cucina in Hiranandani Powai and Vikhroli and publishes a Powai phone number; homepage hours conflict with the contact page",
             "date": "2026-10-15"
           },
           {
-            "url": "https://order.goodflippin.com/order/good-flippin-burgers-bandra-mumbai",
-            "result": "Exact branch order page confirms the profile but exposes no accessible item names or prices for safe menu publication",
+            "url": "https://themiacucina.com/contact-us",
+            "result": "Official contact page corroborates the Powai Lake Boulevard location and phone, but not the existing profile's exact unit address",
+            "date": "2026-10-15"
+          },
+          {
+            "url": "https://themiacucina.com/menu",
+            "result": "Official 2026 menu is not labelled for Powai alone and was held as shared brand evidence",
             "date": "2026-10-15"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [
+            {"url": "https://themiacucina.com/", "checked_on": "2026-10-15"},
+            {"url": "https://themiacucina.com/contact-us", "checked_on": "2026-10-15"},
+            {"url": "https://themiacucina.com/menu", "checked_on": "2026-10-15"}
+          ],
+          "remaining_gaps": [
+            "Official 2026 menu is shared across Powai and Vikhroli and was not attached to this branch",
+            "Official closing times conflict; owner claim, licence and current operation remain unverified",
+            "108 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
           "checked_on": "2026-10-15",
@@ -1389,29 +1417,34 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
+    "run_id": "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
     "checked_on": "2026-10-15",
     "state": "Maharashtra",
     "city": "Mumbai",
-    "locality": "Pali Hill, Bandra West",
+    "locality": "Powai",
     "new_outlets": 0,
     "new_menus": 0,
     "new_prices": 0,
     "recommendation_eligible_items": 0,
-    "status": "official_profile_reconciled_no_accessible_item_data",
+    "status": "official_profile_reconciled_shared_menu_held",
     "checked_sources": [
       {
-        "url": "https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai",
+        "url": "https://themiacucina.com/",
         "http_status": 200,
-        "result": "The official locator confirms the exact Bandra branch name, address, phone, published daily hours and displays FSSAI number 11521006000592; licence validity was not inferred."
+        "result": "The official site identifies Mia Cucina in Hiranandani Powai and Vikhroli and publishes a Powai phone number; homepage hours conflict with the contact page."
       },
       {
-        "url": "https://order.goodflippin.com/order/good-flippin-burgers-bandra-mumbai",
+        "url": "https://themiacucina.com/contact-us",
         "http_status": 200,
-        "result": "The exact branch order page confirms the profile but exposes no accessible item names or prices for safe menu publication."
+        "result": "The official contact page corroborates the Powai Lake Boulevard location and phone, but not the existing profile's exact unit address."
+      },
+      {
+        "url": "https://themiacucina.com/menu",
+        "http_status": 200,
+        "result": "The official 2026 menu is shared across the brand's Powai and Vikhroli locations and was not attached to Powai."
       }
     ],
-    "next_action": "Continue the remaining 109 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps without inferring branch menu items, licence validity or current operation.",
+    "next_action": "Continue the remaining 108 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps without assigning Mia Cucina's shared menu to Powai.",
     "complete_city_census": false,
     "complete_state_census": false
   }
