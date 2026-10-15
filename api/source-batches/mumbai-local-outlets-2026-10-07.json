@@ -3094,7 +3094,7 @@
       "review_count": null,
       "fssai_license_number": null,
       "license_status": "not_checked",
-      "service_note": "The official Olive Bar & Kitchen Mumbai page publishes this Khar address, phone and daily hours and displays outlet-specific menu images. Ten explicitly priced Charcoal dinner items were transcribed from the first dinner-menu image; dietary types were not labelled and remain unknown. Current operation, owner identity, licence validity and coordinates have not been independently verified.",
+      "service_note": "The official Olive Bar & Kitchen Mumbai page publishes this Khar address, phone and daily hours and displays outlet-specific menu images. Ten explicitly priced Charcoal dinner items were transcribed with dietary types unknown; nine explicitly priced all-day small plates were transcribed from the official page with vegetarian/non-vegetarian icons. Current operation, owner identity, licence validity and coordinates have not been independently verified.",
       "image_url": null,
       "image_usage_permission": "not_obtained",
       "source_urls": [
@@ -4447,6 +4447,89 @@
       "source_url": "https://www.olivebarandkitchen.com/menus/mumbai/dinner/1.jpg",
       "price_scope": "Explicit price on the official Olive Bar & Kitchen Mumbai dinner menu; government taxes excluded.",
       "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-burrata-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Burrata", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 725, "portion": "150 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false,
+      "branch_availability": "confirmed_on_outlet_page", "retrieved_on": "2026-10-15", "image_url": null,
+      "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg",
+      "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-cacio-e-pepe-pave-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Cacio e Pepe Pavé", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 645, "portion": "180 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-zaatar-garlic-bread-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Za'atar and Garlic Bread", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 425, "portion": "180 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-pierogis-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Pierogis", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 625, "portion": "180 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-quinoa-cakes-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Quinoa Cakes", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 625, "portion": "200 g", "is_veg": true, "veg_evidence": "Official menu vegan icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-olive-mezze-platter-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Olive Mezze Platter", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 675, "portion": "350 g", "is_veg": true, "veg_evidence": "Official menu vegan icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-fried-chicken-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Fried Chicken", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 725, "portion": "250 g", "is_veg": false, "veg_evidence": "Official menu non-vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-prawns-ajillo-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Prawns Ajillo", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 845, "portion": "200 g", "is_veg": false, "veg_evidence": "Official menu non-vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-spiced-calamari-20261015",
+      "brand": "Olive Bar & Kitchen", "name": "Spiced Calamari", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_8_20261015", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 745, "portion": "220 g", "is_veg": false, "veg_evidence": "Official menu non-vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
     }
   ]
 }
