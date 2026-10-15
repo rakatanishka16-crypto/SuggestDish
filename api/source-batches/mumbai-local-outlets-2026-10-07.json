@@ -1299,18 +1299,21 @@
       "review_count": null,
       "fssai_license_number": null,
       "license_status": "not_checked",
-      "service_note": "Public source listing observed 2026-10-07. Current operation, owner identity, licensing, hours and coordinates have not been independently verified.",
+      "service_note": "The CinCin business-linked profile identifies the BKC branch at Raheja Tower, matching the existing profile and address. Current operation, owner identity, licensing, hours, menu availability and coordinates remain unverified; owner claim is pending.",
       "image_url": null,
       "image_usage_permission": "not_obtained",
       "source_urls": [
         "https://kahospitality.com/brand-cincin.html",
+        "https://linktr.ee/cincinindia",
         "https://www.zomato.com/mumbai/cincin-bandra-turner-road"
       ],
       "source_types": [
         "business_website",
+        "business_link_profile",
         "restaurant_directory"
       ],
-      "retrieved_on": "2026-10-07",
+      "retrieved_on": "2026-10-15",
+      "directions_url": "https://www.google.com/maps/dir/?api=1&destination=Ground%20Floor%2C%20Raheja%20Tower%2C%20G%20Block%2C%20Bandra%20Kurla%20Complex%2C%20Bandra%20East%2C%20Mumbai%2C%20Maharashtra%20400051",
       "verification_status": "source_observed",
       "review_status": "source_observed",
       "directory_publish_ready": true,

@@ -65,7 +65,8 @@
         "mumbai-pizzahut-r-mall-menu-2026-10-13",
         "amravati-belgian-waffle-locator-2026-10-14",
         "vashi-haldirams-duplicate-reconciliation-2026-10-14",
-        "mumbai-baglami-official-reconciliation-2026-10-15"
+        "mumbai-baglami-official-reconciliation-2026-10-15",
+        "mumbai-cincin-bkc-profile-reconciliation-2026-10-15"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -79,7 +80,7 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "mumbai-baglami-official-reconciliation-2026-10-15",
+        "batch_id": "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
         "date": "2026-10-15",
         "districts": ["Mumbai Suburban"],
         "cities": ["Mumbai"],
@@ -92,20 +93,41 @@
         "conflicts": 0,
         "status": "official_profile_reconciled_no_current_menu",
         "remaining_gaps": [
-          "Current branch menu and prices are not published in accessible page text.",
+          "The linked food menu is explicitly for Golf Course Road and was not attached to BKC.",
           "Owner claim, licence and current operation remain unverified.",
-          "111 research leads remain pending official-profile reconciliation.",
+          "110 research leads remain pending official-profile reconciliation.",
           "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://www.baglami.com/",
-            "result": "Official website identifies Bağlami Bombay in BKC, matching the existing BKC profile; no current branch menu, prices, exact address or coordinates were available in accessible page text",
+            "url": "https://linktr.ee/cincinindia",
+            "result": "CinCin business-linked profile identifies the BKC branch at Raheja Tower, matching the existing profile and address; its linked food menu is labelled for Golf Course Road and was not attached to BKC",
             "date": "2026-10-15"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [{
+            "url": "https://linktr.ee/cincinindia",
+            "checked_on": "2026-10-15"
+          }],
+          "remaining_gaps": [
+            "The linked food menu is explicitly for Golf Course Road and was not attached to BKC",
+            "Owner claim, licence and current operation remain unverified",
+            "110 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "mumbai-baglami-official-reconciliation-2026-10-15",
           "checked_on": "2026-10-15",
@@ -1340,7 +1362,7 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-baglami-official-reconciliation-2026-10-15",
+    "run_id": "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
     "checked_on": "2026-10-15",
     "state": "Maharashtra",
     "city": "Mumbai",
@@ -1352,12 +1374,12 @@
     "status": "official_profile_reconciled_no_current_menu",
     "checked_sources": [
       {
-        "url": "https://www.baglami.com/",
+        "url": "https://linktr.ee/cincinindia",
         "http_status": 200,
-        "result": "The official website identifies Bağlami Bombay in BKC, matching the existing BKC profile. The exact street address remains sourced to the dated public listing; no current branch menu, prices or coordinates were available in accessible page text."
+        "result": "The CinCin business-linked profile identifies CinCin BKC at Raheja Tower, G Block BKC, matching the existing profile and address. Its linked food menu is explicitly for Golf Course Road and was not attached to BKC."
       }
     ],
-    "next_action": "Continue the remaining 111 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps without treating this profile reconciliation as a new outlet.",
+    "next_action": "Continue the remaining 110 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps without attaching the Golf Course Road menu to BKC.",
     "complete_city_census": false,
     "complete_state_census": false
   }
