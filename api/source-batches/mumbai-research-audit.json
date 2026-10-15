@@ -1,6 +1,6 @@
 {
   "retrieved_on": "2026-10-07",
-  "notice": "112 leads remain pending business-owner verification. This batch adds public source observations and research dispositions only. Public listings do not prove owner claims, GST identity, licence validity, or current operation; ambiguous locations and closure reports are explicitly unresolved. Follow-up research added a Matunga candidate for Messy Addaa, but its current operation remains unverified due a separate Sion listing.",
+  "notice": "111 leads remain pending official-profile reconciliation. Business-owner verification remains separate: public and official pages do not prove owner claims, GST identity, licence validity or current operation. Ambiguous locations and closure reports remain explicitly unresolved.",
   "leads": [
     {
       "lead_id": "sd-mumbai-7d2fbec0fe7d5c0ec9d1",
@@ -9,17 +9,17 @@
       "source_urls": [
         "https://www.baglami.com/"
       ],
-      "checked_on": "2026-10-07",
+      "checked_on": "2026-10-15",
       "directory_search_status": "checked",
       "possible_directory_match_ids": [],
       "source_profile_ids": [
         "listing:sd-mumbai-baglami-bandra-kurla-complex-20261007"
       ],
-      "status": "needs_branch_and_official_source_verification",
+      "status": "corroborated_official_profile",
       "recommendation_eligible": false,
       "public_listing_status": "observed_owner_claim_pending",
       "owner_claim_status": "not_verified",
-      "verification_note": "Public source matches do not establish that the owner has claimed the business. Owner must verify the business themselves; licence and current operation remain pending."
+      "verification_note": "The official Bağlami website identifies Bağlami Bombay in BKC, matching the existing BKC profile. The exact street address remains sourced to the dated public listing. Owner claim, licence, hours, current operation, current menu and prices remain unverified."
     },
     {
       "lead_id": "sd-mumbai-98770e98aba7c351e71c",
