@@ -1,0 +1,51 @@
+{
+  "checked_on": "2026-10-16",
+  "task": 19,
+  "pull_request": 68,
+  "base_commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+  "purpose": "Refresh the existing unapproved price guard against current main; do not duplicate its PR or overwrite the newer location/menu-section fixes.",
+  "changes": [
+    "Merge current main into the existing PR branch without rewriting its history.",
+    "Load the real menu-preference-evidence helper in the price test harness.",
+    "Add a combined category, dinner, dietary and budget regression with valid and invalid prices. City binding is covered separately; the SQL mock does not simulate city filtering."
+  ],
+  "verification": {
+    "dependency_install": "npm ci --ignore-scripts --no-audit --no-fund; no credentials or postinstall scripts used",
+    "focused_command": "node --test tests/menu-price-validity.test.js tests/menu-preference-evidence.test.js tests/location-search-flow.test.js tests/recommendation-coverage.test.js tests/outlet-distance.test.js",
+    "focused_passed": 38,
+    "focused_failed": 0,
+    "full_command": "npm test",
+    "branch": {"tests": 383, "passed": 292, "failed": 91},
+    "unchanged_main": {"tests": 360, "passed": 269, "failed": 91},
+    "baseline_method": "Detached worktree at base_commit; same installed dependency tree via NODE_PATH; node --test tests/*.test.js. Compared failing test names after removing timing suffixes: no new or resolved failures.",
+    "known_failure_examples": [
+      "Existing location-search harness does not load menu-preference-evidence required by current server",
+      "Existing source-catalog fixture totals differ from newer acquisition data"
+    ],
+    "syntax": "node --check api/server.js passed",
+    "limits": [
+      "Full repository suite is not green; existing failures require triage before a green-suite release",
+      "SQL, Gemini and unrelated route registrations are mocked for focused route tests",
+      "No production invalid record inserted or asserted; no live recommendation/provider call",
+      "No mobile visual, real owner, payment schema or sandbox acceptance claimed"
+    ]
+  },
+  "production": {
+    "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
+    "team_id": "team_5QKHOdfRO8X5rlLq6lRZcuqY",
+    "deployment_id": "dpl_CEhKrGS1dmiL3Bwma8v61vjjyfCq",
+    "commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+    "status": "READY",
+    "alias_verified": "www.suggestdish.com via get_deployment",
+    "health": {"http": 200, "success": true, "status": "ok", "response_date_utc": "2026-10-16T02:41:56Z"},
+    "mumbai_menu_coverage": {"http": 200, "success": true, "restaurants": 32, "dishes": 2377, "response_date_utc": "2026-10-16T02:41:44Z", "limit": "Priced records, not a complete or verified operating-outlet census or eligibility count"},
+    "mumbai_location": {"http": 200, "success": true, "city": "Mumbai", "latitude": null, "longitude": null, "response_date_utc": "2026-10-16T02:44:18Z"}
+  },
+  "coordination": {
+    "open_prs_reviewed": [68, 57, 36, 35, 34, 2],
+    "outlet_data": "Preserved main acquisition changes and state-import-progress; no acquisition or import task duplicated",
+    "marketing": "No marketing files, schedule or task changed",
+    "payments": "PR 53 approval is historical, not approval for this release. Dedicated sandbox prerequisites remain unverified; no billing endpoint, secret or setting accessed."
+  },
+  "release": "Existing reviewable PR only. No merge, production deployment, database write or access change. Specific release approval still required."
+}
