@@ -4,6 +4,7 @@ const express = require("express");
 const { neon } = require("@neondatabase/serverless");
 const { GoogleGenAI } = require("@google/genai");
 const operationalErrors = require("../lib/operational-errors");
+const { categoryMatches } = require("../lib/menu-preference-evidence");
 
 const app = express();
 
@@ -319,6 +320,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         d.name,
         d.price,
         d."isVeg",
+        menu_evidence."menuCategory",
         r.id AS "restaurantId",
         (sd."dishId" IS NOT NULL OR cs."dishId" IS NOT NULL) AS "starConfirmed",
         CASE WHEN sd."dishId" IS NOT NULL THEN 'owner_claim' WHEN cs."dishId" IS NOT NULL THEN 'published_menu' ELSE NULL END AS "starOrigin",
@@ -335,6 +337,11 @@ app.get("/api/ai-recommend", async (req, res) => {
       FROM "Dish" d
       JOIN "Restaurant" r
         ON r.id = d."restaurantId"
+      LEFT JOIN (
+        SELECT DISTINCT ON ("dishId") "dishId", payload->>'menu_category' AS "menuCategory"
+        FROM public."CatalogueDish"
+        ORDER BY "dishId", "checkedOn" DESC, "sourceKey", "sourceDishId"
+      ) menu_evidence ON menu_evidence."dishId"=d.id
       LEFT JOIN "RestaurantStarDish" sd ON sd."dishId"=d.id AND sd.slot<=public.restaurant_star_limit(r.id)
       LEFT JOIN "StarDishRevision" sr ON sr.id=sd."revisionId"
       LEFT JOIN "BusinessClaim" oc ON oc.id=sr."claimId"
@@ -510,7 +517,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       ],
 
       light: ["light", "salad", "clear soup", "broth", "steamed", "idli"],
-      rich: ["rich", "butter", "cheese", "cheesy", "cream", "creamy", "alfredo", "malai", "makhani", "korma"],
+      rich: ["rich", "butter", "cheese", "cheesy", "cream", "creamy", "alfredo", "malai", "makhani", "makhanwala", "korma"],
       tangy: ["tangy", "sour", "khatta", "achari", "achaari", "pickle", "tamarind", "imli", "lemon", "lime", "amchur", "chatpata", "chaat", "bhel", "sev puri", "dahi puri", "pani puri"],
       crispy: ["crispy", "crisp", "crunchy", "kurkure", "tempura"]
     };
@@ -518,12 +525,12 @@ app.get("/api/ai-recommend", async (req, res) => {
 
     // Cuisine families use menu dish names, never outlet names or addresses.
     // Unknown or clearly mixed-cuisine dishes stay out of specific searches.
-    const northIndianDishes = ["naan", "roti", "paratha", "kulcha", "chole", "rajma", "dal tadka", "dal fry", "dal makhani", "dal palak", "paneer tikka", "paneer butter masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "shahi paneer", "matar paneer", "paneer lababdar", "butter chicken", "chicken tikka", "tandoori chicken", "rogan josh", "korma", "punjabi thali", "gulab jamun", "rasmalai", "ras malai", "jalebi", "kulfi", "phirni"];
+    const northIndianDishes = ["naan", "roti", "paratha", "kulcha", "chole", "rajma", "dal tadka", "dal fry", "dal makhani", "dal palak", "paneer tikka", "paneer butter masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "paneer kadai", "paneer kadhai", "paneer makhanwala", "veg makhanwala", "veg kadai", "veg kadhai", "shahi paneer", "matar paneer", "paneer lababdar", "butter chicken", "chicken tikka", "tandoori chicken", "rogan josh", "korma", "punjabi thali", "gulab jamun", "rasmalai", "ras malai", "jalebi", "kulfi", "phirni"];
     const southIndianDishes = ["dosa", "dosai", "idli", "paniyaram", "uttapam", "uttappam", "medu vada", "dal vada", "pongal", "sambar", "sambhar", "rasam", "appam", "idiyappam", "puttu", "avial", "upma", "payasam", "curd rice", "tamarind rice", "lemon rice", "bisibele bath", "bisi bele bath"];
     const maharashtrianDishes = ["misal", "vada pav", "pav bhaji", "poha", "puran poli", "modak", "thalipeeth", "sabudana khichadi", "sabudana vada", "kothimbir vadi", "pithla", "pitla", "zunka", "bhakri", "bharli vangi", "usal", "shrikhand", "amrakhand", "sheera"];
     const chineseDishes = ["manchurian", "hakka noodles", "noodles", "fried rice", "spring roll", "chow mein", "chowmein", "wonton", "kung pao", "szechuan", "sichuan", "schezwan", "schezuan", "schezuwan", "hot and sour soup", "chilli paneer", "chili paneer", "chilli chicken", "chili chicken", "dragon paneer"];
     const italianDishes = ["pizza", "pasta", "spaghetti", "penne", "fusilli", "fettuccine", "tagliatelle", "ravioli", "gnocchi", "lasagna", "lasagne", "risotto", "bruschetta", "focaccia", "minestrone", "tiramisu", "panna cotta", "gelato"];
-    const continentalDishes = [...italianDishes, "burger", "sandwich", "french fries", "fish and chips", "caesar salad", "greek salad", "waldorf salad", "grilled vegetables", "roasted vegetables", "baked potato", "mashed potato", "stroganoff", "shepherd pie", "shepherds pie", "steak", "eggs benedict", "scrambled eggs", "pancake", "waffle", "croissant", "cheesecake", "brownie", "chocolate mousse", "creme brulee"];
+    const continentalDishes = [...italianDishes, "burger", "sandwich", "french fries", "fish and chips", "caesar salad", "greek salad", "waldorf salad", "panzanella", "roka salata", "grilled vegetables", "roasted vegetables", "baked potato", "mashed potato", "stroganoff", "shepherd pie", "shepherds pie", "steak", "eggs benedict", "scrambled eggs", "pancake", "waffle", "croissant", "cheesecake", "brownie", "chocolate mousse", "creme brulee"];
     const indianDishes = [...northIndianDishes, ...southIndianDishes, ...maharashtrianDishes, "biryani", "khichadi", "dal", "thali", "samosa", "kachori", "dhokla", "khandvi", "chaat", "bhel", "pani puri", "sev puri", "dahi puri", "pakora", "pakoda", "halwa", "kheer", "rasgulla", "barfi", "burfi", "ladoo", "laddu", "peda", "basundi", "jalebi", "chicken curry", "mutton curry", "fish curry"];
     const cuisineKeywords = {
       indian: indianDishes,
@@ -540,7 +547,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     // These describe dish types, not verified service times, group portions
     // or restaurant atmosphere. Every displayed occasion has an explicit rule.
     const breakfastDishes = ["idli", "dosa", "poha", "upma", "misal", "sheera", "sabudana khichadi", "puri bhaji", "poori bhaji", "paratha", "sandwich", "medu vada", "vada pav", "uttapam", "pancake", "waffle", "toast", "croissant"];
-    const mainDishes = ["biryani", "thali", "rice bowl", "fried rice", "dal", "curry", "khichadi", "paneer curry", "paneer butter masala", "paneer tikka masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "paneer lababdar", "shahi paneer", "matar paneer", "rajma", "chole", "pasta", "pizza", "noodles", "risotto", "paratha"];
+    const mainDishes = ["biryani", "thali", "rice bowl", "fried rice", "dal", "curry", "khichadi", "paneer curry", "paneer butter masala", "paneer tikka masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "paneer kadai", "paneer kadhai", "paneer makhanwala", "veg makhanwala", "veg kadai", "veg kadhai", "paneer lababdar", "shahi paneer", "matar paneer", "rajma", "chole", "pasta", "pizza", "noodles", "risotto", "paratha"];
     const snackDishes = ["sandwich", "fries", "vada pav", "pav bhaji", "chaat", "bhel", "pani puri", "sev puri", "dahi puri", "momos", "pakora", "pakoda", "bhajiya", "fritters", "samosa", "kachori", "puff", "roll", "wrap", "waffle"];
     const moodKeywords = {
       breakfast: breakfastDishes,
@@ -606,7 +613,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       filteredDishes = filteredDishes.filter(dish => {
         const name = normalize(dish.name);
         return !/\b(extra|add on|addon)\b/.test(name) &&
-          selectedMoodKeywords.some(keyword => hasPhrase(name, normalize(keyword)));
+          (selectedMoodKeywords.some(keyword => hasPhrase(name, normalize(keyword))) || categoryMatches(dish, mood, "mood"));
       });
       if (!filteredDishes.length) return res.json({
         success:true, source:"database", recommendations:[],
@@ -627,7 +634,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     const matchesTaste = (dish, key) => {
       const name = normalize(dish.name);
       if (/\b(extra|add on|addon|combo|thali|meal)\b/.test(name)) return false;
-      if (!tasteKeywords[key].some(phrase => hasPhrase(name, phrase))) return false;
+      if (!tasteKeywords[key].some(phrase => hasPhrase(name, phrase)) && !categoryMatches(dish, key, "taste")) return false;
       if (key === "sweet") {
         return !/\b(rice bowl|fried rice|biryani|chicken|mutton|fish|prawn|noodles|sandwich|burger|pizza|pasta|wrap|roll|paneer|savory|savoury|schezwan|masala|garlic|peri peri|chilli|chili|sweet corn|sweet potato)\b/.test(name);
       }
@@ -652,7 +659,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       const matchesAny = (name, phrases) => phrases.some(phrase => hasPhrase(name, normalize(phrase)));
       filteredDishes = filteredDishes.filter(dish => {
         const name = normalize(dish.name);
-        if (/\b(extra|add on|addon|combo)\b/.test(name) || !matchesAny(name, selectedCuisineKeywords)) return false;
+        if (/\b(extra|add on|addon|combo)\b/.test(name) || (!matchesAny(name, selectedCuisineKeywords) && !categoryMatches(dish, selectedCuisine, "cuisine"))) return false;
         const westernBase = /\b(pizza|pasta|spaghetti|penne|burger|sandwich|wrap|waffle|pancake|croissant|cheesecake|brownie)\b/.test(name);
         const chineseCue = matchesAny(name, chineseDishes);
         const indianBase = matchesAny(name, indianDishes);
@@ -857,7 +864,9 @@ Return exactly:
       const matched=[...selectedCuisineKeywords,...selectedTasteKeywords,...selectedMoodKeywords].filter(word=>normalize(dish.name).includes(word));
       if(matched.length) parts.push(`Menu-name keywords matching your preferences: ${[...new Set(matched)].slice(0,3).join(", ")}.`);
       if(customWords.some(word=>normalize(dish.name).split(" ").includes(word)))parts.push("Your dish search terms occur in this menu item.");
-      if (selectedCuisineKeywords.length) parts.push("Cuisine match is based on the menu dish name, not verified recipe origin.");
+      if (categoryMatches(dish, taste, "taste") || categoryMatches(dish, cuisine, "cuisine") || categoryMatches(dish, mood, "mood")) parts.push(`Published menu section: ${dish.menuCategory}.`);
+      if (taste === "light" && categoryMatches(dish, taste, "taste")) parts.push("Light matches the menu dish type; calories and nutrition are unverified.");
+      if (selectedCuisineKeywords.length) parts.push("Cuisine match uses the menu dish name or published section; recipe origin is unverified.");
       if (selectedMoodKeywords.length) parts.push("Occasion match uses the menu dish type; service time, group portions and venue atmosphere are unverified.");
       return starEvidenceLabel(dish)+parts.join(" ");
     }
@@ -1044,7 +1053,7 @@ Return exactly:
 
       recommendations,
 
-      summary: "These menu dishes match the selected dietary and budget constraints. Preference keywords are matched to menu names; preparation, prices and availability should be confirmed with the restaurant."
+      summary: "These menu dishes match the selected dietary and budget constraints. Preferences use menu names and published sections; preparation, prices and availability should be confirmed with the restaurant."
     });
 
   } catch (error) {

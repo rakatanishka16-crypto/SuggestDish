@@ -8,7 +8,7 @@ test('catalog exposes only source-checked business profiles and rejects unknown 
  assert.equal('research_leads' in batch,false);
 });
 test('brand menus are kept separate from branch availability and budget recommendations',()=>{
- const b=batch.businesses.find(b=>b.name==='Oye Kake'),r=request(b.sourceKey);assert.equal(r.result.menuItems.length,24);
+ const b=batch.businesses.find(b=>b.name==='Oye Kake'),r=request(b.sourceKey);assert.equal(r.result.menuItems.length,105);
  for(const m of r.result.menuItems){assert.equal(m.price_inr,null);assert.equal(m.branch_availability,'not_confirmed');assert.equal(m.tax_included,null);}
  assert.match(r.result.notice,/not owner verification/);
 });
@@ -32,7 +32,39 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8021);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,14587);assert.equal(result.publishedPrices,6491);assert.equal(result.outletsWithSourceMenus,213);assert.equal(result.researchLeadsChecked,127);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8032);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15369);assert.equal(result.publishedPrices,6962);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.researchLeadsPending,107);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+});
+
+test('Baglami BKC keeps directory address provenance while adding official profile corroboration',()=>{
+ const r=request('listing:sd-mumbai-baglami-bandra-kurla-complex-20261007');assert.equal(r.status,200);
+ const b=r.result.business;assert.equal(b.source_urls[0],'https://www.baglami.com/');assert.deepEqual(b.source_types,['business_website','restaurant_directory']);assert.match(b.directions_url,/destination=BKC%207%2C%20INS%20Tower/);assert.equal(b.recommendation_eligible,false);
+ assert.equal(r.result.menuScope,'brand_reference');assert.ok(r.result.menuItems.every(m=>m.recommendation_eligible===false));
+});
+
+test('CinCin BKC gains current business-profile corroboration without cross-branch menu leakage',()=>{
+ const r=request('listing:sd-mumbai-cincin-bandra-kurla-complex-20261007');assert.equal(r.status,200);
+ const b=r.result.business;assert.ok(b.source_urls.includes('https://linktr.ee/cincinindia'));assert.match(b.directions_url,/destination=Ground%20Floor%2C%20Raheja%20Tower/);assert.equal(b.recommendation_eligible,false);
+ assert.ok(!b.source_urls.some(u=>u.includes('drive.google.com')));assert.ok(r.result.menuItems.every(m=>m.recommendation_eligible===false));
+});
+
+test('Good Flippin Bandra preserves official branch facts without inventing menu availability or licence validity',()=>{
+ const r=request('listing:sd-mumbai-good-flippin-burgers-pali-hill-bandra-west-20261007');assert.equal(r.status,200);
+ const b=r.result.business;assert.equal(b.source_urls[0],'https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai');assert.equal(b.phone,'9892201112');assert.equal(b.opening_hours,'Monday-Sunday 09:00-23:00');
+ assert.equal(b.fssai_license_number,'11521006000592');assert.equal(b.license_status,'not_checked');assert.match(b.directions_url,/destination=Shop%203%2C%20Ground%20Floor/);assert.equal(b.recommendation_eligible,false);assert.equal(r.result.menuItems.length,0);
+});
+
+test('Mia Cucina Powai keeps conflicting hours and shared-menu availability unknown',()=>{
+ const r=request('listing:sd-mumbai-mia-cucina-powai-20261007');assert.equal(r.status,200);
+ const b=r.result.business;assert.equal(b.source_urls[0],'https://themiacucina.com/');assert.equal(b.phone,'+91-9595000200');assert.equal(b.opening_hours,null);assert.match(b.directions_url,/destination=G3%2C%20Transocean%20House/);assert.equal(b.recommendation_eligible,false);assert.equal(r.result.menuItems.length,0);
+});
+
+test('Olive Khar separates unlabelled dinner items from dietary-labelled all-day items',()=>{
+ const r=request('listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007');assert.equal(r.status,200);
+ const b=r.result.business;assert.equal(b.phone,'+91 72084 78228');assert.equal(b.opening_hours,'Monday-Sunday 12:00-01:00');assert.match(b.directions_url,/destination=14%20Union%20Park/);assert.equal(r.result.menuScope,'outlet_observed');assert.equal(r.result.menuItems.length,19);
+ for(const m of r.result.menuItems){assert.equal(m.source_business_id,b.sourceKey);assert.equal(m.branch_availability,'confirmed_on_outlet_page');assert.equal(m.tax_included,false);assert.ok(m.price_inr>0);}
+ const allDay=r.result.menuItems.filter(m=>m.source_id==='olive_khar_all_day_8_20261015');assert.equal(allDay.length,9);assert.ok(allDay.every(m=>typeof m.is_veg==='boolean'&&m.recommendation_eligible===true));assert.equal(allDay.find(m=>m.name==='Prawns Ajillo').price_inr,845);
+ const dinner=r.result.menuItems.filter(m=>m.source_id==='olive_khar_dinner_1_20261015');assert.equal(dinner.length,10);assert.ok(dinner.every(m=>m.is_veg===null&&m.recommendation_eligible===false));
+ assert.equal(r.result.menuItems.find(m=>m.name==='Boston Lobster').price_inr,1875);
 });
 
 const expansion=require('../api/source-batches/food-outlets-2026-10-05.json');

@@ -13,7 +13,7 @@ test('outlet-page menu evidence stays attached to that outlet rather than leakin
 });
 test('outlet data preserves source identities and missing facts instead of inventing ratings or city-wide coverage',()=>{
  assert.ok(chains.businesses.length>2000);assert.equal(new Set(chains.businesses.map(b=>b.sourceKey)).size,chains.businesses.length);
- for(const b of chains.businesses){assert.ok(b.address===null || typeof b.address==='string' && b.address.length>0);assert.ok(b.city);assert.equal(b.restaurant_rating,null);if(b.fssai_license_number!==null)assert.match(b.fssai_license_number,/^\d{14}$/);assert.equal(b.license_status,'not_checked');if(b.recommendation_eligible){const menu=chains.menuFor(b);assert.equal(menu.menuScope,'outlet_page');assert.ok(menu.menuItems.every(m=>m.recommendation_eligible&&m.price_inr>0&&typeof m.is_veg==='boolean'));}for(const url of b.source_urls)assert.equal(new URL(url).protocol,'https:');}
+ for(const b of chains.businesses){assert.ok(b.address===null || typeof b.address==='string' && b.address.length>0);assert.ok(b.city);assert.equal(b.restaurant_rating,null);if(b.fssai_license_number!==null)assert.match(b.fssai_license_number,/^\d{14}$/);assert.equal(b.license_status,'not_checked');if(b.recommendation_eligible){const menu=chains.menuFor(b);assert.equal(menu.menuScope,'outlet_page');const eligible=menu.menuItems.filter(m=>m.recommendation_eligible);assert.ok(eligible.length>0);assert.ok(eligible.every(m=>m.price_inr>0&&typeof m.is_veg==='boolean'));}for(const url of b.source_urls)assert.equal(new URL(url).protocol,'https:');}
  assert.equal(new Set(chains.menuItems.map(m=>m.external_id)).size,chains.menuItems.length);
  const {body}=request(chains.businesses.find(b=>b.brand==='Burger King' && !b.outlet_menu_set_id)?.sourceKey || 'official:sd-food-'+'0'.repeat(20));if(body?.menuItems)assert.deepEqual(body.menuItems,[]);
 });
@@ -43,4 +43,10 @@ test('duplicate Haldirams Seasons Mall locator rows reconcile to one detailed Pu
 });
 test('Pizza Hut Phoenix Market City Kurla menu stays attached to its exact Mumbai branch',()=>{
  const b=chains.businesses.find(b=>b.sourceKey==='official:sd-food-583755cbec328a2285f5');assert.ok(b);assert.equal(b.city,'Mumbai');assert.match(b.address,/Phoenix Market City/);const menu=chains.menuFor(b);assert.equal(menu.menuScope,'outlet_page');assert.equal(menu.menuItems.length,135);assert.ok(menu.menuItems.some(i=>i.name==='Margherita'));assert.ok(menu.menuItems.every(i=>i.source_business_id===b.sourceKey&&i.source_url.endsWith('1178/Menu')&&i.price_inr===null&&i.recommendation_eligible===false));
+});
+test('Jumboking Seawoods locator enrichment adds exact mall directions without inventing a menu',()=>{
+ const b=chains.businesses.find(b=>b.sourceKey==='official:sd-food-47f6219100346563b1be');assert.ok(b);assert.equal(b.city,'Navi Mumbai');assert.equal(b.state,'Maharashtra');assert.equal(b.locality,'Seawoods Grand Central Mall');assert.match(b.address,/114 - Lower Ground Floor/);assert.match(b.directions_url,/destination=114%2C/);assert.equal(b.recommendation_eligible,false);assert.deepEqual(chains.menuFor(b),{menuScope:'none',menuItems:[]});
+});
+test('Jumboking Seasons Mall locator enrichment adds exact Pune directions without inventing a menu',()=>{
+ const b=chains.businesses.find(b=>b.sourceKey==='official:sd-food-6d217ab7ffc9555df108');assert.ok(b);assert.equal(b.city,'Pune');assert.equal(b.state,'Maharashtra');assert.equal(b.locality,'Seasons Mall, Hadapsar');assert.match(b.address,/Unit No T1A/);assert.match(b.directions_url,/destination=Unit%20No%20T1A/);assert.equal(b.recommendation_eligible,false);assert.deepEqual(chains.menuFor(b),{menuScope:'none',menuItems:[]});
 });

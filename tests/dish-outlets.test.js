@@ -29,7 +29,7 @@ test('the poha shortlist preserves separate menu items without a fabricated comb
 test('new branch records and menu enrichments are unique and source eligibility stays conservative',()=>{
  assert.equal(new Set(chains.businesses.map(b=>b.sourceKey)).size,chains.businesses.length);
  assert.equal(new Set(chains.menuItems.map(m=>m.external_id)).size,chains.menuItems.length);
- for(const b of chains.businesses){assert.equal(b.publish_ready,false);if(b.recommendation_eligible){const menu=chains.menuFor(b);assert.equal(menu.menuScope,'outlet_page');assert.ok(menu.menuItems.length>0);assert.ok(menu.menuItems.every(m=>m.recommendation_eligible&&m.price_inr>0&&typeof m.is_veg==='boolean'));}}
+ for(const b of chains.businesses){assert.equal(b.publish_ready,false);if(b.recommendation_eligible){const menu=chains.menuFor(b);assert.equal(menu.menuScope,'outlet_page');const eligible=menu.menuItems.filter(m=>m.recommendation_eligible);assert.ok(eligible.length>0);assert.ok(eligible.every(m=>m.price_inr>0&&typeof m.is_veg==='boolean'));}}
  const chocolate=chains.businesses.find(b=>b.brand==='Kunafa Bytes');const menu=chains.menuFor(chocolate);assert.equal(menu.menuScope,'brand_reference');const item=menu.menuItems.find(m=>m.name==='Dubai Kunafa Chocolate');assert.equal(item.portion,'55 g');assert.equal(item.price_inr,320);assert.equal(item.source_business_id,null);
 });
 test('refreshed evidence IDs require exact product and portion matches to reviewed dishes',()=>{

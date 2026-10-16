@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-14",
-  "audited_main_commit": "f80acdc30c6c107fc6000a0854ab638a34c42604",
-  "next_task": "Review price-validity PR for specific release approval; continue independent work without duplicating PR 57.",
+  "updated_on": "2026-10-16",
+  "audited_main_commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+  "next_task": "Review refreshed PR 68; triage the 91 existing main-suite failures before a green-suite release. Specific production approval remains required. Keep outlet-data and marketing work separate.",
   "finite_workflow_status": "price_validity_fix_tested_release_approval_pending",
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
@@ -11,15 +11,15 @@
   },
   "evidence": {
     "production": {
-      "deployment_id": "dpl_J9iRAehgmp7iogQ7d51jVNBHVFfr",
+      "deployment_id": "dpl_CEhKrGS1dmiL3Bwma8v61vjjyfCq",
       "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
-      "commit": "f80acdc30c6c107fc6000a0854ab638a34c42604",
+      "commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
       "status": "READY",
       "aliases": [
         "suggestdish.com",
         "www.suggestdish.com"
       ],
-      "checked_on": "2026-10-14"
+      "checked_on": "2026-10-16"
     },
     "catalog": {
       "source_profiles": 7943,
@@ -39,22 +39,22 @@
       "database": "Neon SQL in runtime server; Prisma schema is not a complete runtime schema audit"
     },
     "tests_this_task": {
-      "command": "node --test tests/menu-price-validity.test.js",
-      "passed": 22,
+      "command": "node --test tests/menu-price-validity.test.js tests/menu-preference-evidence.test.js tests/location-search-flow.test.js tests/recommendation-coverage.test.js tests/outlet-distance.test.js",
+      "passed": 38,
       "failed": 0,
       "syntax": "node --check api/server.js passed",
       "limits": [
         "Unrelated module registration stubbed",
-        "Full repository suite not run: authenticated clone unavailable; only inspected files materialized",
+        "Full suite: branch 292 passed / 91 failed; unchanged main 269 passed / 91 failed. Failing test names match; full suite is not green.",
         "No live Gemini call, database mutation or invalid production record test",
         "No visual or mobile changes"
       ]
     },
     "latest_mumbai_menu_coverage": {
       "http": 200,
-      "restaurants": 28,
-      "dishes": 2075,
-      "response_date_utc": "2026-10-14T02:43:30Z",
+      "restaurants": 32,
+      "dishes": 2377,
+      "response_date_utc": "2026-10-16T02:41:44Z",
       "limits": "Priced menu records, not eligible outlet counts or verified current coverage"
     }
   },
@@ -322,12 +322,14 @@
       "status": "implemented_tested_release_approval_pending",
       "acceptance": "Negative, blank, nonfinite and nonnumeric prices excluded before AI or fallback selection; genuine zero retained.",
       "blockers": [
-        "Specific release approval required"
+        "Specific release approval required",
+        "Full suite has 91 pre-existing failures, reproduced on unchanged main; no green-suite release claim"
       ],
-      "next_action": "Approve this PR for merge and production deployment, then verify live search.",
+      "next_action": "Review refreshed PR 68 and baseline failure evidence; triage the suite, obtain specific release approval, then verify live search after an approved deployment.",
       "evidence": [
         "docs/menu-price-validity-2026-10-14.json",
-        "tests/menu-price-validity.test.js"
+        "tests/menu-price-validity.test.js",
+        "docs/menu-price-revalidation-2026-10-16.json"
       ]
     }
   ],
@@ -441,6 +443,11 @@
       "date": "2026-10-14",
       "task": 19,
       "action": "Reproduced 9 failing price-validity cases; all 22 tests pass after guard. Production main f80acdc READY, health 200 and Mumbai priced coverage 28/2075 observed. PR 57 shortcut and separate outlet-data/marketing work left untouched. Billing config read blocked by auto-review; no payment readiness claimed. Fix awaits specific release approval."
+    },
+    {
+      "date": "2026-10-16",
+      "task": 19,
+      "action": "Refreshed existing PR 68 with main 66c26b9, preserving recent menu-section and typed-location fixes. Updated its harness dependency and added a combined price/category/diet/budget regression. 38 focused tests pass. Full suite branch 292/91 and unchanged main 269/91 pass/fail, identical failing names. Production alias resolves to READY 66c26b9; health, Mumbai location and coverage 32/2377 pass. No production mutation, provider recommendation, billing probe or marketing/data-task change."
     }
   ]
 }

@@ -5,7 +5,7 @@ test('open data directory profiles preserve identities, licence and unknown stat
  assert.equal(open.businesses.length,2121);assert.equal(new Set(open.businesses.map(b=>b.sourceKey)).size,2121);
  for(const b of open.businesses){
   assert.equal(b.existingBusinessId,'osm:'+b.source_id);assert.match(b.attribution,/OpenStreetMap contributors/);assert.equal(b.restaurant_rating,null);assert.equal(b.operating_status,null);assert.equal(b.recommendation_eligible,false);
-  const r=call('/api/business-source',{businessId:b.sourceKey});assert.equal(r.status,200);assert.equal(r.body.menuScope,'none');assert.deepEqual(r.body.menuItems,[]);
+  const r=call('/api/business-source',{businessId:b.sourceKey});assert.equal(r.status,200);if(b.sourceKey==='open:osm_node_8084252878'){assert.equal(r.body.menuScope,'outlet_page');assert.equal(r.body.menuItems.length,49);}else{assert.equal(r.body.menuScope,'none');assert.deepEqual(r.body.menuItems,[]);}
  }
 });
 test('Wikidata vocabulary stays separate, paginated and without outlet or price claims',()=>{
@@ -16,7 +16,7 @@ test('Wikidata vocabulary stays separate, paginated and without outlet or price 
 });
 test('adapted OSM dataset is downloadable and uncertain duplicates are held without merging',()=>{
  const r=call('/api/open-food-data/export');assert.equal(r.body.businesses.length,2121);assert.equal(r.body.held_records.length,91);assert.equal(r.body.duplicate_candidates.length,40);
- assert.ok(r.body.duplicate_candidates.every(d=>d.automatic_merge===false));assert.equal(source.coverage.menuEntries,14587);assert.equal(source.coverage.publishedPrices,6491);
+ assert.ok(r.body.duplicate_candidates.every(d=>d.automatic_merge===false));assert.equal(source.coverage.menuEntries,15139);assert.equal(source.coverage.publishedPrices,6835);
 });
 
 test("food-shop profiles retain observed raw categories rather than inferred restaurant types",()=>{

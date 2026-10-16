@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-14",
+  "updated_on": "2026-10-15",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -64,7 +64,13 @@
         "maharashtra-thane-official-followup-18-2026-10-13",
         "mumbai-pizzahut-r-mall-menu-2026-10-13",
         "amravati-belgian-waffle-locator-2026-10-14",
-        "vashi-haldirams-duplicate-reconciliation-2026-10-14"
+        "vashi-haldirams-duplicate-reconciliation-2026-10-14",
+        "mumbai-baglami-official-reconciliation-2026-10-15",
+        "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
+        "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
+        "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
+        "mumbai-olive-khar-dinner-menu-2026-10-15",
+        "mumbai-olive-khar-all-day-menu-page-8-2026-10-15"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -78,32 +84,167 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "vashi-haldirams-duplicate-reconciliation-2026-10-14",
-        "date": "2026-10-14",
-        "districts": ["Thane"],
-        "cities": ["Navi Mumbai"],
-        "localities": ["Inorbit Mall, Vashi"],
+        "batch_id": "mumbai-olive-khar-all-day-menu-page-8-2026-10-15",
+        "date": "2026-10-15",
+        "districts": ["Mumbai Suburban"],
+        "cities": ["Mumbai"],
+        "localities": ["Khar West"],
         "new_outlets": 0,
-        "new_menus": 0,
-        "new_prices": 0,
-        "recommendation_eligible_items": 0,
-        "duplicate_candidates": 1,
+        "new_menus": 9,
+        "new_prices": 9,
+        "recommendation_eligible_items": 9,
+        "reconciled_research_leads": 0,
         "conflicts": 0,
-        "status": "confirmed_duplicate_reconciled",
+        "status": "official_exact_branch_prices_and_dietary_labels_published",
         "remaining_gaps": [
-          "The official locator publishes no branch menu or prices.",
-          "6 mall branch targets still lack an observed branch menu.",
-          "Navi Mumbai and Maharashtra remain only partially covered."
+          "Only all-day page 8 was transcribed in this bounded batch; remaining official Olive Mumbai menu images require review.",
+          "Nine items have explicit vegetarian or non-vegetarian icons and are recommendation-eligible in the source catalog.",
+          "Owner claim, licence validity, coordinates and current operation remain unverified.",
+          "107 research leads remain pending official-profile reconciliation.",
+          "Mumbai and Maharashtra remain only partially covered."
         ],
         "checked_sources": [
           {
-            "url": "https://haldirams.com/store-locator",
-            "result": "Official locator repeats the same Inorbit Vashi unit and phone; one duplicate spelling variant reconciled into the canonical Navi Mumbai profile",
-            "date": "2026-10-14"
+            "url": "https://www.olivebarandkitchen.com/obkmumbai.php",
+            "result": "Official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set",
+            "date": "2026-10-15"
+          },
+          {
+            "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg",
+            "result": "Official all-day page 8 publishes nine small plates with explicit prices, portions and vegetarian or non-vegetarian icons; government taxes are excluded",
+            "date": "2026-10-15"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-olive-khar-all-day-menu-page-8-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 9,
+          "published_prices": 9,
+          "neon_imported": false,
+          "recommendation_eligible_items": 9,
+          "reconciled_research_leads": 0,
+          "source_pages": [
+            {"url": "https://www.olivebarandkitchen.com/obkmumbai.php", "checked_on": "2026-10-15"},
+            {"url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "checked_on": "2026-10-15"}
+          ],
+          "remaining_gaps": [
+            "Remaining official Olive Mumbai menu images require page-level review",
+            "107 research leads remain pending official-profile reconciliation",
+            "Five mall branch-menu gaps remain",
+            "Mumbai, Jalna and Maharashtra remain only partially covered"
+          ]
+        },
+        {
+          "batch_id": "mumbai-olive-khar-dinner-menu-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 10,
+          "published_prices": 10,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [
+            {"url": "https://www.olivebarandkitchen.com/obkmumbai.php", "checked_on": "2026-10-15"},
+            {"url": "https://www.olivebarandkitchen.com/menus/mumbai/dinner/1.jpg", "checked_on": "2026-10-15"}
+          ],
+          "remaining_gaps": [
+            "Remaining official Olive Mumbai menu images require review",
+            "Dietary types are unlabelled, so all ten items remain recommendation-ineligible",
+            "Owner claim, licence validity, coordinates and current operation remain unverified",
+            "107 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
+        {
+          "batch_id": "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [
+            {"url": "https://themiacucina.com/", "checked_on": "2026-10-15"},
+            {"url": "https://themiacucina.com/contact-us", "checked_on": "2026-10-15"},
+            {"url": "https://themiacucina.com/menu", "checked_on": "2026-10-15"}
+          ],
+          "remaining_gaps": [
+            "Official 2026 menu is shared across Powai and Vikhroli and was not attached to this branch",
+            "Official closing times conflict; owner claim, licence and current operation remain unverified",
+            "108 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
+        {
+          "batch_id": "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [
+            {"url": "https://order.goodflippin.com/store-locator/mumbai/good-flippin-burgers-bandra-mumbai", "checked_on": "2026-10-15"},
+            {"url": "https://order.goodflippin.com/order/good-flippin-burgers-bandra-mumbai", "checked_on": "2026-10-15"}
+          ],
+          "remaining_gaps": [
+            "The exact branch order page exposes no accessible item names or prices",
+            "Published FSSAI number recorded without inferring licence validity; owner claim and current operation remain unverified",
+            "109 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
+        {
+          "batch_id": "mumbai-cincin-bkc-profile-reconciliation-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [{
+            "url": "https://linktr.ee/cincinindia",
+            "checked_on": "2026-10-15"
+          }],
+          "remaining_gaps": [
+            "The linked food menu is explicitly for Golf Course Road and was not attached to BKC",
+            "Owner claim, licence and current operation remain unverified",
+            "110 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
+        {
+          "batch_id": "mumbai-baglami-official-reconciliation-2026-10-15",
+          "checked_on": "2026-10-15",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 0,
+          "published_prices": 0,
+          "neon_imported": false,
+          "recommendation_eligible_items": 0,
+          "reconciled_research_leads": 1,
+          "source_pages": [{
+            "url": "https://www.baglami.com/",
+            "checked_on": "2026-10-15"
+          }],
+          "remaining_gaps": [
+            "Current branch menu and prices are not published in accessible page text",
+            "Owner claim, licence and current operation remain unverified",
+            "111 research leads remain pending official-profile reconciliation",
+            "Mumbai and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "vashi-haldirams-duplicate-reconciliation-2026-10-14",
           "checked_on": "2026-10-14",
@@ -1284,27 +1425,32 @@
     }
   ],
   "last_collection_run": {
-    "run_id": "mumbai-pizzahut-phoenix-kurla-menu-2026-10-14",
+    "run_id": "mumbai-400001-combined-2026-10-14",
     "checked_on": "2026-10-14",
     "state": "Maharashtra",
-    "districts": ["Mumbai Suburban"],
+    "districts": ["Mumbai City"],
     "cities": ["Mumbai"],
-    "localities": ["Phoenix Market City, Kurla West"],
-    "new_outlets": 0,
-    "new_menus": 135,
-    "new_prices": 0,
-    "recommendation_eligible_items": 0,
+    "localities": ["Fort", "Kala Ghoda", "Ballard Estate"],
+    "new_outlets": 7,
+    "new_menus": 428,
+    "new_prices": 219,
+    "recommendation_eligible_items": 138,
     "duplicate_candidates": 0,
     "conflicts_found": 0,
-    "status": "official_branch_menu_enriched",
+    "status": "official_priced_branch_menus_published",
     "source_urls": [
-      "https://restaurants.pizzahut.co.in/pizza-hut-kurla-west-pizza-restaurant-kurla-west-mumbai-1178/Menu"
+      "https://sequelmumbai.in/",
+      "https://theobroma.in/order/fort-mumbai",
+      "https://menu-feed.uengage.in/feed/v2/feed_9920.json",
+      "https://oyekake.in/menu",
+      "https://restaurants.pizzahut.co.in/pizza-hut-murzban-road-pizza-restaurant-murzban-road-mumbai-1143/Menu"
     ],
     "neon_inserts": 0,
     "complete_city_census": false,
     "complete_state_census": false,
     "remaining_gaps": [
-      "The exact branch page publishes no prices, so all 135 items remain ineligible for recommendations",
+      "14 Sequel records with unknown dietary status and 67 Theobroma combo, gift, inactive or out-of-stock records remain ineligible",
+      "209 unpriced branch or brand-reference records remain ineligible",
       "5 mall branch targets still lack an observed branch menu",
       "Jalna official-source and branch-menu gaps remain",
       "Held Sambhajinagar records and duplicate candidates remain unresolved",
@@ -1312,24 +1458,29 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-pizzahut-phoenix-kurla-menu-2026-10-14",
-    "checked_on": "2026-10-14",
+    "run_id": "mumbai-olive-khar-all-day-menu-page-8-2026-10-15",
+    "checked_on": "2026-10-15",
     "state": "Maharashtra",
     "city": "Mumbai",
-    "locality": "Phoenix Market City, Kurla West",
+    "locality": "Khar West",
     "new_outlets": 0,
-    "new_menus": 135,
-    "new_prices": 0,
-    "recommendation_eligible_items": 0,
-    "status": "official_branch_menu_enriched",
+    "new_menus": 9,
+    "new_prices": 9,
+    "recommendation_eligible_items": 9,
+    "status": "official_exact_branch_prices_and_dietary_labels_published",
     "checked_sources": [
       {
-        "url": "https://restaurants.pizzahut.co.in/pizza-hut-kurla-west-pizza-restaurant-kurla-west-mumbai-1178/Menu",
+        "url": "https://www.olivebarandkitchen.com/obkmumbai.php",
         "http_status": 200,
-        "result": "The exact official Phoenix Market City Kurla branch page publishes 135 unique food menu names and dietary markers. No explicit prices are published, so every item remains recommendation-ineligible."
+        "result": "The official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set."
+      },
+      {
+        "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg",
+        "http_status": 200,
+        "result": "The official all-day menu page publishes nine small plates with explicit prices, portions and vegetarian or non-vegetarian icons; government taxes are excluded."
       }
     ],
-    "next_action": "Continue the five remaining mall-menu targets and Mumbai/Jalna priced recommendation-ready gaps; do not infer prices from the order flow.",
+    "next_action": "Continue the remaining official Olive Mumbai menu images, 107 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps while preserving page-level branch evidence.",
     "complete_city_census": false,
     "complete_state_census": false
   }

@@ -23,6 +23,7 @@ function harness(rows, aiReply) {
       if (name === '../lib/catalogue-import') return {register() {}};
       if (name === '../lib/star-evidence') return {label: () => ''};
       if (name === '../lib/operational-errors') return {log() {}};
+      if (name === '../lib/menu-preference-evidence') return require('../lib/menu-preference-evidence');
       if (name.startsWith('../lib/')) return () => {};
       throw Error('Unexpected dependency: ' + name);
     },
@@ -64,4 +65,17 @@ test('AI input excludes invalid prices and rejected AI choice falls back to a va
 test('valid prices still obey budget and diet', async () => {
   const {body} = await harness([dish(201), {...dish(90, 2), isVeg: false}]).request();
   assert.equal(body.recommendations.length, 0);
+});
+
+test('price guard composes with the new menu-section, diet and budget filters', async () => {
+  const rows = [
+    {...dish(-10, 1), name: 'Paneer Kadai', menuCategory: 'Punjabi Gravies'},
+    {...dish(180, 2), name: 'Paneer Kadai', menuCategory: 'Punjabi Gravies'},
+    {...dish(90, 3), name: 'Paneer Kadai', menuCategory: 'Punjabi Gravies', isVeg: false},
+    {...dish(201, 4), name: 'Paneer Kadai', menuCategory: 'Punjabi Gravies'}
+  ];
+  const {body, status} = await harness(rows).request({city: 'Mumbai', cuisine: 'north indian', mood: 'dinner'});
+  assert.equal(status, 200);
+  assert.deepEqual(Array.from(body.recommendations, row => row.dishId), [2]);
+  assert.equal(body.recommendations[0].price, 180);
 });
