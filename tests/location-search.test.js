@@ -22,6 +22,7 @@ function serverHarness({ rows = [], cityRows = [{ city: 'Mumbai' }], fetchImpl, 
       // Middleware has its own HTTP integration tests; this harness exercises route data flow.
       if (name === '../lib/launch-security') return () => {};
       if (name === '../lib/operational-errors') return require('../lib/operational-errors');
+      if (name === '../lib/menu-preference-evidence') return require('../lib/menu-preference-evidence');
       if (name === '../lib/razorpay-payments') return require('../lib/razorpay-payments');
       if (name === '../lib/dish-events') return require('../lib/dish-events');
       if (name === '../lib/business-media') return require('../lib/business-media');
@@ -191,7 +192,10 @@ test('breakfast and custom dish preferences affect fallback ranking', async()=>{
 test('custom text and breakfast travel from the form to the API',async()=>{
  const h=frontendHarness();h.element('aiMood').value='breakfast';h.element('aiCustomPreferences').value='poha & chutney';
  await h.element('aiRecommendBtn').click();
- const params=new URL(h.calls[0],'https://www.suggestdish.com').searchParams;
+ assert.match(h.calls[0], /^\/api\/location-search\?/);
+ const request=h.calls.find(url=>url.startsWith('/api/ai-recommend?'));
+ assert.ok(request, 'recommendation follows typed-location resolution');
+ const params=new URL(request,'https://www.suggestdish.com').searchParams;
  assert.equal(params.get('mood'),'breakfast');assert.equal(params.get('customPreferences'),'poha & chutney');
 });
 
@@ -215,14 +219,21 @@ test('fallback recommends one eligible dish and refinement advances to the next'
 
 
 test('timed-out recommendation releases loading and allows retry without changing preferences', async () => {
- const h=frontendHarness(async(url,options)=>{assert.ok(options.signal);throw Object.assign(new Error('timed out'),{name:'TimeoutError'});});
+ const h=frontendHarness(async(url,options)=>{
+  assert.ok(options.signal);
+  if(url.startsWith('/api/location-search?'))return {ok:true,json:async()=>({success:true,city:'Mumbai',label:'Mumbai',latitude:null,longitude:null})};
+  assert.match(url,/^\/api\/ai-recommend\?/);
+  throw Object.assign(new Error('timed out'),{name:'TimeoutError'});
+ });
  const before=h.element('aiDiet').value;
  await h.element('aiRecommendBtn').click();
  assert.equal(h.element('aiRecommendBtn').disabled,false);
  assert.equal(h.element('aiLoading').style.display,'none');
  assert.match(h.element('aiErrorText').textContent,/Please try again; your preferences are unchanged/);
  assert.equal(h.element('aiDiet').value,before);
- await h.element('aiRecommendBtn').click();assert.equal(h.calls.length,2);
+ await h.element('aiRecommendBtn').click();
+ assert.equal(h.calls.filter(url=>url.startsWith('/api/location-search?')).length,1);
+ assert.equal(h.calls.filter(url=>url.startsWith('/api/ai-recommend?')).length,2);
 });
 test('timed-out location search releases the location button and can be retried', async () => {
  const h=frontendHarness(async(url,options)=>{assert.ok(options.signal);throw Object.assign(new Error('timed out'),{name:'TimeoutError'});});
@@ -473,7 +484,7 @@ for(const [cuisine,matching,rejected] of cuisineCases){
   ]});
   const {body}=await h.request('/api/ai-recommend',{cuisine,budget:'200',diet:'vegetarian'});
   assert.equal(body.recommendations[0].dishName,matching);
-  assert.match(body.recommendations[0].reason,/Cuisine match is based on the menu dish name/);
+  assert.match(body.recommendations[0].reason,/Cuisine match uses the menu dish name or published section; recipe origin is unverified/);
  });
  test(`${cuisine} cannot override budget, diet, radius or refinement constraints`,async()=>{
   const base={name:matching,isVeg:true,restaurantCity:'Mumbai',latitude:19.2,longitude:72.85};
@@ -488,6 +499,25 @@ for(const [cuisine,matching,rejected] of cuisineCases){
   assert.equal(body.recommendations.length,0);
  });
 }
+
+test('full server harness uses published menu sections without relaxing diet or budget',async()=>{
+ const base={menuCategory:'Chinese Mains',restaurantCity:'Mumbai',restaurantName:'Example Outlet'};
+ const h=serverHarness({rows:[
+  {...base,id:1,name:'Crispy Veg',price:150,isVeg:true},
+  {...base,id:2,name:'Crispy Veg',price:250,isVeg:true},
+  {...base,id:3,name:'Crispy Veg',price:100,isVeg:false}
+ ]});
+ const {body,status}=await h.request('/api/ai-recommend',{city:'Mumbai',cuisine:'Chinese',taste:'crispy',diet:'vegetarian',budget:'200'});
+ assert.equal(status,200);
+ assert.deepEqual(Array.from(body.recommendations,x=>x.dishId),[1]);
+});
+
+test('full server harness does not let a menu section override a contradictory dish family',async()=>{
+ const h=serverHarness({rows:[{id:1,name:'Crispy Pizza',menuCategory:'Chinese Mains',price:150,isVeg:true,restaurantName:'Example Outlet',restaurantCity:'Mumbai'}]});
+ const {body,status}=await h.request('/api/ai-recommend',{city:'Mumbai',cuisine:'Chinese',taste:'crispy',diet:'vegetarian',budget:'200'});
+ assert.equal(status,200);
+ assert.equal(body.recommendations.length,0);
+});
 
 test('every displayed cuisine has a tested rule; Any cuisine remains unrestricted',async()=>{
  const block=fs.readFileSync(path.join(root,'index.html'),'utf8').match(/<select id="aiCuisine"[\s\S]*?<\/select>/)[0];
