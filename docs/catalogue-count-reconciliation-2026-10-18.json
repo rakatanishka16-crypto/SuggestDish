@@ -1,0 +1,50 @@
+{
+  "checked_on": "2026-10-18",
+  "task": 21,
+  "base_commit": "e0e660c38961ad3ea92a4f183e409b53311fb629",
+  "production_main": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+  "scope": "Test-only catalogue assertion reconciliation, stacked on PR 82; no data edits or imports.",
+  "diagnosis": {
+    "reproduced": "open-food-data test fails with actual 15369 versus expected 15139; its following price assertion was not reached",
+    "historical_fixture_commit": "4214785",
+    "historical_totals": {"menu_entries": 15139, "published_prices": 6835},
+    "delta": [
+      {"evidence": "5a75058 and lib/mumbai-postal-expansion.js plus its compressed source batch", "menu_entries": 211, "published_prices": 108},
+      {"evidence": "8f7f7cf and 4f456bd; mumbai-local-outlets batch grew from 26/22 entries/prices to 45/41", "menu_entries": 19, "published_prices": 19}
+    ],
+    "current_totals": {"menu_entries": 15369, "published_prices": 6962},
+    "meaning": "Published-source observations including references, not recommendation-ready dish counts, current availability or complete geographic coverage. No source freshness recheck performed."
+  },
+  "changes": [
+    "Replace unrelated stale global totals in the OSM export test with exact zero open-data menu/price contributions.",
+    "Keep tests/source-catalog.test.js pinned to 15369 entries and 6962 prices, including existing source-specific eligibility/provenance assertions.",
+    "Add public data-coverage route regression: OSM counts remain separate, aggregate totals equal raw menu rows/finite published prices, and completeCityCensus remains false."
+  ],
+  "verification": {
+    "runtime": "Node v24.19.0; existing dependencies via NODE_PATH; no install scripts or credentials",
+    "before_focused": {"tests": 7, "passed": 6, "failed": 1},
+    "after_focused": {"tests": 20, "passed": 20, "failed": 0},
+    "focused_command": "node --test tests/open-food-data.test.js tests/source-catalog.test.js",
+    "full_command": "node --test --test-reporter=tap tests/*.test.js",
+    "full_result": {"tests": 363, "passed": 363, "failed": 0, "skipped": 0},
+    "static_checks": "node --check tests/open-food-data.test.js; JSON parse of tracker/evidence; git diff --check passed",
+    "limits": ["Local SQL/provider/DOM tests do not establish real database, browser, Gemini or payment acceptance.", "The full-suite result depends on upstream unmerged PR 82; it is not the current main result."]
+  },
+  "production": {
+    "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
+    "deployment_id": "dpl_CEhKrGS1dmiL3Bwma8v61vjjyfCq",
+    "state": "READY",
+    "alias": "www.suggestdish.com",
+    "health": {"http": 200, "success": true, "status": "ok", "response_date_utc": "2026-10-18T02:54:34Z"},
+    "source_coverage": {"http": 200, "success": true, "response_date_utc": "2026-10-18T02:55:13Z", "business_profiles": 8032, "menu_entries": 15369, "published_prices": 6962, "osm_menu_entries": 0, "osm_published_prices": 0, "complete_city_census": false},
+    "mutations": 0
+  },
+  "coordination": {
+    "upstream_pr": 82,
+    "separate_price_pr": 68,
+    "open_prs_reviewed": [82, 68, 57, 36, 35, 34, 2],
+    "preserved": "Daily outlet-data batches/state import progress, weekly marketing files, PR 68 and existing PR 82 branch untouched.",
+    "payment_blockers_unchanged": "Dedicated test configuration, schema acceptance, actual sandbox checkout/webhook/refund and authorised test business remain unverified. No billing probe, secrets, charges or payment settings accessed."
+  },
+  "release": "Reviewable stacked PR only. Obtain specific approval before production merge/deployment; retest after integrating upstream changes."
+}

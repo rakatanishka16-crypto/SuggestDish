@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-17",
+  "updated_on": "2026-10-18",
   "audited_main_commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
-  "next_task": 20,
-  "finite_workflow_status": "route_regression_repair_review_pending_one_catalogue_fixture_failure_remaining",
+  "next_task": 21,
+  "finite_workflow_status": "route_and_catalogue_test_repairs_review_pending",
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -19,8 +19,8 @@
         "www.suggestdish.com",
         "suggestdish.com"
       ],
-      "checked_on": "2026-10-17",
-      "verification": "Alias READY; health HTTP 200 success:true/status:ok; Mumbai location HTTP 200 success:true. See docs/route-harness-reliability-2026-10-17.json."
+      "checked_on": "2026-10-18",
+      "verification": "Alias READY at unchanged 66c26b9; health HTTP 200 success:true/status:ok at 02:54:34Z. Read-only source coverage HTTP 200 at 02:55:13Z matches local totals. See docs/catalogue-count-reconciliation-2026-10-18.json. No fresh live recommendation or payment acceptance claimed."
     },
     "catalog": {
       "source_profiles": 7943,
@@ -315,15 +315,29 @@
       "status": "implemented_tested_review_pending",
       "acceptance": "Full-server harness loads real category matching; location-before-recommendation and timeout retry fixtures follow current behavior without weakening hard-filter assertions.",
       "blockers": [
-        "Specific approval required before merge or deployment",
-        "One existing catalogue total assertion remains: 15369 menu entries versus expected 15139; full suite is not green"
+        "Specific approval required before merge or deployment"
       ],
-      "next_action": "Review the test-only repair, then reconcile the remaining aggregate fixture with current acquisition evidence in a separate bounded task. Preserve PR 68 and data/marketing work; do not simply update a count without validation.",
+      "next_action": "Review PR 82 and the separate stacked catalogue-count repair (task 21). The dated 17 October evidence retains its historical one-failure result; use task 21 for the combined current test result. Preserve PR 68 and data/marketing work.",
       "evidence": ["docs/route-harness-reliability-2026-10-17.json", "tests/location-search.test.js"],
-      "updated_at": "2026-10-17"
+      "updated_at": "2026-10-18"
+    },
+    {
+      "number": 21,
+      "title": "Reconcile catalogue regression assertions with source evidence",
+      "status": "implemented_tested_review_pending",
+      "acceptance": "Open-data tests enforce zero OSM/vocabulary outlet-menu contribution; global source-catalog counts remain separately pinned and public aggregation matches raw rows. Focused 20/20 and combined full suite 363/363 pass on the PR 82-based branch; not production acceptance.",
+      "blockers": ["Specific release approval required; stacked on unmerged PR 82"],
+      "next_action": "Review the stacked test-only PR after PR 82; revalidate against current main before release. Then integrate and re-test PR 68 separately without assuming payment or launch readiness.",
+      "evidence": ["docs/catalogue-count-reconciliation-2026-10-18.json", "tests/open-food-data.test.js", "tests/source-catalog.test.js"],
+      "updated_at": "2026-10-18"
     }
   ],
   "change_log": [
+    {
+      "date": "2026-10-18",
+      "task": 21,
+      "action": "Traced stale totals to 211 postal expansion rows/108 prices plus 19 Olive rows/prices. Scoped OSM test to its zero-menu contribution; retained global pinned-count tests and added public aggregation regression. No source data, runtime, marketing or production changes."
+    },
     {
       "date": "2026-10-10",
       "task": 1,
