@@ -16,7 +16,21 @@ test('Wikidata vocabulary stays separate, paginated and without outlet or price 
 });
 test('adapted OSM dataset is downloadable and uncertain duplicates are held without merging',()=>{
  const r=call('/api/open-food-data/export');assert.equal(r.body.businesses.length,2121);assert.equal(r.body.held_records.length,91);assert.equal(r.body.duplicate_candidates.length,40);
- assert.ok(r.body.duplicate_candidates.every(d=>d.automatic_merge===false));assert.equal(source.coverage.menuEntries,15139);assert.equal(source.coverage.publishedPrices,6835);
+ assert.ok(r.body.duplicate_candidates.every(d=>d.automatic_merge===false));
+ // OSM profiles and Wikidata vocabulary do not supply outlet menus. Global
+ // published-source totals belong in source-catalog.test.js, not this export.
+ assert.equal(open.summary.menuEntries,0);assert.equal(open.summary.publishedPrices,0);
+});
+
+test('public coverage keeps open-data contributions separate from published menus',()=>{
+ const r=call('/api/data-coverage');assert.equal(r.status,200);assert.equal(r.body.success,true);
+ assert.equal(r.body.openFoodData.menuEntries,0);assert.equal(r.body.openFoodData.publishedPrices,0);
+ assert.equal(r.body.openFoodData.profiles,open.businesses.length);
+ assert.equal(r.body.openFoodData.completeCityCensus,false);
+ const menus=source.importData.menuItems;
+ assert.equal(r.body.menuEntries,menus.length);
+ assert.equal(r.body.publishedPrices,menus.filter(m=>Number.isFinite(m.price_inr)).length);
+ assert.equal(r.body.completeCityCensus,false);
 });
 
 test("food-shop profiles retain observed raw categories rather than inferred restaurant types",()=>{

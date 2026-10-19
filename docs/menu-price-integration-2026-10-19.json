@@ -1,0 +1,114 @@
+{
+  "checked_on": "2026-10-19",
+  "task": 22,
+  "pull_request": 68,
+  "purpose": "Make the existing invalid-price fix reviewable with the repaired full suite, avoiding a duplicate runtime-fix PR.",
+  "inputs": {
+    "main": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+    "price_branch_parent": "678d2183f38522b9fdfc08fefc967075c51b8166",
+    "test_repairs_parent": "82ea3f37b2ca4e76e7a851c0df5e1ddfc92f9c1a",
+    "open_prs_reviewed": [
+      83,
+      82,
+      68,
+      57,
+      36,
+      35,
+      34,
+      2
+    ]
+  },
+  "review": {
+    "runtime_delta_from_main": "Only the pre-existing seven-line menu-price guard in api/server.js. Reject non-number/non-string, blank strings, nonfinite and negative values before ranking/provider/fallback; allow zero and numeric strings.",
+    "test_repairs": "tests/location-search.test.js and tests/open-food-data.test.js copied unchanged from reviewed PR83 tree; no assertions removed during integration.",
+    "conflict_resolution": "Only docs/launch-task-progress.json conflicted. Retained historical change-log evidence from both sides, one task19, tasks20/21, and a new task22. Earlier dated snapshots remain historical.",
+    "entrypoints": "npm start=node api/server.js; Vercel rewrites /api/:path* to api/index.js requiring server.js; runtime uses Neon SQL, Prisma schema is not a complete runtime schema audit."
+  },
+  "verification": {
+    "node": "v24.19.0",
+    "dependencies": "Reused existing installed local dependencies through NODE_PATH; no install, scripts, env pull or credentials.",
+    "guard_free_baseline": {
+      "commit": "82ea3f37b2ca4e76e7a851c0df5e1ddfc92f9c1a",
+      "method": "Detached worktree plus exact PR68 menu-price-validity.test.js; node --test tests/menu-price-validity.test.js",
+      "tests": 23,
+      "passed": 14,
+      "failed": 9,
+      "examples": [
+        "Negative numeric/string prices",
+        "Empty/whitespace strings",
+        "Booleans and coercible arrays",
+        "Invalid price enters provider prompt and can be selected"
+      ]
+    },
+    "combined_full_suite": {
+      "command": "npm test with NODE_PATH pointing at reused local dependencies",
+      "tests": 386,
+      "passed": 386,
+      "failed": 0,
+      "skipped": 0
+    },
+    "limits": [
+      "SQL, Gemini and DOM are mocked in route/client tests.",
+      "No invalid production row inserted or live Gemini request.",
+      "No real phone/browser journey, owner submission, payment schema, sandbox checkout/webhook/refund acceptance.",
+      "No new source/menu freshness or complete coverage claim."
+    ],
+    "tested_candidate_commit": "dea2e27efcaabac674267f3bc13bc198f9a13b47"
+  },
+  "production": {
+    "deployment": "dpl_CEhKrGS1dmiL3Bwma8v61vjjyfCq",
+    "project": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
+    "team": "team_5QKHOdfRO8X5rlLq6lRZcuqY",
+    "commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+    "status": "READY",
+    "alias": "www.suggestdish.com",
+    "health": {
+      "http": 200,
+      "success": true,
+      "status": "ok",
+      "response_date_utc": "2026-10-19T03:04:54Z"
+    },
+    "jalna_menu_coverage": {
+      "http": 200,
+      "success": true,
+      "restaurants": 31,
+      "dishes": 933,
+      "response_date_utc": "2026-10-19T03:05:00Z"
+    },
+    "mumbai_menu_coverage": {
+      "http": 200,
+      "success": true,
+      "restaurants": 32,
+      "dishes": 2377,
+      "response_date_utc": "2026-10-19T03:05:12Z"
+    },
+    "counts_limit": "Priced records, not complete coverage, eligible outlets or verified availability."
+  },
+  "coordination": {
+    "upstream_prs": "82/83 remain open; integration preserves their exact test changes and history. Do not merge any release without specific approval. No PR closed or auto-merged.",
+    "other_work": "Data batches, state-import-progress, outlet-data and marketing work untouched. Other open fixes excluded.",
+    "payment_blockers": "Dedicated test configuration, schema acceptance, actual test checkout/webhook/refund and authorised approved test business remain unverified. No billing probe or credentials accessed.",
+    "release": "Refreshed existing PR68 only. No production merge/deployment, access change or database mutation."
+  },
+  "preview": {
+    "deployment": "dpl_8ufa3YZLRBNr5vaMwrdrmLMsm1vR",
+    "commit": "dea2e27efcaabac674267f3bc13bc198f9a13b47",
+    "url": "https://suggest-dish-nibfiq7ao-rakatanishka16-cryptos-projects.vercel.app",
+    "build": "READY",
+    "health": {
+      "http": 500,
+      "error": "FUNCTION_INVOCATION_FAILED",
+      "response_date_utc": "2026-10-19T03:08:47Z"
+    },
+    "mumbai_location": {
+      "http": 500,
+      "error": "FUNCTION_INVOCATION_FAILED",
+      "response_date_utc": "2026-10-19T03:08:53Z"
+    },
+    "sanitized_log_evidence": "Both request stderr logs report no database connection string provided to neon(); api/server.js:14 initializes neon(process.env.DATABASE_URL). Logs are classified info/function despite process exit1, so error-level filtering alone initially returned no records.",
+    "diagnosis": "Preview lacks its database connection setting at startup; build READY is not API acceptance. This is not evidence of production outage.",
+    "next_action": "In Vercel > suggest-dish > Settings > Environment Variables, an authorised operator privately configures DATABASE_URL scoped to this preview branch using an isolated test database, then redeploys the preview and verifies health and database-backed location/search. Do not copy the production credential, expose it in chat/GitHub, broaden access or enable payments. No setting changed in this task.",
+    "acceptance": "blocked_on_isolated_preview_database",
+    "documentation_followup": "The following commit only records this evidence; application and test file hashes remain identical to the tested candidate."
+  }
+}

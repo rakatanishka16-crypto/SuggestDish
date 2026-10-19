@@ -1,0 +1,59 @@
+{
+  "checked_on": "2026-10-17",
+  "task": 20,
+  "base_commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+  "scope": "Restore the full server route regression harness after the menu-section and typed-location changes; tests and evidence only.",
+  "diagnosis": [
+    "88 route tests could not initialize api/server.js because the harness rejected its real menu-preference-evidence dependency.",
+    "Two frontend tests assumed recommendation was the first request. Typed Mumbai now resolves location first; the timeout fixture was timing out location rather than recommendation.",
+    "After initialization, seven cuisine tests still expected the pre-menu-section explanation text. Eligibility assertions themselves continue to pass."
+  ],
+  "changes": [
+    "Load the real menu-preference-evidence helper through the harness require allowlist; do not stub its matching logic.",
+    "Find the recommendation request after asserting that typed-location lookup occurs first.",
+    "Let the location fixture succeed before timing out recommendation; verify one lookup and two recommendation attempts, unchanged diet, loading cleanup and retry text.",
+    "Assert the current explanation including published-section evidence and unverified recipe origin.",
+    "Add full-server tests for Chinese Mains category matching with budget/diet rejection and contradictory pizza-family rejection."
+  ],
+  "verification": {
+    "runtime": "Node v24.19.0; existing installed dependencies via NODE_PATH; no credentials or install scripts used",
+    "baseline_command": "npm test (unchanged main in a fresh worktree)",
+    "baseline": {"tests": 360, "passed": 269, "failed": 91},
+    "focused_command": "node --test --test-reporter=tap tests/location-search.test.js tests/location-search-flow.test.js tests/menu-preference-evidence.test.js",
+    "focused": {"tests": 106, "passed": 106, "failed": 0},
+    "full_command": "node --test --test-reporter=tap tests/*.test.js",
+    "after": {"tests": 362, "passed": 361, "failed": 1},
+    "remaining_failure": {
+      "file": "tests/open-food-data.test.js",
+      "test": "adapted OSM dataset is downloadable and uncertain duplicates are held without merging",
+      "assertion": "source.coverage.menuEntries: actual 15369, expected 15139",
+      "next_action": "Reconcile the aggregate assertion with the current catalogue composition and acquisition evidence; do not merely replace the expected number or claim full coverage.",
+      "limit": "The following published-price assertion was not reached; no claim that its expected total is current."
+    },
+    "limits": [
+      "Full suite is not green; one known baseline fixture failure remains.",
+      "SQL, provider responses and DOM are mocked; this is not browser, real database or Gemini acceptance.",
+      "The existing SQL mock does not execute PostgreSQL city filtering; parameter binding and hard filters are tested separately.",
+      "No runtime code, styling, menu data, schema, billing settings or production deployment changed."
+    ]
+  },
+  "production": {
+    "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
+    "team_id": "team_5QKHOdfRO8X5rlLq6lRZcuqY",
+    "deployment_id": "dpl_CEhKrGS1dmiL3Bwma8v61vjjyfCq",
+    "commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+    "state": "READY",
+    "alias_verified": "www.suggestdish.com",
+    "health": {"http": 200, "success": true, "status": "ok", "response_date_utc": "2026-10-17T02:46:35Z"},
+    "mumbai_location": {"http": 200, "success": true, "city": "Mumbai", "latitude": null, "longitude": null, "response_date_utc": "2026-10-17T02:53:05Z"},
+    "limit": "Read-only health/location checks only; no live recommendation or provider acceptance claimed."
+  },
+  "coordination": {
+    "open_prs_reviewed": [68, 57, 36, 35, 34, 2],
+    "price_guard": "PR 68 remains separate and unmerged at 678d2183f38522b9fdfc08fefc967075c51b8166; not duplicated or modified. Rebase its tracker/evidence carefully after any approved merge of this work.",
+    "outlet_data": "No source batches, catalogue totals, import progress or daily data task changed.",
+    "marketing": "Weekly marketing task and files untouched.",
+    "payments": "Historical PR 53 approval is not release approval here. Dedicated test configuration, payment schema acceptance, actual sandbox checkout/webhook/refund and authorised test business remain unverified; no payment endpoint or secrets accessed."
+  },
+  "release": "Reviewable test/documentation PR only. Specific approval required before any production merge or deployment."
+}
