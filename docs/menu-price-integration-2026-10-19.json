@@ -52,7 +52,8 @@
       "No invalid production row inserted or live Gemini request.",
       "No real phone/browser journey, owner submission, payment schema, sandbox checkout/webhook/refund acceptance.",
       "No new source/menu freshness or complete coverage claim."
-    ]
+    ],
+    "tested_candidate_commit": "dea2e27efcaabac674267f3bc13bc198f9a13b47"
   },
   "production": {
     "deployment": "dpl_CEhKrGS1dmiL3Bwma8v61vjjyfCq",
@@ -88,5 +89,26 @@
     "other_work": "Data batches, state-import-progress, outlet-data and marketing work untouched. Other open fixes excluded.",
     "payment_blockers": "Dedicated test configuration, schema acceptance, actual test checkout/webhook/refund and authorised approved test business remain unverified. No billing probe or credentials accessed.",
     "release": "Refreshed existing PR68 only. No production merge/deployment, access change or database mutation."
+  },
+  "preview": {
+    "deployment": "dpl_8ufa3YZLRBNr5vaMwrdrmLMsm1vR",
+    "commit": "dea2e27efcaabac674267f3bc13bc198f9a13b47",
+    "url": "https://suggest-dish-nibfiq7ao-rakatanishka16-cryptos-projects.vercel.app",
+    "build": "READY",
+    "health": {
+      "http": 500,
+      "error": "FUNCTION_INVOCATION_FAILED",
+      "response_date_utc": "2026-10-19T03:08:47Z"
+    },
+    "mumbai_location": {
+      "http": 500,
+      "error": "FUNCTION_INVOCATION_FAILED",
+      "response_date_utc": "2026-10-19T03:08:53Z"
+    },
+    "sanitized_log_evidence": "Both request stderr logs report no database connection string provided to neon(); api/server.js:14 initializes neon(process.env.DATABASE_URL). Logs are classified info/function despite process exit1, so error-level filtering alone initially returned no records.",
+    "diagnosis": "Preview lacks its database connection setting at startup; build READY is not API acceptance. This is not evidence of production outage.",
+    "next_action": "In Vercel > suggest-dish > Settings > Environment Variables, an authorised operator privately configures DATABASE_URL scoped to this preview branch using an isolated test database, then redeploys the preview and verifies health and database-backed location/search. Do not copy the production credential, expose it in chat/GitHub, broaden access or enable payments. No setting changed in this task.",
+    "acceptance": "blocked_on_isolated_preview_database",
+    "documentation_followup": "The following commit only records this evidence; application and test file hashes remain identical to the tested candidate."
   }
 }

@@ -3,7 +3,7 @@
   "updated_on": "2026-10-19",
   "audited_main_commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
   "next_task": 22,
-  "finite_workflow_status": "price_guard_and_test_repairs_integrated_review_pending",
+  "finite_workflow_status": "price_integration_tests_pass_preview_database_blocked",
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -62,6 +62,13 @@
       "dishes": 2377,
       "response_date_utc": "2026-10-19T03:05:12Z",
       "limits": "Priced records, not eligible outlet count, current availability or complete coverage"
+    },
+    "preview_price_candidate": {
+      "deployment_id": "dpl_8ufa3YZLRBNr5vaMwrdrmLMsm1vR",
+      "commit": "dea2e27efcaabac674267f3bc13bc198f9a13b47",
+      "build": "READY",
+      "api": "health/location HTTP500; startup missing database connection; production healthy",
+      "evidence": "docs/menu-price-integration-2026-10-19.json"
     }
   },
   "tasks": [
@@ -325,12 +332,13 @@
     {
       "number": 19,
       "title": "Reject invalid menu prices in recommendations",
-      "status": "integrated_full_suite_pass_release_approval_pending",
+      "status": "local_full_suite_pass_preview_acceptance_blocked",
       "acceptance": "Negative, blank, nonfinite and nonnumeric prices excluded before AI or fallback selection; genuine zero retained.",
       "blockers": [
-        "Specific founder approval required for this exact PR 68 release; not deployed"
+        "Preview runtime lacks DATABASE_URL; isolated test database configuration and fresh API checks required",
+        "Specific founder approval required before production merge/deployment"
       ],
-      "next_action": "Review PR 68 including the unchanged test repairs from PRs 82/83; obtain specific release approval, then verify the production journey after deployment.",
+      "next_action": "Authorised operator privately configures isolated preview DATABASE_URL for this branch in Vercel suggest-dish Settings > Environment Variables, redeploys preview, then verifies API journey before release approval. Do not use or retrieve production credentials.",
       "evidence": [
         "docs/menu-price-validity-2026-10-14.json",
         "tests/menu-price-validity.test.js",
@@ -374,12 +382,13 @@
     {
       "number": 22,
       "title": "Integrate and revalidate price guard with repaired full regression suite",
-      "status": "completed_review_pending",
+      "status": "local_full_suite_pass_preview_acceptance_blocked",
       "acceptance": "PR 68 combines its existing runtime guard with PRs 82/83 test repairs; 386/386 pass with zero skipped tests. Guard-free 82ea3f3 reproduces nine price failures. No production acceptance claimed.",
       "blockers": [
-        "Specific release approval required"
+        "Preview runtime lacks DATABASE_URL; isolated test database configuration and fresh API checks required",
+        "Specific founder approval required before production merge/deployment"
       ],
-      "next_action": "Founder reviews exact refreshed PR 68 and approves its merge/deployment if acceptable; then recheck main and release target and verify deployed search. Do not enable payments.",
+      "next_action": "Authorised operator privately configures isolated preview DATABASE_URL for this branch in Vercel suggest-dish Settings > Environment Variables, redeploys preview, then verifies API journey before release approval. Do not use or retrieve production credentials.",
       "evidence": [
         "docs/menu-price-integration-2026-10-19.json"
       ],
@@ -515,7 +524,7 @@
     {
       "date": "2026-10-19",
       "task": 22,
-      "action": "Integrated PRs 82/83 into existing PR68 without production merge or history rewrite. Reconciled tracker histories/tasks; guard-free83 reproduces9/23 price failures; combined candidate386/386 pass,0skipped. Existing main66c26b9 READY and read-only health/Jalna/Mumbai coverage pass. No changes to data-acquisition/marketing/payment workflows."
+      "action": "Integrated PRs 82/83 into existing PR68 without production merge or history rewrite. Reconciled tracker histories/tasks; guard-free83 reproduces9/23 price failures; combined candidate386/386 pass,0skipped. Existing main66c26b9 READY and read-only health/Jalna/Mumbai coverage pass. No changes to data-acquisition/marketing/payment workflows. Preview build READY but health/location both HTTP500; scoped runtime logs confirm missing connection string at startup. Isolated preview database configuration is required before API acceptance; no setting changed."
     }
   ]
 }
