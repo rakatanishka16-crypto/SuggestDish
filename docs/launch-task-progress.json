@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-16",
+  "updated_on": "2026-10-19",
   "audited_main_commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
-  "next_task": "Review refreshed PR 68; triage the 91 existing main-suite failures before a green-suite release. Specific production approval remains required. Keep outlet-data and marketing work separate.",
-  "finite_workflow_status": "price_validity_fix_tested_release_approval_pending",
+  "next_task": 22,
+  "finite_workflow_status": "price_guard_and_test_repairs_integrated_review_pending",
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -16,10 +16,11 @@
       "commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
       "status": "READY",
       "aliases": [
-        "suggestdish.com",
-        "www.suggestdish.com"
+        "www.suggestdish.com",
+        "suggestdish.com"
       ],
-      "checked_on": "2026-10-16"
+      "checked_on": "2026-10-19",
+      "verification": "Vercel alias READY at unchanged main 66c26b9. Health HTTP200 success:true/status:ok 03:04:54Z; database-backed menu coverage HTTP200 Jalna31/933 at03:05:00Z and Mumbai32/2377 at03:05:12Z. No live recommendation or payment acceptance claimed."
     },
     "catalog": {
       "source_profiles": 7943,
@@ -39,23 +40,28 @@
       "database": "Neon SQL in runtime server; Prisma schema is not a complete runtime schema audit"
     },
     "tests_this_task": {
-      "command": "node --test tests/menu-price-validity.test.js tests/menu-preference-evidence.test.js tests/location-search-flow.test.js tests/recommendation-coverage.test.js tests/outlet-distance.test.js",
-      "passed": 38,
+      "command": "NODE_PATH=<existing local dependency tree> npm test",
+      "passed": 386,
       "failed": 0,
-      "syntax": "node --check api/server.js passed",
+      "skipped": 0,
+      "node": "v24.19.0",
+      "baseline_price_regressions": {
+        "commit": "82ea3f37b2ca4e76e7a851c0df5e1ddfc92f9c1a",
+        "passed": 14,
+        "failed": 9
+      },
       "limits": [
-        "Unrelated module registration stubbed",
-        "Full suite: branch 292 passed / 91 failed; unchanged main 269 passed / 91 failed. Failing test names match; full suite is not green.",
-        "No live Gemini call, database mutation or invalid production record test",
-        "No visual or mobile changes"
+        "SQL, providers and DOM mocked",
+        "No real database/provider/browser/payment acceptance",
+        "No credentials, schema, production data or branding changed"
       ]
     },
     "latest_mumbai_menu_coverage": {
       "http": 200,
       "restaurants": 32,
       "dishes": 2377,
-      "response_date_utc": "2026-10-16T02:41:44Z",
-      "limits": "Priced menu records, not eligible outlet counts or verified current coverage"
+      "response_date_utc": "2026-10-19T03:05:12Z",
+      "limits": "Priced records, not eligible outlet count, current availability or complete coverage"
     }
   },
   "tasks": [
@@ -74,7 +80,7 @@
       "acceptance": "Proposal based on priced outlet-menu coverage, with founder approval needed for final scope.",
       "blockers": [
         "Founder acceptance of final Mumbai localities and pilot gate pending.",
-        "Historical 10-outlet observation is superseded by 14 October menu coverage (28 restaurants, 2,075 priced records); current recommendation-eligible and locality-specific outlet gate remains unverified."
+        "Current production has 10 Mumbai candidate restaurants, below the provisional 20-outlet gate."
       ],
       "next_action": "Founder approves or revises the Mumbai localities and finite pilot gate; keep the scope provisional until then.",
       "evidence": [
@@ -102,7 +108,7 @@
       "status": "delegated_to_data_automation_below_acceptance_target",
       "acceptance": "Document a finite target of usable outlet-linked dishes for chosen scope, then collect to that target.",
       "blockers": [
-        "Historical 10-outlet observation is superseded by 14 October menu coverage (28 restaurants, 2,075 priced records); current recommendation-eligible and locality-specific outlet gate remains unverified.",
+        "Production reports 10 Mumbai candidate restaurants versus the provisional 20 exact-outlet target.",
         "Final locality scope still needs founder approval."
       ],
       "next_action": "The separate outlet-data workflow should add legally sourced, branch-scoped, mapped menu evidence until the approved finite gate is met; do not wait for nationwide completeness."
@@ -298,7 +304,7 @@
       "acceptance": "Focused production checks pass and coverage limits explicit.",
       "blockers": [
         "Focused Mumbai scope and gate are not founder-approved.",
-        "Historical 10-outlet observation is superseded by 14 October menu coverage (28 restaurants, 2,075 priced records); current recommendation-eligible and locality-specific outlet gate remains unverified.",
+        "Runtime has 10 candidate restaurants, below the provisional 20-outlet target; location accuracy is not independently verified.",
         "Phone/screen-reader acceptance and the consented five-person pilot are incomplete.",
         "Owner/moderation persistence, commercial facts, payment acceptance and operational recovery prerequisites remain blocked."
       ],
@@ -319,18 +325,65 @@
     {
       "number": 19,
       "title": "Reject invalid menu prices in recommendations",
-      "status": "implemented_tested_release_approval_pending",
+      "status": "integrated_full_suite_pass_release_approval_pending",
       "acceptance": "Negative, blank, nonfinite and nonnumeric prices excluded before AI or fallback selection; genuine zero retained.",
       "blockers": [
-        "Specific release approval required",
-        "Full suite has 91 pre-existing failures, reproduced on unchanged main; no green-suite release claim"
+        "Specific founder approval required for this exact PR 68 release; not deployed"
       ],
-      "next_action": "Review refreshed PR 68 and baseline failure evidence; triage the suite, obtain specific release approval, then verify live search after an approved deployment.",
+      "next_action": "Review PR 68 including the unchanged test repairs from PRs 82/83; obtain specific release approval, then verify the production journey after deployment.",
       "evidence": [
         "docs/menu-price-validity-2026-10-14.json",
         "tests/menu-price-validity.test.js",
-        "docs/menu-price-revalidation-2026-10-16.json"
-      ]
+        "docs/menu-price-revalidation-2026-10-16.json",
+        "docs/menu-price-integration-2026-10-19.json"
+      ],
+      "pull_request": "https://github.com/rakatanishka16-crypto/SuggestDish/pull/68",
+      "updated_at": "2026-10-19"
+    },
+    {
+      "number": 20,
+      "title": "Restore trustworthy route regression checks",
+      "status": "implemented_tested_review_pending",
+      "acceptance": "Full-server harness loads real category matching; location-before-recommendation and timeout retry fixtures follow current behavior without weakening hard-filter assertions.",
+      "blockers": [
+        "Specific approval required before merge or deployment"
+      ],
+      "next_action": "Test repair included unchanged in PR 68 integration candidate; PRs 82/83 remain open and unmerged. Review together, and decide merge ordering only after specific release approval. Dated evidence remains historical.",
+      "evidence": [
+        "docs/route-harness-reliability-2026-10-17.json",
+        "tests/location-search.test.js"
+      ],
+      "updated_at": "2026-10-19"
+    },
+    {
+      "number": 21,
+      "title": "Reconcile catalogue regression assertions with source evidence",
+      "status": "implemented_tested_review_pending",
+      "acceptance": "Open-data tests enforce zero OSM/vocabulary outlet-menu contribution; global source-catalog counts remain separately pinned and public aggregation matches raw rows. Focused 20/20 and combined full suite 363/363 pass on the PR 82-based branch; not production acceptance.",
+      "blockers": [
+        "Specific release approval required; stacked on unmerged PR 82"
+      ],
+      "next_action": "Test repair included unchanged in PR 68 integration candidate; PRs 82/83 remain open and unmerged. Review together, and decide merge ordering only after specific release approval. Dated evidence remains historical.",
+      "evidence": [
+        "docs/catalogue-count-reconciliation-2026-10-18.json",
+        "tests/open-food-data.test.js",
+        "tests/source-catalog.test.js"
+      ],
+      "updated_at": "2026-10-19"
+    },
+    {
+      "number": 22,
+      "title": "Integrate and revalidate price guard with repaired full regression suite",
+      "status": "completed_review_pending",
+      "acceptance": "PR 68 combines its existing runtime guard with PRs 82/83 test repairs; 386/386 pass with zero skipped tests. Guard-free 82ea3f3 reproduces nine price failures. No production acceptance claimed.",
+      "blockers": [
+        "Specific release approval required"
+      ],
+      "next_action": "Founder reviews exact refreshed PR 68 and approves its merge/deployment if acceptable; then recheck main and release target and verify deployed search. Do not enable payments.",
+      "evidence": [
+        "docs/menu-price-integration-2026-10-19.json"
+      ],
+      "updated_at": "2026-10-19"
     }
   ],
   "change_log": [
@@ -448,6 +501,21 @@
       "date": "2026-10-16",
       "task": 19,
       "action": "Refreshed existing PR 68 with main 66c26b9, preserving recent menu-section and typed-location fixes. Updated its harness dependency and added a combined price/category/diet/budget regression. 38 focused tests pass. Full suite branch 292/91 and unchanged main 269/91 pass/fail, identical failing names. Production alias resolves to READY 66c26b9; health, Mumbai location and coverage 32/2377 pass. No production mutation, provider recommendation, billing probe or marketing/data-task change."
+    },
+    {
+      "date": "2026-10-17",
+      "task": 20,
+      "action": "Reproduced 91 failures on unchanged main 66c26b9. Repaired missing real menu helper in route harness plus stale frontend request ordering, timeout fixture and cuisine explanation assertions. Added category/diet/budget and contradictory-family full-server regressions. Focused 106/106 pass; full 361 pass/1 existing catalogue fixture failure. Production alias READY, read-only health and Mumbai location pass. No runtime, data, schema, styling, billing or production changes; pending PR 68 preserved and recorded separately."
+    },
+    {
+      "date": "2026-10-18",
+      "task": 21,
+      "action": "Traced stale totals to 211 postal expansion rows/108 prices plus 19 Olive rows/prices. Scoped OSM test to its zero-menu contribution; retained global pinned-count tests and added public aggregation regression. No source data, runtime, marketing or production changes."
+    },
+    {
+      "date": "2026-10-19",
+      "task": 22,
+      "action": "Integrated PRs 82/83 into existing PR68 without production merge or history rewrite. Reconciled tracker histories/tasks; guard-free83 reproduces9/23 price failures; combined candidate386/386 pass,0skipped. Existing main66c26b9 READY and read-only health/Jalna/Mumbai coverage pass. No changes to data-acquisition/marketing/payment workflows."
     }
   ]
 }
