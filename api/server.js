@@ -80,15 +80,16 @@ function calculateDistanceKm(
   restaurantLat,
   restaurantLon
 ) {
+  // Validate before coercion: blanks/booleans must not become (0, 0),
+  // and trigonometry must not wrap impossible coordinates into a nearby point.
+  const validCoordinate = (value, limit) =>
+    (typeof value === 'number' || (typeof value === 'string' && value.trim() !== '')) &&
+    Number.isFinite(Number(value)) && Math.abs(Number(value)) <= limit;
   if (
-    userLat === null ||
-    userLon === null ||
-    restaurantLat === null ||
-    restaurantLon === null ||
-    !Number.isFinite(userLat) ||
-    !Number.isFinite(userLon) ||
-    !Number.isFinite(Number(restaurantLat)) ||
-    !Number.isFinite(Number(restaurantLon))
+    !validCoordinate(userLat, 90) ||
+    !validCoordinate(userLon, 180) ||
+    !validCoordinate(restaurantLat, 90) ||
+    !validCoordinate(restaurantLon, 180)
   ) {
     return null;
   }
@@ -425,18 +426,12 @@ app.get("/api/ai-recommend", async (req, res) => {
       .map((dish) => {
         let distanceKm = null;
 
-        if (
-          hasLocation &&
-          dish.latitude !== null &&
-          dish.longitude !== null &&
-          Number.isFinite(Number(dish.latitude)) &&
-          Number.isFinite(Number(dish.longitude))
-        ) {
+        if (hasLocation) {
           distanceKm = calculateDistanceKm(
             lat,
             lon,
-            Number(dish.latitude),
-            Number(dish.longitude)
+            dish.latitude,
+            dish.longitude
           );
         }
 

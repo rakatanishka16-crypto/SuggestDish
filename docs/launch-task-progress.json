@@ -1,15 +1,21 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-19",
+  "updated_on": "2026-10-20",
   "audited_main_commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
-  "next_task": 22,
-  "finite_workflow_status": "price_integration_tests_pass_preview_database_blocked",
+  "next_task": 23,
+  "finite_workflow_status": "coordinate_distance_guard_review_pending_preview_database_blocked",
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
     "production_verified": "Specific actual production workflow passed with recorded evidence."
   },
   "evidence": {
+    "coordinate_guard_review": {
+      "checked_on": "2026-10-20",
+      "full_suite": "396 pass / 0 fail / 0 skipped; 109 focused location checks pass",
+      "evidence": "docs/coordinate-distance-validity-2026-10-20.json",
+      "limits": "Mock SQL/providers/DOM; not production or preview acceptance. Upstream PR 68 remains unchanged."
+    },
     "production": {
       "deployment_id": "dpl_CEhKrGS1dmiL3Bwma8v61vjjyfCq",
       "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
@@ -393,9 +399,28 @@
         "docs/menu-price-integration-2026-10-19.json"
       ],
       "updated_at": "2026-10-19"
+    },
+    {
+      "number": 23,
+      "title": "Reject invalid stored coordinates before nearby distance calculation",
+      "status": "implemented_local_regression_pass_release_pending",
+      "acceptance": "Reject impossible or coercible non-coordinate values before distance ranking; preserve numeric strings, real zero coordinates and city-only searches. Six regression failures reproduced before the fix; focused location checks pass after it.",
+      "blockers": [
+        "Stacked on PR 68; review upstream integration and reconcile branch order before release",
+        "Isolated preview database/API acceptance remains unverified",
+        "Specific founder approval required before production merge/deployment"
+      ],
+      "next_action": "Review the coordinate-only delta against PR 68. After upstream release or an explicitly approved integration, retarget/revalidate and test nearby search against isolated fixtures before requesting production approval. No production coordinate repair or coverage expansion claimed.",
+      "evidence": ["docs/coordinate-distance-validity-2026-10-20.json"],
+      "updated_at": "2026-10-20"
     }
   ],
   "change_log": [
+    {
+      "date": "2026-10-20",
+      "task": 23,
+      "action": "Reproduced six false-nearby coordinate cases, added strict pre-coercion/range validation and ten regressions. Kept PR 68 unchanged and stacked this isolated follow-up on its 977f616 head. Live health and Jalna coverage remain healthy; no recommendation/provider call, database write, payment or production release. Separate outlet-data and weekly marketing workflows untouched."
+    },
     {
       "date": "2026-10-10",
       "task": 1,
