@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-20",
+  "task": 23,
+  "base": "977f616abdb263d013a0b152a2935f770f74a259",
+  "main": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+  "scope": "Stored restaurant coordinate validation in /api/ai-recommend before distance filtering and ranking; no visual, dataset, schema, payment or environment changes.",
+  "reproduction": {
+    "command": "node --test --test-name-pattern='stored restaurant coordinates|valid coordinate pair|city-only search retains' tests/location-search.test.js",
+    "before": {"pass": 4, "fail": 6},
+    "false_nearby_cases": ["Longitude 432 wraps to 72", "Latitude 379 wraps to 19", "Empty latitude coerces to zero", "Whitespace longitude coerces to zero", "Boolean false coerces to zero", "Empty array coerces to zero"],
+    "source": "Actual server route invoked by mocked SQL/provider harness. Synthetic fixture rows, not an observed invalid production record."
+  },
+  "verification": {
+    "full_suite": {"pass": 396, "fail": 0, "skipped": 0, "command": "NODE_PATH=<existing checkout node_modules> npm test", "dependency_note": "Initial new-worktree run lacked express/deepmerge-ts; reran using existing installed dependencies without changing package or lock files."},
+    "focused_location_tests": {"pass": 109, "fail": 0, "skipped": 0},
+    "retained": ["Finite numeric database strings", "Actual numeric zero latitude/longitude", "City-only searches with unknown coordinates and null distance", "Existing diet, budget, requested dish, mood and cuisine filters"],
+    "syntax": "node --check api/server.js passed",
+    "whitespace": "git diff --check passed",
+    "runtime": "Node v24.19.0"
+  },
+  "production": {
+    "deployment": "dpl_CEhKrGS1dmiL3Bwma8v61vjjyfCq",
+    "status": "READY",
+    "commit": "66c26b9bb25bb43669c77c9e55588ccdb5734c05",
+    "health": {"url": "https://www.suggestdish.com/api/health", "http": 200, "success": true, "status": "ok", "checked_utc": "2026-10-20T02:46:48Z"},
+    "jalna_coverage": {"url": "https://www.suggestdish.com/api/menu-coverage?city=Jalna", "http": 200, "success": true, "restaurants": 31, "dishes": 933, "checked_utc": "2026-10-20T02:47:44Z", "limit": "Priced menu records, not complete coverage or verified availability"}
+  },
+  "coordination": "Stacked on PR 68 to preserve its green-suite repairs and reconciled tracker; PR 68 and PRs 82/83 not modified. Review delta against PR 68, not main. Separate daily outlet-data and weekly marketing work untouched.",
+  "limits": ["SQL/provider/DOM mocked", "No actual invalid production row inspected", "No live recommendation/Gemini or external geocoding call", "No browser/mobile acceptance", "Preview database setup remains an upstream blocker", "No owner, payment schema, checkout, webhook or refund acceptance", "No production merge/deployment or data mutation"],
+  "release": "Specific release approval required after integration and preview acceptance."
+}
