@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 50522)
+Total output lines: 4610
+
 {
   "batch_id": "mumbai-local-outlets-2026-10-07",
   "retrieved_on": "2026-10-07",
@@ -2485,57 +2488,7 @@
       "brand": "Bağlami",
       "locality": "Bandra Kurla Complex",
       "city": "Mumbai",
-      "state": "Maharashtra",
-      "district": "Mumbai Suburban",
-      "business_type": "restaurant",
-      "category": "amenity:restaurant",
-      "address": "BKC 7, INS Tower, opposite NMACC, Bandra Kurla Complex, Mumbai 400051",
-      "phone": null,
-      "email": null,
-      "opening_hours": null,
-      "latitude": null,
-      "longitude": null,
-      "restaurant_rating": null,
-      "review_count": null,
-      "fssai_license_number": null,
-      "license_status": "not_checked",
-      "service_note": "The official Bağlami website identifies its Mumbai restaurant in BKC. The exact street address is retained from the dated public listing. Current operation, owner identity, licensing, hours, menu availability and coordinates remain unverified; owner claim is pending.",
-      "image_url": null,
-      "image_usage_permission": "not_obtained",
-      "source_urls": [
-        "https://www.baglami.com/",
-        "https://www.zomato.com/mumbai/baglami-bandra-kurla-complex"
-      ],
-      "source_types": [
-        "business_website",
-        "restaurant_directory"
-      ],
-      "retrieved_on": "2026-10-15",
-      "directions_url": "https://www.google.com/maps/dir/?api=1&destination=BKC%207%2C%20INS%20Tower%2C%20opposite%20NMACC%2C%20Bandra%20Kurla%20Complex%2C%20Mumbai%20400051",
-      "verification_status": "source_observed",
-      "review_status": "source_observed",
-      "directory_publish_ready": true,
-      "publish_ready": false,
-      "recommendation_eligible": false
-    },
-    {
-      "external_id": "sd-mumbai-sabalan-fort-20261007",
-      "sourceKey": "listing:sd-mumbai-sabalan-fort-20261007",
-      "name": "Sabalan — Fort",
-      "brand": "Sabalan",
-      "locality": "Fort",
-      "city": "Mumbai",
-      "state": "Maharashtra",
-      "district": "Mumbai City",
-      "business_type": "restaurant",
-      "category": "amenity:restaurant",
-      "address": "37, Mutual Annex Building, Rustom Sidhwa Marg, Fort, Mumbai 400001",
-      "phone": null,
-      "email": null,
-      "opening_hours": null,
-      "latitude": null,
-      "longitude": null,
-      "restaurant_rating": null,
+      "state": "Mahara…522 tokens truncated…g": null,
       "review_count": null,
       "fssai_license_number": null,
       "license_status": "not_checked",
@@ -3094,7 +3047,7 @@
       "review_count": null,
       "fssai_license_number": null,
       "license_status": "not_checked",
-      "service_note": "The official Olive Bar & Kitchen Mumbai page publishes this Khar address, phone and daily hours and displays outlet-specific menu images. Ten explicitly priced Charcoal dinner items were transcribed with dietary types unknown; sixteen explicitly priced all-day items were transcribed from official pages 8 and 9 with vegetarian/non-vegetarian icons. Current operation, owner identity, licence validity and coordinates have not been independently verified.",
+      "service_note": "The official Olive Bar & Kitchen Mumbai page publishes this Khar address, phone and daily hours and displays outlet-specific menu images. Ten explicitly priced Charcoal dinner items were transcribed with dietary types unknown; sixteen all-day items and twelve additional brunch items were transcribed from official pages with explicit prices and vegetarian/non-vegetarian icons. Three brunch items already present from the all-day menu were deduplicated. Current operation, owner identity, licence validity and coordinates have not been independently verified.",
       "image_url": null,
       "image_usage_permission": "not_obtained",
       "source_urls": [
@@ -4593,6 +4546,18 @@
       "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
       "retrieved_on": "2026-10-21", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
       "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "price_scope": "Explicit base price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
-    }
+    },
+    {"external_id":"sd-menu-olive-khar-brunch-cottage-cheese-espetada-20261021","brand":"Olive Bar & Kitchen","name":"Cottage Cheese Espetada","menu_category":"Espetadas","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":875,"portion":"450 g","is_veg":true,"veg_evidence":"Official menu vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-mushroom-espetada-20261021","brand":"Olive Bar & Kitchen","name":"Mushroom Espetada","menu_category":"Espetadas","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":875,"portion":"450 g","is_veg":true,"veg_evidence":"Official menu vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-river-sole-espetada-20261021","brand":"Olive Bar & Kitchen","name":"River Sole Espetada","menu_category":"Espetadas","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":975,"portion":"450 g","is_veg":false,"veg_evidence":"Official menu non-vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-chicken-espetada-20261021","brand":"Olive Bar & Kitchen","name":"Chicken Espetada","menu_category":"Espetadas","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":945,"portion":"450 g","is_veg":false,"veg_evidence":"Official menu non-vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-prawns-espetada-20261021","brand":"Olive Bar & Kitchen","name":"Prawns Espetada","menu_category":"Espetadas","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":1175,"portion":"450 g","is_veg":false,"veg_evidence":"Official menu non-vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-brick-chicken-20261021","brand":"Olive Bar & Kitchen","name":"Brick Chicken","menu_category":"Mains","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":1100,"portion":"450 g","is_veg":false,"veg_evidence":"Official menu non-vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-salmon-20261021","brand":"Olive Bar & Kitchen","name":"Seared Crisp Skin Salmon","menu_category":"Mains","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":1575,"portion":"450 g","is_veg":false,"veg_evidence":"Official menu non-vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-braised-lamb-shank-20261021","brand":"Olive Bar & Kitchen","name":"Braised Lamb Shank","menu_category":"Mains","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":1475,"portion":"450 g","is_veg":false,"veg_evidence":"Official menu non-vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-sorbet-20261021","brand":"Olive Bar & Kitchen","name":"Sorbet","menu_category":"Desserts","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":595,"portion":"180 g","is_veg":true,"veg_evidence":"Official menu vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-kataif-french-toast-20261021","brand":"Olive Bar & Kitchen","name":"Kataif French Toast","menu_category":"Desserts","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":675,"portion":"200 g","is_veg":true,"veg_evidence":"Official menu vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-olive-tiramisu-20261021","brand":"Olive Bar & Kitchen","name":"Olive Tiramisu","menu_category":"Desserts","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":745,"portion":"180 g","is_veg":true,"veg_evidence":"Official menu vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded; menu notes alcohol.","menu_cities":["Mumbai"]},
+    {"external_id":"sd-menu-olive-khar-brunch-chocolate-fondant-20261021","brand":"Olive Bar & Kitchen","name":"Chocolate Fondant","menu_category":"Desserts","source_id":"olive_khar_brunch_4_20261021","source_business_id":"listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007","price_inr":675,"portion":"180 g","is_veg":true,"veg_evidence":"Official menu vegetarian icon","price_status":"published_observation","price_effective_date":null,"tax_included":false,"branch_availability":"confirmed_on_outlet_page","retrieved_on":"2026-10-21","image_url":null,"publish_ready":true,"recommendation_eligible":true,"source_url":"https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/4.jpg","price_scope":"Explicit price on the official Olive Bandra brunch menu; government taxes excluded.","menu_cities":["Mumbai"]}
   ]
 }
