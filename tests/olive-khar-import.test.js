@@ -2,10 +2,10 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const {load,sourceKey}=require('../lib/olive-khar-import-scope');
 const {plan,register}=require('../lib/catalogue-import');
 const data=load();
-test('Olive scoped plan promotes only 28 reviewed foods at the exact Khar outlet',()=>{
- const p=plan(data);assert.equal(p.outlets.length,1);assert.equal(p.summary.promotionDishes,28);assert.equal(p.observations.length,57);
+test('Olive scoped plan promotes only 41 reviewed foods at the exact Khar outlet',()=>{
+ const p=plan(data);assert.equal(p.outlets.length,1);assert.equal(p.summary.promotionDishes,41);assert.equal(p.observations.length,83);
  assert.equal(p.outlets[0].business.sourceKey,sourceKey);assert.equal(p.outlets[0].business.latitude,null);
- assert.equal(data.menuItems.filter(m=>m.is_veg===true).length,17);assert.equal(data.menuItems.filter(m=>m.is_veg===false).length,11);
+ assert.equal(data.menuItems.filter(m=>m.is_veg===true).length,25);assert.equal(data.menuItems.filter(m=>m.is_veg===false).length,16);
  assert.ok(p.outlets[0].dishes.every(d=>d.payload.tax_included===false&&d.name.includes(d.payload.portion)));
  assert.ok(!p.outlets[0].dishes.some(d=>d.name.includes('Lamb Chop')));
 });
@@ -18,6 +18,6 @@ test('scoped plan is read only and requires private access; digest cannot be reu
  const res={status(n){this.code=n;return this},json(b){this.body=b;return this}};
  await handler({headers:{},body:{scope:'mumbai-olive-khar-2026-10-21'}},res);assert.equal(res.code,403);
  const headers={authorization:'Bearer '+'x'.repeat(40)};
- await handler({headers,body:{scope:'mumbai-olive-khar-2026-10-21',stage:'plan'}},res);assert.equal(res.body.promotionDishes,28);
+ await handler({headers,body:{scope:'mumbai-olive-khar-2026-10-21',stage:'plan'}},res);assert.equal(res.body.promotionDishes,41);
  await handler({headers,body:{scope:'mumbai-olive-khar-2026-10-21',stage:'publish',digest:'wrong'}},res);assert.equal(res.code,409);
 });
