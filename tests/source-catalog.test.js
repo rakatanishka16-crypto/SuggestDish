@@ -32,7 +32,7 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8032);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15388);assert.equal(result.publishedPrices,6981);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.researchLeadsPending,107);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8032);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15401);assert.equal(result.publishedPrices,6994);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.researchLeadsPending,107);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });
 
 test('Baglami BKC keeps directory address provenance while adding official profile corroboration',()=>{
@@ -60,11 +60,12 @@ test('Mia Cucina Powai keeps conflicting hours and shared-menu availability unkn
 
 test('Olive Khar separates unlabelled dinner items from dietary-labelled all-day items',()=>{
  const r=request('listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007');assert.equal(r.status,200);
- const b=r.result.business;assert.equal(b.phone,'+91 72084 78228');assert.equal(b.opening_hours,'Monday-Sunday 12:00-01:00');assert.match(b.directions_url,/destination=14%20Union%20Park/);assert.equal(r.result.menuScope,'outlet_observed');assert.equal(r.result.menuItems.length,38);
+ const b=r.result.business;assert.equal(b.phone,'+91 72084 78228');assert.equal(b.opening_hours,'Monday-Sunday 12:00-01:00');assert.match(b.directions_url,/destination=14%20Union%20Park/);assert.equal(r.result.menuScope,'outlet_observed');assert.equal(r.result.menuItems.length,51);
  for(const m of r.result.menuItems){assert.equal(m.source_business_id,b.sourceKey);assert.equal(m.branch_availability,'confirmed_on_outlet_page');assert.equal(m.tax_included,false);assert.ok(m.price_inr>0);}
  const allDay=r.result.menuItems.filter(m=>m.source_id==='olive_khar_all_day_8_20261015');assert.equal(allDay.length,9);assert.ok(allDay.every(m=>typeof m.is_veg==='boolean'&&m.recommendation_eligible===true));assert.equal(allDay.find(m=>m.name==='Prawns Ajillo').price_inr,845);
  const allDayPage9=r.result.menuItems.filter(m=>m.source_id==='olive_khar_all_day_9_20261021');assert.equal(allDayPage9.length,7);assert.ok(allDayPage9.every(m=>typeof m.is_veg==='boolean'&&m.recommendation_eligible===true));assert.equal(allDayPage9.find(m=>m.name==='Rotolo').price_inr,825);
  const brunchPage4=r.result.menuItems.filter(m=>m.source_id==='olive_khar_brunch_4_20261021');assert.equal(brunchPage4.length,12);assert.ok(brunchPage4.every(m=>typeof m.is_veg==='boolean'&&m.recommendation_eligible===true));assert.equal(brunchPage4.find(m=>m.name==='Seared Crisp Skin Salmon').price_inr,1575);assert.ok(!brunchPage4.some(m=>['Linguine Aglio Olio e Peperoncino','Spicy Rigatoni','Mushroom Risotto'].includes(m.name)));
+ const brunchPage3=r.result.menuItems.filter(m=>m.source_id==='olive_khar_brunch_3_20261021');assert.equal(brunchPage3.length,13);assert.ok(brunchPage3.every(m=>typeof m.is_veg==='boolean'&&m.recommendation_eligible===true));assert.equal(brunchPage3.find(m=>m.name==='Steak and Eggs').price_inr,1175);assert.equal(brunchPage3.filter(m=>m.is_veg).length,8);
  const dinner=r.result.menuItems.filter(m=>m.source_id==='olive_khar_dinner_1_20261015');assert.equal(dinner.length,10);assert.ok(dinner.every(m=>m.is_veg===null&&m.recommendation_eligible===false));
  assert.equal(r.result.menuItems.find(m=>m.name==='Boston Lobster').price_inr,1875);
 });
