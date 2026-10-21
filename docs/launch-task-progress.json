@@ -3,7 +3,7 @@
   "updated_on": "2026-10-21",
   "audited_main_commit": "61e3a61906156157945b443859537ab53cc66e36",
   "next_task": 24,
-  "finite_workflow_status": "search_distance_recovery_review_pending",
+  "finite_workflow_status": "search_distance_recovery_preview_api_blocked",
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -301,13 +301,14 @@
     {
       "number": 24,
       "title": "Make empty-search distance recovery actionable",
-      "status": "implemented_local_regression_pass_release_pending",
+      "status": "preview_static_ready_api_startup_blocked",
       "acceptance": "Exact-location empty results can expand through the API-supported 50 km ceiling without repeating an unchanged request; city-wide results do not offer an inapplicable distance action.",
       "blockers": [
+        "Preview API startup lacks a database connection string; use an isolated authorised preview database rather than copying production credentials",
         "Real phone, touch, zoom and screen-reader acceptance remains unavailable",
         "Specific founder approval is required before production merge/deployment"
       ],
-      "next_action": "Review the bounded five-file customer-flow and evidence delta, then verify city-wide, 25 km and 50 km empty-result states on the preview before requesting a separate production release approval.",
+      "next_action": "Review the bounded five-file customer-flow and evidence delta. An authorised operator privately configures an isolated preview database connection, redeploys, then verifies city-wide, 25 km and 50 km empty-result states before requesting a separate production release approval.",
       "evidence": [
         "docs/search-distance-recovery-2026-10-21.json"
       ],
@@ -443,7 +444,7 @@
     {
       "date": "2026-10-21",
       "task": 24,
-      "action": "Prevented empty-search distance recovery from repeating unchanged 25 km, 50 km or 1 km requests; added the API-supported 50 km option and hid the action for city-wide searches. All 375 tests pass. No data, schema, payment, settings, merge or production deployment changed; PR 90 and separate outlet-data/marketing work remain independent."
+      "action": "Prevented empty-search distance recovery from repeating unchanged 25 km, 50 km or 1 km requests; added the API-supported 50 km option and hid the action for city-wide searches. All 375 tests pass. PR 100 preview is READY and serves the static update, but API health is HTTP 500 because Preview DATABASE_URL is absent; production remains healthy. No data, schema, payment, settings, merge or production deployment changed; PR 90 and separate outlet-data/marketing work remain independent."
     }
   ],
   "current_review": {
