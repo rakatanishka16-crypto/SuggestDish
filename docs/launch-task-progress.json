@@ -95,7 +95,7 @@
       "status": "production_verified_with_browser_limits",
       "acceptance": "Diet/budget/dish/location and provider-error paths pass production checks.",
       "blockers": [],
-      "next_action": "Deploy and verify the prepared restaurant-diversity and location-coverage fix. Retain all taste/cuisine/mood/diet/budget/radius constraints; complete actual phone and consenting participant checks.",
+      "next_action": "Retain verified restaurant-level refinement and location coverage explanations. Complete actual phone, GPS permission and consenting participant checks; extend regression cases for any reproduced failures.",
       "evidence": [
         "docs/customer-production-checks-2026-10-10.json"
       ]
@@ -409,6 +409,11 @@
       "date": "2026-10-21",
       "task": 5,
       "action": "Verified current Jalna city search and supply. Prepared restaurant-level refinement, mapped-coverage explanations and test-harness repair; 119 focused tests pass. Release verification pending."
+    },
+    {
+      "date": "2026-10-21",
+      "task": 5,
+      "action": "PR #86 merged and production READY. Health and Jalna search verified; excluded restaurant 5 returned restaurant 9. No database data changed. Read-only billing config reports unavailable/unconfigured."
     }
   ],
   "current_review": {
@@ -423,7 +428,12 @@
         "mapped_dishes": 90,
         "mapped_restaurants": 9
       },
-      "jalna_city_search": "Vegetarian, budget 300, broad preferences returned Jain Bandhu Pav Bhaji Centre Pav Bhaji at INR 80"
+      "jalna_city_search": "Vegetarian, budget 300, broad preferences returned Jain Bandhu Pav Bhaji Centre Pav Bhaji at INR 80",
+      "billing_config": {
+        "available": false,
+        "mode": "unconfigured",
+        "meaning": "Checkout unavailable; actual sandbox acceptance cannot be run without privately configured credentials and approved test business."
+      }
     },
     "changes_prepared": [
       "Something different excludes previous restaurant IDs and matching named branches before AI selection",
@@ -431,12 +441,22 @@
       "City coverage distinguishes mapped supply; GPS explains city-wide option",
       "Repaired stale location-test harness and cuisine explanation assertions"
     ],
-    "validation": "119 focused checks passed; production verification of the new changes pending",
+    "validation": "364/364 complete repository tests passed after npm ci --ignore-scripts; 119 focused search checks passed. Syntax and diff checks passed. These include mocked owner/payment/feedback/analytics boundaries, not actual sandbox checkout or production persistence acceptance.",
     "remaining": [
       "22 Jalna candidate restaurants have no coordinates; no coordinates guessed or changed",
       "Mobile and real-owner acceptance remain unverified",
       "Payment schema, sandbox, merchant and policy gates remain unverified",
       "Old tracker counts below are historical; use current_review and live coverage endpoints for supply"
-    ]
+    ],
+    "production_release": {
+      "pr": 86,
+      "commit": "d3f3630a60b51ba2c3b483a79d7cdd4a0f11d796",
+      "deployment_id": "dpl_F6BP6rVcd1gDPJvY3JJmSin6BZSA",
+      "status": "READY",
+      "health": "HTTP 200 success:true status:ok",
+      "jalna_refinement": "Initial restaurantId 5 Jain Bandhu; excludeRestaurantIds=5 returned restaurantId 9, 7 Spices",
+      "database_writes": "None"
+    },
+    "browser_checks": "Live desktop selected Jalna, displayed 31 restaurants/933 searchable dishes and 9 mapped restaurants/90 dishes. Something different switched from 7 Spices Tandoor Garlic Naan to Jain Bandhu Pav Bhaji Centre Pav Bhaji. Real phone, screen-reader and browser GPS acceptance remain unverified."
   }
 }

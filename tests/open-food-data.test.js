@@ -16,7 +16,7 @@ test('Wikidata vocabulary stays separate, paginated and without outlet or price 
 });
 test('adapted OSM dataset is downloadable and uncertain duplicates are held without merging',()=>{
  const r=call('/api/open-food-data/export');assert.equal(r.body.businesses.length,2121);assert.equal(r.body.held_records.length,91);assert.equal(r.body.duplicate_candidates.length,40);
- assert.ok(r.body.duplicate_candidates.every(d=>d.automatic_merge===false));assert.equal(source.coverage.menuEntries,15139);assert.equal(source.coverage.publishedPrices,6835);
+ assert.ok(r.body.duplicate_candidates.every(d=>d.automatic_merge===false));assert.equal(open.summary.menuEntries,0);assert.equal(open.summary.publishedPrices,0); // OSM snapshot has no menus; unrelated catalogue totals grow with each batch.
 });
 
 test("food-shop profiles retain observed raw categories rather than inferred restaurant types",()=>{
