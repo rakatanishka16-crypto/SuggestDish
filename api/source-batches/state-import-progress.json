@@ -98,10 +98,11 @@
         "reconciled_research_leads": 0,
         "duplicates": 3,
         "conflicts": 0,
-        "status": "official_exact_branch_prices_and_dietary_labels_published",
+        "status": "official_exact_branch_prices_and_dietary_labels_published_and_neon_imported",
         "remaining_gaps": [
           "Brunch page 4 yielded twelve new items; three dishes already present from the all-day menu were deduplicated.",
-          "All twelve new items have explicit vegetarian or non-vegetarian icons and are recommendation-eligible in the source catalog.",
+          "All twelve new items have explicit vegetarian or non-vegetarian icons and are recommendation-eligible in the source catalog and Neon.",
+          "Scoped Neon import inserted and linked twelve dishes with zero new restaurants and zero conflicts; temporary import access was disabled and its former credential returned HTTP 403 after cleanup deployment.",
           "Owner claim, licence validity, coordinates and current operation remain unverified.",
           "107 research leads remain pending official-profile reconciliation.",
           "Mumbai and Maharashtra remain only partially covered."
@@ -128,7 +129,11 @@
           "menu_entries": 12,
           "published_prices": 12,
           "duplicates_held": 3,
-          "neon_imported": false,
+          "neon_imported": true,
+          "neon_dishes_inserted": 12,
+          "neon_dishes_linked": 12,
+          "neon_restaurants_inserted": 0,
+          "neon_conflicts": 0,
           "recommendation_eligible_items": 12,
           "reconciled_research_leads": 0,
           "source_pages": [
@@ -1509,7 +1514,21 @@
     "new_prices": 12,
     "recommendation_eligible_items": 12,
     "duplicates_found": 3,
-    "status": "official_exact_branch_prices_and_dietary_labels_published",
+    "status": "official_exact_branch_prices_and_dietary_labels_published_and_neon_imported",
+    "neon_import": {
+      "scope": "mumbai-olive-khar-2026-10-21",
+      "plan_digest": "39b4bd8312e8ac308806475a1708e3a70706cb9de557edd1de144a35b19bf896",
+      "observations_inserted": 25,
+      "restaurants_inserted": 0,
+      "dishes_inserted": 12,
+      "dishes_linked": 12,
+      "conflicts": 0,
+      "cleanup_deployment": "dpl_4WM8GC9tTojnkc6hCVwWN3xx1Yyd",
+      "temporary_access_disabled": true,
+      "former_credential_http_status": 403,
+      "mumbai_candidate_records_after": 1298,
+      "mumbai_candidate_restaurants_after": 28
+    },
     "checked_sources": [
       {
         "url": "https://www.olivebarandkitchen.com/obkmumbai.php",
