@@ -830,7 +830,8 @@
         <button type="button" id="refineReset" class="btn btn-light">Clear refinements</button>
       </div>
       <div id="emptyRecovery" style="display:none;margin-top:12px">
-        <p>No automatic substitutions. Your dietary preference and specific dish request remain unchanged.</p>
+        <p>No automatic substitutions. Your dietary preference and specific dish request remain unchanged. Nearby searches exclude restaurants without coordinates. For city-wide menus, enter a city such as Jalna or Mumbai using Enter Location; this removes the distance limit only when you choose it.</p>
+        <button type="button" id="clearEmptyRefinements" class="btn btn-light">Clear refinements</button>
         <button type="button" id="expandDistance" class="btn btn-light">Increase distance</button>
         <button type="button" id="editRequest" class="btn btn-light">Edit my request</button>
       </div>
@@ -1513,9 +1514,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedCity = "";
   let appliedLocationQuery = "";
   let excludedDishIds = [];
+  let excludedRestaurantIds = [];
   let lastRecommendations = [];
   const updateLocationLabel = text => { const label = document.getElementById("selectedLocation"); if (label) label.textContent = text; };
-  document.getElementById("clearLocation")?.addEventListener("click", () => { if (locationPending) return; userLatitude = null; userLongitude = null; selectedCity = ""; appliedLocationQuery = ""; const input = document.getElementById("locationQuery"); if(input)input.value=""; updateLocationLabel("No location selected. Distance filtering requires a location."); const coverage=document.getElementById("menuCoverage"); if(coverage)coverage.textContent=""; });
+  document.getElementById("clearLocation")?.addEventListener("click", () => { if (locationPending) return; excludedDishIds=[]; excludedRestaurantIds=[]; userLatitude = null; userLongitude = null; selectedCity = ""; appliedLocationQuery = ""; const input = document.getElementById("locationQuery"); if(input)input.value=""; updateLocationLabel("No location selected. Distance filtering requires a location."); const coverage=document.getElementById("menuCoverage"); if(coverage)coverage.textContent=""; });
   let locationPending = false;
 
 
@@ -1600,11 +1602,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             selectedCity = "";
             updateLocationLabel("Location: your current GPS position");
+            const coverage=document.getElementById("menuCoverage");
+            if(coverage)coverage.textContent="Nearby search uses only restaurants with coordinates. Some city menus have no mapped location. To search the whole city, type its name and choose Enter Location; distance will not apply.";
 
             appliedLocationQuery = "";
             const locationInput = document.getElementById("locationQuery");
             if (locationInput) locationInput.value = "";
-            excludedDishIds = [];
+            excludedDishIds = []; excludedRestaurantIds = [];
             userLatitude =
               position.coords.latitude;
 
@@ -1695,12 +1699,12 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!city && !hasCoordinates) throw new Error("Location not found. Try entering Mumbai or Jalna.");
           selectedCity = city;
           appliedLocationQuery = loc.toLowerCase();
-          excludedDishIds = [];
+          excludedDishIds = []; excludedRestaurantIds = [];
           userLatitude = hasCoordinates ? data.latitude : null;
           userLongitude = hasCoordinates ? data.longitude : null;
           updateLocationLabel(`Location: ${data.label}` + (hasCoordinates ? "" : " — city-wide search; distance unavailable"));
           const coverage=document.getElementById("menuCoverage");
-          if (coverage && city) { coverage.textContent="Checking menu coverage…"; try { const r=await fetch("/api/recommendation-coverage?"+new URLSearchParams({city}),{signal:AbortSignal.timeout(10000)}); const counts=await r.json(); if(!r.ok || !counts.success)throw Error(); coverage.textContent=`${city}: ${counts.counts.candidate_restaurants} restaurants with ${counts.counts.candidate_records} searchable priced dishes before your preference filters. Current prices and availability may differ; directory listings are separate.`; }catch{coverage.textContent="Menu coverage could not be checked. Directory listings do not confirm available menus.";} }
+          if (coverage && city) { coverage.textContent="Checking menu coverage…"; try { const r=await fetch("/api/recommendation-coverage?"+new URLSearchParams({city}),{signal:AbortSignal.timeout(10000)}); const counts=await r.json(); if(!r.ok || !counts.success)throw Error(); coverage.textContent=`${city}: ${counts.counts.candidate_restaurants} restaurants with ${counts.counts.candidate_records} searchable priced dishes before your preference filters. Only ${counts.counts.mapped_restaurants ?? "unknown"} of these restaurants have coordinates for nearby searches (${counts.counts.mapped_candidates ?? "unknown"} dishes before radius and preference filters). Current prices and availability may differ; directory listings are separate.`; }catch{coverage.textContent="Menu coverage could not be checked. Directory listings do not confirm available menus.";} }
           else if(coverage)coverage.textContent="Locality-level coverage counts are not available. Results use menu records within your selected radius when coordinates are available.";
           toast(`Location set to ${data.label}. Choose your preferences and tap Recommend My Dish.`);
           return true;
@@ -1728,8 +1732,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const rerun = () => document.getElementById("aiRecommendBtn")?.click?.();
   document.getElementById("refineCheaper")?.addEventListener("click", () => { const prices=lastRecommendations.map(x=>Number(x.price)).filter(x=>Number.isFinite(x)&&x>1); if (!prices.length) return toast("No lower price target is available."); document.getElementById("aiBudget").value="custom"; document.getElementById("aiCustomBudget").value=String(Math.max(1,Math.floor(Math.min(...prices))-1)); rerun(); });
   document.getElementById("refineCloser")?.addEventListener("click", () => { if (userLatitude===null || userLongitude===null) return toast("Choose a locality or enable location to search closer."); const field=document.getElementById("aiRadius"); const options=[1,2,5,10,25]; field.value=String(options.filter(x=>x<Number(field.value)).pop() || 1); rerun(); });
-  document.getElementById("refineDifferent")?.addEventListener("click", () => { excludedDishIds=[...new Set([...excludedDishIds,...lastRecommendations.map(x=>x.dishId).filter(x=>Number.isInteger(x)&&x>0)])].slice(-20); rerun(); });
-  document.getElementById("refineReset")?.addEventListener("click", () => { excludedDishIds=[]; rerun(); });
+  document.getElementById("refineDifferent")?.addEventListener("click", () => { excludedDishIds=[...new Set([...excludedDishIds,...lastRecommendations.map(x=>x.dishId).filter(x=>Number.isSafeInteger(x)&&x>0)])].slice(-20); excludedRestaurantIds=[...new Set([...excludedRestaurantIds,...lastRecommendations.map(x=>x.restaurantId).filter(x=>Number.isSafeInteger(x)&&x>0)])].slice(-20); rerun(); });
+  document.getElementById("clearEmptyRefinements")?.addEventListener("click", () => { excludedDishIds=[]; excludedRestaurantIds=[]; rerun(); });
+  document.getElementById("refineReset")?.addEventListener("click", () => { excludedDishIds=[]; excludedRestaurantIds=[]; rerun(); });
   document.getElementById("expandDistance")?.addEventListener("click", () => { if (userLatitude===null || userLongitude===null) return toast("Choose a locality or enable location first."); const field=document.getElementById("aiRadius"); field.value=String([1,2,5,10,25].find(x=>x>Number(field.value)) || 25); rerun(); });
   document.getElementById("editRequest")?.addEventListener("click", () => document.getElementById("aiCustomPreferences")?.focus?.());
 
@@ -1917,6 +1922,7 @@ document.addEventListener("DOMContentLoaded", () => {
         params.set("diet", diet);
         params.set("diningMode", document.getElementById("aiDiningMode")?.value || "any");
         if (excludedDishIds.length) params.set("excludeDishIds", excludedDishIds.join(","));
+        if (excludedRestaurantIds.length) params.set("excludeRestaurantIds", excludedRestaurantIds.join(","));
 
         params.set(
           "mood",

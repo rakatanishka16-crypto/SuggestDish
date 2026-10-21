@@ -274,6 +274,12 @@ app.get("/api/ai-recommend", async (req, res) => {
     const excludedRaw = String(req.query.excludeDishIds || "");
     if (excludedRaw && !/^\d+(,\d+){0,19}$/.test(excludedRaw)) return res.status(400).json({success:false,error:"Invalid dish refinement list."});
     const excludedDishIds = new Set(excludedRaw ? excludedRaw.split(",").map(Number) : []);
+    const excludedRestaurantsRaw = req.query.excludeRestaurantIds;
+    if (excludedRestaurantsRaw !== undefined && (typeof excludedRestaurantsRaw !== "string" || !/^[1-9]\d*(,[1-9]\d*){0,19}$/.test(excludedRestaurantsRaw) || excludedRestaurantsRaw.split(",").some(id => !Number.isSafeInteger(Number(id))))) {
+      return res.status(400).json({success:false,error:"Invalid restaurant refinement list."});
+    }
+    const excludedRestaurantIds = new Set(excludedRestaurantsRaw ? excludedRestaurantsRaw.split(",").map(Number) : []);
+
 
     const coordinateProvided = req.query.lat !== undefined || req.query.lon !== undefined;
     if (coordinateProvided && [req.query.lat,req.query.lon].some(value => typeof value !== 'string' || !value.trim())) {
@@ -387,12 +393,15 @@ app.get("/api/ai-recommend", async (req, res) => {
     // 4. VEGETARIAN FILTER
     // --------------------------------------------------
 
+    const restaurantKey = dish => String(dish.restaurantName || dish.restaurantId).toLowerCase().split(/\s+[-–—]\s+/)[0].trim();
+    const excludedRestaurantKeys = new Set(dishes.filter(dish => excludedRestaurantIds.has(Number(dish.restaurantId))).map(restaurantKey));
+
     let filteredDishes = vegetarian
       ? dishes.filter((dish) => dish.isVeg === true)
       : diet === "nonvegetarian" ? dishes.filter(dish => dish.isVeg === false) : dishes;
 
 
-    filteredDishes = filteredDishes.filter(dish => dish.price != null && Number.isFinite(Number(dish.price)) && Number(dish.price) <= budget && !excludedDishIds.has(Number(dish.id)) && (!explicitlyVeg || dish.isVeg === true) && (!explicitlyNonVeg || dish.isVeg === false));
+    filteredDishes = filteredDishes.filter(dish => dish.price != null && Number.isFinite(Number(dish.price)) && Number(dish.price) <= budget && !excludedDishIds.has(Number(dish.id)) && !excludedRestaurantIds.has(Number(dish.restaurantId)) && !excludedRestaurantKeys.has(restaurantKey(dish)) && (!explicitlyVeg || dish.isVeg === true) && (!explicitlyNonVeg || dish.isVeg === false));
     if (filteredDishes.length === 0) {
       return res.json({
         success: true,
@@ -407,7 +416,7 @@ app.get("/api/ai-recommend", async (req, res) => {
           radiusKm: hasLocation ? maxDistanceKm : null
         },
         recommendations: [],
-        summary: "No dishes currently match your budget and dietary preference."
+        summary: excludedRestaurantIds.size ? "No different restaurants match your current filters. Clear refinements to see earlier choices, or change your filters." : "No dishes currently match your budget and dietary preference."
       });
     }
 
@@ -756,7 +765,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     // Send only a manageable candidate pool to Gemini.
     const seenRestaurants = new Set();
     const candidateDishes = scoredDishes.filter(dish => {
-      const key = String(dish.restaurantName || dish.restaurantId).toLowerCase().split(/\s+[-–—]\s+/)[0].trim();
+      const key = restaurantKey(dish);
       if (seenRestaurants.has(key)) return false;
       seenRestaurants.add(key); return true;
     }).slice(0, 60);
@@ -769,6 +778,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     const dishData = candidateDishes.map((dish) => ({
       id: dish.id,
       dishId: Number(dish.id),
+      restaurantId: Number(dish.restaurantId),
       sourceCheckedAt: dish.sourceCheckedAt || null,
       ownerVerified: dish.ownerVerified === true,
       dishName: dish.name,
@@ -869,6 +879,7 @@ Return exactly:
     // A real, filtered dish remains available when Gemini is overloaded.
     const fallbackRecommendations = candidateDishes.slice(0, 1).map((dish) => ({
       dishId: Number(dish.id),
+      restaurantId: Number(dish.restaurantId),
       sourceCheckedAt: dish.sourceCheckedAt || null,
       ownerVerified: dish.ownerVerified === true,
       dishName: dish.name,
@@ -986,6 +997,7 @@ Return exactly:
 
               return {
                 dishId: Number(candidate.id),
+                restaurantId: Number(candidate.restaurantId),
                 sourceCheckedAt: candidate.sourceCheckedAt || null,
                 ownerVerified: candidate.ownerVerified === true,
                 dishName: candidate.name,
