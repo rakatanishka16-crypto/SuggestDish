@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-10-15",
+  "updated_on": "2026-10-22",
   "active_state": "Maharashtra",
   "state_order": [
     "Maharashtra",
@@ -75,7 +75,8 @@
         "mumbai-olive-khar-brunch-menu-page-4-2026-10-21",
         "mumbai-olive-khar-brunch-menu-page-3-2026-10-21",
         "mumbai-olive-khar-brunch-menu-page-2-2026-10-21",
-        "mumbai-olive-khar-brunch-menu-page-1-2026-10-21"
+        "mumbai-olive-khar-brunch-menu-page-1-2026-10-21",
+        "mumbai-olive-khar-all-day-menu-page-7-2026-10-22"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -89,22 +90,23 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "mumbai-olive-khar-brunch-menu-page-1-2026-10-21",
-        "date": "2026-10-21",
+        "batch_id": "mumbai-olive-khar-all-day-menu-page-7-2026-10-22",
+        "date": "2026-10-22",
         "districts": ["Mumbai Suburban"],
         "cities": ["Mumbai"],
         "localities": ["Khar West"],
         "new_outlets": 0,
-        "new_menus": 9,
-        "new_prices": 9,
-        "recommendation_eligible_items": 9,
+        "new_menus": 7,
+        "new_prices": 7,
+        "recommendation_eligible_items": 7,
         "reconciled_research_leads": 0,
-        "duplicates": 0,
+        "duplicates": 1,
         "conflicts": 0,
         "status": "official_exact_branch_prices_and_dietary_labels_published_neon_pending",
         "remaining_gaps": [
-          "Brunch page 1 yielded nine exact-branch egg dishes with explicit prices, portions and non-vegetarian icons.",
-          "All nine new items are recommendation-eligible in the source catalog; Neon import remains pending.",
+          "All-day page 7 yielded seven new exact-branch desserts with explicit prices, portions and non-vegetarian icons.",
+          "Chocolate Fondant was held as a duplicate of the already-published brunch record.",
+          "All seven new items are recommendation-eligible in the source catalog; Neon import remains pending.",
           "Owner claim, licence validity, coordinates and current operation remain unverified.",
           "107 research leads remain pending official-profile reconciliation.",
           "Mumbai and Maharashtra remain only partially covered."
@@ -113,16 +115,38 @@
           {
             "url": "https://www.olivebarandkitchen.com/obkmumbai.php",
             "result": "Official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set",
-            "date": "2026-10-21"
+            "date": "2026-10-22"
           },
           {
-            "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/1.jpg",
-            "result": "Official brunch page 1 publishes nine egg dishes with explicit prices, portions and non-vegetarian icons",
-            "date": "2026-10-21"
+            "url": "https://www.olivebarandkitchen.com/menus/mumbai/all-day/7.jpg",
+            "result": "Official all-day page 7 publishes eight desserts with explicit prices, portions and non-vegetarian icons; one was already present and was deduplicated",
+            "date": "2026-10-22"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-olive-khar-all-day-menu-page-7-2026-10-22",
+          "checked_on": "2026-10-22",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 7,
+          "published_prices": 7,
+          "duplicates_held": 1,
+          "neon_imported": false,
+          "recommendation_eligible_items": 7,
+          "reconciled_research_leads": 0,
+          "source_pages": [
+            {"url": "https://www.olivebarandkitchen.com/obkmumbai.php", "checked_on": "2026-10-22"},
+            {"url": "https://www.olivebarandkitchen.com/menus/mumbai/all-day/7.jpg", "checked_on": "2026-10-22"}
+          ],
+          "remaining_gaps": [
+            "Remaining official Olive Mumbai all-day menu images require page-level review",
+            "PR #96 approval is still required before the prior thirteen-dish Neon import",
+            "107 research leads and five mall branch-menu gaps remain",
+            "Mumbai, Jalna and Maharashtra remain partially covered"
+          ]
+        },
         {
           "batch_id": "mumbai-olive-khar-brunch-menu-page-1-2026-10-21",
           "checked_on": "2026-10-21",
@@ -1567,16 +1591,16 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-olive-khar-brunch-menu-page-1-2026-10-21",
-    "checked_on": "2026-10-21",
+    "run_id": "mumbai-olive-khar-all-day-menu-page-7-2026-10-22",
+    "checked_on": "2026-10-22",
     "state": "Maharashtra",
     "city": "Mumbai",
     "locality": "Khar West",
     "new_outlets": 0,
-    "new_menus": 9,
-    "new_prices": 9,
-    "recommendation_eligible_items": 9,
-    "duplicates_found": 0,
+    "new_menus": 7,
+    "new_prices": 7,
+    "recommendation_eligible_items": 7,
+    "duplicates_found": 1,
     "status": "official_exact_branch_prices_and_dietary_labels_published_neon_pending",
     "previous_neon_import": {
       "scope": "mumbai-olive-khar-2026-10-21",
@@ -1599,9 +1623,9 @@
         "result": "The official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set."
       },
       {
-        "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/brunch/1.jpg",
+        "url": "https://www.olivebarandkitchen.com/menus/mumbai/all-day/7.jpg",
         "http_status": 200,
-        "result": "The official brunch page publishes nine exact-branch egg dishes with explicit prices, portions and non-vegetarian icons."
+        "result": "The official all-day page publishes eight exact-branch desserts with explicit prices, portions and non-vegetarian icons; seven were new and Chocolate Fondant was held as a duplicate."
       }
     ],
     "next_action": "Continue the remaining official Olive Mumbai menu images, 107 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps while preserving page-level branch evidence.",
