@@ -2,7 +2,7 @@
   "checked_on": "2026-10-21",
   "task": 24,
   "base_commit": "61e3a61906156157945b443859537ab53cc66e36",
-  "status": "implemented_local_regression_pass_release_pending",
+  "status": "preview_static_ready_api_startup_blocked",
   "finding": "After an empty exact-location search, Increase distance stopped at 25 km and repeated the same request at that ceiling. City-wide empty results exposed the same action even though distance does not apply.",
   "implementation": [
     "Offer the API-supported 50 km maximum in the customer distance selector.",
@@ -24,6 +24,15 @@
     "health": "HTTP 200, success:true, status:ok",
     "jalna_menu_coverage": "HTTP 200, success:true, 31 restaurants / 933 priced dishes"
   },
+  "preview": {
+    "deployment_id": "dpl_BtR3R41kqwohrEGS6SyPXNpuNXvF",
+    "commit": "849837dd47ab89be841334c3312fccfc0c0ccf7e",
+    "status": "READY",
+    "page": "HTTP 200 and includes search-recovery-controls.js",
+    "recovery_helper": "HTTP 200 and includes the tested 1/2/5/10/25/50 km state logic",
+    "api_health": "HTTP 500 FUNCTION_INVOCATION_FAILED",
+    "runtime_evidence": "Vercel log for the health request reports that no database connection string was provided to neon(); this is a preview configuration failure, not evidence of a production outage."
+  },
   "coordination": [
     "Based on the latest production main after the Olive Khar page 7 data update.",
     "PR 90 coordinate validation remains a separate open review and is not duplicated.",
@@ -32,7 +41,8 @@
   "limits": [
     "Automated DOM/source tests; no real phone, touch, zoom or screen-reader acceptance.",
     "The cloud browser did not complete the production page load, so no browser behavior was inferred from that failure.",
-    "No live recommendation, Gemini, geocoder, payment, database write, schema, setting, merge or production deployment."
+    "No live recommendation, Gemini, geocoder, payment, database write, schema, setting, merge or production deployment.",
+    "End-to-end preview behavior is blocked until an authorised operator configures an isolated preview database connection; production credentials were not retrieved or copied."
   ],
-  "next_action": "Review the five-file customer-flow and evidence delta. After approval, verify the preview at city-wide, 25 km and 50 km empty-result states before separately approving production release."
+  "next_action": "Review the five-file customer-flow and evidence delta. An authorised operator privately configures an isolated preview database connection, redeploys, then verifies city-wide, 25 km and 50 km empty-result states before separately approving production release."
 }
