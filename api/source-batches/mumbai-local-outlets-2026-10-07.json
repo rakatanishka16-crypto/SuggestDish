@@ -3094,7 +3094,7 @@
       "review_count": null,
       "fssai_license_number": null,
       "license_status": "not_checked",
-      "service_note": "The official Olive Bar & Kitchen Mumbai page publishes this Khar address, phone and daily hours and displays outlet-specific menu images. Ten explicitly priced Charcoal dinner items were transcribed with dietary types unknown; nine explicitly priced all-day small plates were transcribed from the official page with vegetarian/non-vegetarian icons. Current operation, owner identity, licence validity and coordinates have not been independently verified.",
+      "service_note": "The official Olive Bar & Kitchen Mumbai page publishes this Khar address, phone and daily hours and displays outlet-specific menu images. Ten explicitly priced Charcoal dinner items were transcribed with dietary types unknown; sixteen explicitly priced all-day items were transcribed from official pages 8 and 9 with vegetarian/non-vegetarian icons. Current operation, owner identity, licence validity and coordinates have not been independently verified.",
       "image_url": null,
       "image_usage_permission": "not_obtained",
       "source_urls": [
@@ -4530,6 +4530,69 @@
       "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
       "retrieved_on": "2026-10-15", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
       "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg", "price_scope": "Explicit price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-chorizo-hash-20261021",
+      "brand": "Olive Bar & Kitchen", "name": "Chorizo Hash", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_9_20261021", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 745, "portion": "320 g", "is_veg": false, "veg_evidence": "Official menu non-vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-21", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "price_scope": "Explicit base price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-chorizo-pepperoni-pull-aparts-20261021",
+      "brand": "Olive Bar & Kitchen", "name": "Chorizo and Pepperoni Pull-Aparts", "menu_category": "Small Plates",
+      "source_id": "olive_khar_all_day_9_20261021", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 745, "portion": "250 g", "is_veg": false, "veg_evidence": "Official menu non-vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-21", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "price_scope": "Explicit base price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-linguine-aglio-olio-peperoncino-20261021",
+      "brand": "Olive Bar & Kitchen", "name": "Linguine Aglio Olio e Peperoncino", "menu_category": "Fresh Pastas and Risottos",
+      "source_id": "olive_khar_all_day_9_20261021", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 725, "portion": "350 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-21", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "price_scope": "Explicit vegetarian base price; optional chicken, chorizo and prawn add-ons are excluded; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-ricotta-gnocchi-20261021",
+      "brand": "Olive Bar & Kitchen", "name": "Ricotta Gnocchi", "menu_category": "Fresh Pastas and Risottos",
+      "source_id": "olive_khar_all_day_9_20261021", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 745, "portion": "350 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-21", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "price_scope": "Explicit base price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-spicy-rigatoni-20261021",
+      "brand": "Olive Bar & Kitchen", "name": "Spicy Rigatoni", "menu_category": "Fresh Pastas and Risottos",
+      "source_id": "olive_khar_all_day_9_20261021", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 745, "portion": "350 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-21", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "price_scope": "Explicit vegetarian base price; optional chicken, chorizo and prawn add-ons are excluded; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-mushroom-risotto-20261021",
+      "brand": "Olive Bar & Kitchen", "name": "Mushroom Risotto", "menu_category": "Fresh Pastas and Risottos",
+      "source_id": "olive_khar_all_day_9_20261021", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 825, "portion": "350 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-21", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "price_scope": "Explicit base price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
+    },
+    {
+      "external_id": "sd-menu-olive-khar-rotolo-20261021",
+      "brand": "Olive Bar & Kitchen", "name": "Rotolo", "menu_category": "Fresh Pastas and Risottos",
+      "source_id": "olive_khar_all_day_9_20261021", "source_business_id": "listing:sd-mumbai-olive-bar-kitchen-khar-west-20261007",
+      "price_inr": 825, "portion": "350 g", "is_veg": true, "veg_evidence": "Official menu vegetarian icon",
+      "price_status": "published_observation", "price_effective_date": null, "tax_included": false, "branch_availability": "confirmed_on_outlet_page",
+      "retrieved_on": "2026-10-21", "image_url": null, "publish_ready": true, "recommendation_eligible": true,
+      "source_url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "price_scope": "Explicit base price on the official Olive Bandra all-day menu; government taxes excluded.", "menu_cities": ["Mumbai"]
     }
   ]
 }
