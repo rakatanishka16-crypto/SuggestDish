@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "updated_on": "2026-10-21",
-  "audited_main_commit": "8ad4f9614cc4a947c8e90c6793aa33817d93ddd1",
-  "next_task": null,
-  "finite_workflow_status": "independent_work_complete_or_blocked_on_founder_authorised_evidence",
+  "audited_main_commit": "61e3a61906156157945b443859537ab53cc66e36",
+  "next_task": 24,
+  "finite_workflow_status": "search_distance_recovery_review_pending",
   "status_definitions": {
     "implemented": "Source code exists; not proof of production acceptance.",
     "deployed": "Target commit is READY and aliased to production.",
@@ -297,6 +297,21 @@
       "acceptance": "Separate existing daily data automation; not a finite launch gate.",
       "blockers": [],
       "next_action": null
+    },
+    {
+      "number": 24,
+      "title": "Make empty-search distance recovery actionable",
+      "status": "implemented_local_regression_pass_release_pending",
+      "acceptance": "Exact-location empty results can expand through the API-supported 50 km ceiling without repeating an unchanged request; city-wide results do not offer an inapplicable distance action.",
+      "blockers": [
+        "Real phone, touch, zoom and screen-reader acceptance remains unavailable",
+        "Specific founder approval is required before production merge/deployment"
+      ],
+      "next_action": "Review the bounded five-file customer-flow and evidence delta, then verify city-wide, 25 km and 50 km empty-result states on the preview before requesting a separate production release approval.",
+      "evidence": [
+        "docs/search-distance-recovery-2026-10-21.json"
+      ],
+      "updated_at": "2026-10-21"
     }
   ],
   "change_log": [
@@ -424,6 +439,11 @@
       "date": "2026-10-21",
       "task": 5,
       "action": "PR #89 deployed and verified: vegetarian Italian/Spicy/Dinner rigatoni search returns Olive Khar Spicy Rigatoni 350 g INR 745; INR 700 and Sweet+Rigatoni return no match; Ricotta Gnocchi dinner request succeeds. Temporary import credential returns 403; local credential removed. All 370 tests pass."
+    },
+    {
+      "date": "2026-10-21",
+      "task": 24,
+      "action": "Prevented empty-search distance recovery from repeating unchanged 25 km, 50 km or 1 km requests; added the API-supported 50 km option and hid the action for city-wide searches. All 375 tests pass. No data, schema, payment, settings, merge or production deployment changed; PR 90 and separate outlet-data/marketing work remain independent."
     }
   ],
   "current_review": {
