@@ -70,7 +70,8 @@
         "mumbai-good-flippin-bandra-profile-reconciliation-2026-10-15",
         "mumbai-mia-cucina-powai-profile-reconciliation-2026-10-15",
         "mumbai-olive-khar-dinner-menu-2026-10-15",
-        "mumbai-olive-khar-all-day-menu-page-8-2026-10-15"
+        "mumbai-olive-khar-all-day-menu-page-8-2026-10-15",
+        "mumbai-olive-khar-all-day-menu-page-9-2026-10-21"
       ],
       "mall_enrichment": {
         "malls": 17,
@@ -84,21 +85,21 @@
         "pending_branch_menus": 6
       },
       "latest_bounded_batch": {
-        "batch_id": "mumbai-olive-khar-all-day-menu-page-8-2026-10-15",
-        "date": "2026-10-15",
+        "batch_id": "mumbai-olive-khar-all-day-menu-page-9-2026-10-21",
+        "date": "2026-10-21",
         "districts": ["Mumbai Suburban"],
         "cities": ["Mumbai"],
         "localities": ["Khar West"],
         "new_outlets": 0,
-        "new_menus": 9,
-        "new_prices": 9,
-        "recommendation_eligible_items": 9,
+        "new_menus": 7,
+        "new_prices": 7,
+        "recommendation_eligible_items": 7,
         "reconciled_research_leads": 0,
         "conflicts": 0,
         "status": "official_exact_branch_prices_and_dietary_labels_published",
         "remaining_gaps": [
-          "Only all-day page 8 was transcribed in this bounded batch; remaining official Olive Mumbai menu images require review.",
-          "Nine items have explicit vegetarian or non-vegetarian icons and are recommendation-eligible in the source catalog.",
+          "Only all-day page 9 was transcribed in this bounded batch; remaining official Olive Mumbai menu images require review.",
+          "Seven items have explicit vegetarian or non-vegetarian icons and are recommendation-eligible in the source catalog.",
           "Owner claim, licence validity, coordinates and current operation remain unverified.",
           "107 research leads remain pending official-profile reconciliation.",
           "Mumbai and Maharashtra remain only partially covered."
@@ -107,16 +108,37 @@
           {
             "url": "https://www.olivebarandkitchen.com/obkmumbai.php",
             "result": "Official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set",
-            "date": "2026-10-15"
+            "date": "2026-10-21"
           },
           {
-            "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg",
-            "result": "Official all-day page 8 publishes nine small plates with explicit prices, portions and vegetarian or non-vegetarian icons; government taxes are excluded",
-            "date": "2026-10-15"
+            "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg",
+            "result": "Official all-day page 9 publishes seven small plates, pastas and risottos with explicit base prices, portions and vegetarian or non-vegetarian icons; optional add-ons are excluded",
+            "date": "2026-10-21"
           }
         ]
       },
       "bounded_batch_history": [
+        {
+          "batch_id": "mumbai-olive-khar-all-day-menu-page-9-2026-10-21",
+          "checked_on": "2026-10-21",
+          "city_counts": {"Mumbai": 1},
+          "new_outlets": 0,
+          "menu_entries": 7,
+          "published_prices": 7,
+          "neon_imported": false,
+          "recommendation_eligible_items": 7,
+          "reconciled_research_leads": 0,
+          "source_pages": [
+            {"url": "https://www.olivebarandkitchen.com/obkmumbai.php", "checked_on": "2026-10-21"},
+            {"url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg", "checked_on": "2026-10-21"}
+          ],
+          "remaining_gaps": [
+            "Remaining official Olive Mumbai menu images require page-level review",
+            "107 research leads remain pending official-profile reconciliation",
+            "Five mall branch-menu gaps remain",
+            "Mumbai, Jalna and Maharashtra remain only partially covered"
+          ]
+        },
         {
           "batch_id": "mumbai-olive-khar-all-day-menu-page-8-2026-10-15",
           "checked_on": "2026-10-15",
@@ -1458,15 +1480,15 @@
     ]
   },
   "last_source_check": {
-    "run_id": "mumbai-olive-khar-all-day-menu-page-8-2026-10-15",
-    "checked_on": "2026-10-15",
+    "run_id": "mumbai-olive-khar-all-day-menu-page-9-2026-10-21",
+    "checked_on": "2026-10-21",
     "state": "Maharashtra",
     "city": "Mumbai",
     "locality": "Khar West",
     "new_outlets": 0,
-    "new_menus": 9,
-    "new_prices": 9,
-    "recommendation_eligible_items": 9,
+    "new_menus": 7,
+    "new_prices": 7,
+    "recommendation_eligible_items": 7,
     "status": "official_exact_branch_prices_and_dietary_labels_published",
     "checked_sources": [
       {
@@ -1475,9 +1497,9 @@
         "result": "The official Mumbai outlet page confirms the exact Khar address, phone, daily hours and outlet-specific menu image set."
       },
       {
-        "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/8.jpg",
+        "url": "https://olivebarandkitchen.com/menus/Olive_Mumbai/all_day/9.jpg",
         "http_status": 200,
-        "result": "The official all-day menu page publishes nine small plates with explicit prices, portions and vegetarian or non-vegetarian icons; government taxes are excluded."
+        "result": "The official all-day menu page publishes seven small plates, pastas and risottos with explicit base prices, portions and vegetarian or non-vegetarian icons; optional add-ons were not transcribed."
       }
     ],
     "next_action": "Continue the remaining official Olive Mumbai menu images, 107 research leads, five mall menu gaps, and Mumbai/Jalna priced recommendation-ready gaps while preserving page-level branch evidence.",
