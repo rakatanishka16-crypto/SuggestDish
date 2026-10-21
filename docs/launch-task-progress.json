@@ -419,6 +419,11 @@
       "date": "2026-10-21",
       "task": 4,
       "action": "PR #88 scoped import added 16 reviewed Olive Khar dishes and one restaurant with no conflicts; 33 observations saved. Import credential disabled in settings and cleanup deployment READY. Prepared correction for pasta-name false negatives found in live verification."
+    },
+    {
+      "date": "2026-10-21",
+      "task": 5,
+      "action": "PR #89 deployed and verified: vegetarian Italian/Spicy/Dinner rigatoni search returns Olive Khar Spicy Rigatoni 350 g INR 745; INR 700 and Sweet+Rigatoni return no match; Ricotta Gnocchi dinner request succeeds. Temporary import credential returns 403; local credential removed. All 370 tests pass."
     }
   ],
   "current_review": {
@@ -496,7 +501,55 @@
         "unknown_diet_candidates": 0
       },
       "remaining_unknown_diet_observations": 10,
-      "pasta_filter_regression": "Live Italian + Spicy + rigatoni returned no match after import. Prepared named pasta-family correction; live follow-up pending."
+      "pasta_filter_regression": "Fixed in PR #89; runtime commit ba4e348f2e9f2af688af78f189c6495540db534f, deployment dpl_8Mx83iWxFCEqntMdEZXL64JnQYtK READY",
+      "temporary_access": "Disabled; former credential returns HTTP 403 on production",
+      "cleanup_deployment": "dpl_CZ3Nr7wZNSvtMej7AW3oPAmhkP2s READY",
+      "live_search_checks": [
+        {
+          "check": "rigatoni",
+          "success": true,
+          "recommendations": [
+            {
+              "dishId": 6524,
+              "restaurantId": 305,
+              "dishName": "Spicy Rigatoni (350 g)",
+              "restaurant": "Olive Bar & Kitchen \u2014 Khar",
+              "price": 745,
+              "vegetarian": true
+            }
+          ],
+          "summary": "These menu dishes match the selected dietary and budget constraints. Preferences use menu names and published sections; preparation, prices and availability should be confirmed with the restaurant."
+        },
+        {
+          "check": "budget_conflict",
+          "success": true,
+          "recommendations": [],
+          "summary": "No matching dishes were found for your specific request within the selected dietary preference, budget and distance. Change your request or filters to see other options."
+        },
+        {
+          "check": "sweet_conflict",
+          "success": true,
+          "recommendations": [],
+          "summary": "No named sweet dishes or desserts match your selected filters. Try another area or budget."
+        },
+        {
+          "check": "gnocchi",
+          "success": true,
+          "recommendations": [
+            {
+              "dishId": 6523,
+              "restaurantId": 305,
+              "dishName": "Ricotta Gnocchi (350 g)",
+              "restaurant": "Olive Bar & Kitchen \u2014 Khar",
+              "price": 745,
+              "vegetarian": true
+            }
+          ],
+          "summary": "These menu dishes match the selected dietary and budget constraints. Preferences use menu names and published sections; preparation, prices and availability should be confirmed with the restaurant."
+        }
+      ],
+      "tests": "370/370 complete repository tests passed",
+      "coordinates": "Still unknown; nearby eligibility unchanged"
     }
   }
 }
