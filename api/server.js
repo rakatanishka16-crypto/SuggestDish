@@ -533,7 +533,9 @@ app.get("/api/ai-recommend", async (req, res) => {
     const southIndianDishes = ["dosa", "dosai", "idli", "paniyaram", "uttapam", "uttappam", "medu vada", "dal vada", "pongal", "sambar", "sambhar", "rasam", "appam", "idiyappam", "puttu", "avial", "upma", "payasam", "curd rice", "tamarind rice", "lemon rice", "bisibele bath", "bisi bele bath"];
     const maharashtrianDishes = ["misal", "vada pav", "pav bhaji", "poha", "puran poli", "modak", "thalipeeth", "sabudana khichadi", "sabudana vada", "kothimbir vadi", "pithla", "pitla", "zunka", "bhakri", "bharli vangi", "usal", "shrikhand", "amrakhand", "sheera"];
     const chineseDishes = ["manchurian", "hakka noodles", "noodles", "fried rice", "spring roll", "chow mein", "chowmein", "wonton", "kung pao", "szechuan", "sichuan", "schezwan", "schezuan", "schezuwan", "hot and sour soup", "chilli paneer", "chili paneer", "chilli chicken", "chili chicken", "dragon paneer"];
-    const italianDishes = ["pizza", "pasta", "spaghetti", "penne", "fusilli", "fettuccine", "tagliatelle", "ravioli", "gnocchi", "lasagna", "lasagne", "risotto", "bruschetta", "focaccia", "minestrone", "tiramisu", "panna cotta", "gelato"];
+    const pastaShapes = ["spaghetti", "penne", "fusilli", "fettuccine", "tagliatelle", "ravioli", "gnocchi", "lasagna", "lasagne", "rigatoni", "linguine", "rotolo"];
+    const pastaDishes = ["pasta", ...pastaShapes];
+    const italianDishes = ["pizza", ...pastaDishes, "risotto", "bruschetta", "focaccia", "minestrone", "tiramisu", "panna cotta", "gelato"];
     const continentalDishes = [...italianDishes, "burger", "sandwich", "french fries", "fish and chips", "caesar salad", "greek salad", "waldorf salad", "panzanella", "roka salata", "grilled vegetables", "roasted vegetables", "baked potato", "mashed potato", "stroganoff", "shepherd pie", "shepherds pie", "steak", "eggs benedict", "scrambled eggs", "pancake", "waffle", "croissant", "cheesecake", "brownie", "chocolate mousse", "creme brulee"];
     const indianDishes = [...northIndianDishes, ...southIndianDishes, ...maharashtrianDishes, "biryani", "khichadi", "dal", "thali", "samosa", "kachori", "dhokla", "khandvi", "chaat", "bhel", "pani puri", "sev puri", "dahi puri", "pakora", "pakoda", "halwa", "kheer", "rasgulla", "barfi", "burfi", "ladoo", "laddu", "peda", "basundi", "jalebi", "chicken curry", "mutton curry", "fish curry"];
     const cuisineKeywords = {
@@ -551,20 +553,20 @@ app.get("/api/ai-recommend", async (req, res) => {
     // These describe dish types, not verified service times, group portions
     // or restaurant atmosphere. Every displayed occasion has an explicit rule.
     const breakfastDishes = ["idli", "dosa", "poha", "upma", "misal", "sheera", "sabudana khichadi", "puri bhaji", "poori bhaji", "paratha", "sandwich", "medu vada", "vada pav", "uttapam", "pancake", "waffle", "toast", "croissant"];
-    const mainDishes = ["biryani", "thali", "rice bowl", "fried rice", "dal", "curry", "khichadi", "paneer curry", "paneer butter masala", "paneer tikka masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "paneer kadai", "paneer kadhai", "paneer makhanwala", "veg makhanwala", "veg kadai", "veg kadhai", "paneer lababdar", "shahi paneer", "matar paneer", "rajma", "chole", "pasta", "pizza", "noodles", "risotto", "paratha"];
+    const mainDishes = ["biryani", "thali", "rice bowl", "fried rice", "dal", "curry", "khichadi", "paneer curry", "paneer butter masala", "paneer tikka masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "paneer kadai", "paneer kadhai", "paneer makhanwala", "veg makhanwala", "veg kadai", "veg kadhai", "paneer lababdar", "shahi paneer", "matar paneer", "rajma", "chole", ...pastaDishes, "pizza", "noodles", "risotto", "paratha"];
     const snackDishes = ["sandwich", "fries", "vada pav", "pav bhaji", "chaat", "bhel", "pani puri", "sev puri", "dahi puri", "momos", "pakora", "pakoda", "bhajiya", "fritters", "samosa", "kachori", "puff", "roll", "wrap", "waffle"];
     const moodKeywords = {
       breakfast: breakfastDishes,
-      brunch: [...breakfastDishes, "pasta", "salad", "pav bhaji"],
+      brunch: [...breakfastDishes, ...pastaDishes, "salad", "pav bhaji"],
       lunch: mainDishes,
       dinner: mainDishes,
       "quick meal": ["sandwich", "roll", "wrap", "idli", "poha", "upma", "burger", "rice bowl"],
-      "comfort food": ["dal", "khichadi", "pav bhaji", "rajma", "chole", "soup", "pasta", "pizza", "paneer butter masala", "palak paneer", ...tasteKeywords.sweet],
-      "date night": ["pasta", "pizza", "risotto", "salad", "soup", ...tasteKeywords.sweet],
+      "comfort food": ["dal", "khichadi", "pav bhaji", "rajma", "chole", "soup", ...pastaDishes, "pizza", "paneer butter masala", "palak paneer", ...tasteKeywords.sweet],
+      "date night": [...pastaDishes, "pizza", "risotto", "salad", "soup", ...tasteKeywords.sweet],
       "family meal": [...mainDishes, "pav bhaji"],
-      "friends outing": ["pizza", "momos", "chaat", "bhel", "fries", "pasta", "nachos", "burger", "pav bhaji", ...tasteKeywords.sweet],
+      "friends outing": ["pizza", "momos", "chaat", "bhel", "fries", ...pastaDishes, "nachos", "burger", "pav bhaji", ...tasteKeywords.sweet],
       snack: snackDishes,
-      celebration: ["pizza", "biryani", "pasta", "thali", "paneer tikka", ...tasteKeywords.sweet]
+      celebration: ["pizza", "biryani", ...pastaDishes, "thali", "paneer tikka", ...tasteKeywords.sweet]
     };
 
 
@@ -602,13 +604,14 @@ app.get("/api/ai-recommend", async (req, res) => {
     // Explicit dish families and proteins are constraints, not soft suggestions.
     const requestedText = normalize(customPreferences);
     if (!/\b(without|avoid|no|not|allerg)\b/i.test(customPreferences)) {
-      const families = ["rice bowl", "sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "pohe", "upma", "misal", "sheera", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav", "pani puri", "khichadi"];
+      const families = [...pastaShapes, "rice bowl", "sandwich", "biryani", "pizza", "burger", "pasta", "dosa", "idli", "poha", "pohe", "upma", "misal", "sheera", "paniyaram", "momos", "noodles", "paratha", "thali", "pav bhaji", "vada pav", "pani puri", "khichadi"];
       const proteins = ["chicken", "mutton", "fish", "prawn", "egg", "paneer"];
-      const requestedFamilies = families.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
+      const namedPastaRequested = pastaShapes.some(word => (" " + requestedText + " ").includes(" " + word + " "));
+      const requestedFamilies = families.filter(word => !(word === "pasta" && namedPastaRequested) && (" " + requestedText + " ").includes(" " + word + " "));
       const requestedProteins = proteins.filter(word => (" " + requestedText + " ").includes(" " + word + " "));
       filteredDishes = filteredDishes.filter(dish => {
         const name = " " + normalize(dish.name) + " ";
-        return (!requestedFamilies.length || requestedFamilies.some(word => name.includes(" " + word + " "))) && (!requestedProteins.length || requestedProteins.some(word => name.includes(" " + word + " ")));
+        return (!requestedFamilies.length || requestedFamilies.some(word => word === "pasta" ? pastaDishes.some(pasta => name.includes(" " + pasta + " ")) : name.includes(" " + word + " "))) && (!requestedProteins.length || requestedProteins.some(word => name.includes(" " + word + " ")));
       });
       if (!filteredDishes.length) return res.json({success:true,source:"database",recommendations:[],summary:"No matching dishes were found for your specific request within the selected dietary preference, budget and distance. Change your request or filters to see other options."});
     }
@@ -664,7 +667,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       filteredDishes = filteredDishes.filter(dish => {
         const name = normalize(dish.name);
         if (/\b(extra|add on|addon|combo)\b/.test(name) || (!matchesAny(name, selectedCuisineKeywords) && !categoryMatches(dish, selectedCuisine, "cuisine"))) return false;
-        const westernBase = /\b(pizza|pasta|spaghetti|penne|burger|sandwich|wrap|waffle|pancake|croissant|cheesecake|brownie)\b/.test(name);
+        const westernBase = matchesAny(name, pastaDishes) || /\b(pizza|burger|sandwich|wrap|waffle|pancake|croissant|cheesecake|brownie)\b/.test(name);
         const chineseCue = matchesAny(name, chineseDishes);
         const indianBase = matchesAny(name, indianDishes);
         if (["indian", "north indian", "south indian", "maharashtrian"].includes(selectedCuisine)) return !westernBase && !chineseCue;

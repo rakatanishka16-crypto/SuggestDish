@@ -50,3 +50,22 @@ test('AI cannot restore a dish rejected by the combined filters',async()=>{
 test('SQL joins one latest menu association per dish without duplicating candidates',()=>{
  assert.match(route,/SELECT DISTINCT ON \("dishId"\)/);assert.match(route,/payload->>'menu_category'/);
 });
+
+
+test('named pastas match Italian dinner and broad pasta requests without needing pasta in their names',async()=>{
+ for(const name of ['Spicy Rigatoni (350 g)','Linguine Aglio Olio e Peperoncino (350 g)','Ricotta Gnocchi (350 g)','Rotolo (350 g)']){
+  const result=await recommend([dish(name,'Fresh Pastas and Risottos',745)],{cuisine:'italian',mood:'dinner',customPreferences:'pasta'});
+  assert.equal(result.recommendations.length,1);assert.equal(result.recommendations[0].dishName,name);
+ }
+});
+test('specific rigatoni request never substitutes another pasta shape or pizza',async()=>{
+ const rows=[{...dish('Spicy Pizza','Pizza',200),id:2},{...dish('Spicy Linguine','Fresh Pastas and Risottos',300),id:3}];
+ const missing=await recommend(rows,{taste:'spicy',cuisine:'italian',customPreferences:'rigatoni pasta'});assert.equal(missing.recommendations.length,0);
+ const yes=await recommend([...rows,dish('Spicy Rigatoni','Fresh Pastas and Risottos',745)],{taste:'spicy',cuisine:'italian',mood:'dinner',customPreferences:'rigatoni pasta'});
+ assert.equal(yes.recommendations[0].dishName,'Spicy Rigatoni');
+});
+test('pasta names still respect diet, budget, taste and cross-cuisine constraints',async()=>{
+ for(const [row,q] of [[dish('Spicy Rigatoni','Fresh Pastas and Risottos',1200),{taste:'spicy',cuisine:'italian'}],[dish('Spicy Rigatoni','Fresh Pastas and Risottos',745,false),{taste:'spicy',cuisine:'italian'}],[dish('Mild Rigatoni','Fresh Pastas and Risottos',745),{taste:'spicy',cuisine:'italian'}],[dish('Spicy Rigatoni','Fresh Pastas and Risottos',745),{cuisine:'indian'}],[dish('Masala Rigatoni','Fresh Pastas and Risottos',745),{cuisine:'italian'}],[dish('Mushroom Risotto','Fresh Pastas and Risottos',825),{customPreferences:'pasta'}]]){
+  const result=await recommend([row],q);assert.equal(result.recommendations.length,0);
+ }
+});
