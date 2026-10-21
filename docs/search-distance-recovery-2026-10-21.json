@@ -1,0 +1,38 @@
+{
+  "checked_on": "2026-10-21",
+  "task": 24,
+  "base_commit": "61e3a61906156157945b443859537ab53cc66e36",
+  "status": "implemented_local_regression_pass_release_pending",
+  "finding": "After an empty exact-location search, Increase distance stopped at 25 km and repeated the same request at that ceiling. City-wide empty results exposed the same action even though distance does not apply.",
+  "implementation": [
+    "Offer the API-supported 50 km maximum in the customer distance selector.",
+    "Advance 25 km to 50 km, then expose a disabled terminal state instead of repeating an identical request.",
+    "Prevent Search closer from repeating an unchanged 1 km request.",
+    "Hide Increase distance for city-wide searches and explain that a precise locality or GPS location is required for distance filtering."
+  ],
+  "verification": {
+    "focused": "9/9 search recovery and preference checks passed",
+    "full_suite": "375/375 passed, 0 failed, 0 skipped",
+    "syntax": "node --check search-recovery-controls.js passed",
+    "quality": "git diff --check passed"
+  },
+  "production_baseline": {
+    "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
+    "deployment_id": "dpl_GuL4itv4rcKr7fiPPJKKzTmRdnq5",
+    "commit": "61e3a61906156157945b443859537ab53cc66e36",
+    "status": "READY",
+    "health": "HTTP 200, success:true, status:ok",
+    "jalna_menu_coverage": "HTTP 200, success:true, 31 restaurants / 933 priced dishes"
+  },
+  "coordination": [
+    "Based on the latest production main after the Olive Khar page 7 data update.",
+    "PR 90 coordinate validation remains a separate open review and is not duplicated.",
+    "Daily outlet-data and weekly marketing work are unchanged."
+  ],
+  "limits": [
+    "Automated DOM/source tests; no real phone, touch, zoom or screen-reader acceptance.",
+    "The cloud browser did not complete the production page load, so no browser behavior was inferred from that failure.",
+    "No live recommendation, Gemini, geocoder, payment, database write, schema, setting, merge or production deployment."
+  ],
+  "next_action": "Review the five-file customer-flow and evidence delta. After approval, verify the preview at city-wide, 25 km and 50 km empty-result states before separately approving production release."
+}
