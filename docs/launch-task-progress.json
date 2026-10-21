@@ -414,6 +414,11 @@
       "date": "2026-10-21",
       "task": 5,
       "action": "PR #86 merged and production READY. Health and Jalna search verified; excluded restaurant 5 returned restaurant 9. No database data changed. Read-only billing config reports unavailable/unconfigured."
+    },
+    {
+      "date": "2026-10-21",
+      "task": 4,
+      "action": "PR #88 scoped import added 16 reviewed Olive Khar dishes and one restaurant with no conflicts; 33 observations saved. Import credential disabled in settings and cleanup deployment READY. Prepared correction for pasta-name false negatives found in live verification."
     }
   ],
   "current_review": {
@@ -457,6 +462,41 @@
       "jalna_refinement": "Initial restaurantId 5 Jain Bandhu; excludeRestaurantIds=5 returned restaurantId 9, 7 Spices",
       "database_writes": "None"
     },
-    "browser_checks": "Live desktop selected Jalna, displayed 31 restaurants/933 searchable dishes and 9 mapped restaurants/90 dishes. Something different switched from 7 Spices Tandoor Garlic Naan to Jain Bandhu Pav Bhaji Centre Pav Bhaji. Real phone, screen-reader and browser GPS acceptance remain unverified."
+    "browser_checks": "Live desktop selected Jalna, displayed 31 restaurants/933 searchable dishes and 9 mapped restaurants/90 dishes. Something different switched from 7 Spices Tandoor Garlic Naan to Jain Bandhu Pav Bhaji Centre Pav Bhaji. Real phone, screen-reader and browser GPS acceptance remain unverified.",
+    "olive_khar_import": {
+      "checked_on": "2026-10-21",
+      "pr": 88,
+      "commit": "dd340bb6be77f79bb02a7bf822ee38477fb05e91",
+      "scope": "mumbai-olive-khar-2026-10-21",
+      "source_observations_saved": 33,
+      "restaurants_added": 1,
+      "dishes_added": 16,
+      "conflicts": 0,
+      "mapped": false,
+      "recommendation_scope": "Mumbai city searches; coordinates unknown",
+      "price_note": "Published base prices exclude government taxes; source dates unchanged",
+      "before": {
+        "priced_records": 1317,
+        "candidate_records": 1270,
+        "candidate_restaurants": 27,
+        "mapped_candidates": 937,
+        "mapped_restaurants": 21,
+        "vegetarian_candidates": 784,
+        "nonvegetarian_candidates": 486,
+        "unknown_diet_candidates": 0
+      },
+      "after": {
+        "priced_records": 1333,
+        "candidate_records": 1286,
+        "candidate_restaurants": 28,
+        "mapped_candidates": 937,
+        "mapped_restaurants": 21,
+        "vegetarian_candidates": 795,
+        "nonvegetarian_candidates": 491,
+        "unknown_diet_candidates": 0
+      },
+      "remaining_unknown_diet_observations": 10,
+      "pasta_filter_regression": "Live Italian + Spicy + rigatoni returned no match after import. Prepared named pasta-family correction; live follow-up pending."
+    }
   }
 }
