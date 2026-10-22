@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-21",
+  "task": 19,
+  "base_commit": "947173743757e2422086261e8cb8074ed0fe24b1",
+  "scope": "Validate stored restaurant coordinates before nearby distance filtering and ranking. No visual, dataset, schema, payment or environment changes.",
+  "reproduction": {
+    "false_nearby_cases": [
+      "Longitude 432 wraps to 72 without range validation",
+      "Latitude 379 wraps to 19 without range validation",
+      "Blank latitude coerces to zero",
+      "Whitespace longitude coerces to zero",
+      "Boolean false coerces to zero",
+      "Empty array coerces to zero"
+    ],
+    "source": "Actual recommendation route invoked with mocked SQL/provider dependencies and synthetic fixture rows; not an assertion that these values exist in production."
+  },
+  "verification": {
+    "focused": {
+      "command": "node --test --test-name-pattern='stored restaurant coordinates|valid coordinate pair|city-only search retains' tests/location-search.test.js",
+      "passed": 10,
+      "failed": 0
+    },
+    "full_suite": {
+      "command": "NODE_PATH=/workspace/scratch/27d390403055/SuggestDish/node_modules npm test",
+      "passed": 380,
+      "failed": 0,
+      "note": "A dependency-free worktree initially reported four module-load failures; rerunning against the unchanged installed dependency tree passed without package or lockfile edits."
+    },
+    "syntax": "node --check api/server.js passed",
+    "whitespace": "git diff --check passed",
+    "retained": [
+      "Finite numeric database strings",
+      "Actual numeric zero latitude and longitude",
+      "City-only searches with unknown coordinates and null distance",
+      "Existing diet, budget, distance, taste, cuisine, mood and requested-dish constraints"
+    ]
+  },
+  "production_baseline": {
+    "project_id": "prj_ESMpwePxMzmAPi1yu6ERTAYrU0jm",
+    "team_id": "team_5QKHOdfRO8X5rlLq6lRZcuqY",
+    "deployment_id": "dpl_HrpjexxvcwsiYL5amHjBUWhzUuvx",
+    "commit": "947173743757e2422086261e8cb8074ed0fe24b1",
+    "status": "READY",
+    "health": "HTTP 200, success true, status ok at 2026-10-21T08:13:42Z",
+    "jalna_coverage": "HTTP 200, 31 restaurants and 933 priced dishes; not complete coverage or verified current availability"
+  },
+  "limits": [
+    "Synthetic invalid-coordinate fixtures; no production database rows inspected or changed",
+    "No live Gemini or external geocoder call",
+    "No real-phone, owner, payment or participant acceptance",
+    "Preview and production release evidence must be added after deployment"
+  ],
+  "coordination": "Prepared from current main after the Olive Khar import and pasta-search release. Separate hourly data collection was not changed or duplicated."
+}

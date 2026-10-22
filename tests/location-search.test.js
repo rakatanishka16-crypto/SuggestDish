@@ -134,6 +134,48 @@ function frontendHarness(fetchOverride) {
   return { element, calls, setLocation(value) { locationChoice = value; element("locationQuery").value = value; }, enableGPS() { geolocationSuccess({ coords: { latitude: 19.07, longitude: 72.88 } }); } };
 }
 
+for (const [label, latitude, longitude, lat, lon] of [
+  ['wrapped longitude', 19, 432, '19', '72'],
+  ['wrapped latitude', 379, 72, '19', '72'],
+  ['blank latitude', '', 0, '0', '0'],
+  ['whitespace longitude', 0, '  ', '0', '0'],
+  ['boolean latitude', false, 0, '0', '0'],
+  ['array longitude', 0, [], '0', '0']
+]) {
+  test(`nearby recommendations reject ${label} from stored restaurant coordinates`, async () => {
+    const row = { id: 1, name: 'Veg Sandwich', price: 100, isVeg: true,
+      restaurantName: 'Coordinate fixture', latitude, longitude };
+    const { status, body } = await serverHarness({ rows: [row] }).request('/api/ai-recommend',
+      { lat, lon, radiusKm: '2', diet: 'vegetarian', budget: '200' });
+    assert.equal(status, 200);
+    assert.equal(body.recommendations.length, 0);
+  });
+}
+
+for (const [latitude, longitude, lat, lon] of [
+  [19, 72, '19', '72'],
+  ['19.0', '72.0', '19', '72'],
+  [0, 0, '0', '0']
+]) {
+  test(`nearby recommendations retain valid coordinate pair ${JSON.stringify([latitude, longitude])}`, async () => {
+    const row = { id: 1, name: 'Veg Sandwich', price: 100, isVeg: true,
+      restaurantName: 'Coordinate fixture', latitude, longitude };
+    const { body } = await serverHarness({ rows: [row] }).request('/api/ai-recommend',
+      { lat, lon, radiusKm: '2', diet: 'vegetarian', budget: '200' });
+    assert.equal(body.recommendations.length, 1);
+    assert.equal(body.recommendations[0].distanceKm, 0);
+  });
+}
+
+test('city-only search retains a menu row with unknown coordinates without inventing distance', async () => {
+  const row = { id: 1, name: 'Veg Sandwich', price: 100, isVeg: true,
+    restaurantName: 'City fixture', restaurantCity: 'Jalna', latitude: null, longitude: null };
+  const { body } = await serverHarness({ rows: [row] }).request('/api/ai-recommend',
+    { city: 'Jalna', diet: 'vegetarian', budget: '200' });
+  assert.equal(body.recommendations.length, 1);
+  assert.equal(body.recommendations[0].distanceKm, null);
+});
+
 test('Enter Location Mumbai reaches recommendation request and displays its result', async () => {
   const h = frontendHarness();
   h.setLocation("Mumbai");
