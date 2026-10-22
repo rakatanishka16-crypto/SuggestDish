@@ -566,3 +566,87 @@ test('restaurant refinement reaches request and both reset controls clear it',as
   assert.equal(new URL(h.calls.filter(url=>url.includes('/api/ai-recommend')).at(-1),'https://www.suggestdish.com').searchParams.has('excludeRestaurantIds'),false);
  }
 });
+
+function deferred() {
+  let resolve;
+  const promise = new Promise(done => { resolve = done; });
+  return { promise, resolve };
+}
+
+test('a delayed GPS result cannot replace a subsequently selected typed city', async () => {
+  const h = frontendHarness();
+  h.element('enableLocation').click();
+  h.setLocation('Mumbai');
+  await h.element('enterLocation').click();
+  h.enableGPS();
+  await h.element('aiRecommendBtn').click();
+  const params = new URL(h.calls.findLast(url => url.includes('/api/ai-recommend')), 'https://www.suggestdish.com').searchParams;
+  assert.equal(params.get('city'), 'Mumbai');
+  assert.equal(params.has('lat'), false);
+  assert.equal(h.element('locationQuery').value, 'Mumbai');
+});
+
+test('Clear location cancels a pending GPS selection', async () => {
+  const h = frontendHarness();
+  h.element('enableLocation').click();
+  h.element('clearLocation').click();
+  h.enableGPS();
+  await h.element('aiRecommendBtn').click();
+  const params = new URL(h.calls.findLast(url => url.includes('/api/ai-recommend')), 'https://www.suggestdish.com').searchParams;
+  assert.equal(params.has('lat'), false);
+  assert.equal(params.has('city'), false);
+  assert.match(h.element('selectedLocation').textContent, /No location selected/);
+});
+
+test('pending GPS blocks recommendations at the previous location until resolved or cleared', async () => {
+  const h = frontendHarness();
+  h.setLocation('Mumbai');
+  await h.element('enterLocation').click();
+  h.element('enableLocation').click();
+  const before = h.calls.length;
+  await h.element('aiRecommendBtn').click();
+  assert.equal(h.calls.length, before);
+  h.element('clearLocation').click();
+  await h.element('aiRecommendBtn').click();
+  assert.equal(h.calls.filter(url => url.includes('/api/ai-recommend')).length, 1);
+});
+
+test('a delayed typed-city response cannot replace a newer GPS selection', async () => {
+  const pending = deferred();
+  const h = frontendHarness(url => url.includes('location-search') ? pending.promise : Promise.resolve({ok:true,json:async()=>({success:true,recommendations:[]})}));
+  h.setLocation('Mumbai');
+  const lookup = h.element('enterLocation').click();
+  h.element('enableLocation').click();
+  h.enableGPS();
+  pending.resolve({ok:true,json:async()=>({success:true,city:'Mumbai',label:'Mumbai',latitude:null,longitude:null})});
+  await lookup;
+  await h.element('aiRecommendBtn').click();
+  const params = new URL(h.calls.findLast(url => url.includes('/api/ai-recommend')), 'https://www.suggestdish.com').searchParams;
+  assert.equal(params.get('lat'), '19.07');
+  assert.equal(params.has('city'), false);
+});
+
+test('Clear location cancels a pending city lookup and leaves its controls available', async () => {
+  const pending = deferred();
+  const h = frontendHarness(() => pending.promise);
+  h.setLocation('Mumbai');
+  const lookup = h.element('enterLocation').click();
+  h.element('clearLocation').click();
+  assert.equal(h.element('enterLocation').disabled, false);
+  pending.resolve({ok:true,json:async()=>({success:true,city:'Mumbai',label:'Mumbai',latitude:null,longitude:null})});
+  assert.equal(await lookup, false);
+  assert.equal(h.element('locationQuery').value, '');
+  assert.match(h.element('selectedLocation').textContent, /No location selected/);
+});
+
+test('editing a city during lookup cannot silently apply the old typed city', async () => {
+  const pending = deferred();
+  const h = frontendHarness(() => pending.promise);
+  h.setLocation('Mumbai');
+  const lookup = h.element('enterLocation').click();
+  h.setLocation('Jalna');
+  pending.resolve({ok:true,json:async()=>({success:true,city:'Mumbai',label:'Mumbai',latitude:null,longitude:null})});
+  assert.equal(await lookup, false);
+  assert.equal(h.element('locationQuery').value, 'Jalna');
+  assert.equal(h.element('enterLocation').disabled, false);
+});

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-21",
+  "updated_on": "2026-10-22",
   "audited_main_commit": "8ad4f9614cc4a947c8e90c6793aa33817d93ddd1",
   "next_task": null,
   "finite_workflow_status": "independent_work_complete_or_blocked_on_founder_authorised_evidence",
@@ -424,6 +424,11 @@
       "date": "2026-10-21",
       "task": 5,
       "action": "PR #89 deployed and verified: vegetarian Italian/Spicy/Dinner rigatoni search returns Olive Khar Spicy Rigatoni 350 g INR 745; INR 700 and Sweet+Rigatoni return no match; Ricotta Gnocchi dinner request succeeds. Temporary import credential returns 403; local credential removed. All 370 tests pass."
+    },
+    {
+      "date": "2026-10-22",
+      "task": 5,
+      "action": "Prepared location-selection race fix: late GPS and city lookup callbacks cannot replace a newer GPS/city selection or Clear location. Pending GPS blocks reuse of the previous search location; a typed replacement city remains available. Removed precise GPS console logging. All 376 tests pass, including six new asynchronous regression cases. Browser verification timed out; real-phone/GPS acceptance remains pending. Release pending."
     }
   ],
   "current_review": {
@@ -514,7 +519,11 @@
         "dishes_linked": 12,
         "conflicts": 0,
         "live_search": "Chocolate Fondant (180 g) at Olive Bar & Kitchen — Khar, INR 675, vegetarian",
-        "source_catalog_totals": {"profiles": 8032, "menu_entries": 15388, "published_prices": 6981}
+        "source_catalog_totals": {
+          "profiles": 8032,
+          "menu_entries": 15388,
+          "published_prices": 6981
+        }
       },
       "live_search_checks": [
         {
@@ -525,7 +534,7 @@
               "dishId": 6524,
               "restaurantId": 305,
               "dishName": "Spicy Rigatoni (350 g)",
-              "restaurant": "Olive Bar & Kitchen \u2014 Khar",
+              "restaurant": "Olive Bar & Kitchen — Khar",
               "price": 745,
               "vegetarian": true
             }
@@ -552,7 +561,7 @@
               "dishId": 6523,
               "restaurantId": 305,
               "dishName": "Ricotta Gnocchi (350 g)",
-              "restaurant": "Olive Bar & Kitchen \u2014 Khar",
+              "restaurant": "Olive Bar & Kitchen — Khar",
               "price": 745,
               "vegetarian": true
             }
