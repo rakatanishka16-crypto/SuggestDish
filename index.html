@@ -6,29 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="SuggestDish AI recommends the best dish for your taste, budget, mood and dietary preferences."
+    content="Get free dish recommendations based on your cravings, taste, budget, dietary preferences and location. Discover what to eat with SuggestDish."
   />
-  <title>SuggestDish AI — Find the best dish</title>
+  <title>SuggestDish — Get Free Dish Recommendation</title>
 
   <link rel="canonical" href="https://www.suggestdish.com/" />
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SuggestDish" />
-  <meta property="og:title" content="SuggestDish — Find your next dish" />
-  <meta property="og:description" content="Discover dishes for your taste, budget, mood and location using available menu data." />
+  <meta property="og:title" content="SuggestDish — Get Free Dish Recommendation" />
+  <meta property="og:description" content="Get free dish recommendations based on your cravings, taste, budget, dietary preferences and location. Discover what to eat with SuggestDish." />
   <meta property="og:url" content="https://www.suggestdish.com/" />
   <meta property="og:image" content="https://www.suggestdish.com/social-preview.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="SuggestDish: find your next dish for your taste, budget, mood and location." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SuggestDish — Find your next dish" />
-  <meta name="twitter:description" content="Discover dishes for your taste, budget, mood and location." />
+  <meta name="twitter:title" content="SuggestDish — Get Free Dish Recommendation" />
+  <meta name="twitter:description" content="Get free dish recommendations based on your cravings, taste, budget, dietary preferences and location. Discover what to eat with SuggestDish." />
   <meta name="twitter:image" content="https://www.suggestdish.com/social-preview.png" />
   <script src="/privacy-controls.js" defer></script>
   <script src="/business-sources.js" defer></script>
   <script src="/directory-location.js" defer></script>
+  <script src="/mobile-navigation.js" defer></script>
 
   <style>
     :root {
@@ -610,7 +611,7 @@
 
   <!-- NAVBAR -->
 
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Main navigation">
     <div class="container nav-inner">
       <a href="#home">
         <img
@@ -620,7 +621,9 @@
         />
       </a>
 
-  <div class="nav-links">
+  <a class="mobile-dish-link btn btn-primary" href="#ai-recommend">Find my dish</a>
+  <button class="mobile-nav-toggle btn btn-light" type="button" aria-expanded="false" aria-controls="primaryNavigation">Menu</button>
+  <div class="nav-links" id="primaryNavigation">
     <a href="#ai-recommend">Find my dish</a>
     <a href="#saved-dishes">Saved dishes</a>
     <a href="#how-it-works">How it works</a>

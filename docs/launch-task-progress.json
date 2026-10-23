@@ -444,6 +444,11 @@
       "date": "2026-10-23",
       "task": 10,
       "action": "Recorded founder support email/address, no GST registration, all-restaurant offer eligibility, standard renewal prices, automatic billing request, post-payment activation and annual-only refund/dish-change intent. Legal name, tax inclusion and annual refund details remain missing. Published contact details only; checkout remains paused."
+    },
+    {
+      "date": "2026-10-23",
+      "task": 6,
+      "action": "Prepared compact 77px mobile header with 64px unchanged logo asset, quick dish link and collapsible navigation. Header hides on downward scroll, returns upward and preserves keyboard/open-menu access; desktop navigation stays visible. Twelve focused tests and Chromium checks at 320/390/768/1366px passed, using stubbed APIs; physical-phone/Safari acceptance remains pending. Homepage title/OG/Twitter metadata set to SuggestDish — Get Free Dish Recommendation and root sitemap lastmod updated. Release pending."
     }
   ],
   "current_review": {

@@ -1,0 +1,46 @@
+{
+  "checked_on": "2026-10-23",
+  "scope": "Homepage mobile header and search metadata",
+  "viewport_checks": [
+    {
+      "width": 320,
+      "headerHeight": 77,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "headerHeight": 77,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "width": 768,
+      "headerHeight": 77,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "width": 1366,
+      "headerHeight": 161,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    }
+  ],
+  "browser": "Headless Chromium 153, emulated phone/touch contexts; desktop 1366px",
+  "verified": [
+    "Mobile header 77px at 320/390/768px",
+    "Menu collapsed initially; opens and closes on link selection",
+    "Header hidden after downward scroll and visible after upward scroll",
+    "Desktop navigation remains visible on downward scroll",
+    "No horizontal overflow or page errors at tested widths",
+    "Page title matches SuggestDish \u2014 Get Free Dish Recommendation"
+  ],
+  "focused_tests": "12 tests passed: navigation direction/jitter/menu/keyboard/touch, location guard, inline compilation, recommendation accessibility and privacy controls",
+  "api_scope": "Local static frontend with API responses stubbed. No real recommendation, database, location permission, payment or analytics acceptance claimed.",
+  "not_tested": [
+    "Physical iPhone/Android and Safari",
+    "Actual Google search result refresh"
+  ],
+  "release_status": "Prepared; production verification pending"
+}
