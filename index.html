@@ -1134,8 +1134,8 @@
       </div>
       <div class="card price-card featured">
         <span class="badge">HORECA · Monthly</span>
-        <div class="price">₹499 <span class="small">/ month · launch offer</span></div>
-        <p class="small mute">Offer through 1 January 2027 (IST). Regular price: ₹799/month from 2 January 2027.</p>
+        <div class="price">₹499 <span class="small">+ applicable taxes / month · launch offer</span></div>
+        <p class="small mute">Offer through 1 January 2027 (IST). Regular price: ₹799/month + applicable taxes from 2 January 2027.</p>
         <p class="mute">Showcase two dishes from your restaurant each month.</p>
         <ul class="price-list">
           <li>✓ 2 dishes eligible for recommendations</li>
@@ -1146,19 +1146,20 @@
       </div>
       <div class="card price-card">
         <span class="badge">HORECA · Annual</span>
-        <div class="price">₹3,999 <span class="small">/ year · launch offer</span></div>
-        <p class="small mute">Offer through 1 January 2027 (IST). Regular price: ₹4,999/year from 2 January 2027.</p>
+        <div class="price">₹3,999 <span class="small">+ applicable taxes / year · launch offer</span></div>
+        <p class="small mute">Offer through 1 January 2027 (IST). Regular price: ₹4,999/year + applicable taxes from 2 January 2027.</p>
         <p class="mute">Keep two dishes from your restaurant listed for a year.</p>
         <ul class="price-list">
           <li>✓ 2 dishes eligible for recommendations</li>
           <li>✓ Per restaurant, for 12 months</li>
           <li>✓ Replace your listed dishes during the year, subject to review</li>
+          <li>✓ Request a proportional refund for the unused period within the first 3 months after payment</li>
           <li>✓ Profile and menu verification before listing</li>
         </ul>
         <a class="btn btn-secondary" href="#business-checkout" data-billing-plan="annual">Annual plan — coming soon</a>
       </div>
     </div>
-    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Paid plans are coming soon. The free plan remains available. Each purchase covers one month or one year; there is no automatic renewal.</p>
+    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Paid plans are coming soon. The free plan remains available. Prices exclude applicable taxes. Annual refund requests are eligible only within the first 3 months after payment and cover the unused subscription period proportionally. Automatic payments are not active.</p>
   </div>
 </section>
 
@@ -1172,7 +1173,7 @@
    <div class="business-fields" style="margin-top:20px">
     <label>Business reference *<input name="submissionId" required maxlength="36" autocomplete="off" placeholder="Your submission reference"></label>
     <label>Private access code *<input name="accessCode" type="password" required maxlength="64" minlength="64" autocomplete="off" placeholder="Code provided when you submitted"></label>
-    <label>Restaurant plan *<select name="plan" required><option value="monthly">Monthly · 2 dishes · ₹499 through 1 Jan 2027; ₹799 from 2 Jan (IST)</option><option value="annual">Annual · 2 dishes · ₹3,999 through 1 Jan 2027; ₹4,999 from 2 Jan (IST)</option></select></label>
+    <label>Restaurant plan *<select name="plan" required><option value="monthly">Monthly · 2 dishes · ₹499 + applicable taxes through 1 Jan 2027; ₹799 + applicable taxes from 2 Jan (IST)</option><option value="annual">Annual · 2 dishes · ₹3,999 + applicable taxes through 1 Jan 2027; ₹4,999 + applicable taxes from 2 Jan (IST)</option></select></label>
    </div>
    <button type="button" id="checkBusinessReview" class="btn btn-secondary" style="margin-top:18px">Check business review status</button>
    <p id="businessReviewStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
@@ -1188,7 +1189,7 @@
     <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these business profile, dish and menu details are accurate and I am authorised to submit them.</label>
     <button type="button" id="saveBusinessDish" class="btn btn-primary">Submit corrections for review</button>
    </fieldset>
-   <p class="small mute" style="margin:18px 0">One payment covers the selected period. No automatic renewal. Payment does not bypass business or menu verification. Save your business reference and private access code; never share the code publicly.</p>
+   <p class="small mute" style="margin:18px 0">One payment covers the selected period. Paid checkout and automatic payments are currently paused. Payment does not bypass business or menu verification. Save your business reference and private access code; never share the code publicly.</p>
    <button type="submit" id="payBusinessPlan" class="btn btn-primary" disabled>Pay securely with Razorpay</button>
    <button type="button" id="checkBusinessPayment" class="btn btn-light">Check payment status</button>
    <p id="businessPaymentStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
@@ -1440,7 +1441,7 @@
 </section>
 
 
-<section class="section" id="about-support"><div class="container"><h2>About SuggestDish</h2><p>SuggestDish is a dish discovery website. We match available menu dishes to your preferences; restaurant listings, dish evidence and source coverage can be incomplete.</p><h3>Help and corrections</h3><p>Use Report incorrect information on a dish card, or email <a href="mailto:Suggestdishyt@gmail.com">Suggestdishyt@gmail.com</a>. Correspondence address: Kadrabad, New Jalna 431203. Business ownership and menu changes are reviewed before publication.</p><h3>Privacy and preference controls</h3><p>Your search preferences and selected location are sent to SuggestDish to find dishes. Preferences may be sent to Google Gemini to interpret your request; locality resolution may use Geoapify. Precise location is requested through browser permission. Saved dishes and optional remembered preferences remain on this device. Location is not included in remembered preferences.</p><p>Anonymous recommendation displays and outbound dish-link clicks are counted; these counts are not unique users or orders. Feedback is stored for private moderation. Business contact details and ownership evidence are used for listing review. Keep private access codes private. You can remove saved dishes and forget remembered preferences using the website controls. Email Suggestdishyt@gmail.com for other privacy requests.</p><p>Paid plans are paused. Buying dish slots does not guarantee placement; any future sponsored placement must be labelled and respect your dietary and budget constraints.</p></div></section>
+<section class="section" id="about-support"><div class="container"><h2>About SuggestDish</h2><p>SuggestDish is a dish discovery website. We match available menu dishes to your preferences; restaurant listings, dish evidence and source coverage can be incomplete.</p><h3>Help and corrections</h3><p>Use Report incorrect information on a dish card, or email <a href="mailto:Suggestdishyt@gmail.com">Suggestdishyt@gmail.com</a>. Operated by Tanishka Raka. Correspondence address: Kadrabad, New Jalna 431203. Business ownership and menu changes are reviewed before publication.</p><h3>Privacy and preference controls</h3><p>Your search preferences and selected location are sent to SuggestDish to find dishes. Preferences may be sent to Google Gemini to interpret your request; locality resolution may use Geoapify. Precise location is requested through browser permission. Saved dishes and optional remembered preferences remain on this device. Location is not included in remembered preferences.</p><p>Anonymous recommendation displays and outbound dish-link clicks are counted; these counts are not unique users or orders. Feedback is stored for private moderation. Business contact details and ownership evidence are used for listing review. Keep private access codes private. You can remove saved dishes and forget remembered preferences using the website controls. Email Suggestdishyt@gmail.com for other privacy requests.</p><p>Paid plans are paused. Buying dish slots does not guarantee placement; any future sponsored placement must be labelled and respect your dietary and budget constraints.</p></div></section>
 
   </main>
 
