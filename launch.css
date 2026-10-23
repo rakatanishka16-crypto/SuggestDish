@@ -26,3 +26,20 @@ input, select, textarea { max-width:100%; }
 .legal-page button {font:inherit; min-height:44px; padding:10px 18px; background:#fffaf1; color:#38251c; border:1px solid #6d5447; border-radius:24px; cursor:pointer;}
 @media(max-width:600px){.hero h1 {font-size:clamp(32px,10vw,47px);} .privacy-choices {bottom:8px;left:8px;right:8px;padding:16px;} .nav-links a {min-height:44px;display:inline-flex;align-items:center;} }
 @media(prefers-reduced-motion:reduce){html {scroll-behavior:auto;} *,*::before,*::after {transition:none!important;animation:none!important;} }
+
+/* Keep mobile search in view without a tall, permanently pinned navigation. */
+.mobile-dish-link, .mobile-nav-toggle { display:none; }
+@media (max-width:900px) {
+  html { scroll-padding-top:88px; }
+  #list-business, #business-checkout { scroll-margin-top:0; }
+  .navbar { transition:transform 180ms ease, visibility 180ms; }
+  .navbar .nav-inner { min-height:76px; padding:6px 0; gap:8px; }
+  .navbar .site-logo { width:64px; height:64px; object-fit:contain; }
+  .navbar .nav-inner > a:first-child { margin-right:auto; flex:0 0 64px; }
+  .navbar .mobile-dish-link { display:inline-flex; font-size:14px; padding:10px 14px; min-height:44px; }
+  .navbar.mobile-nav-ready .mobile-nav-toggle { display:inline-flex; font-size:14px; padding:10px 14px; min-height:44px; }
+  .navbar.mobile-nav-ready .nav-links { display:none; }
+  .navbar.mobile-nav-ready.mobile-menu-open .nav-links { display:grid; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 12px; padding:4px 0 8px; }
+  .navbar .nav-links a { min-height:44px; display:flex; align-items:center; }
+  .navbar.mobile-header-hidden { transform:translateY(-110%); visibility:hidden; pointer-events:none; }
+}
