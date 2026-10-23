@@ -650,3 +650,25 @@ test('editing a city during lookup cannot silently apply the old typed city', as
   assert.equal(h.element('locationQuery').value, 'Jalna');
   assert.equal(h.element('enterLocation').disabled, false);
 });
+
+test('ordinary dosa can be a lunch, dinner or family meal without requiring pizza fusion', async () => {
+ const row={id:1,name:'Masala Dosa',price:79,isVeg:true,restaurantName:'Vijay Vilas',restaurantCity:'Jalna'};
+ for(const mood of ['lunch','dinner','family meal']) {
+  const {body}=await serverHarness({rows:[row]}).request('/api/ai-recommend',{city:'Jalna',diet:'vegetarian',budget:'100',mood,customPreferences:'dosa'});
+  assert.equal(body.recommendations[0]?.dishId,1,mood);
+ }
+});
+test('dosa and dosai spellings match the dish family without substituting unrelated food', async () => {
+ const rows=[{id:1,name:'Masala Dosai',price:100,isVeg:true,restaurantName:'One',restaurantCity:'Mumbai'},{id:2,name:'Paneer Curry',price:50,isVeg:true,restaurantName:'Dosa House',restaurantCity:'Mumbai'}];
+ for(const customPreferences of ['dosa','dosai','dosas','dhosa','डोसा']) {
+  const {body}=await serverHarness({rows}).request('/api/ai-recommend',{city:'Mumbai',diet:'vegetarian',budget:'200',mood:'dinner',cuisine:'South Indian',customPreferences});
+  assert.equal(body.recommendations[0]?.dishId,1,customPreferences);
+ }
+});
+test('dosa improvements preserve budget, diet, distance and unsupported taste constraints', async () => {
+ const row={id:1,name:'Masala Dosa',price:100,isVeg:true,restaurantName:'One',restaurantCity:'Mumbai',latitude:null,longitude:null};
+ for(const extra of [{budget:'50'},{diet:'nonvegetarian'},{taste:'sweet'},{taste:'crispy'},{lat:'19.07',lon:'72.88',radiusKm:'5'}]) {
+  const {body}=await serverHarness({rows:[row]}).request('/api/ai-recommend',{city:'Mumbai',diet:'vegetarian',budget:'200',mood:'lunch',customPreferences:'dosa',...extra});
+  assert.equal(body.recommendations.length,0,JSON.stringify(extra));
+ }
+});

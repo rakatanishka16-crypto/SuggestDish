@@ -434,6 +434,16 @@
       "date": "2026-10-23",
       "task": 10,
       "action": "Founder confirmed launch pricing through 1 January 2027: INR499 monthly / INR3999 annual, both two approved dish slots; regular INR799 monthly / INR4999 annual from 2 January. Updated public cards and paused checkout selector with explicit date wording. Checkout remains paused; payment code, entitlement rules and database constraints require a coordinated update before activation. Tax, renewal price lock and refund decisions remain open."
+    },
+    {
+      "date": "2026-10-23",
+      "task": 5,
+      "action": "Investigated pilot dosa reports: broad Jalna dosa search works; Crispy+Dosa has no menu-name evidence; lunch previously selected only pizza fusion dosa while ordinary dosa was excluded. Prepared optional craving wording, dosai aliases and dosa/idli/uttapam meal eligibility without weakening hard constraints. Added thirteen explicit-price vegetarian Sudama All Veg dosa variants from the currently linked official menu; coordinates unknown. Source catalogue and scoped import prepared; production import pending."
+    },
+    {
+      "date": "2026-10-23",
+      "task": 10,
+      "action": "Recorded founder support email/address, no GST registration, all-restaurant offer eligibility, standard renewal prices, automatic billing request, post-payment activation and annual-only refund/dish-change intent. Legal name, tax inclusion and annual refund details remain missing. Published contact details only; checkout remains paused."
     }
   ],
   "current_review": {

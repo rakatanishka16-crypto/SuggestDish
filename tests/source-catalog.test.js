@@ -32,7 +32,7 @@ test('expanded catalog preserves menu variants, source dietary labels, and read-
 });
 test('coverage exposes honest counts without publishing unresolved research leads',()=>{
  const handlers={};register({get:(path,h)=>handlers[path]=h});let result;handlers['/api/data-coverage']({}, {set(){},json(d){result=d;}});
- assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8032);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15427);assert.equal(result.publishedPrices,7020);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.researchLeadsPending,107);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
+ assert.equal(result.completeCityCensus,false);assert.equal(result.businessProfiles,8033);assert.equal(result.cities['Chhatrapati Sambhajinagar'],87);assert.equal(result.menuEntries,15440);assert.equal(result.publishedPrices,7033);assert.equal(result.outletsWithSourceMenus,214);assert.equal(result.researchLeadsChecked,127);assert.equal(result.researchLeadsPending,107);assert.equal(result.licencesVerified,0);assert.equal('leads' in result,false);
 });
 
 test('Baglami BKC keeps directory address provenance while adding official profile corroboration',()=>{

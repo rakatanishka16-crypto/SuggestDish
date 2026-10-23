@@ -22,7 +22,7 @@
     ],
     "renewal_claim": "No automatic renewal",
     "placement_claim": "Paid dish slots do not guarantee traffic, orders, recommendations or placement.",
-    "support_channel": "https://www.instagram.com/suggestdish.ai/",
+    "support_channel": "mailto:Suggestdishyt@gmail.com",
     "checkout": "Paused/unconfigured"
   },
   "production_read_only_checks": [
@@ -55,11 +55,11 @@
     },
     {
       "field": "operator_address",
-      "needed": "Business/registered correspondence address that may legally be published."
+      "needed": "Founder supplied Kadrabad, New Jalna 431203. Confirm any additional address details needed for merchant/invoice setup privately."
     },
     {
       "field": "support_contact",
-      "needed": "Durable support email and, if offered, phone/WhatsApp details and support hours. Instagram may remain an additional channel."
+      "needed": "Support email confirmed: Suggestdishyt@gmail.com. Phone and hours not supplied."
     },
     {
       "field": "grievance_privacy_contact",
@@ -67,7 +67,7 @@
     },
     {
       "field": "plan_contract",
-      "needed": "Prices and two dish slots per paid plan confirmed on 23 October 2026. Confirm remaining period start/end, renewal pricing/price-lock, eligibility, upgrades and expiry rules; implement matching payment and database rules before checkout."
+      "needed": "Founder requested standard prices at renewal, automatic recurring payments, activation after payment and annual dish changes. Provider and entitlement implementation plus sandbox acceptance remain pending."
     },
     {
       "field": "tax_and_invoice",
@@ -115,9 +115,32 @@
     "publication_scope": "Public pricing and decision record only. Existing payment code and database constraints still need a coordinated pricing/entitlement migration before checkout is enabled.",
     "open_decisions": [
       "Tax inclusion and invoice treatment",
-      "Renewal pricing/price lock for customers who buy during the offer",
-      "Cancellation/refund terms",
-      "Remaining plan duration, upgrade and expiry details"
+      "Annual refund window, calculation, deductions and processing time",
+      "Details of recurring mandate and renewal-price consent"
     ]
+  },
+  "founder_business_decisions_2026_10_23": {
+    "legal_operator": null,
+    "legal_operator_status": "Exact name not supplied; first answer repeats the question.",
+    "correspondence_address": "Kadrabad, New Jalna 431203",
+    "support_email": "Suggestdishyt@gmail.com",
+    "gst_registered": false,
+    "tax_inclusion": null,
+    "offer_open_to_all_restaurants": true,
+    "renewal_monthly_inr": 799,
+    "renewal_annual_inr": 4999,
+    "renewal_method_requested": "automatic_recurring",
+    "activation_requested": "after_payment",
+    "annual_dish_replacement": "Allowed subject to review; requested as annual-plan advantage.",
+    "monthly_dish_replacement": "Not included in requested annual-only benefit; enforcement pending.",
+    "annual_refund_request": "Only annual subscribers are eligible to request cancellation/refund.",
+    "refund_details_pending": [
+      "Eligible request window",
+      "Full refund or prorated refund",
+      "Any deductions",
+      "Refund processing time",
+      "Treatment of activation and previously used service"
+    ],
+    "implementation_status": "Confirmed contact details may be published. Recurring mandates, renewal price changes, entitlement changes and refunds are not live. Checkout remains paused; sandbox/provider and legal policy review still required."
   }
 }
