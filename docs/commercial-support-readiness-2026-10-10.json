@@ -51,7 +51,7 @@
   "founder_decisions_required": [
     {
       "field": "legal_operator",
-      "needed": "Exact individual or registered entity name that operates SuggestDish."
+      "needed": "Confirmed: Tanishka Raka."
     },
     {
       "field": "operator_address",
@@ -71,11 +71,11 @@
     },
     {
       "field": "tax_and_invoice",
-      "needed": "Whether displayed prices include applicable taxes, who issues invoices/receipts and what business/tax details appear on them."
+      "needed": "Prices exclude applicable taxes. Tax rate, registration and invoicing setup remain pending; do not automatically add GST."
     },
     {
       "field": "cancellation_refund_failure_policy",
-      "needed": "Founder-approved rules for cancellation, duplicate/failed charges, refunds, processing timing and plan deactivation."
+      "needed": "Annual refunds only: request within first three months after payment, proportional to unused period. Processing time, fee/tax adjustment and implementation details remain pending."
     },
     {
       "field": "policy_effective_date_and_jurisdiction",
@@ -114,18 +114,18 @@
     "interpretation": "Two approved dish listing slots per restaurant; not a guarantee of recommendation frequency. End of 1 January is interpreted as inclusive.",
     "publication_scope": "Public pricing and decision record only. Existing payment code and database constraints still need a coordinated pricing/entitlement migration before checkout is enabled.",
     "open_decisions": [
-      "Tax inclusion and invoice treatment",
-      "Annual refund window, calculation, deductions and processing time",
+      "Tax rate/registration and invoice setup",
+      "Refund processing time, tax/fee adjustments and rounding",
       "Details of recurring mandate and renewal-price consent"
     ]
   },
   "founder_business_decisions_2026_10_23": {
-    "legal_operator": null,
-    "legal_operator_status": "Exact name not supplied; first answer repeats the question.",
+    "legal_operator": "Tanishka Raka",
+    "legal_operator_status": "Founder-confirmed individual operator; no registered entity name supplied.",
     "correspondence_address": "Kadrabad, New Jalna 431203",
     "support_email": "Suggestdishyt@gmail.com",
     "gst_registered": false,
-    "tax_inclusion": null,
+    "tax_inclusion": "Advertised prices exclude applicable taxes; rate and registration configuration remain unset.",
     "offer_open_to_all_restaurants": true,
     "renewal_monthly_inr": 799,
     "renewal_annual_inr": 4999,
@@ -133,14 +133,14 @@
     "activation_requested": "after_payment",
     "annual_dish_replacement": "Allowed subject to review; requested as annual-plan advantage.",
     "monthly_dish_replacement": "Not included in requested annual-only benefit; enforcement pending.",
-    "annual_refund_request": "Only annual subscribers are eligible to request cancellation/refund.",
+    "annual_refund_request": "Annual subscribers may request cancellation/refund only within the first three months after payment; refund is proportional to the unused subscription period.",
     "refund_details_pending": [
-      "Eligible request window",
-      "Full refund or prorated refund",
-      "Any deductions",
       "Refund processing time",
-      "Treatment of activation and previously used service"
+      "Treatment of any tax adjustment and gateway fees",
+      "Precise calendar boundary and rounding for implementation"
     ],
-    "implementation_status": "Confirmed contact details may be published. Recurring mandates, renewal price changes, entitlement changes and refunds are not live. Checkout remains paused; sandbox/provider and legal policy review still required."
+    "implementation_status": "Confirmed contact details may be published. Recurring mandates, renewal price changes, entitlement changes and refunds are not live. Checkout remains paused; sandbox/provider and legal policy review still required.",
+    "refund_window_months": 3,
+    "refund_basis": "unused_subscription_period"
   }
 }
