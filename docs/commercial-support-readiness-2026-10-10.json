@@ -9,11 +9,13 @@
     "displayed_paid_options": [
       {
         "price_inr": 499,
+        "regular_price_inr": 799,
         "period": "month",
-        "dish_slots": 3
+        "dish_slots": 2
       },
       {
-        "price_inr": 4999,
+        "price_inr": 3999,
+        "regular_price_inr": 4999,
         "period": "year",
         "dish_slots": 2
       }
@@ -65,7 +67,7 @@
     },
     {
       "field": "plan_contract",
-      "needed": "Confirm or revise prices, dish-slot counts, period start/end rules, eligibility, upgrades and what happens after expiry. The displayed annual option currently provides fewer slots than monthly and requires an intentional decision."
+      "needed": "Prices and two dish slots per paid plan confirmed on 23 October 2026. Confirm remaining period start/end, renewal pricing/price-lock, eligibility, upgrades and expiry rules; implement matching payment and database rules before checkout."
     },
     {
       "field": "tax_and_invoice",
@@ -92,5 +94,30 @@
   ],
   "changes_to_public_policy": 0,
   "payments_or_messages_sent": 0,
-  "next_independent_task": 11
+  "next_independent_task": 11,
+  "founder_pricing_decision": {
+    "confirmed_on": "2026-10-23",
+    "currency": "INR",
+    "monthly": {
+      "offer_price": 499,
+      "regular_price": 799,
+      "dish_slots": 2
+    },
+    "annual": {
+      "offer_price": 3999,
+      "regular_price": 4999,
+      "dish_slots": 2
+    },
+    "offer_through_local_date": "2027-01-01",
+    "timezone": "Asia/Kolkata",
+    "interpreted_exclusive_offer_end": "2027-01-02T00:00:00+05:30",
+    "interpretation": "Two approved dish listing slots per restaurant; not a guarantee of recommendation frequency. End of 1 January is interpreted as inclusive.",
+    "publication_scope": "Public pricing and decision record only. Existing payment code and database constraints still need a coordinated pricing/entitlement migration before checkout is enabled.",
+    "open_decisions": [
+      "Tax inclusion and invoice treatment",
+      "Renewal pricing/price lock for customers who buy during the offer",
+      "Cancellation/refund terms",
+      "Remaining plan duration, upgrade and expiry details"
+    ]
+  }
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-22",
+  "updated_on": "2026-10-23",
   "audited_main_commit": "8ad4f9614cc4a947c8e90c6793aa33817d93ddd1",
   "next_task": null,
   "finite_workflow_status": "independent_work_complete_or_blocked_on_founder_authorised_evidence",
@@ -429,6 +429,11 @@
       "date": "2026-10-22",
       "task": 5,
       "action": "Prepared location-selection race fix: late GPS and city lookup callbacks cannot replace a newer GPS/city selection or Clear location. Pending GPS blocks reuse of the previous search location; a typed replacement city remains available. Removed precise GPS console logging. All 376 tests pass, including six new asynchronous regression cases. Browser verification timed out; real-phone/GPS acceptance remains pending. Release pending."
+    },
+    {
+      "date": "2026-10-23",
+      "task": 10,
+      "action": "Founder confirmed launch pricing through 1 January 2027: INR499 monthly / INR3999 annual, both two approved dish slots; regular INR799 monthly / INR4999 annual from 2 January. Updated public cards and paused checkout selector with explicit date wording. Checkout remains paused; payment code, entitlement rules and database constraints require a coordinated update before activation. Tax, renewal price lock and refund decisions remain open."
     }
   ],
   "current_review": {
