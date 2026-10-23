@@ -485,6 +485,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         .toLowerCase()
         .replace(/गोलगप्पा|पानी पूरी|पानीपुरी|\bgolgappas?\b|\bpanipuri\b|\bpuchka\b/g, "pani puri")
         .replace(/पोहा|पोहे|\bpohe\b/g, "poha").replace(/डोसा/g, "dosa")
+        .replace(/\b(?:dosai|dosas|dosais|dosha|dhosas?|dhosa)\b/g, "dosa")
         .replace(/\bkhichdi\b/g, "khichadi")
         .replace(/[^a-z0-9\s]/g, " ")
         .replace(/\s+/g, " ")
@@ -553,7 +554,7 @@ app.get("/api/ai-recommend", async (req, res) => {
     // These describe dish types, not verified service times, group portions
     // or restaurant atmosphere. Every displayed occasion has an explicit rule.
     const breakfastDishes = ["idli", "dosa", "poha", "upma", "misal", "sheera", "sabudana khichadi", "puri bhaji", "poori bhaji", "paratha", "sandwich", "medu vada", "vada pav", "uttapam", "pancake", "waffle", "toast", "croissant"];
-    const mainDishes = ["biryani", "thali", "rice bowl", "fried rice", "dal", "curry", "khichadi", "paneer curry", "paneer butter masala", "paneer tikka masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "paneer kadai", "paneer kadhai", "paneer makhanwala", "veg makhanwala", "veg kadai", "veg kadhai", "paneer lababdar", "shahi paneer", "matar paneer", "rajma", "chole", ...pastaDishes, "pizza", "noodles", "risotto", "paratha"];
+    const mainDishes = ["dosa", "idli", "uttapam", "uttappam", "biryani", "thali", "rice bowl", "fried rice", "dal", "curry", "khichadi", "paneer curry", "paneer butter masala", "paneer tikka masala", "paneer makhani", "palak paneer", "kadai paneer", "kadhai paneer", "paneer kadai", "paneer kadhai", "paneer makhanwala", "veg makhanwala", "veg kadai", "veg kadhai", "paneer lababdar", "shahi paneer", "matar paneer", "rajma", "chole", ...pastaDishes, "pizza", "noodles", "risotto", "paratha"];
     const snackDishes = ["sandwich", "fries", "vada pav", "pav bhaji", "chaat", "bhel", "pani puri", "sev puri", "dahi puri", "momos", "pakora", "pakoda", "bhajiya", "fritters", "samosa", "kachori", "puff", "roll", "wrap", "waffle"];
     const moodKeywords = {
       breakfast: breakfastDishes,
