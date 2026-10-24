@@ -1,3 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict'),{label}=require('../lib/star-evidence');
 test('published menu features do not claim audited popularity or owner verification',()=>{assert.match(label({starOrigin:'published_menu',popularityBasis:'bestseller',starConfirmed:true}),/not independently audited/);assert.match(label({starOrigin:'published_menu',popularityBasis:'signature'}),/Restaurant-listed signature/);assert.doesNotMatch(label({starOrigin:'published_menu'}),/Approved owner/);});
 test('owner claims and unconfirmed menus keep distinct evidence labels',()=>{assert.match(label({starConfirmed:true,popularityVerified:false}),/owner-reported/);assert.match(label({starConfirmed:true,popularityVerified:true}),/independently checked/);assert.match(label({}),/not yet confirmed/);});
+
+test('self-published dishes disclose unverified owner-supplied dietary and price facts',()=>{assert.match(label({ownerSubmitted:true}),/Owner-submitted/);assert.match(label({ownerSubmitted:true}),/not independently checked/);});

@@ -14,7 +14,7 @@
     const r=await fetch('/api/business-listings/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(c),signal:AbortSignal.timeout(15000)}),d=await r.json();
     if(!current(version,c))return;
     if(!r.ok || !d.success)throw Error(d.error || 'Status unavailable.');
-    const stages={pending:'Received → Profile, ownership and menu review pending',needs_information:'Received → More information requested → Resubmit for review',approved:'Received → Review complete → Approved for eligible recommendations',rejected:'Received → Review complete → Not approved'};
+    const stages={published:'Listed → Your business and dish are live',pending:'Received → Profile, ownership and menu review pending',needs_information:'Received → More information requested → Resubmit for review',approved:'Received → Review complete → Approved for eligible recommendations',rejected:'Received → Review complete → Not approved'};
     status.textContent=d.businessName+'\n'+(stages[d.status] || 'Review status unavailable')+'\n'+d.message;
    }catch(e){if(current(version,c))status.textContent=e.message;}
    finally{button.disabled=false;}

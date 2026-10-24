@@ -672,3 +672,11 @@ test('dosa improvements preserve budget, diet, distance and unsupported taste co
   assert.equal(body.recommendations.length,0,JSON.stringify(extra));
  }
 });
+
+
+test('self-published menu remains eligible and is labelled without granting owner verification',async()=>{
+ const h=serverHarness({rows:[{id:901,name:'Chocolate Cake 500 g',price:400,isVeg:true,restaurantId:902,restaurantName:'Home Bakery',restaurantAddress:'Public service area',restaurantCity:'Jalna',latitude:null,longitude:null,ownerSubmitted:true,ownerVerified:false}]});
+ const result=await h.request('/api/ai-recommend',{city:'Jalna',budget:'500',diet:'vegetarian',taste:'sweet',customPreferences:'cake'});
+ assert.equal(result.status,200);assert.equal(result.body.recommendations.length,1);assert.equal(result.body.recommendations[0].ownerSubmitted,true);assert.equal(result.body.recommendations[0].ownerVerified,false);assert.match(result.body.recommendations[0].reason,/Owner-submitted/);
+ const query=h.queries.find(q=>q.query.includes('FROM "Dish"')).query;assert.match(query,/hidden_listing.status IN \('rejected','needs_information'\)/);
+});

@@ -326,6 +326,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         d.name,
         d.price,
         d."isVeg",
+        (self_listing.id IS NOT NULL) AS "ownerSubmitted",
         menu_evidence."menuCategory",
         r.id AS "restaurantId",
         (sd."dishId" IS NOT NULL OR cs."dishId" IS NOT NULL) AS "starConfirmed",
@@ -343,6 +344,8 @@ app.get("/api/ai-recommend", async (req, res) => {
       FROM "Dish" d
       JOIN "Restaurant" r
         ON r.id = d."restaurantId"
+      LEFT JOIN public."BusinessSubmission" self_listing ON self_listing."restaurantId"=r.id
+        AND self_listing."verificationNotes" LIKE 'owner_self_published_v1%' AND self_listing.status='pending'
       LEFT JOIN (
         SELECT DISTINCT ON ("dishId") "dishId", payload->>'menu_category' AS "menuCategory"
         FROM public."CatalogueDish"
@@ -357,6 +360,7 @@ app.get("/api/ai-recommend", async (req, res) => {
         (NOT EXISTS (SELECT 1 FROM "RestaurantStarDish" current_star WHERE current_star."restaurantId"=r.id)
          AND NOT EXISTS (SELECT 1 FROM "SourceStarDish" current_source WHERE current_source."restaurantId"=r.id AND current_source."expiresAt">NOW())))
         AND LOWER(r.name) !~ '(^|[^a-z])tejal[''’]?s?[[:space:]]+kitchen([^a-z]|$)'
+        AND NOT EXISTS (SELECT 1 FROM public."BusinessSubmission" hidden_listing WHERE hidden_listing."restaurantId"=r.id AND hidden_listing."verificationNotes" LIKE 'owner_self_published_v1%' AND hidden_listing.status IN ('rejected','needs_information'))
         AND d.price IS NOT NULL
         AND d.price <= ${budget}
         AND (${city} = '' OR LOWER(TRIM(r.city)) = LOWER(${city}))
@@ -785,6 +789,7 @@ app.get("/api/ai-recommend", async (req, res) => {
       restaurantId: Number(dish.restaurantId),
       sourceCheckedAt: dish.sourceCheckedAt || null,
       ownerVerified: dish.ownerVerified === true,
+      ownerSubmitted: dish.ownerSubmitted === true,
       dishName: dish.name,
       price: Number(dish.price),
       vegetarian: dish.isVeg === true,
@@ -886,6 +891,7 @@ Return exactly:
       restaurantId: Number(dish.restaurantId),
       sourceCheckedAt: dish.sourceCheckedAt || null,
       ownerVerified: dish.ownerVerified === true,
+      ownerSubmitted: dish.ownerSubmitted === true,
       dishName: dish.name,
       restaurant: dish.restaurantName,
       price: Number(dish.price),
@@ -1004,6 +1010,7 @@ Return exactly:
                 restaurantId: Number(candidate.restaurantId),
                 sourceCheckedAt: candidate.sourceCheckedAt || null,
                 ownerVerified: candidate.ownerVerified === true,
+                ownerSubmitted: candidate.ownerSubmitted === true,
                 dishName: candidate.name,
                 restaurant: candidate.restaurantName,
                 price: Number(candidate.price),
