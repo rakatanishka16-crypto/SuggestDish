@@ -1083,27 +1083,28 @@
 
 <section class="section" id="list-business">
   <div class="container">
-    <div class="section-head"><div><h2>List your HORECA business</h2><p class="sub">Help foodies discover your signature dish. Submit your restaurant, cafe, hotel or food business for review.</p></div></div>
+    <div class="section-head"><div><h2>List your food business</h2><p class="sub">Home bakers, caterers, hotels, restaurants, cafes, cloud kitchens and other food outlets are welcome. List your business free and appear immediately.</p></div></div>
     <form id="businessListingForm" class="card" style="padding:28px">
-      <p class="mute" style="margin-bottom:20px">We check your official business website or profile, ownership and menu before adding your business to recommendations. A profile link helps us verify your details; it does not automatically verify ownership.</p>
+      <p class="mute" style="margin-bottom:20px">Add your business details, a website or social profile, and a menu link or a profile where your menu is posted. Your listing and signature dish publish immediately as owner-submitted. No manual approval or payment is required.</p>
       <div class="business-fields">
         <label>Business name *<input name="businessName" required maxlength="160" autocomplete="organization"></label>
-        <label>Business category *<select name="category" required><option value="">Choose category</option><option>Restaurant</option><option>Cafe</option><option>Hotel</option><option>Bakery</option><option>Catering</option><option>Other</option></select></label>
+        <label>Business category *<select name="category" required><option value="">Choose category</option><option>Restaurant</option><option>Cafe</option><option>Hotel</option><option>Bakery</option><option>Home baker</option><option>Catering</option><option>Cloud kitchen</option><option>Food outlet</option><option>Other</option></select></label>
         <label>City *<input name="city" required maxlength="100" autocomplete="address-level2"></label>
-        <label>Full business address *<input name="address" required maxlength="500" autocomplete="street-address"></label>
+        <label>Public business area or address *<input name="address" required maxlength="500" autocomplete="street-address"></label>
         <label>Your name *<input name="contactName" required maxlength="100" autocomplete="name"></label>
         <label>Contact email *<input name="email" type="email" required maxlength="254" autocomplete="email"></label>
         <label>Phone number *<input name="phone" type="tel" required maxlength="20" autocomplete="tel"></label>
         <label>Official website or business profile link (Google, Zomato, Instagram, Facebook) *<input name="profileUrl" type="url" required maxlength="2000" placeholder="https://www.instagram.com/yourbusiness/ or https://yourwebsite.com"></label>
-        <label>Menu link (optional)<input name="menuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
-        <label>Signature dish name *<input name="dishName" required maxlength="160"></label>
+        <label>Menu link (leave blank if your menu is on the profile above)<input name="menuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
+        <label><input name="menuOnProfile" type="checkbox"> My menu is available on the business profile linked above.</label>
+        <label>Signature dish name (include cake size or portion) *<input name="dishName" required maxlength="160"></label>
         <label>Dish price (₹) *<input name="dishPrice" type="number" required min="0.01" max="100000" step="0.01"></label>
         <label>Dish dietary type *<select name="diet" required><option value="">Choose type</option><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
       </div>
       <div aria-hidden="true" style="display:none"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
-      <label style="display:block;margin:20px 0"><input name="consent" type="checkbox" required> I am the owner or an authorised representative. I confirm these details are accurate and agree to be contacted about this submission.</label>
-      <p class="mute" style="margin-bottom:18px">Your contact details are used for listing review and are not displayed publicly by this form. Submission is free and does not guarantee approval or promotion.</p>
-      <button class="btn btn-primary" type="submit">Submit business for review</button>
+      <label style="display:block;margin:20px 0"><input name="consent" type="checkbox" required> I am the owner or an authorised representative. I confirm these details are accurate and authorise publishing the business name, category, city, public area/address, profile, menu and dish details. My contact name, email and phone remain private.</label>
+      <p class="mute" style="margin-bottom:18px">For home businesses, enter a public service area instead of a private home address. Contact details stay private. Listings are owner-submitted, not independently verified. Recommendations depend on matching preferences; nearby results require location coordinates. Spam or inaccurate listings may be removed.</p>
+      <button class="btn btn-primary" type="submit">Publish my business</button>
       <p id="businessListingStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
     </form>
   </div>
@@ -1178,10 +1179,10 @@
     <label>Private access code *<input name="accessCode" type="password" required maxlength="64" minlength="64" autocomplete="off" placeholder="Code provided when you submitted"></label>
     <label>Restaurant plan *<select name="plan" required><option value="monthly">Monthly · 2 dishes · ₹499 + applicable taxes through 1 Jan 2027; ₹799 + applicable taxes from 2 Jan (IST)</option><option value="annual">Annual · 2 dishes · ₹3,999 + applicable taxes through 1 Jan 2027; ₹4,999 + applicable taxes from 2 Jan (IST)</option></select></label>
    </div>
-   <button type="button" id="checkBusinessReview" class="btn btn-secondary" style="margin-top:18px">Check business review status</button>
+   <button type="button" id="checkBusinessReview" class="btn btn-secondary" style="margin-top:18px">Check my listing status</button>
    <p id="businessReviewStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
    <fieldset id="signatureDishEditor" hidden style="border:0;padding:0;margin-top:20px">
-    <legend>Update your business profile and signature dish for review</legend>
+    <legend>Update your business profile and signature dish</legend>
     <div class="business-fields">
      <label>Official website or business profile link<input name="updatedProfileUrl" type="url" maxlength="2000" placeholder="https://…"></label>
      <label>Dish name<input name="updatedDishName" maxlength="160"></label>
@@ -1189,8 +1190,8 @@
      <label>Dietary type<select name="updatedDiet"><option value="vegetarian">Vegetarian</option><option value="non-vegetarian">Non-vegetarian</option></select></label>
      <label>Menu source link<input name="updatedMenuUrl" type="url" maxlength="2000" placeholder="https://…"></label>
     </div>
-    <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these business profile, dish and menu details are accurate and I am authorised to submit them.</label>
-    <button type="button" id="saveBusinessDish" class="btn btn-primary">Submit corrections for review</button>
+    <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these details are accurate, my menu is available at the menu or profile link, and I authorise publishing this business and dish update.</label>
+    <button type="button" id="saveBusinessDish" class="btn btn-primary">Publish my changes</button>
    </fieldset>
    <p class="small mute" style="margin:18px 0">One payment covers the selected period. Paid checkout and automatic payments are currently paused. Payment does not bypass business or menu verification. Save your business reference and private access code; never share the code publicly.</p>
    <button type="submit" id="payBusinessPlan" class="btn btn-primary" disabled>Pay securely with Razorpay</button>
@@ -1773,7 +1774,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     if (dish.sponsored === true) { const sponsored=document.createElement("span"); sponsored.className="badge"; sponsored.textContent="Sponsored"; container.prepend(sponsored); }
-    for (const label of [dish.ownerVerified===true ? "Verified owner" : null,dish.starConfirmed===true ? (dish.starOrigin==="published_menu" ? "Menu-listed specialty" : "Reviewed star dish") : null].filter(Boolean)) { const badge=document.createElement("span"); badge.className="badge";badge.textContent=label;container.append(badge); }
+    for (const label of [dish.ownerVerified===true ? "Verified owner" : dish.ownerSubmitted===true ? "Owner-submitted" : null,dish.starConfirmed===true ? (dish.starOrigin==="published_menu" ? "Menu-listed specialty" : "Reviewed star dish") : null].filter(Boolean)) { const badge=document.createElement("span"); badge.className="badge";badge.textContent=label;container.append(badge); }
     const evidence=document.createElement("p");evidence.className="small mute";
     evidence.textContent=dish.starOrigin==="owner_claim" ? "Owner-submitted star dish. Popularity: " + (dish.popularityVerified ? "independently checked" : "owner-reported, not independently verified") + "." : dish.starOrigin==="published_menu" ? "Star dish identified in a published menu. Dish-specific customer rating: not available." : "Menu suggestion. Dish-specific rating and popularity evidence: not available.";
     container.append(evidence);
@@ -2247,12 +2248,14 @@ document.addEventListener("DOMContentLoaded", () => {
    const status = document.getElementById('businessListingStatus');
    const data = Object.fromEntries(new FormData(form));
    data.consent = form.elements.consent.checked;
+   data.menuOnProfile = form.elements.menuOnProfile.checked;
    button.disabled = true; status.textContent = 'Submitting your business…';
    try {
      const response = await fetch('/api/business-listings', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
      const result = await response.json();
      if (!response.ok || !result.success) throw new Error(result.error || 'Unable to submit. Please try again.');
-     status.textContent = result.message + ' Save your business reference: ' + result.reference + '. Private access code: ' + result.accessCode + '. Keep this code private; use it to check your review status and update dish details.';
+     status.textContent = result.message + ' Save your business reference: ' + result.reference + '. Private access code: ' + result.accessCode + '. Keep this code private; use it to check your listing and update dish details.';
+     if(result.directoryUrl){const link=document.createElement('a');link.href=result.directoryUrl;link.textContent='View my published business';link.className='btn btn-light';status.append(document.createElement('br'),link);}
      const paymentForm = document.getElementById('businessPaymentForm');
      paymentForm.elements.submissionId.value = result.reference;
      paymentForm.elements.accessCode.value = result.accessCode;
@@ -2313,7 +2316,7 @@ document.addEventListener("DOMContentLoaded", () => {
  });
  document.getElementById('saveBusinessDish').addEventListener('click',async(event)=>{
   const button=event.currentTarget;button.disabled=true;
-  try{const data=await api('/api/business-listings/dish',{...credentials(),profileUrl:form.elements.updatedProfileUrl.value,dishName:form.elements.updatedDishName.value,dishPrice:form.elements.updatedDishPrice.value,diet:form.elements.updatedDiet.value,menuUrl:form.elements.updatedMenuUrl.value,consent:form.elements.dishUpdateConsent.checked});reviewStatus.textContent=data.message;editor.hidden=true;form.elements.dishUpdateConsent.checked=false;}
+  try{const data=await api('/api/business-listings/dish',{...credentials(),profileUrl:form.elements.updatedProfileUrl.value,dishName:form.elements.updatedDishName.value,dishPrice:form.elements.updatedDishPrice.value,diet:form.elements.updatedDiet.value,menuUrl:form.elements.updatedMenuUrl.value,menuOnProfile:form.elements.dishUpdateConsent.checked,consent:form.elements.dishUpdateConsent.checked});reviewStatus.textContent=data.message;editor.hidden=true;form.elements.dishUpdateConsent.checked=false;}
   catch(error){reviewStatus.textContent=error.message;}finally{button.disabled=false;}
  });
  document.getElementById('checkBusinessPayment').addEventListener('click',async(event)=>{const button=event.currentTarget;button.disabled=true;status.textContent='Checking payment…';try{showResult(await api('/api/billing/status',credentials()));}catch(error){status.textContent=error.message;}finally{button.disabled=false;}});
@@ -2323,7 +2326,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 (()=>{const form=document.getElementById('businessDirectoryForm'),status=document.getElementById('directoryStatus'),results=document.getElementById('directoryResults'),next=document.getElementById('directoryNext');let offset=0,filters={},busy=false;
 async function search(){if(busy)return;busy=true;next.hidden=true;results.replaceChildren();status.textContent='Searching businesses…';try{const r=await fetch('/api/business-directory?'+new URLSearchParams({...filters,...(window.SuggestDishDirectoryLocation?.get() || {}),offset,limit:20}),{signal:AbortSignal.timeout(25000)});const data=await r.json();if(!r.ok)throw new Error(data.error || 'Search unavailable');status.textContent=data.businesses.length?data.total+' matching source records. Showing '+(offset+1)+'–'+(offset+data.businesses.length)+'.':'No matching businesses found in our current coverage. You can submit a missing business for review.';
-for(const b of data.businesses){const card=document.createElement('article');card.className='card panel';const title=document.createElement('h3');title.textContent=b.name;card.append(title);const details=document.createElement('p');details.className='mute';details.textContent=[b.category.replace(/^[^:]+:/,''),b.address || b.city || 'Address not provided by source'].join(' · ');card.append(details);if(Number.isFinite(b.distanceKm)){const distance=document.createElement('p');distance.className='small mute';distance.textContent=b.distanceKm+' km straight-line distance';card.append(distance);}const note=document.createElement('p');note.className='small mute';note.textContent=['menu_available','menu_source_checked'].includes(b.reviewStatus)?'Menu data available; prices and availability may change.':b.reviewStatus==='source_observed'?'Published-source listing; ownership and current availability are unconfirmed.':'Source listing — business and menu verification pending.';card.append(note);if(b.sourceUrl){try{if(new URL(b.sourceUrl).protocol==='https:'){const a=document.createElement('a');a.href=b.sourceUrl;a.target='_blank';a.rel='noopener noreferrer';a.textContent='View source';a.style.textDecoration='underline';card.append(a);}}catch{}}window.SuggestDishSources?.attach(card,b);const claim=document.createElement("a");claim.className="btn btn-light";claim.textContent=(b.id.startsWith("official:")||b.id.startsWith("open:osm_"))?"Submit this business for review":"Claim this business";claim.href=(b.id.startsWith("official:")||b.id.startsWith("open:osm_"))?"/?"+new URLSearchParams({sourceBusinessId:b.id})+"#list-business":"/claim-business.html?"+new URLSearchParams({businessId:b.id,name:b.name,city:b.city || "",address:b.address || ""});card.append(claim);results.append(card);}next.hidden=!data.hasMore;
+for(const b of data.businesses){const card=document.createElement('article');card.className='card panel';const title=document.createElement('h3');title.textContent=b.name;card.append(title);const details=document.createElement('p');details.className='mute';details.textContent=[b.category.replace(/^[^:]+:/,''),b.address || b.city || 'Address not provided by source'].join(' · ');card.append(details);if(Number.isFinite(b.distanceKm)){const distance=document.createElement('p');distance.className='small mute';distance.textContent=b.distanceKm+' km straight-line distance';card.append(distance);}const note=document.createElement('p');note.className='small mute';note.textContent=['menu_available','menu_source_checked'].includes(b.reviewStatus)?'Menu data available; prices and availability may change.':b.reviewStatus==='owner_submitted'?'Owner-submitted business and menu; details have not been independently verified.':b.reviewStatus==='source_observed'?'Published-source listing; ownership and current availability are unconfirmed.':'Source listing — business and menu verification pending.';card.append(note);if(b.sourceUrl){try{if(new URL(b.sourceUrl).protocol==='https:'){const a=document.createElement('a');a.href=b.sourceUrl;a.target='_blank';a.rel='noopener noreferrer';a.textContent='View source';a.style.textDecoration='underline';card.append(a);}}catch{}}if(b.menuUrl){try{const u=new URL(b.menuUrl);if(u.protocol==='https:'){const menu=document.createElement('a');menu.href=u.href;menu.target='_blank';menu.rel='noopener noreferrer';menu.textContent='View menu';menu.style.display='block';card.append(menu);}}catch{}}window.SuggestDishSources?.attach(card,b);const claim=document.createElement("a");claim.className="btn btn-light";claim.textContent=(b.id.startsWith("official:")||b.id.startsWith("open:osm_"))?"List my business now":b.reviewStatus==='owner_submitted'?"Manage my listing":"Claim this business";claim.href=(b.id.startsWith("official:")||b.id.startsWith("open:osm_"))?"/?"+new URLSearchParams({sourceBusinessId:b.id})+"#list-business":b.reviewStatus==='owner_submitted'?"/owner-dashboard.html":"/claim-business.html?"+new URLSearchParams({businessId:b.id,name:b.name,city:b.city || "",address:b.address || ""});card.append(claim);results.append(card);}next.hidden=!data.hasMore;
 }catch(e){status.textContent=e.message || 'Directory unavailable.';}finally{busy=false;}}
 form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fromEntries(new FormData(form));search();});next.addEventListener('click',()=>{offset+=20;search();});
  document.addEventListener('DOMContentLoaded',()=>{const params=new URLSearchParams(window.location.search);const city=params.get('outletCity'),name=params.get('outletName');if(city===null && name===null)return;if((city && city.length>100)||(name && name.length>100))return;form.elements.city.value=city || '';form.elements.q.value=name || '';filters=Object.fromEntries(new FormData(form));search();},{once:true});})();
