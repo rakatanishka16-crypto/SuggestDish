@@ -1,0 +1,44 @@
+{
+  "batch_id": "jalna-cakes-by-divya-2026-10-24",
+  "retrieved_on": "2026-10-24",
+  "businesses": [
+    {
+      "sourceKey": "official:jalna-cakes-by-divya",
+      "external_id": "official:jalna-cakes-by-divya",
+      "name": "Cakes by Divya",
+      "brand": "Cakes by Divya",
+      "category": "shop:bakery",
+      "city": "Jalna",
+      "district": "Jalna",
+      "state": "Maharashtra",
+      "address": null,
+      "latitude": null,
+      "longitude": null,
+      "phone": null,
+      "website": "https://cakesbydivyajalna.my.canva.site/",
+      "opening_hours": null,
+      "source_urls": [
+        "https://cakesbydivyajalna.my.canva.site/"
+      ],
+      "source_types": [
+        "business_website"
+      ],
+      "retrieved_on": "2026-10-24",
+      "retrieval_method": "public_search_index",
+      "verification_status": "source_observed",
+      "license_status": "not_checked",
+      "source_license": null,
+      "restaurant_rating": null,
+      "review_count": null,
+      "operating_status": null,
+      "recommendation_eligible": false,
+      "publish_ready": false,
+      "directory_publish_ready": true,
+      "outlet_menu_set_id": null,
+      "reference_menu_set_id": null,
+      "service_note": "Business website identifies a Jalna home baker offering cakes, cupcakes, cake jars, chocolates and pastries. No priced menu, portion sizes, dietary preparation or exact coordinates established. This public directory observation does not approve or claim ownership of a private submission."
+    }
+  ],
+  "menu_items": [],
+  "notice": "Business directory entry from its public website. Owner submission status is separate; dish recommendations require confirmed menu prices and dietary details."
+}
