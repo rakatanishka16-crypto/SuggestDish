@@ -2,9 +2,9 @@ const test=require('node:test');const assert=require('node:assert/strict');
 const express=require('express');const register=require('../lib/razorpay-payments');
 const sid='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';const pid='cccccccc-cccc-4ccc-8ccc-cccccccccccc';const accessCode='a'.repeat(64);
 const env={RAZORPAY_ENABLED:'true',RAZORPAY_KEY_ID:'rzp_test_example',RAZORPAY_KEY_SECRET:'test-only-secret',RAZORPAY_WEBHOOK_SECRET:'test-only-webhook-secret'};
-async function harness({approval='approved',payment={},configured=env,reusedOrder,gatewayStatus=200,published=false,plan='monthly'}={}) {
+async function harness({approval='approved',payment={},configured={...env,RAZORPAY_TEST_ENABLED:'true',RAZORPAY_TEST_KEY_ID:env.RAZORPAY_KEY_ID,RAZORPAY_TEST_KEY_SECRET:env.RAZORPAY_KEY_SECRET,RAZORPAY_TEST_WEBHOOK_SECRET:env.RAZORPAY_WEBHOOK_SECRET},reusedOrder,gatewayStatus=200,published=false,plan='monthly'}={}) {
  const calls=[];const gateway=[];let reserved=false;
- const stored={id:pid,submissionId:sid,restaurantId:12,plan,amount:plan==='annual'?399900:49900,currency:'INR',keyId:env.RAZORPAY_KEY_ID,orderId:'order_example',status:'created'};
+ const stored={id:pid,submissionId:sid,restaurantId:12,plan,amount:plan==='annual'?399900:49900,currency:'INR',keyId:register.config(configured).key,orderId:'order_example',status:'created'};
  const sql=async(strings,...values)=>{const q=strings.join('?');calls.push({q,values});
   if(q.includes('checkoutTokenHash'))return [{id:sid,status:approval,verificationNotes:published?'owner_self_published_v1':null,restaurantId:12,checkoutTokenHash:register.sha(accessCode)}];
   if(q.includes('reserve_business_payment')){reserved=true;return reusedOrder?[]:[{id:pid}];}
@@ -28,7 +28,7 @@ test('captured payment uses database confirmation; test mode is explicit',async(
 test('webhook checks HMAC against exact raw body before processing',async()=>{const h=await harness();try{const body=JSON.stringify({event:'payment.captured',payload:{payment:{entity:{id:'pay_example'}}}});assert.equal((await h.post('/api/razorpay-webhook',body,{'X-Razorpay-Signature':'0'.repeat(64)})).status,400);assert.equal(h.gateway.length,0);assert.equal((await h.post('/api/razorpay-webhook',body,{'X-Razorpay-Signature':register.signature(body,env.RAZORPAY_WEBHOOK_SECRET)})).status,200);assert.equal(h.calls.filter(c=>c.q.includes('confirm_business_payment')).length,1);}finally{h.close();}});
 test('refund confirmation revokes the paid record',async()=>{const h=await harness({payment:{status:'refunded',amount_refunded:49900}});try{const r=await h.post('/api/billing/verify',proof);assert.equal(r.body.status,'refunded');assert.equal(h.calls.find(c=>c.q.includes('confirm_business_payment')).values[2],true);}finally{h.close();}});
 test('plan prices and access signature helpers are exact',()=>{assert.equal(register.PLANS.annual.amount,399900);assert.equal(register.PLANS.annual.dishes,2);assert.equal(register.PLANS.monthly.dishes,2);assert.equal(register.equalHex('x'.repeat(64),'x'.repeat(64)),false);});
-test('founder pause blocks live checkout even with all credentials configured',async()=>{const routes=new Map();let called=false;register({get:(p,h)=>routes.set(p,h),post:(p,h)=>routes.set(p,h)},async()=>{called=true;return [];},{env,fetchImpl:async()=>{called=true;}});let body,code=200;const res={set(){},status(n){code=n;return this;},json(d){body=d;return this;}};routes.get('/api/billing/config')({},res);assert.equal(body.available,false);await routes.get('/api/billing/orders')({body:{plan:'monthly'}},res);assert.equal(code,503);assert.equal(called,false);});
+test('explicit emergency pause blocks checkout',async()=>{const routes=new Map();let called=false;register({get:(p,h)=>routes.set(p,h),post:(p,h)=>routes.set(p,h)},async()=>{called=true;return [];},{env,paymentsPaused:true,fetchImpl:async()=>{called=true;}});let body,code=200;const res={set(){},status(n){code=n;return this;},json(d){body=d;return this;}};await routes.get('/api/billing/config')({},res);assert.equal(body.available,false);await routes.get('/api/billing/orders')({body:{plan:'monthly'}},res);assert.equal(code,503);assert.equal(called,false);});
 
 test('test rollout uses separate test credentials while live checkout remains paused',()=>{
  const c=register.config({...env,RAZORPAY_KEY_ID:'rzp_live_existing',RAZORPAY_TEST_ENABLED:'true',RAZORPAY_TEST_KEY_ID:'rzp_test_sandbox',RAZORPAY_TEST_KEY_SECRET:'sandbox-secret',RAZORPAY_TEST_WEBHOOK_SECRET:'sandbox-webhook'});
@@ -70,3 +70,27 @@ test('offer prices expire at midnight IST after 1 January inclusive',()=>{
 });
 
 test('a self-published owner can open annual offer checkout without manual approval',async()=>{const h=await harness({approval:'pending',published:true,plan:'annual'});try{const r=await h.post('/api/billing/orders',{...owner,plan:'annual'});assert.equal(r.status,200);assert.equal(r.body.amount,399900);assert.equal(r.body.description,'2 dishes / 1 year');}finally{h.close();}});
+
+const liveEnv={RAZORPAY_ENABLED:'true',RAZORPAY_KEY_ID:'rzp_live_example',RAZORPAY_KEY_SECRET:'live-fixture-secret',RAZORPAY_WEBHOOK_SECRET:'live-fixture-webhook'};
+test('live mode requires an explicit enable flag and strictly live credentials',()=>{
+ assert.equal(register.config(liveEnv).ready,true);
+ assert.equal(register.config({...liveEnv,RAZORPAY_ENABLED:'false'}).ready,false);
+ assert.equal(register.config({...liveEnv,RAZORPAY_KEY_ID:'rzp_test_wrong'}).ready,false);
+ assert.equal(register.config({...liveEnv,RAZORPAY_WEBHOOK_SECRET:''}).ready,false);
+ assert.equal(register.config(liveEnv,true).ready,false);
+});
+test('live availability validates provider authentication without creating an order or exposing records',async()=>{
+ for(const ok of [true,false]){
+  const routes=new Map();let calls=0;register({get:(p,h)=>routes.set(p,h),post:(p,h)=>routes.set(p,h)},async()=>{throw Error('No SQL expected');},{env:liveEnv,fetchImpl:async(url,opts)=>{calls++;assert.equal(url,'https://api.razorpay.com/v1/orders?count=1');assert.equal(opts.method,'GET');return {ok,status:ok?200:401,json:async()=>({items:[{private:'never-return'}]})};}});
+  let body;const res={set(){},json(d){body=d;}};
+  await routes.get('/api/billing/config')({},res);assert.equal(body.available,ok);assert.equal(body.mode,'live');assert.equal(JSON.stringify(body).includes('never-return'),false);assert.equal(JSON.stringify(body).includes(liveEnv.RAZORPAY_KEY_SECRET),false);
+  await routes.get('/api/billing/config')({},res);assert.equal(calls,1);
+ }
+});
+
+test('a captured live payment activates the two-dish plan only after signature and provider checks',async()=>{
+ const h=await harness({configured:liveEnv});try{
+  const r=await h.post('/api/billing/verify',{...proof,razorpay_signature:register.signature('order_example|pay_example',liveEnv.RAZORPAY_KEY_SECRET)});
+  assert.equal(r.status,200);assert.equal(r.body.status,'captured');assert.equal(r.body.mode,'live');assert.equal(r.body.dishes,2);assert.equal(h.calls.filter(c=>c.q.includes('confirm_business_payment')).length,1);
+ }finally{h.close();}
+});
