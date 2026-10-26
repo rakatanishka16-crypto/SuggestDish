@@ -35,3 +35,5 @@ test('database search, fallback, feedback, city data and privacy work end to end
   r=await post('/api/dish-search',{city:'Jalna',lat:19.84,lon:75.89,radius:5});assert.ok(r.body.dishes.every(d=>d.distanceKm!==null));
  }finally{server.close();await db.close();}
 });
+
+test('standalone suggestions omit water and add-ons unless specifically requested',()=>{const water={...row,id:3,name:'Water Bottle [500 Ml]',price:15};const extra={...row,id:4,name:'Extra Butter Pav Single',price:13};assert.equal(discovery.rank([row,water,extra],{maxPrice:200}).length,1);assert.equal(discovery.rank([water],{dishName:'water'}).length,1);});
