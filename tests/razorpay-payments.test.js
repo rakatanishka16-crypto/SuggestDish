@@ -94,3 +94,10 @@ test('a captured live payment activates the two-dish plan only after signature a
   assert.equal(r.status,200);assert.equal(r.body.status,'captured');assert.equal(r.body.mode,'live');assert.equal(r.body.dishes,2);assert.equal(h.calls.filter(c=>c.q.includes('confirm_business_payment')).length,1);
  }finally{h.close();}
 });
+
+test('new live credential pair takes priority without mixing old and new secrets',()=>{
+ const newer={...liveEnv,RAZORPAY_KEY_ID_2:'rzp_live_new',RAZORPAY_KEY_SECRET_2:'new-fixture-secret'};
+ const c=register.config(newer);assert.equal(c.ready,true);assert.equal(c.key,'rzp_live_new');assert.equal(c.secret,'new-fixture-secret');
+ assert.equal(register.config({...newer,RAZORPAY_KEY_SECRET_2:''}).ready,false);
+ assert.equal(register.config({...newer,RAZORPAY_KEY_ID_2:''}).ready,false);
+});
