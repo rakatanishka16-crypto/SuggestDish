@@ -605,7 +605,9 @@
 </style>
   <link rel="stylesheet" href="/launch.css" />
 
-</head>
+<style>
+.promoted-slideshow{padding-top:16px;padding-bottom:12px;scroll-margin-top:80px}.promoted-slides{position:relative;aspect-ratio:16/7;overflow:hidden;border-radius:20px;background:#30251c}.promoted-slide{position:absolute;inset:0}.promoted-slide[hidden]{display:none}.promoted-slide img{width:100%;height:100%;object-fit:cover;object-position:center}.promoted-slide-info{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(18px,4vw,44px);background:linear-gradient(180deg,rgba(0,0,0,.12) 15%,rgba(0,0,0,.85) 100%);color:white}.promoted-slide-info h2{color:white;margin:8px 0;font-size:clamp(24px,4vw,44px);line-height:1.12;overflow-wrap:anywhere}.promoted-slide-info p{color:white;margin:4px 0;overflow-wrap:anywhere}.promoted-slide-info .badge{align-self:flex-start;background:#fff;color:#6b3100}.promoted-slide-info a{align-self:flex-start;margin-top:12px;background:white;color:#2b2119}.promoted-controls{display:flex;align-items:center;justify-content:center;gap:12px;padding-top:10px;flex-wrap:wrap}.promoted-controls button{border:1px solid #e6d8cc;border-radius:10px;background:white;padding:9px 14px;min-height:44px;color:#33271f}.promoted-slide-info .promotion-location{max-width:70ch;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media(max-width:640px){.promoted-slides{aspect-ratio:4/3;max-height:none;border-radius:14px}.promoted-slide-info{padding:18px}.promoted-slide-info h2{font-size:26px}.promoted-slide-info p{font-size:14px}.promoted-controls{gap:8px}.promoted-controls button{padding:8px 12px}}
+</style></head>
 
 <body>
 
@@ -636,6 +638,10 @@
   <!-- HERO -->
 
   <main id="home">
+    <section id="promotedDishSlideshow" class="promoted-slideshow container" hidden aria-label="Sponsored dishes" aria-roledescription="carousel">
+     <div id="promotedSlides" class="promoted-slides"></div>
+     <div class="promoted-controls"><button type="button" id="previousPromotedDish" aria-label="Previous promoted dish">‹</button><span id="promotedSlideCount"></span><button type="button" id="nextPromotedDish" aria-label="Next promoted dish">›</button><button type="button" id="pausePromotedDishes">Pause slideshow</button></div>
+    </section>
     <section class="hero">
       <div class="container hero-grid">
 
@@ -948,7 +954,7 @@
 <!-- TOP PICKS -->
 <section class="section" id="featured-dishes" hidden>
   <div class="container">
-    <div class="section-head"><div><h2>Featured dishes</h2><p class="sub">Reviewed dishes from businesses with an active paid listing plan. Featured placement is sponsored.</p></div></div>
+    <div class="section-head"><div><h2>Featured dishes</h2><p class="sub">Dishes promoted by businesses with an active paid plan. Sponsored placement; menu details may be owner-submitted.</p></div></div>
     <div id="featuredDishList" class="picks-grid"></div>
   </div>
 </section>
@@ -1195,6 +1201,13 @@
    <button type="button" id="checkBusinessPayment" class="btn btn-light">Check payment status</button>
    <p id="businessPaymentStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
   </form>
+  <section id="paidDishPromotions" class="card panel" style="margin-top:24px">
+   <h2>Promote your two dishes</h2>
+   <p>After your live payment is confirmed, add a photo, price, dish name and food business details for each of your two dishes. They appear one at a time in the Sponsored slideshow at the top of the homepage while your paid plan is active. Use your business reference and private access code above.</p>
+   <button type="button" id="loadPromotedDishes" class="btn btn-secondary">Load my promoted dishes</button>
+   <p id="promotionStatus" role="status" aria-live="polite" style="margin-top:16px">Two dish slots unlock after confirmed payment. Test payments do not unlock promotions.</p>
+   <div id="promotionSlots"></div>
+  </section>
  </div>
 </section>
 
@@ -2283,7 +2296,7 @@ document.addEventListener("DOMContentLoaded", () => {
  }
  function showResult(data) {
   if(data.mode==='test' && data.status==='captured') {status.textContent='Test mode: no real money has been received. Production plans are not activated by test payments.';return;}
-  if(data.status==='captured' && new Date(data.endsAt)>new Date()) status.textContent='Payment confirmed. Your restaurant plan allows '+data.dishes+' dish slots until '+new Date(data.endsAt).toLocaleDateString('en-IN')+'. Save your Razorpay receipt. No automatic renewal.';
+  if(data.mode==='live' && data.status==='captured' && new Date(data.endsAt)>new Date()) {window.dispatchEvent(new Event('suggestdish:payment-confirmed'));status.textContent='Payment confirmed. Your restaurant plan allows '+data.dishes+' dish slots until '+new Date(data.endsAt).toLocaleDateString('en-IN')+'. Save your Razorpay receipt. No automatic renewal. Add your two promoted dishes below.';}
   else if(data.status==='refunded') status.textContent='This payment has been refunded. Its paid plan is inactive.';
   else status.textContent=data.message || 'Business review: '+data.approval+'. Payment status: '+data.status+'. If you have paid, do not pay again; check status later or contact SuggestDish with your payment ID.';
  }
@@ -2372,7 +2385,7 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
 <script src="/source-listing-prefill.js" defer></script><script src="/foodie-controls.js" defer></script><script src="/dish-feedback.js" defer></script>
 <script>
 document.addEventListener('click',event=>{const target=event.target.closest('[data-dish-event]');if(!target)return;const id=Number(target.dataset.dishId);if(!Number.isSafeInteger(id)||id<1)return;window.SuggestDishPrivacy?.record(target.dataset.dishEvent,[id]);});
-</script><script src="/featured-dishes.js" defer></script>
+</script><script src="/featured-dishes.js" defer></script><script src="/business-promotions.js" defer></script>
 </body>
 </html>
 

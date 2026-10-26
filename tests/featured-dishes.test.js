@@ -1,9 +1,9 @@
 const test=require('node:test'),assert=require('node:assert/strict'),register=require('../lib/featured-dishes');
 const now=Date.parse('2026-10-12T12:00:00Z');
-const row={plan:'monthly',amount:49900,currency:'INR',keyId:'rzp_live_example',paymentStatus:'captured',startsAt:'2026-10-01T00:00:00Z',endsAt:'2026-11-01T00:00:00Z',claimStatus:'approved',revisionStatus:'approved',submissionStatus:'approved',slot:3,dishId:10,dishName:'Paneer Tikka',restaurant:'Example Restaurant',price:200,vegetarian:true};
+const row={plan:'monthly',amount:49900,currency:'INR',keyId:'rzp_live_example',paymentStatus:'captured',startsAt:'2026-10-01T00:00:00Z',endsAt:'2026-11-01T00:00:00Z',claimStatus:'approved',revisionStatus:'approved',submissionStatus:'approved',slot:2,dishId:10,dishName:'Paneer Tikka',restaurant:'Example Restaurant',price:200,vegetarian:true};
 test('only an active captured live paid plan can feature a reviewed owner dish',()=>{
  assert.equal(register.eligible(row,now),true);
- for(const change of [{keyId:'rzp_test_example'},{paymentStatus:'refunded'},{paymentStatus:'created'},{endsAt:'2026-10-12T12:00:00Z'},{startsAt:'2026-10-13T00:00:00Z'},{endsAt:null},{plan:'free'},{plan:'constructor'},{amount:1},{currency:'USD'},{slot:4},{slot:0},{claimStatus:'pending'},{revisionStatus:'pending'},{submissionStatus:'rejected'},{price:null},{vegetarian:null}]){
+ for(const change of [{keyId:'rzp_test_example'},{paymentStatus:'refunded'},{paymentStatus:'created'},{endsAt:'2026-10-12T12:00:00Z'},{startsAt:'2026-10-13T00:00:00Z'},{endsAt:null},{plan:'free'},{plan:'constructor'},{amount:1},{currency:'USD'},{slot:3},{slot:0},{claimStatus:'pending'},{revisionStatus:'pending'},{submissionStatus:'rejected'},{price:null},{vegetarian:null}]){
   assert.equal(register.eligible({...row,...change},now),false,JSON.stringify(change));
  }
 });
