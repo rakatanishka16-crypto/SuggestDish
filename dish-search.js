@@ -21,7 +21,7 @@
  function click(d,action){const searchId=d.searchId||lastData?.searchId;if(d.dishId&&searchId)fetch('/api/search-click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({dish_id:d.dishId,search_id:searchId,action}),keepalive:true}).catch(()=>{});}
  function button(label,fn){const b=document.createElement('button');b.type='button';b.className='btn btn-light';b.textContent=label;b.onclick=fn;return b;}
  function para(value,cls){const p=document.createElement('p');p.textContent=value;if(cls)p.className=cls;return p;}
- function safeHref(url){try{const u=new URL(url,location.origin);return (u.protocol==='https:'||(u.protocol==='tel:'&&/^tel:\+?\d{7,15}$/.test(url)))&&!u.username&&!u.password?u.href:null;}catch{return null;}}
+ function safeHref(url){if(typeof url!=='string'||!url.trim())return null;try{const u=new URL(url,location.origin);return (u.protocol==='https:'||(u.protocol==='tel:'&&/^tel:\+?\d{7,15}$/.test(url)))&&!u.username&&!u.password?u.href:null;}catch{return null;}}
  function card(d,{saved=false}={}){
   const a=document.createElement('article');a.className='card dish-card';
   const photo=document.createElement('div');photo.className='dish-photo';const placeholder=document.createElement('div');placeholder.className='photo-placeholder';placeholder.textContent=({'South Indian':'🥘','North Indian':'🍛',Chinese:'🍜',Italian:'🍕',Maharashtrian:'🍲'})[d.cuisine]||'🍽️';const note=document.createElement('small');note.textContent='Photo coming soon';placeholder.append(note);photo.append(placeholder);
