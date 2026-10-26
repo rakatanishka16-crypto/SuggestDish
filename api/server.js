@@ -9,7 +9,7 @@ const { categoryMatches } = require("../lib/menu-preference-evidence");
 const app = express();
 
 require('../lib/launch-security')(app);
-app.use(express.json({ limit: "100kb", verify(req, res, buf) { req.rawBody = Buffer.from(buf); } }));
+app.use(express.json({ limit: "400kb", verify(req, res, buf) { req.rawBody = Buffer.from(buf); } }));
 
 const sql = neon(process.env.DATABASE_URL);
 require("../lib/business-listings")(app, sql);
@@ -26,6 +26,7 @@ const { label: starEvidenceLabel } = require("../lib/star-evidence");
 require("../lib/business-review")(app, sql);
 require("../lib/razorpay-payments")(app, sql);
 require("../lib/featured-dishes")(app, sql);
+require("../lib/business-promotions")(app, sql);
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,

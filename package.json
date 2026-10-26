@@ -33,6 +33,7 @@
     "pg": "^8.23.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.11",
     "prisma": "^6.19.3"
   },
   "overrides": {
