@@ -23,7 +23,7 @@
       const attribution=document.createElement('p');attribution.className='small mute';
       link(attribution,'© OpenStreetMap contributors · ODbL','https://www.openstreetmap.org/copyright');card.append(attribution);
     }
-    if (!sourceId.startsWith('official:') && !sourceId.startsWith('open:osm_')) return;
+    if (!sourceId.startsWith('official:') && !sourceId.startsWith('open:osm_') && !sourceId.startsWith('directory:jalna-menu-')) return;
     const button = document.createElement('button'); button.type = 'button'; button.className = 'btn btn-light';
     button.textContent = 'Business details & menu'; button.setAttribute('aria-expanded','false');
     const panel = document.createElement('div'); panel.hidden = true;
@@ -44,13 +44,15 @@
         const destination = Number.isFinite(b.latitude) && Number.isFinite(b.longitude) ? b.latitude+','+b.longitude : b.address_scope!=='locality_only' && b.address ? b.name+', '+b.address : null;
         if (destination) {const directions=document.createElement('p');link(directions,'Get directions','https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(destination));panel.append(directions);}
         line(panel,'Source checked: ' + b.retrieved_on + '. Food licence status has not been checked.');
-        for (const url of b.source_urls || []) { const p = document.createElement('p'); link(p,new URL(url).hostname.endsWith('zomato.com') ? 'Published delivery-platform source' : b.source_types?.includes('openstreetmap') ? 'OpenStreetMap source' : 'Official business source',url); panel.append(p); }
+        for (const url of b.source_urls || []) { const p = document.createElement('p'); link(p,new URL(url).hostname.endsWith('zomato.com') ? 'Published delivery-platform source' : b.source_types?.includes('openstreetmap') ? 'OpenStreetMap source' : b.source_types?.includes('restaurant_directory') && !b.source_types?.includes('business_website') ? 'Public directory source' : 'Official business source',url); panel.append(p); }
         if (b.google_listing_status==='business_link_published' && b.google_maps_url) {
           const url=new URL(b.google_maps_url);
           if (url.protocol==='https:' && ['share.google','maps.app.goo.gl','goo.gl','g.page','www.google.com','maps.google.com'].includes(url.hostname)) {
             const p=document.createElement('p');link(p,'Google Maps link published by the business',url.href);panel.append(p);
           }
         }
+        for (const url of b.menu_source_urls || []) {const p=document.createElement('p');link(p,'View online menu listing',url);panel.append(p);}
+        if (b.directory_attribution) line(panel,b.directory_attribution);
         if (data.menuItems.length) {
           const heading = document.createElement('h4'); heading.textContent = data.menuScope==='outlet_page' ? 'Published outlet menu' : 'Brand menu reference'; panel.append(heading);
           line(panel,data.menuNotice || 'Branch availability is unconfirmed. These menu entries are reference information; they do not enter budget or dietary recommendations automatically.');

@@ -1,0 +1,88 @@
+{
+  "leads": [
+    {
+      "name": "ABC Cake Shop and Fast Food",
+      "city": "Jalna",
+      "menu_source_url": "https://magicpin.in/Jalna/Jalna/Restaurant/Abc-Cake-Shop-And-Fast-Food/store/337ab3/menu",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "Bake N Cake",
+      "city": "Jalna",
+      "menu_source_url": "https://www.zomato.com/jalna/bake-n-cake-jalna-locality/order",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "New Sweet Bakers and Cake Shop",
+      "city": "Jalna",
+      "menu_source_url": "https://www.zomato.com/jalna/new-sweet-bakers-and-cake-shop-jalna-locality/order",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "Vaishnavi Bake & Cake",
+      "city": "Jalna",
+      "menu_source_url": "https://magicpin.in/Jalna/Jalna/Restaurant/Vaishnavi-Bake-and-Cake/store/3446c8",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "The Cake Shop",
+      "city": "Jalna",
+      "menu_source_url": "https://www.zomato.com/jalna/the-cake-shop-jalna-locality/order",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "Malkhare Bakers & Cake Shop",
+      "city": "Jalna",
+      "menu_source_url": "https://www.zomato.com/jalna/malkhare-bakers-cake-shop-jalna-locality/order",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "Cake House By Pooja",
+      "city": "Jalna",
+      "menu_source_url": "https://www.zomato.com/jalna/cake-house-by-pooja-jalna-locality/order",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "The Cake King",
+      "city": "Jalna",
+      "menu_source_url": "https://www.zomato.com/jalna/the-cake-king-3-jalna-locality/order",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "Yogij Corner",
+      "city": "Jalna",
+      "menu_source_url": "https://magicpin.in/Jalna/Jalna/Restaurant/Yogij-Corner/store/344b71",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "Ladigodi Cafe",
+      "city": "Jalna",
+      "menu_source_url": "https://www.district.in/dining/jalna/ladigodi-cafe-jalna-locality",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "Vishal Chinese Chicken Biryani House",
+      "city": "Jalna",
+      "menu_source_url": "https://www.district.in/dining/jalna/vishal-chinese-chicken-biryani-house-jalna-locality",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "name": "Hot Chili Restaurant",
+      "city": "Jalna",
+      "menu_source_url": "https://www.district.in/dining/jalna/hot-chili-restaurant-jalna-locality",
+      "retrieval_method": "public_search_index",
+      "retrieved_on": "2026-10-26"
+    }
+  ]
+}
