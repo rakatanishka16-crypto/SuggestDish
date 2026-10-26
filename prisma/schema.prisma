@@ -24,6 +24,27 @@ model Dish {
   isVeg        Boolean      @default(true)
   restaurantId Int
 
+  city String?
+  area String?
+  cuisine String?
+  diet_type String @default("unknown")
+  ingredients_verified Boolean @default(false)
+  meal_type String?
+  taste_tags String[] @default([])
+  photo_url String?
+  photo_permission Boolean @default(false)
+  photo_credit String?
+  source_urls String[] @default([])
+  last_verified_at DateTime?
+  rating Float?
+  order_count Int?
+  is_sponsored Boolean @default(false)
+  dish_of_week Boolean @default(false)
+  zomato_url String?
+  swiggy_url String?
+  call_phone String?
+  dining_options String[] @default([])
+
   restaurant   Restaurant   @relation(fields: [restaurantId], references: [id])
   signals      DishSignal[]
 }
