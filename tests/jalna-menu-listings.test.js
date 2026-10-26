@@ -40,6 +40,15 @@ test('closed, unclear and conflicting Jalna listings stay held instead of adding
   assert.ok(!listing.batch.businesses.some(r=>r.name===name));
  }
  for(const r of listing.batch.held_records.filter(r=>r.possible_matches))assert.ok(!listing.batch.businesses.some(b=>b.source_urls.includes(r.source_url)));
+ const kitchen=listing.batch.businesses.find(b=>b.name==='Krishna Kitchen');
+ assert.equal(kitchen.existingBusinessId,undefined,'co-located kitchens with different brand names stay distinct');
+ for(const b of listing.batch.businesses.filter(b=>b.retrieval_method==='public_search_index'))assert.doesNotMatch(b.directory_attribution,/IndiaRestros/);
+});
+test('city directory queries serialize only relevant source profiles',async()=>{
+ let handler,values;require('../lib/business-directory')({get:(p,h)=>{handler=h;}},async(s,...v)=>{values=v;return [];});
+ await handler({query:{city:'Jalna'}},{set(){},json(){}});
+ const rows=JSON.parse(values[0]);assert.ok(rows.length>200);assert.ok(rows.every(b=>b.city.toLowerCase()==='jalna'));
+ assert.ok(rows.length<catalog.listingRows.length/10);
 });
 test('directory query returns matched menu links without overwriting owner-submitted menu links',async()=>{
  const register=require('../lib/business-directory'),entry=catalog.listingRows.find(b=>b.id.startsWith('directory:jalna-menu-'));

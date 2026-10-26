@@ -34,7 +34,10 @@ the pre-import live Jalna directory snapshot and existing source profiles. It
 holds ambiguous identities rather than merging on a common name alone. Raw
 responses containing third-party photos and contact data are not committed.
 
-Validation: 25 targeted directory, source identity, provenance and discovery
+City searches serialize only their matching source profiles instead of sending
+the full national catalogue into every directory query.
+
+Validation: 26 targeted directory, source identity, provenance and discovery
 tests passed before publication. A PGlite execution of the actual directory SQL
 returned one record each for The Cake King, Krishna Kitchen and 7 Spices, with
 working menu-source fields. The full suite has unrelated known baseline
