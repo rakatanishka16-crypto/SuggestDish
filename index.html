@@ -607,7 +607,7 @@
 
 <style>
 .promoted-slideshow{padding-top:16px;padding-bottom:12px;scroll-margin-top:80px}.promoted-slides{position:relative;aspect-ratio:16/7;overflow:hidden;border-radius:20px;background:#30251c}.promoted-slide{position:absolute;inset:0}.promoted-slide[hidden]{display:none}.promoted-slide img{width:100%;height:100%;object-fit:cover;object-position:center}.promoted-slide-info{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(18px,4vw,44px);background:linear-gradient(180deg,rgba(0,0,0,.12) 15%,rgba(0,0,0,.85) 100%);color:white}.promoted-slide-info h2{color:white;margin:8px 0;font-size:clamp(24px,4vw,44px);line-height:1.12;overflow-wrap:anywhere}.promoted-slide-info p{color:white;margin:4px 0;overflow-wrap:anywhere}.promoted-slide-info .badge{align-self:flex-start;background:#fff;color:#6b3100}.promoted-slide-info a{align-self:flex-start;margin-top:12px;background:white;color:#2b2119}.promoted-controls{display:flex;align-items:center;justify-content:center;gap:12px;padding-top:10px;flex-wrap:wrap}.promoted-controls button{border:1px solid #e6d8cc;border-radius:10px;background:white;padding:9px 14px;min-height:44px;color:#33271f}.promoted-slide-info .promotion-location{max-width:70ch;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media(max-width:640px){.promoted-slides{aspect-ratio:4/3;max-height:none;border-radius:14px}.promoted-slide-info{padding:18px}.promoted-slide-info h2{font-size:26px}.promoted-slide-info p{font-size:14px}.promoted-controls{gap:8px}.promoted-controls button{padding:8px 12px}}
-</style></head>
+</style><link rel="stylesheet" href="/dish-search.css"></head>
 
 <body>
 
@@ -638,271 +638,41 @@
   <!-- HERO -->
 
   <main id="home">
+
+<section class="section discovery" id="ai-recommend">
+ <div class="container">
+  <h1>Find your next favourite dish.</h1><p class="sub">A craving, a city, a dish worth trying.</p>
+  <form id="dishSearchForm" class="card panel">
+   <label for="craving"><strong>What are you craving?</strong></label>
+   <div class="search-entry"><input id="craving" class="field" maxlength="500" placeholder="something light under ₹200" autocomplete="off"><button id="findDish" type="submit" class="btn btn-primary">Find my dish</button></div>
+   <div class="search-chips" aria-label="Quick choices"><button type="button" data-chip="Under ₹100">Under ₹100</button><button type="button" data-chip="Breakfast">Breakfast</button><button type="button" data-chip="Spicy">Spicy</button><button type="button" data-chip="Pure veg">Pure veg</button><button type="button" data-chip="Sweet">Sweet</button><button type="button" data-chip="surprise">Surprise me</button></div>
+   <div class="search-location"><label for="searchCity">City<select id="searchCity" class="field"><option>Jalna</option><option>Mumbai</option><option>Chhatrapati Sambhajinagar</option><option>Pune</option></select></label><button id="nearMe" type="button" class="btn btn-light">Near me</button></div>
+   <p id="locationHint" class="small mute" role="status">City-wide search. Distance is applied only with Near me.</p>
+   <details id="searchRefine"><summary>Refine</summary><div class="refine-grid">
+    <label>Diet<select id="searchDiet" class="field"><option value="any">Any</option><option value="vegetarian">Pure veg</option><option value="egg">Egg</option><option value="nonveg">Non-veg</option><option value="jain">Jain</option><option value="vegan">Vegan (verified ingredients required)</option></select></label>
+    <label>Cuisine<select id="searchCuisine" class="field"><option value="any">Any</option><option>Indian</option><option>Maharashtrian</option><option>South Indian</option><option>North Indian</option><option>Chinese</option><option>Italian</option></select></label>
+    <label>Taste<select id="searchTaste" class="field"><option value="any">Any</option><option value="light">Light</option><option value="spicy">Spicy</option><option value="sweet">Sweet</option><option value="tangy">Tangy</option><option value="crispy">Crispy</option><option value="rich">Rich</option></select></label>
+    <label>Occasion / meal<select id="searchMeal" class="field"><option value="any">Any</option><option value="breakfast">Breakfast</option><option value="lunch">Lunch</option><option value="dinner">Dinner</option><option value="snack">Snack</option><option value="date night">Date night</option><option value="family meal">Family meal</option></select></label>
+    <label>Budget<input id="searchBudget" class="field" type="number" min="1" max="100000" placeholder="No limit"></label><label>Budget applies to<select id="budgetBasis" class="field"><option value="dish">One dish</option><option value="two">For two (estimate)</option></select></label>
+    <label id="distanceControl" hidden>Maximum distance<select id="searchDistance" class="field"><option value="2">2 km</option><option value="5" selected>5 km</option><option value="10">10 km</option><option value="25">25 km</option><option value="50">50 km</option></select></label>
+    <label>Dining option<select id="searchDining" class="field"><option value="any">Any</option><option value="delivery">Delivery</option><option value="dine-in">Dine-in</option><option value="takeaway">Takeaway</option></select></label>
+   </div><label><input id="rememberSearch" type="checkbox"> Remember my preferences on this device</label><button id="forgetSearch" type="button" class="btn btn-light">Forget preferences</button><p id="rememberStatus" class="small" role="status"></p></details>
+  </form>
+  <section id="dishOfWeek" hidden class="card panel" style="margin-top:20px"></section>
+  <p id="activeSearch" role="status" class="search-summary"></p><p id="searchProgress" role="status" hidden></p><p id="searchError" role="alert" hidden></p><p id="parserNotice" class="small mute" hidden></p>
+  <div id="searchEmpty" class="card panel" hidden><p id="searchEmptyText"></p><div class="search-actions"><button type="button" id="higherBudget" class="btn btn-light">Try a higher budget</button><button type="button" id="removeDiet" class="btn btn-light">Remove diet filter</button><button type="button" id="nearbyCity" class="btn btn-light">Try a nearby city</button></div></div>
+  <div id="resultViewControls" hidden><button type="button" id="toggleResultMap" class="btn btn-light" aria-expanded="false">Show map</button></div><div id="dishMap" hidden aria-label="Dish locations on OpenStreetMap"></div>
+  <div id="dishResults" class="dish-results" aria-live="polite"></div>
+  <section id="paidSearchRow" hidden><h2>Sponsored dishes</h2><div id="paidSearchDishes" class="dish-results"></div></section>
+  <p id="resultPolicy" class="small mute" hidden>Recommendations come from our curated data. Confirm allergens and Jain preparation with the restaurant.</p>
+ </div>
+</section>
+<button id="mobileFindDish" type="button" class="btn btn-primary" hidden>Find my dish</button>
+
     <section id="promotedDishSlideshow" class="promoted-slideshow container" hidden aria-label="Sponsored dishes" aria-roledescription="carousel">
      <div id="promotedSlides" class="promoted-slides"></div>
      <div class="promoted-controls"><button type="button" id="previousPromotedDish" aria-label="Previous promoted dish">‹</button><span id="promotedSlideCount"></span><button type="button" id="nextPromotedDish" aria-label="Next promoted dish">›</button><button type="button" id="pausePromotedDishes">Pause slideshow</button></div>
     </section>
-    <section class="hero">
-      <div class="container hero-grid">
-
-    <div>
-      <span class="badge">✨ AI-powered food discovery</span>
-
-      <h1>
-        Find the best
-        <span>dish</span>,
-        not just the best restaurant.
-      </h1>
-
-      <p>
-        SuggestDish uses your taste, dietary preferences, budget,
-        mood and location to help you discover the specific dish
-        that matches your preferences.
-      </p>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#ai-recommend">Find My Dish</a>
-        <button class="btn btn-light" id="enableLocation">
-          📍 Enable Location
-        </button>
-
-        <button class="btn btn-light" id="enterLocation">
-          Enter Location
-        </button>
-      </div>
-      <div id="manualLocation" style="margin-top:16px">
-        <label for="locationQuery"><strong>City or locality</strong></label>
-        <input id="locationQuery" class="field" maxlength="120" list="supportedCities" placeholder="For example: Bandra West, Mumbai" />
-        <datalist id="supportedCities"><option value="Mumbai"></option><option value="Jalna"></option></datalist>
-        <p id="menuCoverage" class="small mute" role="status"></p>
-        <p id="selectedLocation" class="small mute" role="status" aria-live="polite">No location selected. Choose a city or allow location for nearby results.</p>
-        <button type="button" id="clearLocation" class="btn btn-light">Clear location</button>
-      </div>
-    </div>
-
-    <div class="hero-image"></div>
-
-  </div>
-</section>
-
-
-<!-- AI RECOMMENDATION -->
-<section class="section" id="ai-recommend">
-  <div class="container">
-
-    <div class="section-head">
-      <div>
-        <h2>Find a dish that suits your preferences</h2>
-
-        <p class="sub">
-          Share your preferences to receive a personalised dish recommendation.
-        </p>
-      </div>
-
-      <span class="badge">
-        Powered by SuggestDish AI
-      </span>
-    </div>
-
-    <div class="card panel">
-
-      <label for="aiCustomPreferences"><strong>What are you craving right now?</strong></label>
-      <textarea id="aiCustomPreferences" class="field" rows="3" maxlength="500" placeholder="For example: veg sandwich, poha for breakfast, or golgappa"></textarea>
-      <p class="small mute">Optional. Leave this field blank to receive recommendations based on your selected preferences. You can describe a craving or name a dish (up to 500 characters). Suggestions use available menu data; ingredients, allergies and Jain preparation must be confirmed with the restaurant.</p>
-      <div class="row" style="flex-wrap:wrap;margin:12px 0" aria-label="Quick cravings">
-        <button type="button" class="btn btn-light" data-craving="" data-occasion="breakfast">Breakfast</button>
-        <button type="button" class="btn btn-light" data-craving="pani puri">Street food</button>
-        <button type="button" class="btn btn-light" data-craving="" data-taste="sweet">Something sweet</button>
-        <button type="button" class="btn btn-light" data-craving="" data-taste="light">Light meal</button>
-      </div>
-      <div class="two-col">
-
-        <div>
-          <label for="aiTaste">
-            <strong>Taste preference</strong>
-          </label>
-
-          <select id="aiTaste" class="field">
-            <option value="any">Anything</option>
-            <option value="spicy">Spicy</option>
-            <option value="sweet">Sweet</option>
-            <option value="rich">Rich</option>
-            <option value="light">Light</option>
-            <option value="tangy">Tangy</option>
-            <option value="crispy">Crispy</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="aiCuisine">
-            <strong>Cuisine</strong>
-          </label>
-
-          <select id="aiCuisine" class="field">
-            <option value="any">Any cuisine</option>
-            <option value="Indian">Indian</option>
-            <option value="North Indian">North Indian</option>
-            <option value="South Indian">South Indian</option>
-            <option value="Maharashtrian">Maharashtrian</option>
-            <option value="Chinese">Chinese</option>
-            <option value="Italian">Italian</option>
-            <option value="Continental">Continental</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="aiMood">
-            <strong>Occasion / mood</strong>
-          </label>
-
-          <select id="aiMood" class="field">
-            <option value="any">Any occasion</option>
-            <option value="breakfast">Breakfast</option>
-            <option value="brunch">Brunch</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-            <option value="quick meal">Quick meal</option>
-            <option value="comfort food">Comfort food</option>
-            <option value="date night">Date night</option>
-            <option value="family meal">Family meal</option>
-            <option value="friends outing">Friends outing</option>
-            <option value="snack">Evening snack</option>
-            <option value="celebration">Celebration</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="aiBudget">
-            <strong>Maximum budget per dish</strong>
-          </label>
-
-          <select id="aiBudget" class="field">
-            <option value="50">₹50</option>
-            <option value="100">₹100</option>
-            <option value="150">₹150</option>
-            <option value="200">₹200</option>
-            <option value="300" selected>₹300</option>
-            <option value="500">₹500</option>
-            <option value="750">₹750</option>
-            <option value="1000">₹1,000</option>
-            <option value="custom">Custom amount</option>
-          </select>
-          <label for="aiCustomBudget">Custom maximum (₹, used only with Custom amount)</label><input id="aiCustomBudget" class="field" type="number" min="1" max="100000" placeholder="For example: 175" />
-        </div>
-
-      </div>
-
-      <label for="aiRadius"><strong>Maximum distance</strong></label>
-      <select id="aiRadius" class="field"><option value="1">Within 1 km</option><option value="2">Within 2 km</option><option value="5" selected>Within 5 km</option><option value="10">Within 10 km</option><option value="25">Within 25 km</option></select>
-      <p class="small mute">Distance applies when exact location coordinates are available. City-only searches cover the selected city. Prices are per dish; delivery fees and taxes may differ.</p>
-      <div class="divider"></div>
-
-
-      <label for="aiDiningMode"><strong>What is your preferred dining option?</strong></label>
-      <select id="aiDiningMode" class="field"><option value="any">Any</option><option value="delivery">Delivery at home</option><option value="dine-in">Dine-in</option><option value="takeaway">Takeaway</option></select>
-      <p class="small mute">Delivery suitability and dine-in experience are not independently verified yet. This selection does not guarantee either.</p>
-      <label for="aiDiet"><strong>Dietary preference</strong></label>
-      <select id="aiDiet" class="field"><option value="vegetarian" selected>Vegetarian</option><option value="nonvegetarian">Non-vegetarian</option><option value="any">Any dietary type</option><option value="vegan">Vegan — verified ingredients required</option><option value="jain">Jain — verified preparation required</option></select>
-
-
-      <div class="cta-row">
-        <button class="btn btn-primary" id="aiRecommendBtn">
-          ✨ Recommend My Dish
-        </button>
-      </div>
-
-      <label class="row"><input type="checkbox" id="rememberPreferences" /> Remember my preferences on this device</label>
-      <button type="button" id="forgetPreferences" class="btn btn-light">Forget saved preferences</button>
-      <p id="preferencesStatus" class="small mute" role="status"></p>
-      <p class="small mute">Results use our available menu records. A directory listing alone does not mean its menu is available. Coverage varies by city and locality.</p>
-      <!-- LOADING -->
-      <div
-        id="aiLoading"
-        class="card panel"
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-        style="display:none; margin-top:16px;"
-      >
-        <strong>🤖 SuggestDish AI is thinking...</strong>
-
-        <p class="small mute">
-          Finding the best dish from our available data.
-        </p>
-      </div>
-
-      <div id="searchRefinements" class="row" style="display:none;flex-wrap:wrap;margin-top:12px">
-        <button type="button" id="refineCheaper" class="btn btn-light">Show cheaper dishes</button>
-        <button type="button" id="refineCloser" class="btn btn-light">Search closer</button>
-        <button type="button" id="refineDifferent" class="btn btn-light">Something different</button>
-        <button type="button" id="refineReset" class="btn btn-light">Clear refinements</button>
-      </div>
-      <div id="emptyRecovery" style="display:none;margin-top:12px">
-        <p>No automatic substitutions. Your dietary preference and specific dish request remain unchanged. Nearby searches exclude restaurants without coordinates. For city-wide menus, enter a city such as Jalna or Mumbai using Enter Location; this removes the distance limit only when you choose it.</p>
-        <button type="button" id="clearEmptyRefinements" class="btn btn-light">Clear refinements</button>
-        <button type="button" id="expandDistance" class="btn btn-light">Increase distance</button>
-        <button type="button" id="editRequest" class="btn btn-light">Edit my request</button>
-      </div>
-      <!-- RESULT -->
-      <div
-        id="aiResult"
-        class="card panel"
-        role="region"
-        aria-labelledby="aiDishName"
-        tabindex="-1"
-        style="display:none; margin-top:16px;"
-      >
-        <span class="badge" id="aiSourceBadge">
-          ✨ AI Recommendation
-        </span>
-
-        <h3 id="aiDishName" style="margin-top:12px;"></h3>
-
-        <p class="mute" id="aiRestaurant"></p>
-        <div id="aiDishPhoto"></div>
-        <p class="small mute" id="aiDishMeta"></p>
-        <a id="aiEvidenceSource" hidden target="_blank" rel="noopener noreferrer" style="text-decoration:underline">View restaurant menu evidence</a>
-
-        <div class="divider"></div>
-
-        <p id="aiReason"></p>
-
-        <div class="rank" style="margin-top:14px;">
-          <span>💡 Why this dish?</span>
-          <span class="conf" id="aiSourceLabel">AI matched</span>
-        </div>
-
-        <p
-          class="small mute"
-          id="aiSummary"
-          style="margin-top:12px;"
-        ></p>
-      </div>
-
-      <div id="aiMoreRecommendations" aria-live="polite" style="display:none; margin-top:16px;"></div>
-
-      <!-- ERROR -->
-      <div
-        id="aiError"
-        class="card panel"
-        role="alert"
-        aria-atomic="true"
-        tabindex="-1"
-        style="display:none; margin-top:16px;"
-      >
-        <strong id="aiStatusTitle">⚠️ Something went wrong</strong>
-
-        <p
-          class="small mute"
-          id="aiErrorText"
-        ></p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
 <!-- HOW IT WORKS -->
 <section class="section" id="how-it-works">
   <div class="container">
@@ -923,16 +693,15 @@
         <div class="step-number">1</div>
         <h3>Tell us what you want</h3>
         <p>
-          Choose your taste, cuisine, occasion, budget and dietary
-          preferences.
+          Enter a craving and select your city. Refine only if you want to.
         </p>
       </div>
 
       <div class="card step">
         <div class="step-number">2</div>
-        <h3>AI understands your preferences</h3>
+        <h3>We check your preferences</h3>
         <p>
-          SuggestDish analyzes your preferences against available
+          SuggestDish filters and ranks matching
           dish and restaurant information.
         </p>
       </div>
@@ -964,7 +733,7 @@
 
 
 <section class="section" id="business-directory" style="scroll-margin-top:180px">
- <div class="container"><div class="section-head"><div><h2>Find food outlets</h2><p class="sub">Explore restaurants, cafes, hotels, food chains, bakeries, home bakers, caterers and other food outlets. Directory coverage is expanding; menus and business details may require confirmation.</p><p class="small mute" id="sourceCoverage"></p><p class="small mute">Search chain outlets by city, then open “Business details &amp; menu” for the outlet’s source details and available menu information.</p></div></div>
+ <div class="container"><div class="section-head"><div><h2>Browse restaurants</h2><p class="sub">Explore restaurants, cafes, hotels, food chains, bakeries, home bakers, caterers and other food outlets. Directory coverage is expanding; menus and business details may require confirmation.</p><p class="small mute" id="sourceCoverage"></p><p class="small mute">Search chain outlets by city, then open “Business details &amp; menu” for the outlet’s source details and available menu information.</p></div></div>
  <form id="businessDirectoryForm" class="card panel"><div class="business-fields">
   <label>Business name or address<input name="q" maxlength="100" placeholder="Search a restaurant, bakery or outlet"></label>
   <label>City<input name="city" maxlength="100" placeholder="Mumbai, Jalna, Bengaluru…"></label>
@@ -1017,7 +786,7 @@
       <div class="card feature">
         <div class="feature-icon">👤</div>
 
-        <h3>Profile-ready</h3>
+        <h3>Profile-ready · Coming soon</h3>
 
         <p>
           Build a personalized food profile around your taste and
@@ -1062,7 +831,7 @@
       <div class="card feature">
         <div class="feature-icon">📊</div>
 
-        <h3>Customer signals</h3>
+        <h3>Customer signals · Coming soon</h3>
 
         <p>
           View available recommendation and outbound click counts in your business dashboard.
@@ -1124,7 +893,7 @@
     <div class="card panel" style="margin-bottom:22px">
       <span class="badge">For users · Always free</span>
       <h3 style="margin-top:12px">₹0 — Discover your next dish</h3>
-      <p class="mute">Get AI dish recommendations based on your taste, budget, dietary preferences and location.</p>
+      <p class="mute">Find matching dishes based on your taste, budget, dietary preferences and location.</p>
       <a class="btn btn-light" href="#ai-recommend" style="margin-top:16px">Get started</a>
     </div>
     <div class="pricing-grid">
@@ -1135,38 +904,38 @@
         <ul class="price-list">
           <li>✓ 1 dish eligible for recommendations</li>
           <li>✓ Per restaurant</li>
-          <li>✓ Profile and menu verification before listing</li>
+          <li>✓ Owner-submitted profile and menu details</li>
         </ul>
         <a class="btn btn-light" href="#list-business">List your dish</a>
       </div>
       <div class="card price-card featured">
         <span class="badge">Business · Monthly</span>
-        <div class="price">₹499 <span class="small">+ applicable taxes / month · launch offer</span></div>
-        <p class="small mute">Offer through 1 January 2027 (IST). Regular price: ₹799/month + applicable taxes from 2 January 2027.</p>
+        <div class="price">₹499 <span class="small">/ month · GST not applicable at launch · launch offer</span></div>
+        <p class="small mute">Offer through 1 January 2027 (IST). Regular price: ₹799/month from 2 January 2027.</p>
         <p class="mute">Showcase two dishes from your restaurant each month.</p>
         <ul class="price-list">
           <li>✓ 2 dishes eligible for recommendations</li>
           <li>✓ Per restaurant, per month</li>
-          <li>✓ Profile and menu verification before listing</li>
+          <li>✓ Owner-submitted profile and menu details</li>
         </ul>
         <a class="btn btn-primary" href="#business-checkout" data-billing-plan="monthly">View monthly checkout</a>
       </div>
       <div class="card price-card">
         <span class="badge">Business · Annual</span>
-        <div class="price">₹3,999 <span class="small">+ applicable taxes / year · launch offer</span></div>
-        <p class="small mute">Offer through 1 January 2027 (IST). Regular price: ₹4,999/year + applicable taxes from 2 January 2027.</p>
+        <div class="price">₹3,999 <span class="small">/ year · GST not applicable at launch · launch offer</span></div>
+        <p class="small mute">Offer through 1 January 2027 (IST). Regular price: ₹4,999/year from 2 January 2027.</p>
         <p class="mute">Keep two dishes from your restaurant listed for a year.</p>
         <ul class="price-list">
           <li>✓ 2 dishes eligible for recommendations</li>
           <li>✓ Per restaurant, for 12 months</li>
-          <li>✓ Replace your listed dishes during the year, subject to review</li>
+          <li>✓ Replace your promoted dishes during the year</li>
           <li>✓ Request a proportional refund for the unused period within the first 3 months after payment</li>
-          <li>✓ Profile and menu verification before listing</li>
+          <li>✓ Owner-submitted profile and menu details</li>
         </ul>
         <a class="btn btn-secondary" href="#business-checkout" data-billing-plan="annual">View annual checkout</a>
       </div>
     </div>
-    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Checkout availability is shown below. Test transactions do not activate paid listings. The free plan remains available. Prices exclude applicable taxes. Annual refund requests are eligible only within the first 3 months after payment and cover the unused subscription period proportionally. Automatic payments are not active.</p>
+    <p class="small mute" style="margin-top:20px">Dish counts are listing limits, not guaranteed recommendation counts. Suggestions depend on the user's preferences and available data. Checkout availability is shown below. Test transactions do not activate paid listings. The free plan remains available. GST not applicable at launch. Annual plans: request a proportional refund for the unused subscription period within 3 months of payment by emailing hello@suggestdish.com; monthly plans are non-refundable. Automatic payments are not active.</p>
   </div>
 </section>
 
@@ -1180,7 +949,7 @@
    <div class="business-fields" style="margin-top:20px">
     <label>Business reference *<input name="submissionId" required maxlength="36" autocomplete="off" placeholder="Your submission reference"></label>
     <label>Private access code *<input name="accessCode" type="password" required maxlength="64" minlength="64" autocomplete="off" placeholder="Code provided when you submitted"></label>
-    <label>Restaurant plan *<select name="plan" required><option value="monthly">Monthly · 2 dishes · ₹499 + applicable taxes through 1 Jan 2027; ₹799 + applicable taxes from 2 Jan (IST)</option><option value="annual">Annual · 2 dishes · ₹3,999 + applicable taxes through 1 Jan 2027; ₹4,999 + applicable taxes from 2 Jan (IST)</option></select></label>
+    <label>Restaurant plan *<select name="plan" required><option value="monthly">Monthly · 2 dishes · ₹499 through 1 Jan 2027; ₹799 from 2 Jan (IST)</option><option value="annual">Annual · 2 dishes · ₹3,999 through 1 Jan 2027; ₹4,999 from 2 Jan (IST)</option></select></label>
    </div>
    <button type="button" id="checkBusinessReview" class="btn btn-secondary" style="margin-top:18px">Check my listing status</button>
    <p id="businessReviewStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
@@ -1196,7 +965,7 @@
     <label style="display:block;margin:18px 0"><input name="dishUpdateConsent" type="checkbox"> I confirm these details are accurate, my menu is available at the menu or profile link, and I authorise publishing this business and dish update.</label>
     <button type="button" id="saveBusinessDish" class="btn btn-primary">Publish changes</button>
    </fieldset>
-   <p class="small mute" style="margin:18px 0">One payment covers the selected period. Your plan begins after confirmed payment. Automatic renewal is not enabled. Test payments do not activate a paid plan. Save your business reference and private access code; never share the code publicly. The current checkout adds no GST. Review the final amount in Razorpay before paying. By paying, you agree to the <a href="/terms.html" style="text-decoration:underline">plan and refund terms</a>.</p>
+   <p class="small mute" style="margin:18px 0">One payment covers the selected period. Your plan begins after confirmed payment. Automatic renewal is not enabled. Test payments do not activate a paid plan. Save your business reference and private access code; never share the code publicly. GST not applicable at launch. Review the final amount in Razorpay before paying. By paying, you agree to the <a href="/terms.html" style="text-decoration:underline">plan and refund terms</a>.</p>
    <button type="submit" id="payBusinessPlan" class="btn btn-primary" disabled>Pay securely with Razorpay</button>
    <button type="button" id="checkBusinessPayment" class="btn btn-light">Check payment status</button>
    <p id="businessPaymentStatus" role="status" aria-live="polite" style="margin-top:16px"></p>
@@ -1258,7 +1027,7 @@
         <h3>AI assisted</h3>
 
         <p>
-          AI helps interpret your preferences and select suitable
+          Text interpretation turns your request into filters for
           options from available data.
         </p>
       </div>
@@ -1268,89 +1037,14 @@
 </section>
 
 
-<!-- COMPARE -->
-<section class="section" id="compare">
-  <div class="container">
-
-    <div class="section-head">
-      <div>
-        <h2>Restaurant search vs SuggestDish</h2>
-
-        <p class="sub">
-          SuggestDish focuses on answering a more useful question:
-          "Which dish suits my preferences?"
-        </p>
-      </div>
-    </div>
-
-    <div class="card panel compare">
-
-      <table>
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Traditional restaurant search</th>
-            <th>SuggestDish</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Find restaurants</td>
-            <td>✓</td>
-            <td>✓</td>
-          </tr>
-
-          <tr>
-            <td>Find a specific dish</td>
-            <td>Limited</td>
-            <td>✓</td>
-          </tr>
-
-          <tr>
-            <td>Taste preferences</td>
-            <td>Limited</td>
-            <td>✓</td>
-          </tr>
-
-          <tr>
-            <td>Dietary preferences</td>
-            <td>Sometimes</td>
-            <td>✓</td>
-          </tr>
-
-          <tr>
-            <td>Budget matching</td>
-            <td>Limited</td>
-            <td>✓</td>
-          </tr>
-
-          <tr>
-            <td>Mood / occasion</td>
-            <td>Limited</td>
-            <td>✓</td>
-          </tr>
-
-          <tr>
-            <td>AI dish recommendation</td>
-            <td>Usually not the focus</td>
-            <td>✓</td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
-  </div>
-</section>
-
-
+<section class="section" id="compare"><div class="container"><h2>Frequently asked questions</h2><details><summary>How is SuggestDish different from restaurant search?</summary><p>Start with a dish, your budget and your city. We rank matching menu records and link to available ordering options. Paid promotions are clearly labelled and do not increase a dish’s match score.</p></details><details><summary>How are dishes ranked?</summary><p>Taste and cuisine match, budget fit, available ratings, verification recency and anonymous helpfulness votes contribute to the score. Diet and budget are hard filters. Unknown data adds no invented score.</p></details></div></section>
 <!-- AI SCORING -->
 <section class="section">
   <div class="container">
 
     <div class="section-head">
       <div>
-        <h2>AI scoring model</h2>
+        <h2>How dishes are ranked</h2>
 
         <p class="sub">
           SuggestDish can combine multiple signals to determine
@@ -1455,7 +1149,7 @@
 </section>
 
 
-<section class="section" id="about-support"><div class="container"><h2>About SuggestDish</h2><p>SuggestDish is a dish discovery website. We match available menu dishes to your preferences; restaurant listings, dish evidence and source coverage can be incomplete.</p><h3>Help and corrections</h3><p>Use Report incorrect information on a dish card, or email <a href="mailto:Suggestdishyt@gmail.com">Suggestdishyt@gmail.com</a>. Operated by Tanishka Raka. Correspondence address: Kadrabad, New Jalna 431203. Business ownership and menu changes are reviewed before publication.</p><h3>Privacy and preference controls</h3><p>Your search preferences and selected location are sent to SuggestDish to find dishes. Preferences may be sent to Google Gemini to interpret your request; locality resolution may use Geoapify. Precise location is requested through browser permission. Saved dishes and optional remembered preferences remain on this device. Location is not included in remembered preferences.</p><p>Anonymous recommendation displays and outbound dish-link clicks are counted; these counts are not unique users or orders. Feedback is stored for private moderation. Business contact details and ownership evidence are used for listing review. Keep private access codes private. You can remove saved dishes and forget remembered preferences using the website controls. Email Suggestdishyt@gmail.com for other privacy requests.</p><p>Paid plans are available when secure checkout is enabled. Buying dish slots does not guarantee placement; any future sponsored placement must be labelled and respect your dietary and budget constraints.</p></div></section>
+<section class="section" id="about-support"><div class="container"><h2>About SuggestDish</h2><p>SuggestDish is a dish discovery website. We match available menu dishes to your preferences; restaurant listings, dish evidence and source coverage can be incomplete.</p><h3>Help and corrections</h3><p>Use Report incorrect information on a dish card, or email <a href="mailto:hello@suggestdish.com">hello@suggestdish.com</a>. Operated by Tanishka Raka. Correspondence address: Kadrabad, New Jalna 431203. Business ownership and menu changes are reviewed before publication.</p><h3>Privacy and preference controls</h3><p>Your search preferences and selected location are sent to SuggestDish to find dishes. Preferences may be sent to Google Gemini to interpret your request; locality resolution may use Geoapify. Precise location is requested through browser permission. Saved dishes and optional remembered preferences remain on this device. Location is not included in remembered preferences.</p><p>Anonymous recommendation displays and outbound dish-link clicks are counted; these counts are not unique users or orders. Feedback is stored for private moderation. Business contact details and ownership evidence are used for listing review. Keep private access codes private. You can remove saved dishes and forget remembered preferences using the website controls. Email hello@suggestdish.com for other privacy requests.</p><p>Paid plans are available when secure checkout is enabled. Buying dish slots does not guarantee placement; any future sponsored placement must be labelled and respect your dietary and budget constraints.</p></div></section>
 
   </main>
 
@@ -1514,740 +1208,7 @@
     </div>
   </footer>
 
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* =========================
-     LOCATION
-  ========================= */
-
-  const enableLocation =
-    document.getElementById("enableLocation");
-
-  const enterLocation =
-    document.getElementById("enterLocation");
-
-  let userLatitude = null;
-  let userLongitude = null;
-  let selectedCity = "";
-  let appliedLocationQuery = "";
-  let excludedDishIds = [];
-  let excludedRestaurantIds = [];
-  let lastRecommendations = [];
-  const updateLocationLabel = text => { const label = document.getElementById("selectedLocation"); if (label) label.textContent = text; };
-  document.getElementById("clearLocation")?.addEventListener("click", () => { locationSelectionVersion++; locationPending=false; gpsPending=false; if(enterLocation)enterLocation.disabled=false; excludedDishIds=[]; excludedRestaurantIds=[]; userLatitude = null; userLongitude = null; selectedCity = ""; appliedLocationQuery = ""; const input = document.getElementById("locationQuery"); if(input)input.value=""; updateLocationLabel("No location selected. Distance filtering requires a location."); const coverage=document.getElementById("menuCoverage"); if(coverage)coverage.textContent=""; });
-  let locationPending = false;
-  let gpsPending = false;
-  let locationSelectionVersion = 0;
-
-
-  /* =========================
-     TOAST
-  ========================= */
-
-  function toast(message) {
-
-    const existingToast =
-      document.querySelector(".suggestdish-toast");
-
-    if (existingToast) {
-      existingToast.remove();
-    }
-
-    const el =
-      document.createElement("div");
-
-    el.className =
-      "suggestdish-toast";
-
-    el.setAttribute("role", "status");
-    el.setAttribute("aria-live", "polite");
-
-    el.style.cssText =
-      "position:fixed;" +
-      "left:50%;" +
-      "bottom:22px;" +
-      "transform:translateX(-50%);" +
-      "background:#38251C;" +
-      "color:#fff;" +
-      "padding:12px 16px;" +
-      "border-radius:999px;" +
-      "box-shadow:0 16px 30px rgba(0,0,0,.2);" +
-      "z-index:9999;" +
-      "font-weight:700;" +
-      "max-width:calc(100% - 24px);" +
-      "text-align:center;";
-
-    el.textContent = message;
-
-    document.body.appendChild(el);
-
-    setTimeout(() => {
-      el.style.opacity = "0";
-      el.style.transition = "opacity .2s ease";
-    }, 1800);
-
-    setTimeout(() => {
-      el.remove();
-    }, 2100);
-  }
-
-
-  /* =========================
-     ENABLE LOCATION
-  ========================= */
-
-  if (enableLocation) {
-
-    enableLocation.addEventListener(
-      "click",
-      () => {
-
-        if (!navigator.geolocation) {
-
-          toast(
-            "Location services are not available in this browser."
-          );
-
-          return;
-        }
-
-        const selectionVersion = ++locationSelectionVersion;
-        locationPending = false;
-        gpsPending = true;
-        if (enterLocation) enterLocation.disabled = false;
-        toast(
-          "📍 Requesting your location..."
-        );
-
-        navigator.geolocation.getCurrentPosition(
-
-          (position) => {
-            if (selectionVersion !== locationSelectionVersion) return;
-            gpsPending = false;
-
-            selectedCity = "";
-            updateLocationLabel("Location: your current GPS position");
-            const coverage=document.getElementById("menuCoverage");
-            if(coverage)coverage.textContent="Nearby search uses only restaurants with coordinates. Some city menus have no mapped location. To search the whole city, type its name and choose Enter Location; distance will not apply.";
-
-            appliedLocationQuery = "";
-            const locationInput = document.getElementById("locationQuery");
-            if (locationInput) locationInput.value = "";
-            excludedDishIds = []; excludedRestaurantIds = [];
-            userLatitude =
-              position.coords.latitude;
-
-            userLongitude =
-              position.coords.longitude;
-
-            toast(
-              "📍 Location enabled successfully."
-            );
-          },
-
-          (error) => {
-            if (selectionVersion !== locationSelectionVersion) return;
-            gpsPending = false;
-
-            console.error(
-              "Location error:",
-              error
-            );
-
-            if (error.code === 1) {
-
-              toast(
-                "Location permission denied. You can continue without location."
-              );
-
-            } else if (error.code === 2) {
-
-              toast(
-                "Your location could not be determined."
-              );
-
-            } else if (error.code === 3) {
-
-              toast(
-                "Location request timed out. Please try again."
-              );
-
-            } else {
-
-              toast(
-                "Unable to get your location."
-              );
-            }
-          },
-
-          {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 600000
-          }
-        );
-      }
-    );
-  }
-
-
-  /* =========================
-     ENTER LOCATION
-  ========================= */
-
-  document.getElementById("locationQuery")?.addEventListener("keydown", event => { if (event.key === "Enter") { event.preventDefault(); enterLocation?.click?.(); } });
-  async function resolveEnteredLocation() {
-
-        const locationField = document.getElementById("locationQuery");
-        const loc = locationField?.value?.trim() || "";
-        if (!loc) { toast("Enter a city or locality in the location field."); locationField?.focus?.(); return; }
-
-        if (!loc || !loc.trim() || locationPending) return false;
-        const selectionVersion = ++locationSelectionVersion;
-        gpsPending = false;
-        locationPending = true;
-        enterLocation.disabled = true;
-        toast("Finding your chosen location...");
-        try {
-          const apiBase = window.location.hostname === "localhost" ? "http://localhost:3000" : "";
-          const response = await fetch(`${apiBase}/api/location-search?q=${encodeURIComponent(loc.trim())}`, {signal:AbortSignal.timeout(15000)});
-          const data = await response.json();
-          if (selectionVersion !== locationSelectionVersion) return false;
-          if (locationField.value.trim().toLowerCase() !== loc.toLowerCase()) return false;
-          if (!response.ok || !data.success) throw new Error(data.error || "Unable to find that location.");
-          const city = typeof data.city === "string" ? data.city : "";
-          const hasCoordinates = Number.isFinite(data.latitude) && Number.isFinite(data.longitude);
-          if (!city && !hasCoordinates) throw new Error("Location not found. Try entering Mumbai or Jalna.");
-          selectedCity = city;
-          appliedLocationQuery = loc.toLowerCase();
-          excludedDishIds = []; excludedRestaurantIds = [];
-          userLatitude = hasCoordinates ? data.latitude : null;
-          userLongitude = hasCoordinates ? data.longitude : null;
-          updateLocationLabel(`Location: ${data.label}` + (hasCoordinates ? "" : " — city-wide search; distance unavailable"));
-          const coverage=document.getElementById("menuCoverage");
-          if (coverage && city) { coverage.textContent="Checking menu coverage…"; try { const r=await fetch("/api/recommendation-coverage?"+new URLSearchParams({city}),{signal:AbortSignal.timeout(10000)}); const counts=await r.json(); if(selectionVersion !== locationSelectionVersion)return false; if(!r.ok || !counts.success)throw Error(); coverage.textContent=`${city}: ${counts.counts.candidate_restaurants} restaurants with ${counts.counts.candidate_records} searchable priced dishes before your preference filters. Only ${counts.counts.mapped_restaurants ?? "unknown"} of these restaurants have coordinates for nearby searches (${counts.counts.mapped_candidates ?? "unknown"} dishes before radius and preference filters). Current prices and availability may differ; directory listings are separate.`; }catch{if(selectionVersion !== locationSelectionVersion)return false; coverage.textContent="Menu coverage could not be checked. Directory listings do not confirm available menus.";} }
-          else if(coverage)coverage.textContent="Locality-level coverage counts are not available. Results use menu records within your selected radius when coordinates are available.";
-          if (selectionVersion !== locationSelectionVersion) return false;
-          toast(`Location set to ${data.label}. Choose your preferences and tap Recommend My Dish.`);
-          return true;
-        } catch (error) {
-          if (selectionVersion !== locationSelectionVersion) return false;
-          toast(error.name === "TimeoutError" ? "Location search took too long. Please try again." : error.message);
-          return false;
-        } finally {
-          if (selectionVersion === locationSelectionVersion) {
-            locationPending = false;
-            enterLocation.disabled = false;
-          }
-        }
-  }
-  if (enterLocation) enterLocation.addEventListener("click", resolveEnteredLocation);
-
-
-  /* =========================
-     AI RECOMMENDATION
-  ========================= */
-
-  const aiRecommendBtn =
-    document.getElementById("aiRecommendBtn");
-
-  const aiLoading =
-    document.getElementById("aiLoading");
-
-  const rerun = () => document.getElementById("aiRecommendBtn")?.click?.();
-  document.getElementById("refineCheaper")?.addEventListener("click", () => { const prices=lastRecommendations.map(x=>Number(x.price)).filter(x=>Number.isFinite(x)&&x>1); if (!prices.length) return toast("No lower price target is available."); document.getElementById("aiBudget").value="custom"; document.getElementById("aiCustomBudget").value=String(Math.max(1,Math.floor(Math.min(...prices))-1)); rerun(); });
-  document.getElementById("refineCloser")?.addEventListener("click", () => { if (userLatitude===null || userLongitude===null) return toast("Choose a locality or enable location to search closer."); const field=document.getElementById("aiRadius"); const options=[1,2,5,10,25]; field.value=String(options.filter(x=>x<Number(field.value)).pop() || 1); rerun(); });
-  document.getElementById("refineDifferent")?.addEventListener("click", () => { excludedDishIds=[...new Set([...excludedDishIds,...lastRecommendations.map(x=>x.dishId).filter(x=>Number.isSafeInteger(x)&&x>0)])].slice(-20); excludedRestaurantIds=[...new Set([...excludedRestaurantIds,...lastRecommendations.map(x=>x.restaurantId).filter(x=>Number.isSafeInteger(x)&&x>0)])].slice(-20); rerun(); });
-  document.getElementById("clearEmptyRefinements")?.addEventListener("click", () => { excludedDishIds=[]; excludedRestaurantIds=[]; rerun(); });
-  document.getElementById("refineReset")?.addEventListener("click", () => { excludedDishIds=[]; excludedRestaurantIds=[]; rerun(); });
-  document.getElementById("expandDistance")?.addEventListener("click", () => { if (userLatitude===null || userLongitude===null) return toast("Choose a locality or enable location first."); const field=document.getElementById("aiRadius"); field.value=String([1,2,5,10,25].find(x=>x>Number(field.value)) || 25); rerun(); });
-  document.getElementById("editRequest")?.addEventListener("click", () => document.getElementById("aiCustomPreferences")?.focus?.());
-
-  function addDishActions(container, dish) {
-    const row = document.createElement("div"); row.className = "row"; row.style.flexWrap = "wrap";
-    const directions = document.createElement("a"); directions.className = "btn btn-light";
-    directions.textContent = "Find on Google Maps";
-    directions.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent([dish.restaurant,dish.address,dish.city].filter(Boolean).join(", "));
-    directions.dataset.dishEvent="maps_click"; directions.dataset.dishId=String(dish.dishId || ""); directions.target = "_blank"; directions.rel = "noopener noreferrer"; row.append(directions);
-    const save = document.createElement("button"); save.className = "btn btn-light"; save.textContent = "Save dish";
-    save.onclick = () => { try { const saved = JSON.parse(localStorage.getItem("suggestdish.saved") || "[]"); const key = JSON.stringify([dish.dishName,dish.restaurant,dish.address]); if (!saved.some(x=>JSON.stringify([x.dishName,x.restaurant,x.address])===key)) saved.push(dish); localStorage.setItem("suggestdish.saved",JSON.stringify(saved.slice(-50))); save.textContent="Saved on this device"; } catch { save.textContent="Unable to save on this device"; } }; row.append(save);
-    const share = document.createElement("a"); share.className = "btn btn-light"; share.textContent = "Share on WhatsApp";
-    share.href = "https://wa.me/?text=" + encodeURIComponent(`${dish.dishName} at ${dish.restaurant}${dish.price != null ? " · ₹" + dish.price : ""}\n${dish.address || ""}\nDiscover dishes at https://www.suggestdish.com`); share.dataset.dishEvent="share_click";share.dataset.dishId=String(dish.dishId || "");share.target="_blank"; share.rel="noopener noreferrer"; row.append(share);
-    const freshness = document.createElement("p"); freshness.className="small mute";
-    const checked = dish.sourceCheckedAt && new Date(dish.sourceCheckedAt);
-    freshness.textContent = checked && !Number.isNaN(checked.getTime()) ? "Star-dish source checked: " + checked.toLocaleDateString("en-IN") + ". Current price and availability: confirm with the restaurant." : "Current price and availability are not independently confirmed. Check with the restaurant before travelling or ordering.";
-    container.append(freshness, row);
-    if (Number.isSafeInteger(dish.dishId)) {
-      for (const [kind,label] of [["dislike","Not for me"],["review","I tried this dish"],["correction","Report incorrect information"]]) {
-        const button=document.createElement("button");button.type="button";button.className="btn btn-light";button.textContent=label;button.dataset.feedbackKind=kind;button.dataset.dishId=String(dish.dishId);button.dataset.dishName=dish.dishName;container.append(button);
-      }
-    }
-    if (dish.sponsored === true) { const sponsored=document.createElement("span"); sponsored.className="badge"; sponsored.textContent="Sponsored"; container.prepend(sponsored); }
-    for (const label of [dish.ownerVerified===true ? "Verified owner" : dish.ownerSubmitted===true ? "Owner-submitted" : null,dish.starConfirmed===true ? (dish.starOrigin==="published_menu" ? "Menu-listed specialty" : "Reviewed star dish") : null].filter(Boolean)) { const badge=document.createElement("span"); badge.className="badge";badge.textContent=label;container.append(badge); }
-    const evidence=document.createElement("p");evidence.className="small mute";
-    evidence.textContent=dish.starOrigin==="owner_claim" ? "Owner-submitted star dish. Popularity: " + (dish.popularityVerified ? "independently checked" : "owner-reported, not independently verified") + "." : dish.starOrigin==="published_menu" ? "Star dish identified in a published menu. Dish-specific customer rating: not available." : "Menu suggestion. Dish-specific rating and popularity evidence: not available.";
-    container.append(evidence);
-    const facts=document.createElement("p");facts.className="small mute";facts.textContent="Portion size, spice/customisation, opening hours and delivery availability: not confirmed. Vegetarian does not mean vegan or Jain. Confirm ingredients and preparation with the restaurant.";container.append(facts);
-  }
-
-  async function showDishPhoto(container, dishName, vegetarian, dishId) {
-    if (!container || !dishName) return;
-    container.replaceChildren();
-    const note = document.createElement("p"); note.className = "small mute"; note.textContent = "Finding a verified matching dish photo…"; container.append(note);
-    try {
-      const response = await fetch("/api/dish-photo?" + new URLSearchParams({dish: dishName, vegetarian: String(vegetarian !== false), dishId:String(dishId || ""), v: "4"}));
-      const data = await response.json();
-      if (!note.parentNode) return;
-      container.replaceChildren();
-      const photo = data.photo;
-      if (!photo) { note.textContent = "Verified matching dish photo not available yet."; container.append(note); return; }
-      const imageURL = new URL(photo.url), sourceURL = new URL(photo.sourceUrl);
-      if (imageURL.protocol !== "https:" || !["upload.wikimedia.org","thumb.wikimedia.org","www.suggestdish.com"].includes(imageURL.hostname) || sourceURL.protocol !== "https:" || !["commons.wikimedia.org","www.suggestdish.com"].includes(sourceURL.hostname)) return;
-      const image = document.createElement("img"); image.src = imageURL.href; image.alt = photo.label; image.loading = "lazy"; image.referrerPolicy = "no-referrer"; image.style.cssText = "width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin-top:12px";
-      const caption = document.createElement("p"); caption.className = "small mute"; caption.textContent = photo.label;
-      const source = document.createElement("a"); source.href = sourceURL.href; source.target = "_blank"; source.rel = "noopener noreferrer"; source.textContent = "Photo: " + photo.artist + " · " + photo.license; caption.append(source);
-      image.onerror = () => { container.replaceChildren(); note.textContent = "Photo not available yet."; container.append(note); };
-      container.append(image, caption);
-    } catch { if (note.parentNode) {note.textContent = "Photo not available yet.";} }
-  }
-
-  const aiResult =
-    document.getElementById("aiResult");
-
-  const aiError =
-    document.getElementById("aiError");
-
-  const aiDishName =
-    document.getElementById("aiDishName");
-
-  const aiRestaurant =
-    document.getElementById("aiRestaurant");
-
-  const aiReason =
-    document.getElementById("aiReason");
-
-  const aiSummary =
-    document.getElementById("aiSummary");
-
-  const aiErrorText =
-    document.getElementById("aiErrorText");
-
-  const aiStatusTitle =
-    document.getElementById("aiStatusTitle");
-
-  const aiSourceBadge =
-    document.getElementById("aiSourceBadge");
-
-  const aiSourceLabel =
-    document.getElementById("aiSourceLabel");
-
-
-  if (aiRecommendBtn) {
-
-    aiRecommendBtn.addEventListener(
-      "click",
-      async () => {
-
-        if (locationPending) {
-          toast("Please wait while your chosen location is found.");
-          return;
-        }
-
-        const typedLocation = document.getElementById("locationQuery")?.value.trim() || "";
-        if (gpsPending && (!typedLocation || typedLocation.toLowerCase() === appliedLocationQuery)) {
-          toast("Please wait for GPS, enter a city, or clear the location request.");
-          return;
-        }
-        if (typedLocation && typedLocation.toLowerCase() !== appliedLocationQuery) {
-          if (!await resolveEnteredLocation()) return;
-        }
-
-        console.log(
-          "AI Recommend button clicked."
-        );
-
-        /* Hide old result/error */
-
-        if (aiResult) {
-          aiResult.style.display = "none";
-          const extra = document.getElementById("aiMoreRecommendations");
-          if (extra) extra.style.display = "none";
-        }
-
-        if (aiError) {
-          aiError.style.display = "none";
-        }
-
-        aiRecommendBtn.disabled = true;
-        /* Show loading */
-
-        if (aiLoading) {
-          aiLoading.style.display = "block";
-        }
-
-
-        /* =========================
-           READ USER PREFERENCES
-        ========================= */
-
-        const taste =
-          document.getElementById("aiTaste")?.value ||
-          "any";
-
-        const cuisine =
-          document.getElementById("aiCuisine")?.value ||
-          "any";
-
-        const mood =
-          document.getElementById("aiMood")?.value ||
-          "any";
-
-        const customPreferences = document.getElementById("aiCustomPreferences")?.value.trim() || "";
-
-        const budgetChoice = document.getElementById("aiBudget")?.value || "300";
-        const budget = budgetChoice === "custom" ? document.getElementById("aiCustomBudget")?.value : budgetChoice;
-        if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0 || Number(budget) > 100000) { aiRecommendBtn.disabled = false; if (aiLoading) aiLoading.style.display = "none"; if (aiErrorText) aiErrorText.textContent = "Enter a maximum budget greater than ₹0 and no more than ₹100,000."; if (aiError) { aiError.style.display = "block"; aiError.focus?.(); } return; }
-
-        const diet = document.getElementById("aiDiet")?.value || "vegetarian";
-        const vegetarian = diet === "vegetarian";
-
-
-        console.log(
-          "Preferences:",
-          {
-            taste,
-            cuisine,
-            mood,
-            budget,
-            vegetarian
-          }
-        );
-
-
-        /* =========================
-           BUILD API URL
-        ========================= */
-
-        const apiBase =
-          window.location.hostname === "localhost"
-            ? "http://localhost:3000"
-            : "";
-
-        const params =
-          new URLSearchParams();
-
-        params.set(
-          "taste",
-          taste
-        );
-
-        params.set(
-          "cuisine",
-          cuisine
-        );
-
-        params.set("customPreferences", customPreferences);
-        params.set("radiusKm", document.getElementById("aiRadius")?.value || "5");
-        params.set("diet", diet);
-        params.set("diningMode", document.getElementById("aiDiningMode")?.value || "any");
-        if (excludedDishIds.length) params.set("excludeDishIds", excludedDishIds.join(","));
-        if (excludedRestaurantIds.length) params.set("excludeRestaurantIds", excludedRestaurantIds.join(","));
-
-        params.set(
-          "mood",
-          mood
-        );
-
-        params.set(
-          "budget",
-          budget
-        );
-
-        params.set(
-          "vegetarian",
-          String(vegetarian)
-        );
-        if (selectedCity) params.set("city", selectedCity);
-
-
-        /* Add location only if available */
-
-        if (
-          userLatitude !== null &&
-          userLongitude !== null
-        ) {
-
-          params.set(
-            "lat",
-            String(userLatitude)
-          );
-
-          params.set(
-            "lon",
-            String(userLongitude)
-          );
-        }
-
-
-        const url =
-          `${apiBase}/api/ai-recommend?${params.toString()}`;
-
-
-        console.log(
-          "Calling AI API:",
-          url
-        );
-
-
-        /* =========================
-           CALL BACKEND
-        ========================= */
-
-        try {
-
-          const response =
-            await fetch(url, {signal:AbortSignal.timeout(45000)});
-
-
-          console.log(
-            "API status:",
-            response.status
-          );
-
-
-          const data =
-            await response.json();
-
-
-          console.log(
-            "AI API response:",
-            data
-          );
-
-
-          /* Backend returned an error */
-
-          if (
-            !response.ok ||
-            !data.success
-          ) {
-
-            throw new Error(
-              data.error ||
-              data.message ||
-              "Unable to get an AI recommendation."
-            );
-          }
-
-
-          /* =========================
-             CHECK RECOMMENDATIONS
-          ========================= */
-
-          const recommendations =
-            Array.isArray(data.recommendations) ? data.recommendations : [];
-          lastRecommendations = recommendations;
-
-          const recovery = document.getElementById("emptyRecovery"); if (recovery) recovery.style.display = recommendations.length ? "none" : "block";
-          const refinements = document.getElementById("searchRefinements"); if (refinements) refinements.style.display = recommendations.length ? "flex" : "none";
-
-
-          if (
-            recommendations.length === 0
-          ) {
-            if (aiStatusTitle) aiStatusTitle.textContent = "No matching dishes yet";
-            if (aiErrorText) aiErrorText.textContent =
-              data.summary || "No matching dishes were found.";
-            if (aiError) {
-              aiError.style.display = "block";
-              aiError.focus?.();
-            }
-            return;
-          }
-
-
-          const moreResults = document.getElementById("aiMoreRecommendations");
-          if (moreResults && typeof moreResults.replaceChildren === "function") {
-            moreResults.replaceChildren();
-            for (const item of recommendations.slice(1, 3)) {
-              const card = document.createElement("article");
-              card.className = "card panel"; card.style.marginTop = "16px";
-              for (const [tag, value] of [["h3", item.dishName], ["p", item.restaurant], ["p", item.reason], ["p", [Number.isFinite(Number(item.price)) && item.price != null ? "₹" + Number(item.price) : null, item.vegetarian === true ? "Vegetarian" : "Non-vegetarian", item.address, item.distanceKm != null ? item.distanceKm + " km away" : null].filter(Boolean).join(" · ")]]) {
-                const line = document.createElement(tag); line.textContent = value || ""; card.append(line);
-              }
-              if (item.starSourceUrl) { try { const source = new URL(item.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { const link = document.createElement("a"); link.href = source.href; link.target = "_blank"; link.rel = "noopener noreferrer"; link.textContent = "View restaurant menu evidence"; link.dataset.dishEvent="menu_click";link.dataset.dishId=String(item.dishId || "");card.append(link); } } catch {} }
-              const photoContainer = document.createElement("div"); card.append(photoContainer);
-              showDishPhoto(photoContainer, item.dishName, item.vegetarian, item.dishId);
-              addDishActions(card, item);
-              moreResults.append(card);
-            }
-            moreResults.style.display = recommendations.length > 1 ? "block" : "none";
-          }
-
-          /* First recommendation */
-
-          const first =
-            recommendations[0];
-
-
-          showDishPhoto(document.getElementById("aiDishPhoto"), first.dishName, first.vegetarian, first.dishId);
-
-          /* =========================
-             DISPLAY RESULT
-          ========================= */
-
-          if (aiDishName) {
-
-            aiDishName.textContent =
-              first.dishName ||
-              "Recommended dish";
-          }
-
-
-          if (aiRestaurant) {
-
-            aiRestaurant.textContent =
-              first.restaurant ||
-              "Restaurant information unavailable";
-          }
-
-
-          if (aiReason) {
-
-            aiReason.textContent =
-              first.reason ||
-              "Recommended based on your preferences.";
-          }
-
-
-          if (aiSummary) {
-
-            aiSummary.textContent =
-              data.summary ||
-              "Here is your AI-powered recommendation.";
-          }
-
-          if (aiSourceBadge) aiSourceBadge.textContent =
-            data.source === "gemini" ? "✨ AI Recommendation" : "🍽️ Database recommendation";
-          if (aiSourceLabel) aiSourceLabel.textContent =
-            data.source === "gemini" ? "AI matched" : "Matched from available dishes";
-
-
-          document.getElementById("aiDishActions")?.remove?.();
-          const actions = document.createElement("div"); actions.id = "aiDishActions";
-          document.getElementById("aiDishPhoto")?.after?.(actions); addDishActions(actions, first);
-          const primaryMeta = document.getElementById("aiDishMeta");
-          if (primaryMeta) primaryMeta.textContent = [first.price != null ? "₹" + Number(first.price) : null, first.vegetarian === true ? "Vegetarian" : "Non-vegetarian", first.address, first.distanceKm != null ? first.distanceKm + " km away" : null].filter(Boolean).join(" · ");
-          const evidenceLink = document.getElementById("aiEvidenceSource");
-          if (evidenceLink) { evidenceLink.hidden = true; try { const source = new URL(first.starSourceUrl); if (source.protocol === "https:" && !source.username && !source.password) { evidenceLink.href = source.href; evidenceLink.dataset.dishEvent="menu_click";evidenceLink.dataset.dishId=String(first.dishId || "");evidenceLink.hidden = false; } } catch {} }
-          /* Show result */
-
-          if (aiResult) {
-
-            aiResult.style.display =
-              "block";
-            aiResult.focus?.();
-          }
-          const shownIds=recommendations.map(x=>x.dishId).filter(x=>Number.isSafeInteger(x)&&x>0).slice(0,3);
-          if(shownIds.length)window.SuggestDishPrivacy?.record("recommendation_shown",shownIds);
-
-
-        } catch (error) {
-
-          console.error(
-            "AI recommendation error:",
-            error
-          );
-
-
-          /* Show error */
-
-          if (aiStatusTitle) aiStatusTitle.textContent = "⚠️ Something went wrong";
-
-          if (aiErrorText) {
-
-            aiErrorText.textContent =
-              (error.name === "TimeoutError" ? "Finding your dish took too long. Please try again; your preferences are unchanged." : error.message) ||
-              "Something went wrong.";
-          }
-
-
-          if (aiError) {
-
-            aiError.style.display =
-              "block";
-            aiError.focus?.();
-          }
-
-
-        } finally {
-
-          aiRecommendBtn.disabled = false;
-          /* Hide loading */
-
-          if (aiLoading) {
-
-            aiLoading.style.display =
-              "none";
-          }
-        }
-      }
-    );
-  }
-
-
-  /* =========================
-     SMOOTH NAVIGATION
-  ========================= */
-
-  document
-    .querySelectorAll('a[href^="#"]')
-    .forEach((link) => {
-
-      link.addEventListener(
-        "click",
-        (event) => {
-
-          const targetId =
-            link.getAttribute("href");
-
-          if (
-            !targetId ||
-            targetId === "#"
-          ) {
-            return;
-          }
-
-          const target =
-            document.querySelector(
-              targetId
-            );
-
-          if (target) {
-
-            event.preventDefault();
-
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-          }
-        }
-      );
-    });
-
-
-  /* =========================
-     FRONTEND LOADED
-  ========================= */
-
-  console.log(
-    "SuggestDish frontend JavaScript loaded successfully."
-  );
-
-});
-</script>
+<script src="/dish-search.js" defer></script>
 
 <script>
  document.getElementById('businessListingCta')?.addEventListener('click', () => document.getElementById('list-business').scrollIntoView({behavior:'smooth'}));
@@ -2300,7 +1261,7 @@ document.addEventListener("DOMContentLoaded", () => {
   else if(data.status==='refunded') status.textContent='This payment has been refunded. Its paid plan is inactive.';
   else status.textContent=data.message || 'Business review: '+data.approval+'. Payment status: '+data.status+'. If you have paid, do not pay again; check status later or contact SuggestDish with your payment ID.';
  }
- fetch('/api/billing/config').then(r=>r.json()).then(data=>{available=data.available===true;pay.disabled=!available;pay.textContent=data.mode==='test'?'Open Razorpay test checkout':'Pay securely with Razorpay';document.querySelectorAll('[data-billing-plan]').forEach(link=>{link.textContent=(link.dataset.billingPlan==='monthly'?'Monthly':'Annual')+(data.mode==='test'?' — test checkout':available?' — checkout':' — unavailable');});document.getElementById('billingAvailability').textContent=available ? (data.mode==='test'?'Razorpay test mode — no real money will be charged.':'Secure Razorpay checkout is available for published businesses. Real money will be charged.') : 'Payments are temporarily unavailable. Your free listing remains available.';}).catch(()=>{document.getElementById('billingAvailability').textContent='Payment availability could not be checked. Please reload later.';});
+ fetch('/api/billing/config',{signal:AbortSignal.timeout(8000)}).then(r=>r.json()).then(data=>{available=data.available===true;pay.disabled=!available;pay.textContent=data.mode==='test'?'Open Razorpay test checkout':'Pay securely with Razorpay';document.querySelectorAll('[data-billing-plan]').forEach(link=>{link.textContent=(link.dataset.billingPlan==='monthly'?'Monthly':'Annual')+(data.mode==='test'?' — test checkout':available?' — checkout':' — unavailable');});document.getElementById('billingAvailability').textContent=available ? (data.mode==='test'?'Razorpay test mode — no real money will be charged.':'Secure Razorpay checkout is available for published businesses. Real money will be charged.') : 'Checkout is temporarily unavailable. Email hello@suggestdish.com.';}).catch(()=>{document.getElementById('billingAvailability').textContent='Checkout is temporarily unavailable. Email hello@suggestdish.com.';});
  document.querySelectorAll('[data-billing-plan]').forEach(link=>link.addEventListener('click',()=>{form.elements.plan.value=link.dataset.billingPlan;}));
  form.addEventListener('submit',async(event)=>{
   event.preventDefault();if(!available || busy)return;busy=true;pay.disabled=true;status.textContent='Preparing secure checkout…';
@@ -2382,7 +1343,7 @@ form.addEventListener('submit',e=>{e.preventDefault();offset=0;filters=Object.fr
   <label><input type="checkbox" name="consent" required> I confirm this feedback reflects my experience or the information I observed.</label>
   <button type="submit" class="btn btn-primary">Submit feedback</button><button type="button" id="closeFeedback" class="btn btn-light">Close</button><p id="feedbackStatus" role="status" aria-live="polite"></p>
   </form></dialog>
-<script src="/source-listing-prefill.js" defer></script><script src="/foodie-controls.js" defer></script><script src="/dish-feedback.js" defer></script>
+<script src="/source-listing-prefill.js" defer></script><script src="/dish-feedback.js" defer></script>
 <script>
 document.addEventListener('click',event=>{const target=event.target.closest('[data-dish-event]');if(!target)return;const id=Number(target.dataset.dishId);if(!Number.isSafeInteger(id)||id<1)return;window.SuggestDishPrivacy?.record(target.dataset.dishEvent,[id]);});
 </script><script src="/featured-dishes.js" defer></script><script src="/business-promotions.js" defer></script>
