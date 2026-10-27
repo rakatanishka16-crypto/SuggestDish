@@ -4,7 +4,7 @@
     try {
       const response = await fetch('/api/data-coverage', {signal:AbortSignal.timeout(10000)});
       const data = await response.json(); if (!response.ok || !data.success) return;
-      target.textContent = data.pricedDirectoryProfiles + ' source profiles have outlet-specific menus with listed prices. Other source records are archived; current prices and availability require confirmation.';
+      target.textContent = data.pricedDirectoryProfiles + ' source profiles have outlet-specific menus with listed prices. '+(data.unpricedRequestedMenuListings || 0)+' requested Jalna listings show external menu links with prices unavailable. Current prices and availability require confirmation.';
     } catch {}
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',showCoverage,{once:true}); else showCoverage();

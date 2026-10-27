@@ -84,3 +84,13 @@ Four Python builder checks and 39 targeted Node checks cover exact branch matchi
 ## Completing the remaining 19
 
 Provide outlet-approved menu PDFs, photographs or a permitted structured export showing dish names and prices, with the exact branch address and source date. No menu from another branch, unpriced menu, inferred price, copied food photo or unverified licence claim is substituted. The follow-up changes the source snapshots, branch review records, catalogue loader, reproducible builder, targeted tests and this report; it does not change recommendation eligibility or production database rows.
+
+## Requested link-only listings — 27 October 2026
+
+The user subsequently requested adding the remaining 19 even without usable prices. All 19 are now explicitly allowed in Browse restaurants as external menu links, labelled **Prices unavailable**. No menu content is copied from a restricted platform. No dish, price, diet, licence status, precise address or operating status is invented. Existing exact source URLs are reused; 18 minimal source profiles are added and the existing Cake House By Pooja link profile is reused. Other unpriced archived profiles remain excluded.
+
+Coverage is now **64 requested outlet menu listings: 45 imported priced menus (2,743 entries) and 19 external links without imported prices**. The 19 remain pending for priced-menu acquisition and remain ineligible for recommendations. The directory response, coverage statement and card label distinguish these two groups. Existing owner data, prices and recommendation eligibility are preserved.
+
+Files changed: `lib/jalna-menu-link-listings.js`, `lib/source-catalog.js`, `lib/business-directory.js`, `business-sources.js`, `index.html`, related directory/catalogue tests and this report.
+
+Link-only release validation: 41 targeted Node checks and four Python builder checks passed. The PostgreSQL-compatible directory check now traverses both Jalna result pages and confirms all 19 exceptions have zero imported prices while existing priced menus stay available. All five inline page scripts also passed syntax parsing.
