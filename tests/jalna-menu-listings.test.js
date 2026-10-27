@@ -47,8 +47,8 @@ test('closed, unclear and conflicting Jalna listings stay held instead of adding
 test('city directory queries serialize only relevant source profiles',async()=>{
  let handler,values;require('../lib/business-directory')({get:(p,h)=>{handler=h;}},async(s,...v)=>{values=v;return [];});
  await handler({query:{city:'Jalna'}},{set(){},json(){}});
- const rows=JSON.parse(values[0]);assert.ok(rows.length>200);assert.ok(rows.every(b=>b.city.toLowerCase()==='jalna'));
- assert.equal(rows.length,catalog.listingRows.filter(b=>String(b.city||'').toLowerCase()==='jalna').length);
+ const rows=JSON.parse(values.find(v=>typeof v==='string'&&v.startsWith('[')));assert.ok(rows.every(b=>b.city.toLowerCase()==='jalna'&&b.hasPricedMenu));
+ assert.equal(rows.length,catalog.listingRows.filter(b=>b.hasPricedMenu&&String(b.city||'').toLowerCase()==='jalna').length);
  assert.ok(rows.length<catalog.listingRows.length);
 });
 test('directory query returns matched menu links without overwriting owner-submitted menu links',async()=>{

@@ -4,7 +4,7 @@
     try {
       const response = await fetch('/api/data-coverage', {signal:AbortSignal.timeout(10000)});
       const data = await response.json(); if (!response.ok || !data.success) return;
-      target.textContent = 'Published source details: ' + data.businessProfiles + ' business profiles, ' + data.menuEntries + ' menu entries and ' + data.publishedPrices + ' published prices and ' + data.profilesWithCoordinates + ' source map locations. Checked ' + data.checkedOn + '. ' + (data.registryRecordsChecked ? data.registryRecordsChecked + ' FSSAI registry records have dated status observations. ' : '') + 'Coverage is partial; current availability is unconfirmed.';
+      target.textContent = data.pricedDirectoryProfiles + ' source profiles have outlet-specific menus with listed prices. Other source records are archived; current prices and availability require confirmation.';
     } catch {}
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',showCoverage,{once:true}); else showCoverage();

@@ -38,22 +38,27 @@ test('registry profiles cannot borrow brand menus and source responses expose da
  assert.equal(catalog.coverage.registryRecordsChecked,3329);
 });
 
-test('real PostgreSQL directory queries find FSSAI bakeries with metadata and preserve town and category filters',async()=>{
+test('real PostgreSQL directory queries hide registry-only profiles and retain existing priced menus',async()=>{
  const {PGlite}=require('@electric-sql/pglite');const db=new PGlite();
  try{
   await db.exec(`CREATE TABLE "Restaurant" (id integer,name text,address text,city text,latitude double precision,longitude double precision);
-   CREATE TABLE "Dish" (id integer,"restaurantId" integer);
+   CREATE TABLE "Dish" (id integer,name text,price double precision,"restaurantId" integer,source_urls text[]);
+   CREATE TABLE "DishSignal" ("dishId" integer,source text);
    CREATE TABLE "HorecaCandidate" ("sourceKey" text,name text,category text,address text,city text,"sourceUrl" text,"reviewStatus" text,"restaurantId" integer,latitude double precision,longitude double precision);
    CREATE TABLE "BusinessSubmission" (id integer,"businessName" text,category text,address text,city text,"profileUrl" text,status text,"restaurantId" integer,"verificationNotes" text,"menuUrl" text);`);
   let handler;require('../lib/business-directory')({get:(p,h)=>handler=h},async(parts,...values)=>{
    const sql=parts.reduce((text,part,i)=>text+(i?'$'+i:'')+part,'');return (await db.query(sql,values)).rows;
   });
   const run=async query=>{let body,status=200;await handler({query},{set(){},status(n){status=n;return this;},json(v){body=v;}});assert.equal(status,200);return body;};
-  const result=await run({city:'Jalna',q:'NEW MAHARAJA BAKERY',category:'bakery'});
-  assert.equal(result.total,1);const b=result.businesses[0];assert.equal(b.city,'Jalna');assert.equal(b.fssaiRecords[0].number,'11519045000079');assert.equal(b.reviewStatus,'fssai_registry');assert.equal(b.distanceKm,null);assert.equal(b.menuUrl,null);
-  assert.equal((await run({city:'Partur',q:'NEW MAHARAJA BAKERY'})).total,0);
-  assert.equal((await run({city:'Jalna',q:'NEW MAHARAJA BAKERY',category:'hotel'})).total,0);
-  const first=await run({city:'Bhokardan',limit:'2'}),next=await run({city:'Bhokardan',limit:'2',offset:'2'});
+  assert.equal((await run({city:'Jalna',q:'NEW MAHARAJA BAKERY',category:'bakery'})).total,0);
+  await db.exec(`INSERT INTO "Restaurant" VALUES (1,'Priced Jalna Outlet','A street','Jalna',NULL,NULL),(2,'No Price Outlet','B street','Jalna',NULL,NULL),(3,'No Source Outlet','C street','Jalna',NULL,NULL);
+   INSERT INTO "Dish" VALUES (1,'Poha',70,1,ARRAY['https://owner.example/menu']),(2,'Unknown price',NULL,2,ARRAY['https://owner.example/menu']),(3,'Guessed source',80,3,ARRAY[]::text[]);`);
+  const listed=await run({city:'Jalna'});assert.equal(listed.total,2);assert.ok(listed.businesses.some(b=>b.name==='Priced Jalna Outlet'&&b.pricedMenuItems[0].price===70));assert.ok(listed.businesses.some(b=>b.name==='No Source Outlet'&&b.pricedMenuItems[0].price===80));assert.ok(!listed.businesses.some(b=>b.name==='No Price Outlet'));
+  const source=catalog.listingRows.find(b=>b.hasPricedMenu&&b.city==='Mumbai');assert.ok(source);
+  const result=await run({city:'Mumbai',q:source.name});assert.ok(result.businesses.some(b=>b.sourceProfileId===source.id&&b.pricedMenuItems.length>0));
+  assert.equal((await run({city:'Partur',q:'Priced Jalna Outlet'})).total,0);
+  const first=await run({city:'Mumbai',limit:'2'}),next=await run({city:'Mumbai',limit:'2',offset:'2'});
   assert.equal(first.hasMore,true);assert.equal(first.total,next.total);assert.ok(first.businesses.every(a=>!next.businesses.some(b=>a.id===b.id)));
+
  }finally{await db.close();}
 });

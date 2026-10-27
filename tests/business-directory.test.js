@@ -14,7 +14,7 @@ test('OSM profile metadata survives directory responses and canonical candidate 
  const b=require('../lib/open-food-data').businesses[0];
  const r=await run({city:'Mumbai'},[{id:b.existingBusinessId,name:b.name,sourceProfileId:b.sourceKey,matchCount:1,latitude:b.latitude,longitude:b.longitude}]);
  assert.equal(r.body.businesses[0].sourceLicense,'ODbL-1.0');assert.match(r.body.businesses[0].attribution,/OpenStreetMap contributors/);
- const bound=JSON.parse(r.calls[0].v[0]).find(row=>row.id===b.sourceKey);assert.equal(bound.existingBusinessId,b.existingBusinessId);
+ const bound=JSON.parse(r.calls[0].v.find(v=>typeof v==='string'&&v.startsWith('['))).find(row=>row.id===b.sourceKey);assert.equal(bound,undefined,'mapped-only profiles without priced menus are excluded');
 });
 
 test('owner submissions enter the directory with their business category and no contact fields',async()=>{
