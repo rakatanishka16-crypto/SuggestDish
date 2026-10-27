@@ -1,0 +1,164 @@
+{
+  "reviews": [
+    {
+      "provider_id": "IRR-WG0638FQ8B",
+      "requested_name": "Atithi Veg",
+      "branch_label": "Ring Road",
+      "expected_city": "Jalna",
+      "expected_address": "CTS 11393, A-53, Ring Road, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/atithi-veg-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-WG0638FQ8B",
+        "https://indiarestros.com/api/v1/restaurants/IRR-WG0638FQ8B/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-F1RGM1S1R1",
+      "requested_name": "Amber Hotel",
+      "branch_label": "Post Office Road",
+      "expected_city": "Jalna",
+      "expected_address": "Post Office Road, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/amber-hotel-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-F1RGM1S1R1",
+        "https://indiarestros.com/api/v1/restaurants/IRR-F1RGM1S1R1/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-24H3K9NJ6M",
+      "requested_name": "Shree Gajanan Bojanalay",
+      "branch_label": "Mama Chowk",
+      "expected_city": "Jalna",
+      "expected_address": "Mama Chowk, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/shree-gajanan-bojanalay-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-24H3K9NJ6M",
+        "https://indiarestros.com/api/v1/restaurants/IRR-24H3K9NJ6M/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-A7MN3BH36P",
+      "requested_name": "Cafe Blush",
+      "branch_label": "RP Road",
+      "expected_city": "Jalna",
+      "expected_address": "Near Minakshi NX, RP Road, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/cafe-blush-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-A7MN3BH36P",
+        "https://indiarestros.com/api/v1/restaurants/IRR-A7MN3BH36P/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-EFNH1GFC96",
+      "requested_name": "Naadbramha Idli - Shivaji Putla Road",
+      "branch_label": "Shivaji Putla Road",
+      "expected_city": "Jalna",
+      "expected_address": "Shop 5, Ground Floor, Patal Hanuman Mandir Complex, Shivaji Putla Road, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/naadbramha-idli-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-EFNH1GFC96",
+        "https://indiarestros.com/api/v1/restaurants/IRR-EFNH1GFC96/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-S5KFYWRNE4",
+      "requested_name": "Annapurna Dosa'j",
+      "branch_label": "Sai Nath Nagar",
+      "expected_city": "Jalna",
+      "expected_address": "Shop 1, Priyank Residency, Sai Nath Nagar, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/annapurna-dosaj-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-S5KFYWRNE4",
+        "https://indiarestros.com/api/v1/restaurants/IRR-S5KFYWRNE4/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-6PVYBHT3Z7",
+      "requested_name": "Jain Bandhu Pav Bhaji Centre",
+      "branch_label": "Karwa Nagar",
+      "expected_city": "Jalna",
+      "expected_address": "Karwa Nagar, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/jain-bandhu-pav-bhaji-centre-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-6PVYBHT3Z7",
+        "https://indiarestros.com/api/v1/restaurants/IRR-6PVYBHT3Z7/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-B3DWWZ0JF5",
+      "requested_name": "Frullato",
+      "branch_label": "Premganga Plaza",
+      "expected_city": "Jalna",
+      "expected_address": "CTS 4118/101 And 4118/102, Shop 27, Survey 245, Ground Floor, Premganga Plaza, Near Guru Ganesh Bhavan, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/frullato-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-B3DWWZ0JF5",
+        "https://indiarestros.com/api/v1/restaurants/IRR-B3DWWZ0JF5/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-S0EQ9HMBD6",
+      "requested_name": "Stock Cafe",
+      "branch_label": "Krishna Mall",
+      "expected_city": "Jalna",
+      "expected_address": "Shop 8, Plot 4, C.T.S. 17473, Second Floor, Krishna Mall, Mantha Bye Pass Road, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/stock-cafe-1-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-S0EQ9HMBD6",
+        "https://indiarestros.com/api/v1/restaurants/IRR-S0EQ9HMBD6/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    },
+    {
+      "provider_id": "IRR-TPD0MHXYN4",
+      "requested_name": "Goli Vada Pav No. 1",
+      "branch_label": "Old Mondha",
+      "expected_city": "Jalna",
+      "expected_address": "Shop 10, Block 3, Arjun Khotkar Business Center, Near Bank Of Maharashtra, Old Mondha, Jalna Locality, Jalna",
+      "expected_upstream_url": "https://www.zomato.com/jalna/goli-vada-pav-no-1-1-jalna-locality/order",
+      "resolution": "independent_source_branch",
+      "existing_database_association": "unresolved_not_merged",
+      "reviewed_on": "2026-10-27",
+      "evidence": [
+        "https://indiarestros.com/api/v1/restaurants/IRR-TPD0MHXYN4",
+        "https://indiarestros.com/api/v1/restaurants/IRR-TPD0MHXYN4/menu"
+      ],
+      "review_basis": "Exact requested upstream outlet URL and provider restaurant ID agree; the API supplies this Jalna branch address and positive menu prices. Publish the labelled source branch independently; no identity link to an incomplete legacy restaurant is asserted."
+    }
+  ]
+}
