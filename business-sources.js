@@ -63,7 +63,8 @@
         for (const url of b.menu_source_urls || []) {const p=document.createElement('p');link(p,'View online menu listing',url);panel.append(p);}
         if (b.directory_attribution) line(panel,b.directory_attribution);
         if (data.menuItems.length) {
-          const heading = document.createElement('h4'); heading.textContent = data.menuScope==='outlet_page' ? 'Published outlet menu' : 'Brand menu reference'; panel.append(heading);
+          const outletMenu=['outlet_page','outlet_observed'].includes(data.menuScope);
+          const heading = document.createElement('h4'); heading.textContent = outletMenu ? 'Published outlet menu' : 'Brand menu reference'; panel.append(heading);
           line(panel,data.menuNotice || 'Branch availability is unconfirmed. These menu entries are reference information; they do not enter budget or dietary recommendations automatically.');
           const label = document.createElement('label'); label.textContent = 'Search this menu';
           const filter = document.createElement('input'); filter.type = 'search'; filter.id = panel.id + '-filter';
@@ -72,7 +73,7 @@
           const count = document.createElement('p'); count.className = 'small mute'; count.setAttribute('aria-live','polite'); panel.append(count);
           const list = document.createElement('ul'); list.style.paddingLeft = '20px';
           for (const m of data.menuItems) {
-            const item = document.createElement('li'); item.textContent = m.name + (m.menu_category ? ' · '+m.menu_category : '') + (m.portion ? ' · '+m.portion : '') + (m.price_inr === null ? ' · Price not published' : ' · ₹'+m.price_inr+(data.menuScope==='outlet_page' ? ' (outlet-page price)' : ' (reference price; confirm with outlet)')) + (m.is_veg === true ? ' · Vegetarian according to source' : m.is_veg === false ? ' · Non-vegetarian according to source' : ' · Dietary type unconfirmed') + (m.tax_included===false ? ' · Excludes GST' : '') + (m.service_time ? ' · Served '+m.service_time : '') + (m.order_note ? ' · '+m.order_note : '') + (['OutOfStock','catalog_disabled'].includes(m.source_availability) ? ' · Source lists unavailable' : ''); list.append(item);
+            const item = document.createElement('li'); item.textContent = m.name + (m.menu_category ? ' · '+m.menu_category : '') + (m.portion ? ' · '+m.portion : '') + (m.price_inr === null ? ' · Price not published' : ' · ₹'+m.price_inr+(outletMenu ? ' (listed outlet price)' : ' (reference price; confirm with outlet)')) + (m.is_veg === true ? ' · Vegetarian according to source' : m.is_veg === false ? ' · Non-vegetarian according to source' : ' · Dietary type unconfirmed') + (m.tax_included===false ? ' · Excludes GST' : '') + (m.service_time ? ' · Served '+m.service_time : '') + (m.order_note ? ' · '+m.order_note : '') + (['OutOfStock','catalog_disabled'].includes(m.source_availability) ? ' · Source lists unavailable' : ''); list.append(item);
           }
           const applyFilter = () => {const query=filter.value.trim().toLowerCase();let visible=0;for(const item of list.children){item.hidden=!item.textContent.toLowerCase().includes(query);if(!item.hidden)visible++;}count.textContent=visible+' of '+data.menuItems.length+' menu entries';};
           filter.addEventListener('input',applyFilter);applyFilter();
