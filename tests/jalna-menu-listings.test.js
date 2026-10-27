@@ -48,7 +48,8 @@ test('city directory queries serialize only relevant source profiles',async()=>{
  let handler,values;require('../lib/business-directory')({get:(p,h)=>{handler=h;}},async(s,...v)=>{values=v;return [];});
  await handler({query:{city:'Jalna'}},{set(){},json(){}});
  const rows=JSON.parse(values[0]);assert.ok(rows.length>200);assert.ok(rows.every(b=>b.city.toLowerCase()==='jalna'));
- assert.ok(rows.length<catalog.listingRows.length/10);
+ assert.equal(rows.length,catalog.listingRows.filter(b=>String(b.city||'').toLowerCase()==='jalna').length);
+ assert.ok(rows.length<catalog.listingRows.length);
 });
 test('directory query returns matched menu links without overwriting owner-submitted menu links',async()=>{
  const register=require('../lib/business-directory'),entry=catalog.listingRows.find(b=>b.id.startsWith('directory:jalna-menu-'));
